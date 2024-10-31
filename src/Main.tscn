@@ -35,3 +35,11 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/TalkArea"]
 shape = SubResource("CircleShape2D_ttr6j")
+
+[node name="MenuNode" type="Node" parent="."]
+
+[node name="MapNode" type="Node" parent="."]
+
+[node name="BattleNode" type="Node" parent="."]
+
+[node name="DialogueNode" type="Node" parent="."]

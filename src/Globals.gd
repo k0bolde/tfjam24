@@ -4,6 +4,7 @@ extends Node
 
 #kinda nasty way to get a reference to the player - is set on startup/load by main
 var player
+var main
 var save_data := Save.new()
 
 
