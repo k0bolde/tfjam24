@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://b30nllnfkvlpa"]
+
+[ext_resource type="Script" path="res://src/Main.gd" id="1_kawq1"]
+[ext_resource type="PackedScene" uid="uid://c65yo83m0mymi" path="res://src/Player.tscn" id="2_vtl2i"]
+[ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="2_x60ry"]
+
+[sub_resource type="TileSet" id="TileSet_b3ilc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75hbv"]
+radius = 61.2944
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ttr6j"]
+radius = 81.2158
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_kawq1")
+
+[node name="Player" parent="." instance=ExtResource("2_vtl2i")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_b3ilc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(575, 321)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_x60ry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_75hbv")
+
+[node name="TalkArea" type="Area2D" parent="StaticBody2D"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/TalkArea"]
+shape = SubResource("CircleShape2D_ttr6j")
