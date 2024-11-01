@@ -14,73 +14,84 @@ script = ExtResource("1_0c8cn")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.305882)
+
+[node name="MenuContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -113.0
+offset_top = -161.5
 offset_right = 316.0
-offset_bottom = 113.0
+offset_bottom = 161.5
 grow_vertical = 2
 theme_override_constants/margin_left = 200
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MenuContainer"]
 layout_mode = 2
 color = Color(2.04556e-06, 0.601205, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
-visible = false
+[node name="CashLabel" type="Label" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Menu"
+text = "$100"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="PartyButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="PartyButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Party"
 
-[node name="ItemsButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="ItemsButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Items"
 
-[node name="EquipmentButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="EquipmentButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Equipment"
 
-[node name="SaveButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Save"
 
-[node name="LoadButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="LoadButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Load"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="MainMenuButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="DebugButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="DebugButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Debug"
 
-[node name="CloseButton" type="Button" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Close"
 
@@ -131,7 +142,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Reminder of what to do next goes here"
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="toggled" from="CanvasLayer/SettingsPanel/PanelContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]

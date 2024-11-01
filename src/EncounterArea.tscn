@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq4kio8vt8hy8"]
+
+[ext_resource type="Script" path="res://src/EncounterArea.gd" id="1_wi3rp"]
+
+[node name="EncounterArea" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_wi3rp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

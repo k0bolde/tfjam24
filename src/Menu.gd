@@ -1,13 +1,23 @@
 extends Control
 @onready var settings_panel : Panel = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
+@onready var menu_container : Container = %MenuContainer
 
 func _ready() -> void:
-	pass
+	if OS.is_debug_build():
+		%DebugButton.visible = true
+	menu_container.rotation_degrees = 90.0
+	var t : Tween = get_tree().create_tween()
+	t.set_trans(Tween.TRANS_SINE)
+	t.tween_property(menu_container, "rotation_degrees", 0.0, 0.35)
 
 
 func _on_close_button_pressed() -> void:
-	queue_free()
+	var t : Tween = get_tree().create_tween()
+	t.set_trans(Tween.TRANS_SINE)
+	t.tween_property(menu_container, "rotation_degrees", 90.0, 0.1)
+	t.tween_callback(queue_free)
+	#queue_free()
 
 
 func _on_main_menu_button_pressed() -> void:

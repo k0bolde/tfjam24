@@ -7,6 +7,6 @@ var story_flags := {}
 var inventory := {}
 var abilities := {}
 var map := "main"
+var day := 0
 
-var map_name := "map1"
 var location := Vector2()

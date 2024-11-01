@@ -2,9 +2,9 @@ extends Node
 # Globals can be accessed from any script - like Globals.get_tween()
 # Useful for functions that are used in multiple places
 
-#kinda nasty way to get a reference to the player - is set on startup/load by main
-var player
-var main
+#kinda nasty way to get a reference to the player - is set on startup/load by main. Should be replaced by signals
+var player : Player
+var main 
 var save_data := Save.new()
 
 
@@ -29,6 +29,7 @@ func save_game():
 	save_data.cash = player.cash
 	save_data.location = player.global_location
 	save_data.map = "main"
+	save_data.day = main.day
 	ResourceSaver.save(save_data, "user://save.tres")
 
 
