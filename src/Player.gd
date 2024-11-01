@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @export var speed := 150.0
 var is_sprinting = false
+var encounter_area : EncounterArea
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -21,4 +22,6 @@ func _physics_process(delta: float) -> void:
 	if is_sprinting:
 		velocity *= 2.0
 	move_and_slide()
-	
+	if encounter_area:
+		#ask if we hit a battle
+		encounter_area.check_for_battle()

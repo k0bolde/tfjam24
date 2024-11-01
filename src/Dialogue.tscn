@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ndu6nj6ov7t2"]
+[gd_scene load_steps=3 format=3 uid="uid://ndu6nj6ov7t2"]
 
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_23wno"]
+[ext_resource type="Script" path="res://src/Dialogue.gd" id="1_nnc88"]
 
 [node name="Dialogue" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nnc88")
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1

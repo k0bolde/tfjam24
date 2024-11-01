@@ -55,5 +55,23 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -127.0
+offset_right = 196.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Controls:
+move - wasd/arrows keys
+menu - tab/ctrl/right click
+interact - space/left click
+sprint - shift/middle click
+Use mouse in battles"
+
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

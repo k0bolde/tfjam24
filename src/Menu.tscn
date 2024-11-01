@@ -84,6 +84,27 @@ text = "Debug"
 layout_mode = 2
 text = "Close"
 
+[node name="SettingsPanel" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/SettingsPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="CanvasLayer/SettingsPanel/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fullscreen"
+
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -110,4 +131,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Reminder of what to do next goes here"
 
+[connection signal="pressed" from="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/SettingsPanel/PanelContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]

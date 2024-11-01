@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=4 format=3 uid="uid://1fk0ydtef6ql"]
 
+[ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2or6c")
 
 [node name="Node2D" type="Node2D" parent="."]
 
