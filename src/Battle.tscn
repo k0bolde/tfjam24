@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=3 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
+[ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -9,6 +10,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(959, 466)
+scale = Vector2(4, 4)
+texture = ExtResource("2_22y0y")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(256, 512, 64, 64)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -22,7 +34,7 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -46,9 +58,13 @@ layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+visible = false
 layout_mode = 2
 texture = ExtResource("1_t3y8g")
 stretch_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -56,6 +72,10 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
@@ -111,12 +131,19 @@ layout_mode = 2
 text = "HP"
 
 [node name="HPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer2"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
+step = 1.0
+value = 23.0
+show_percentage = false
 
 [node name="Label4" type="Label" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
 text = "MP"
 
 [node name="MPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/GridContainer2"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+step = 1.0
+value = 53.0
+show_percentage = false

@@ -23,6 +23,7 @@ theme_override_constants/margin_left = 40
 
 [node name="PortraitTexture" type="TextureRect" parent="MarginContainer3"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("1_23wno")
@@ -40,7 +41,7 @@ grow_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 200
-theme_override_constants/margin_right = 200
+theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 40
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer2"]
