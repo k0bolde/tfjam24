@@ -65,7 +65,13 @@ horizontal_alignment = 2
 [node name="BattleNode" type="Node" parent="."]
 
 [node name="EncounterArea" parent="." instance=ExtResource("5_mg6br")]
+encounter_rates = {
+"Rat": 0.4,
+"Slime": 0.6
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
 position = Vector2(344, 155)
 shape = SubResource("RectangleShape2D_tu36y")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]

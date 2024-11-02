@@ -10,6 +10,8 @@ extends Node2D
 @onready var map_node = $MapNode
 @onready var battle_node = $BattleNode
 @onready var dialogue_node = $DialogueNode
+@onready var music_player : AudioStreamPlayer = $MusicPlayer
+
 var battle : Battle
 var map : Map
 var dialogue : Dialogue
@@ -20,7 +22,12 @@ var day := 1
 func _ready() -> void:
 	Globals.player = player 
 	Globals.main = self
-	#map_node.add_child(preload("res://src/maps/Map1.tscn").instantiate())
+	AudioServer.set_bus_volume_db(0, -30)
+	#print("%f %f" % [db_to_linear(-80), db_to_linear(24)])
+	
+	Events.battle_start.connect(start_battle)
+	Events.battle_end.connect(end_battle)
+	
 	load_map("Map1")
 
 
@@ -58,11 +65,18 @@ func load_map(map_name:String):
 
 
 func start_battle():
+	Globals.player.cam.enabled = false
+	Globals.player.is_battling = true
 	battle = preload("res://src/Battle.tscn").instantiate()
 	battle_node.add_child(battle)
+	music_player.stream = preload("res://assets/audio/battle theme (very rough).mp3")
+	music_player.play()
 	
 	
 func end_battle():
 	if is_battle_up():
 		battle_node.remove_child(battle)
 		battle.queue_free()
+		music_player.stop()
+		Globals.player.cam.enabled = true
+		Globals.player.is_battling = false

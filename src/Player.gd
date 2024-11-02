@@ -1,12 +1,17 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var cam : Camera2D = $Camera2D
+
 @export var speed := 150.0
 var is_sprinting = false
 var encounter_area : EncounterArea
+var is_battling := false
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Globals.main.is_menu_up() or is_battling:
+		return
 	if event.is_action_pressed("interact"):
 		pass
 	
@@ -17,7 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Globals.main.is_menu_up():
+	if Globals.main.is_menu_up() or is_battling:
 		return
 	var dir := Input.get_vector("left", "right", "up", "down")
 	velocity = dir * speed

@@ -9,7 +9,7 @@ var save_data := Save.new()
 
 
 func _input(event):
-	if event.is_action_pressed("quit"):
+	if event.is_action_pressed("quit") and OS.is_debug_build():
 		get_tree().quit()
 		
 	if event.is_action_pressed("fullscreen"):
