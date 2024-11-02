@@ -63,6 +63,8 @@ anchor_bottom = 1.0
 offset_top = -127.0
 offset_right = 196.0
 grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -73,5 +75,40 @@ interact - space/left click
 sprint - shift/middle click
 Use mouse in battles"
 
+[node name="CreditsPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPanel/PanelContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="CreditsPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "By k0bold, skiesofsilver
+
+Uses Clyde Dialogue"
+editable = false
+wrap_mode = 1
+
+[node name="QuitCreditsButton" type="Button" parent="CreditsPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CreditsPanel/PanelContainer/VBoxContainer/QuitCreditsButton" to="." method="_on_quit_credits_button_pressed"]

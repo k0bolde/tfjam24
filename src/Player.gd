@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if velocity.length_squared() > 0.0 and encounter_area:
 		#TODO fight cooldown - don't get right after we fight one
+		#TODO should pass delta
 		#ask if we hit a battle
 		encounter_area.check_for_battle()
 		if is_sprinting:
