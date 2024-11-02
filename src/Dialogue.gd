@@ -17,12 +17,15 @@ func _ready() -> void:
 	dialogue.on_external_variable_fetch(_on_external_variable_fetch)
 	dialogue.on_external_variable_update(_on_external_variable_update)
 	
-	_get_next_dialogue_line()
+	call_deferred("_get_next_dialogue_line")
+	#_get_next_dialogue_line()
 	
 	
 func _get_next_dialogue_line():
 	var content = dialogue.get_content()
 	if content.type == "end":
+		#TODO don't do a naughty global call
+		Globals.player.is_talking = false
 		queue_free()
 
 	if content.type == 'line':
@@ -65,7 +68,7 @@ func _on_option_selected(index):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		_get_next_dialogue_line()	
+		_get_next_dialogue_line()
 	
 	
 func _on_event_triggered(event_name):

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpvotvbs7yfnl"]
+
+[ext_resource type="Script" path="res://src/NPC.gd" id="1_yfqx8"]
+[ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="2_0h8jv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75hbv"]
+radius = 15.1327
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ttr6j"]
+radius = 22.8035
+
+[node name="NPC" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_yfqx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0h8jv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_75hbv")
+
+[node name="TalkArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
+shape = SubResource("CircleShape2D_ttr6j")

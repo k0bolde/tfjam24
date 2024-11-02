@@ -1,8 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=9 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8wg5"]
+albedo_color = Color(0.144063, 0.144063, 0.144063, 1)
+metallic_specular = 0.31
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivvvk"]
+material = SubResource("StandardMaterial3D_o8wg5")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kgb63"]
+sky_top_color = Color(0.627656, 0.872215, 0.6011, 1)
+sky_horizon_color = Color(0.0931636, 0.194257, 0.0813473, 1)
+ground_horizon_color = Color(0.0931636, 0.194257, 0.0813473, 1)
+
+[sub_resource type="Sky" id="Sky_r3op2"]
+sky_material = SubResource("ProceduralSkyMaterial_kgb63")
+
+[sub_resource type="Environment" id="Environment_kkb66"]
+background_mode = 2
+sky = SubResource("Sky_r3op2")
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.61
+fog_mode = 1
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 431.1
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_2or6c")
@@ -44,7 +70,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+screen_space_aa = 1
+size = Vector2i(960, 429)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
+
+[node name="Party1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+billboard = 2
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(384, 256, 64, 64)
+
+[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(0.809017, 0.16694, -0.56358, 0, 0.95882, 0.284015, 0.587785, -0.229773, 0.775701, -0.259, 0.315, 1.16)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -0.324366, 0)
+mesh = SubResource("PlaneMesh_ivvvk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+environment = SubResource("Environment_kkb66")
+
+[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, 0)
+flip_h = true
+billboard = 2
+double_sided = false
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(256, 512, 64, 64)
+
+[node name="BattleCenter" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742395, -0.173048, 0)
+
+[node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+unique_name_in_owner = true
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/margin_left = 10
@@ -168,5 +245,19 @@ layout_mode = 2
 step = 1.0
 value = 53.0
 show_percentage = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer2"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer/RunButton" to="." method="_on_run_button_pressed"]

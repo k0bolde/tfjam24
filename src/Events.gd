@@ -5,3 +5,6 @@ extends Node
 signal battle_start
 @warning_ignore("unused_signal")
 signal battle_end
+
+@warning_ignore("unused_signal")
+signal dialogue_start(clyde_file)

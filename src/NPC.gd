@@ -4,9 +4,11 @@ class_name NPC
 ## The image to show for the npc
 @export var image : Texture2D
 ## The clyde dialogue file 
-@export_file("*.clyde") var dialogue
+@export_file("*.clyde") var dialogue_file
 
 @onready var talk_area : Area2D = $TalkArea
+
+var dialogue : Dialogue
 
 
 func _ready() -> void:
@@ -17,8 +19,20 @@ func _ready() -> void:
 	
 	
 func _on_body_entered(body):
-	pass
+	body.npc = self
 	
 	
 func _on_body_exited(body):
-	pass
+	if body.npc == self:
+		body.npc = null
+
+
+func start_talk():
+	Events.dialogue_start.emit(dialogue_file)
+	
+	
+	
+	
+	
+	
+	

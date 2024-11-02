@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 	Events.battle_start.connect(start_battle)
 	Events.battle_end.connect(end_battle)
+	Events.dialogue_start.connect(start_dialogue)
 	
 	load_map("Map1")
 
@@ -80,3 +81,9 @@ func end_battle():
 		music_player.stop()
 		Globals.player.cam.enabled = true
 		Globals.player.is_battling = false
+
+
+func start_dialogue(clyde_file):
+	dialogue = preload("res://src/Dialogue.tscn").instantiate()
+	dialogue.dialogue_to_load = clyde_file
+	dialogue_node.add_child(dialogue)

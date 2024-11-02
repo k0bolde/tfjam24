@@ -6,14 +6,21 @@ class_name Player
 @export var speed := 150.0
 var is_sprinting = false
 var encounter_area : EncounterArea
+var npc : NPC
 var is_battling := false
+var is_talking := false
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Globals.main.is_menu_up() or is_battling:
+	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return
+		
 	if event.is_action_pressed("interact"):
-		pass
+		if npc:
+			npc.start_talk()
+			is_talking = true
+			# remove the npc ref so we don't get stuck in a talk loop
+			npc = null
 	
 	if event.is_action_pressed("sprint"):
 		is_sprinting = true
@@ -22,7 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Globals.main.is_menu_up() or is_battling:
+	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return
 	var dir := Input.get_vector("left", "right", "up", "down")
 	velocity = dir * speed
