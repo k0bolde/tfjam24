@@ -1,7 +1,8 @@
 extends Control
-@onready var settings_panel : Panel = %SettingsPanel
+@onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
 @onready var menu_container : Container = %MenuContainer
+
 
 func _ready() -> void:
 	if OS.is_debug_build():

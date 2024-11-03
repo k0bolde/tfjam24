@@ -30,6 +30,7 @@ func _ready() -> void:
 	Events.dialogue_start.connect(start_dialogue)
 	
 	load_map("Map1")
+	Globals.load2()
 
 
 func is_menu_up() -> bool:

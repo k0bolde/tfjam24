@@ -5,7 +5,9 @@ extends Node
 #kinda nasty way to get a reference to the player - is set on startup/load by main. Should be replaced by signals
 var player : Player
 var main 
-var save_data := Save.new()
+var save_data
+var party
+var inventory
 
 
 func _input(event):
@@ -26,13 +28,28 @@ func get_tween(the_tween:Tween, node) -> Tween:
 
 
 func save_game():
+	save_data = Save.new()
 	save_data.cash = player.cash
 	save_data.location = player.global_location
 	save_data.map = "main"
 	save_data.day = main.day
+	save_data.party = party
+	save_data.inventory = inventory
 	ResourceSaver.save(save_data, "user://save.tres")
 
 
 func load_game():
 	save_data = ResourceLoader.load("user://save.tres", "Save", ResourceLoader.CACHE_MODE_IGNORE)
-	get_tree().change_scene_to_file("res://src/2drpg/Main2D.tscn")
+	get_tree().change_scene_to_file("res://src/Main.tscn")
+	
+	
+# This 2 stage load is kinda nasty but not sure how to get around it
+func load2():
+	if save_data:
+		player.cash = save_data.cash
+		main.load_map(save_data.map)
+		player.position = save_data.location
+		party = save_data.party
+		inventory = save_data.inventory
+		
+		save_data = null

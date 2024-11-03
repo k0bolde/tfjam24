@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Stats
 
 var hp := 100
@@ -12,3 +12,11 @@ var def := 10
 var eva := 10
 # item/cash drop rate, critical hits
 var lck := 10
+
+var img : Texture2D
+var character_name : String
+
+var abilities := []
+var level := 1
+var xp := 0
+var equipment := {"Head": "", "Body": "", "Ring": ""}

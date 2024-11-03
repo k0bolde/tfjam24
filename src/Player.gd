@@ -28,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		is_sprinting = false
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return
 	var dir := Input.get_vector("left", "right", "up", "down")

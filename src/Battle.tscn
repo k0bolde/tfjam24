@@ -1,15 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=11 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8wg5"]
-albedo_color = Color(0.144063, 0.144063, 0.144063, 1)
-metallic_specular = 0.31
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ivvvk"]
-material = SubResource("StandardMaterial3D_o8wg5")
+[ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="4_xgkbo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kgb63"]
 sky_top_color = Color(0.627656, 0.872215, 0.6011, 1)
@@ -29,6 +23,19 @@ fog_mode = 1
 fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 431.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8wg5"]
+albedo_color = Color(0.144063, 0.144063, 0.144063, 1)
+metallic_specular = 0.31
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivvvk"]
+material = SubResource("StandardMaterial3D_o8wg5")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rdu10"]
+top_radius = 0.34
+bottom_radius = 0.755
+height = 0.295
+cap_bottom = false
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_2or6c")
@@ -69,22 +76,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer"]
 unique_name_in_owner = true
 handle_input_locally = false
-screen_space_aa = 1
-size = Vector2i(960, 429)
+scaling_3d_scale = 2.0
+size = Vector2i(960, 453)
 render_target_update_mode = 4
 
 [node name="Node3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
 
-[node name="Party1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="Party" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+
+[node name="Party1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0768284, 0)
 billboard = 2
 double_sided = false
 texture_filter = 0
@@ -92,18 +104,9 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(384, 256, 64, 64)
 
-[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
-unique_name_in_owner = true
-transform = Transform3D(0.809017, 0.16694, -0.56358, 0, 0.95882, 0.284015, 0.587785, -0.229773, 0.775701, -0.259, 0.315, 1.16)
+[node name="Enemies" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -0.324366, 0)
-mesh = SubResource("PlaneMesh_ivvvk")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
-environment = SubResource("Environment_kkb66")
-
-[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, 0)
 flip_h = true
 billboard = 2
@@ -113,12 +116,31 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
+[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(0.809017, 0.16694, -0.56358, 0, 0.95882, 0.284015, 0.587785, -0.229773, 0.775701, -0.259, 0.315, 1.16)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+environment = SubResource("Environment_kkb66")
+
 [node name="BattleCenter" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742395, -0.173048, 0)
 
 [node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0.736, 0.5, 0.808)
+
+[node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -0.324366, 0)
+mesh = SubResource("PlaneMesh_ivvvk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.389625, 0)
+mesh = SubResource("CylinderMesh_rdu10")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
 visible = false
@@ -157,89 +179,80 @@ stretch_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_styles/panel = ExtResource("4_xgkbo")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-color = Color(0, 0.415686, 0, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 8
+size_flags_vertical = 4
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 columns = 3
 
-[node name="BasicAttackButton" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer"]
+[node name="BasicAttackButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
-text = "Basic Attack"
+text = "Attack"
 
-[node name="AbilitiesButton" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer"]
+[node name="AbilitiesButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
 text = "Abilities"
 
-[node name="ItemsButton" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer"]
+[node name="ItemsButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
 text = "Items"
 
-[node name="RunButton" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer"]
+[node name="RunButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
 text = "Run"
 
-[node name="PassTurnButton" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer"]
+[node name="PassTurnButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
 text = "Pass Turn"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 0
 
-[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 columns = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/GridContainer2"]
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
 text = "Turns"
+horizontal_alignment = 2
 
-[node name="TurnsLabel" type="Label" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/GridContainer2"]
+[node name="TurnsLabel" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/GridContainer2"]
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
 text = "HP"
+horizontal_alignment = 2
 
-[node name="HPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/GridContainer2"]
+[node name="HPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 step = 1.0
 value = 23.0
 show_percentage = false
 
-[node name="Label4" type="Label" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/GridContainer2"]
+[node name="Label4" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
 text = "MP"
+horizontal_alignment = 2
 
-[node name="MPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/GridContainer2"]
+[node name="MPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 step = 1.0
@@ -260,4 +273,4 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer2/GridContainer/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/GridContainer/RunButton" to="." method="_on_run_button_pressed"]
