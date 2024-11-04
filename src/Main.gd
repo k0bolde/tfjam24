@@ -1,8 +1,6 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #nov 1st TODOS
-#TODO dialogue system
-#TODO enter battles
 #TODO basic battles, kill, die, end
 
 @onready var player = $Player

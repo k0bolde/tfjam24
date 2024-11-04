@@ -20,11 +20,14 @@ func _ready() -> void:
 	
 func _on_body_entered(body):
 	body.npc = self
+	body.interact_container.visible = true
+	body.interact_label.text = "Talk"
 	
 	
 func _on_body_exited(body):
 	if body.npc == self:
 		body.npc = null
+		body.interact_container.visible = false
 
 
 func start_talk():

@@ -68,6 +68,7 @@ func _on_option_selected(index):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
+		#TODO wait an extra click or a certain amount of time so the player could presumably read it. Pause blink timer until such a state
 		_get_next_dialogue_line()
 	
 	
@@ -88,3 +89,7 @@ func _on_external_variable_fetch(variable_name: String):
 # This method is called when the dialogue tries to set an external variable. i.e { set @health = 10 }
 func _on_external_variable_update(variable_name: String, value: Variant):
 	_external_persistence[variable_name] = value
+
+
+func _on_blink_timer_timeout() -> void:
+	%NextIndicator.visible = not %NextIndicator.visible

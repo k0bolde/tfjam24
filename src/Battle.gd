@@ -36,3 +36,10 @@ func _process(_delta: float) -> void:
 
 func _on_run_button_pressed() -> void:
 	Events.battle_end.emit()
+	
+	
+func ability_callable(user, party:Array, enemies:Array, target:int, battle:Battle):
+	# applies an ability/item to the battle, each invididual ability should have its own func like this that the battle calls when its used
+	# target is pos int for enemy target, neg int for party target, null for self
+	# should modify turns, send weakness/other animations
+	pass

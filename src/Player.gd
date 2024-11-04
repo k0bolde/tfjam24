@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @onready var cam : Camera2D = $Camera2D
+@onready var interact_container : Container = %InteractContainer
+@onready var interact_label : Label = %InteractLabel
 
 @export var speed := 150.0
 var is_sprinting = false
@@ -19,6 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if npc:
 			npc.start_talk()
 			is_talking = true
+			interact_container.visible = false
 			# remove the npc ref so we don't get stuck in a talk loop
 			npc = null
 	
