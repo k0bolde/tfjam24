@@ -2,6 +2,7 @@ extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #nov 1st TODOS
 #TODO basic battles, kill, die, end
+#TODO intro cutscene
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode
@@ -15,6 +16,20 @@ var map : Map
 var dialogue : Dialogue
 var menu
 var day := 1
+var story_flags := {
+	# 0 - new game
+	# 1 - intro done
+	# 2 - tutorial done
+	"main" : 0,
+	"jesse": 0,
+	"sock": 0,
+	"ceron": 0,
+	
+	"quarantine": 0,
+	"factory": 0,
+	"office": 0,
+	"lab": 0
+}
 
 
 func _ready() -> void:
@@ -29,7 +44,7 @@ func _ready() -> void:
 	
 	load_map("Map1")
 	Globals.load2()
-
+	start_cutscene()
 
 func is_menu_up() -> bool:
 	return menu_node.get_child_count() > 0
@@ -86,3 +101,10 @@ func start_dialogue(clyde_file):
 	dialogue = preload("res://src/Dialogue.tscn").instantiate()
 	dialogue.dialogue_to_load = clyde_file
 	dialogue_node.add_child(dialogue)
+
+
+func start_cutscene():
+	if story_flags["main"] == 0:
+		#start the intro cutscene
+		start_dialogue("res://assets/dialogue/intro_cutscene.clyde")
+		story_flags["main"] = 1

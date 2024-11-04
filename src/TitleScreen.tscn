@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw116owgd5kcr"]
+[gd_scene load_steps=3 format=3 uid="uid://dw116owgd5kcr"]
 
 [ext_resource type="Script" path="res://src/TitleScreen.gd" id="1_8vnq6"]
+[ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="2_523vu"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -11,47 +12,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8vnq6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -44.5
+offset_top = -75.5
+offset_right = 44.5
+offset_bottom = 75.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_523vu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "TF RPG"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "New Game"
 
-[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+[node name="LoadGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Load Game"
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Settings"
 
-[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
@@ -108,7 +114,8 @@ wrap_mode = 1
 layout_mode = 2
 text = "Return"
 
-[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CreditsPanel/PanelContainer/VBoxContainer/QuitCreditsButton" to="." method="_on_quit_credits_button_pressed"]

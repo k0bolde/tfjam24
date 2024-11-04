@@ -1,12 +1,18 @@
 extends Control
 class_name Dialogue
 
+@onready var speaker_label : Label = %SpeakerLabel
+@onready var dialogue_label : Label = %DialogueLabel
+@onready var portrait_texture : TextureRect = %PortraitTexture
+
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
 var dialogue_to_load : String
 var _external_persistence := {}
-@onready var speaker_label : Label = %SpeakerLabel
-@onready var dialogue_label : Label = %DialogueLabel
+var fade_tween : Tween
+var portraits := {
+	"finley": "res://assets/portraits/finley1.png"
+}
 
 func _ready() -> void:
 	dialogue.load_dialogue(dialogue_to_load)
@@ -39,9 +45,21 @@ func _get_next_dialogue_line():
 
 
 func _set_up_line(content):
-	#TODO load the right character portrait
-	speaker_label.text = content.get('speaker') if content.get('speaker') != null else ''
+	var speaker = content.get('speaker')
+	if speaker:
+		speaker_label.text = speaker
+		speaker_label.visible = true
+		portrait_texture.visible = true
+		if portraits.has(speaker):
+			portrait_texture.texture = load(portraits[speaker])
+	else:
+		speaker_label.visible = false
+		portrait_texture.visible = false
+	#speaker_label.text = content.get('speaker') if content.get('speaker') != null else ''
 	dialogue_label.text = content.text
+	if content.tags.has("fade_to_black"):
+		fade_tween = Globals.get_tween(fade_tween, self)
+		fade_tween.tween_property(%FadeRect, "modulate", Color.BLACK, 5)
 
 #TODO implement choices
 #func _set_up_options(options):

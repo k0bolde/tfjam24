@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://b2h6n628ohy54"
+path="res://.godot/imported/intro_cutscene.clyde-3722556573500e9fe8d4643f943b5877.res"
+
+[deps]
+
+source_file="res://assets/dialogue/intro_cutscene.clyde"
+dest_files=["res://.godot/imported/intro_cutscene.clyde-3722556573500e9fe8d4643f943b5877.res"]
+
+[params]
+

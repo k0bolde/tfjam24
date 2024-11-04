@@ -15,3 +15,7 @@ func _on_quit_credits_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	credits_panel.visible = true
+
+
+func _on_load_game_button_pressed() -> void:
+	Globals.load_game()

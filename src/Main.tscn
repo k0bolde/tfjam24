@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b30nllnfkvlpa"]
+[gd_scene load_steps=4 format=3 uid="uid://b30nllnfkvlpa"]
 
 [ext_resource type="Script" path="res://src/Main.gd" id="1_kawq1"]
 [ext_resource type="PackedScene" uid="uid://c65yo83m0mymi" path="res://src/Player.tscn" id="2_vtl2i"]
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="3_2b0mk"]
-[ext_resource type="PackedScene" uid="uid://dq4kio8vt8hy8" path="res://src/EncounterArea.tscn" id="5_mg6br"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tu36y"]
-size = Vector2(433, 280)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_kawq1")
@@ -19,38 +15,10 @@ script = ExtResource("1_kawq1")
 position = Vector2(0, 88)
 dialogue_file = "res://assets/dialogue/test.clyde"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -124.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_right = 5
-
-[node name="DayLabel" type="Label" parent="CanvasLayer/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Sunday, July 5th
-Afternoon"
-horizontal_alignment = 2
-
 [node name="MenuNode" type="Node" parent="."]
 
 [node name="DialogueNode" type="Node" parent="."]
 
 [node name="BattleNode" type="Node" parent="."]
-
-[node name="EncounterArea" parent="." instance=ExtResource("5_mg6br")]
-encounter_rates = {
-"Rat": 0.4,
-"Slime": 0.6
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
-position = Vector2(344, 155)
-shape = SubResource("RectangleShape2D_tu36y")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]

@@ -11,6 +11,7 @@ func _ready() -> void:
 	var t : Tween = get_tree().create_tween()
 	t.set_trans(Tween.TRANS_SINE)
 	t.tween_property(menu_container, "rotation_degrees", 0.0, 0.35)
+	%CashLabel.text = "$%s" % Globals.cash
 
 
 func _on_close_button_pressed() -> void:
@@ -18,10 +19,10 @@ func _on_close_button_pressed() -> void:
 	t.set_trans(Tween.TRANS_SINE)
 	t.tween_property(menu_container, "rotation_degrees", 90.0, 0.1)
 	t.tween_callback(queue_free)
-	#queue_free()
 
 
 func _on_main_menu_button_pressed() -> void:
+	#TODO warning for not saving
 	get_tree().change_scene_to_file("res://src/TitleScreen.tscn")
 
 
@@ -57,3 +58,12 @@ func _on_fullscreen_check_button_toggled(toggled_on: bool) -> void:
 func _on_volume_slider_value_changed(value: float) -> void:
 	#print("db was %s" % AudioServer.get_bus_volume_db(0))
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
+
+
+func _on_save_button_pressed() -> void:
+	#TODO warning for overwriting save
+	Globals.save_game()
+
+
+func _on_load_button_pressed() -> void:
+	Globals.load_game()

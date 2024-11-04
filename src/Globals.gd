@@ -8,6 +8,7 @@ var main
 var save_data
 var party
 var inventory
+var cash := 0
 
 
 func _input(event):
@@ -29,12 +30,13 @@ func get_tween(the_tween:Tween, node) -> Tween:
 
 func save_game():
 	save_data = Save.new()
-	save_data.cash = player.cash
-	save_data.location = player.global_location
-	save_data.map = "main"
+	save_data.cash = cash
+	save_data.location = player.position
+	save_data.map = main.map_node.get_child(0).name
 	save_data.day = main.day
 	save_data.party = party
 	save_data.inventory = inventory
+	save_data.story_flags = main.story_flags
 	ResourceSaver.save(save_data, "user://save.tres")
 
 
@@ -46,10 +48,11 @@ func load_game():
 # This 2 stage load is kinda nasty but not sure how to get around it
 func load2():
 	if save_data:
-		player.cash = save_data.cash
+		cash = save_data.cash
 		main.load_map(save_data.map)
 		player.position = save_data.location
 		party = save_data.party
 		inventory = save_data.inventory
+		main.story_flags = save_data.story_flags
 		
 		save_data = null

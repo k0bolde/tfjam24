@@ -1,11 +1,12 @@
 extends Resource
 class_name Save
 
-var cash := 0
-var story_flags := {}
-var inventory 
-var party
-var map := "map1"
-var day := 0
+# only things with @export are saved to file
+@export var cash := 0
+@export var story_flags := {}
+@export var inventory : Resource
+@export var party : Resource
+@export var map := "map1"
+@export var day := 0
 
-var location := Vector2()
+@export var location := Vector2()

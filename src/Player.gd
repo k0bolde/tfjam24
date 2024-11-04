@@ -11,10 +11,11 @@ var encounter_area : EncounterArea
 var npc : NPC
 var is_battling := false
 var is_talking := false
+var in_cutscene := false
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Globals.main.is_menu_up() or is_battling or is_talking:
+	if Globals.main.is_menu_up() or is_battling or is_talking or in_cutscene:
 		return
 		
 	if event.is_action_pressed("interact"):

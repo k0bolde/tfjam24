@@ -27,8 +27,8 @@ class_name DialogConfig
 @export var _previous_option_input_action_name: String = "ui_up"
 
 
-func _ready():
-	Dialogue.config = self
+#func _ready():
+	#Dialogue.config = self
 
 
 func load_data(dialogue_path: String, block_name: String) -> Dictionary:
