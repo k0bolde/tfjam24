@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=14 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
+[ext_resource type="Texture2D" uid="uid://c536pd00r41fc" path="res://assets/bgscrapers1.png" id="4_4vhkh"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="4_xgkbo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kgb63"]
@@ -24,18 +25,32 @@ fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 431.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8wg5"]
-albedo_color = Color(0.144063, 0.144063, 0.144063, 1)
-metallic_specular = 0.31
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjpyg"]
+albedo_color = Color(0.127372, 0.155728, 0.0933711, 1)
+metallic_specular = 0.04
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ivvvk"]
-material = SubResource("StandardMaterial3D_o8wg5")
+[sub_resource type="CylinderMesh" id="CylinderMesh_iac1n"]
+material = SubResource("StandardMaterial3D_bjpyg")
+top_radius = 3.29
+height = 0.135
+rings = 2
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rdu10"]
-top_radius = 0.34
-bottom_radius = 0.755
+top_radius = 0.305
+bottom_radius = 0.515
 height = 0.295
 cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y76i0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("4_4vhkh")
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qke4o"]
+material = SubResource("StandardMaterial3D_y76i0")
+size = Vector2(5.46, 0.56)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_2or6c")
@@ -88,26 +103,84 @@ stretch = true
 unique_name_in_owner = true
 handle_input_locally = false
 scaling_3d_scale = 2.0
-size = Vector2i(2, 2)
+size = Vector2i(960, 453)
 render_target_update_mode = 4
 
 [node name="Node3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
 
 [node name="Party" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149, 0)
 
-[node name="Party1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0768284, 0)
+[node name="Finley" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
 billboard = 2
 double_sided = false
+alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(384, 256, 64, 64)
 
+[node name="Jesse" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.714855)
+billboard = 2
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(512, 0, 64, 64)
+
+[node name="Sock" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.42286)
+billboard = 2
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(192, 0, 64, 64)
+
+[node name="Ceron" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.05535)
+billboard = 2
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(192, 128, 64, 64)
+
 [node name="Enemies" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 
 [node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, 0)
+flip_h = true
+billboard = 2
+double_sided = false
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(256, 512, 64, 64)
+
+[node name="Enemy2" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -0.646081)
+flip_h = true
+billboard = 2
+double_sided = false
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(256, 512, 64, 64)
+
+[node name="Enemy3" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -1.38009)
+flip_h = true
+billboard = 2
+double_sided = false
+texture_filter = 2
+texture = ExtResource("2_22y0y")
+region_enabled = true
+region_rect = Rect2(256, 512, 64, 64)
+
+[node name="Enemy4" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -2.07688)
 flip_h = true
 billboard = 2
 double_sided = false
@@ -134,13 +207,52 @@ transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 
 [node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -0.324366, 0)
-mesh = SubResource("PlaneMesh_ivvvk")
+transform = Transform3D(24.885, 0, 0, 0, 24.885, 0, 0, 0, 24.885, 0, -2.19697, 0)
+mesh = SubResource("CylinderMesh_iac1n")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.389625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.612954, 0)
 mesh = SubResource("CylinderMesh_rdu10")
+
+[node name="bgcircle" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
+mesh = SubResource("PlaneMesh_qke4o")
+skeleton = NodePath("../..")
+
+[node name="bgcircle2" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle2"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.395628, 4.78431, -63.4625)
+mesh = SubResource("PlaneMesh_qke4o")
+skeleton = NodePath("../..")
+
+[node name="bgcircle3" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle3"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
+mesh = SubResource("PlaneMesh_qke4o")
+skeleton = NodePath("../..")
+
+[node name="bgcircle4" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle4"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
+mesh = SubResource("PlaneMesh_qke4o")
+skeleton = NodePath("../..")
+
+[node name="bgcircle5" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle5"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
+mesh = SubResource("PlaneMesh_qke4o")
+skeleton = NodePath("../..")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
 visible = false
