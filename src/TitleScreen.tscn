@@ -82,7 +82,6 @@ sprint - shift/middle click
 Use mouse in battles"
 
 [node name="CreditsPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,9 +103,13 @@ layout_mode = 2
 [node name="TextEdit" type="TextEdit" parent="CreditsPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "By k0bold, skiesofsilver
+text = "By k0bold, skiesofsilver, Tavaer
 
-Uses Clyde Dialogue"
+Uses Clyde Dialogue
+
+Tilesets:
+https://limezu.itch.io/modernexteriors
+https://guttykreum.itch.io/japanese-town"
 editable = false
 wrap_mode = 1
 
