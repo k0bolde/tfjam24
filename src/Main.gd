@@ -101,6 +101,7 @@ func start_dialogue(clyde_file):
 	dialogue = preload("res://src/Dialogue.tscn").instantiate()
 	dialogue.dialogue_to_load = clyde_file
 	dialogue_node.add_child(dialogue)
+	player.is_talking = true
 
 
 func start_cutscene():

@@ -23,8 +23,17 @@ func _ready() -> void:
 	dialogue.on_external_variable_fetch(_on_external_variable_fetch)
 	dialogue.on_external_variable_update(_on_external_variable_update)
 	
-	call_deferred("_get_next_dialogue_line")
-	#_get_next_dialogue_line()
+	_get_next_dialogue_line()
+	
+	%DialogueContainer.rotation_degrees = 90
+	%PortraitContainer.rotation_degrees = 90
+	%FadeRect.modulate = Color(0, 0, 0, 0)
+	var t := get_tree().create_tween()
+	t.set_trans(Tween.TRANS_SINE)
+	t.set_parallel()
+	t.tween_property(%DialogueContainer, "rotation_degrees", 0, 0.5)
+	t.tween_property(%PortraitContainer, "rotation_degrees", 0, 0.5)
+	t.tween_property(%FadeRect, "modulate", Color8(0, 0, 0, 100), 0.5)
 	
 	
 func _get_next_dialogue_line():
@@ -32,7 +41,14 @@ func _get_next_dialogue_line():
 	if content.type == "end":
 		#TODO don't do a naughty global call
 		Globals.player.is_talking = false
-		queue_free()
+		var t := get_tree().create_tween()
+		t.set_trans(Tween.TRANS_SINE)
+		t.set_parallel()
+		t.tween_property(%DialogueContainer, "rotation_degrees", 90, 0.5)
+		t.tween_property(%PortraitContainer, "rotation_degrees", 90, 0.5)
+		t.tween_property(%FadeRect, "modulate", Color(0, 0, 0, 0), 0.5)
+		t.set_parallel(false)
+		t.tween_callback(queue_free)
 
 	if content.type == 'line':
 		_set_up_line(content)
@@ -55,11 +71,11 @@ func _set_up_line(content):
 	else:
 		speaker_label.visible = false
 		portrait_texture.visible = false
-	#speaker_label.text = content.get('speaker') if content.get('speaker') != null else ''
 	dialogue_label.text = content.text
 	if content.tags.has("fade_to_black"):
 		fade_tween = Globals.get_tween(fade_tween, self)
 		fade_tween.tween_property(%FadeRect, "modulate", Color.BLACK, 5)
+
 
 #TODO implement choices
 #func _set_up_options(options):
