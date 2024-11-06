@@ -22,8 +22,11 @@ tonemap_mode = 2
 glow_enabled = true
 glow_bloom = 0.61
 fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.447059, 0.780392, 0.423529, 1)
+fog_density = 1.0
 fog_depth_begin = 0.0
-fog_depth_end = 431.1
+fog_depth_end = 170.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjpyg"]
 albedo_color = Color(0.0768904, 0.102869, 0.13173, 1)
@@ -67,7 +70,7 @@ billboard_mode = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_t3fcg"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_5s7gk")
-size = Vector2(0.15, 0.615)
+size = Vector2(0.075, 0.465)
 orientation = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbtql"]
@@ -229,7 +232,7 @@ region_rect = Rect2(256, 512, 64, 64)
 
 [node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49128, -0.0757137, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91168, -0.0757137, 0)
 
 [node name="Selector" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 transform = Transform3D(1.555, 0, 0, 0, 1.555, 0, 0, 0, 1.555, 1.49206, 0.550306, -0.0949882)
@@ -254,7 +257,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742395, -0.173048, -0.96493
 
 [node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.852641, 0.522499, 0, -0.522499, 0.852641, 1.036, 0.65, 0.808)
+transform = Transform3D(1, 0, 0, 0, 0.95882, 0.284016, 0, -0.284016, 0.95882, 1.226, 0.545, 1.613)
+fov = 55.5
 
 [node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 
@@ -362,6 +366,7 @@ show_percentage = false
 [node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.629466, -0.330974)
+visible = false
 billboard = 2
 texture_filter = 2
 modulate = Color(1, 0, 0, 1)
@@ -370,6 +375,7 @@ text = "Weakness!"
 [node name="DmgLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.350693, -0.330974)
+visible = false
 billboard = 2
 texture_filter = 2
 modulate = Color(1, 0, 0, 1)
@@ -598,7 +604,7 @@ theme_override_styles/panel = ExtResource("4_xgkbo")
 [node name="AbilityGridContainer" type="GridContainer" parent="CanvasLayer/AbilityContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-columns = 3
+columns = 4
 
 [node name="Label" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
 layout_mode = 2
@@ -608,6 +614,11 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
 layout_mode = 2
 text = "MP"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Type"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]

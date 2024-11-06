@@ -24,6 +24,7 @@ func _ready() -> void:
 	e.enemy_name = "slime"
 	e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
 	e.region_rect = Rect2(256 + 64, 512, 64, 64)
+	e.stats.weaknesses.push_back("fire")
 	enemies[e.enemy_name] = e
 	
 	if OS.is_debug_build():

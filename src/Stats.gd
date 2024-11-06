@@ -20,3 +20,5 @@ class_name Stats
 @export var level := 1
 @export var xp := 0
 @export var equipment := {"Head": "", "Body": "", "Ring": ""}
+# punch/claw/metal/esoteric/mutagenic/fire/bite
+@export var weaknesses := []

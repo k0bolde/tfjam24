@@ -37,6 +37,8 @@ var curr_party := 0
 var curr_enemy := 0
 var is_player_turn := true
 var curr_ability : String
+var action_cam_shaky_tween_v : Tween
+var action_cam_shaky_tween_h : Tween
 
 
 func _ready() -> void:
@@ -51,7 +53,7 @@ func _ready() -> void:
 	#Setup enemy sprites
 	for i in enemies.size():
 		enemies[i].position = %EnemyPos1.position
-		enemies[i].position.z -= i
+		enemies[i].position.z -= i * 0.75
 		var sprite := Sprite3D.new()
 		sprite.texture = load(enemies[i].texture_path)
 		sprite.region_enabled = true
@@ -81,6 +83,19 @@ func _ready() -> void:
 	cam_tween.tween_property(idle_cam, "position:y", cam_start_pos.y + 0.5, 5)
 	cam_tween.tween_property(idle_cam, "position:y", cam_start_pos.y, 0)
 	cam_tween.tween_property(idle_cam, "position:z", cam_start_pos.z, 0)
+	
+	#action cam shaky cam
+	var action_cam_start_rot := action_cam.rotation_degrees
+	action_cam_shaky_tween_v = Globals.get_tween(action_cam_shaky_tween_v, self)
+	action_cam_shaky_tween_v.set_trans(Tween.TRANS_SINE)
+	action_cam_shaky_tween_v.set_loops()
+	action_cam_shaky_tween_v.tween_property(action_cam, "rotation_degrees:x", action_cam_start_rot.x - 5, 5)
+	action_cam_shaky_tween_v.tween_property(action_cam, "rotation_degrees:x", action_cam_start_rot.x + 5, 5)
+	action_cam_shaky_tween_h = Globals.get_tween(action_cam_shaky_tween_h, self)
+	action_cam_shaky_tween_h.set_trans(Tween.TRANS_SINE)
+	action_cam_shaky_tween_h.set_loops()
+	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y - 5, 11)
+	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y + 5, 11)
 	
 	#setup hp/mp/turns
 	update_bars(Globals.party.p[0]["hp"], Globals.party.p[0]["stats"].hp, Globals.party.p[0]["mp"], Globals.party.p[0]["stats"].mp)
@@ -177,7 +192,7 @@ func update_selected_enemy():
 	indicator_light.position = enemies[targeted_enemy].position
 	indicator_light.position.y += 1.0
 	enemy_hp_mesh.position = enemies[targeted_enemy].position
-	enemy_hp_mesh.position.y += 1.0
+	enemy_hp_mesh.position.y += 0.75
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	enemy_hp_bar.max_value = enemies[targeted_enemy].stats.hp
 
@@ -219,7 +234,6 @@ func _on_attack_button_pressed() -> void:
 func _on_abilities_button_pressed() -> void:
 	disable_buttons()
 	ability_container.visible = true
-	#TODO populate ability grid
 	for a in Globals.party.p[curr_party]["stats"].abilities:
 		var b := Button.new()
 		b.text = a.capitalize()
@@ -228,21 +242,28 @@ func _on_abilities_button_pressed() -> void:
 			_on_cancel_button_pressed()
 			disable_buttons()
 			show_targeting()
-			#player_attack(a["ability_name"])
 			)
 		b.disabled = Globals.party.p[curr_party]["mp"] < Abilities.abilities[a]["mp"]
 		b.add_to_group("ability_button")
 		#add it before the cancel button
-		ability_grid_container.get_child(2).add_sibling(b)
+		ability_grid_container.get_child(3).add_sibling(b)
+		
 		var mplab := Label.new()
 		mplab.text = "%d" % Abilities.abilities[a]["mp"]
 		mplab.add_to_group("ability_button")
 		mplab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		b.add_sibling(mplab)
+		
+		var typelab := Label.new()
+		typelab.text = Abilities.abilities[a]["type"].capitalize()
+		typelab.add_to_group("ability_button")
+		typelab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		mplab.add_sibling(typelab)
+		
 		var desclab := Label.new()
 		desclab.text = Abilities.abilities[a]["desc"]
 		desclab.add_to_group("ability_button")
-		mplab.add_sibling(desclab)
+		typelab.add_sibling(desclab)
 
 
 func _on_cancel_button_pressed() -> void:
