@@ -78,7 +78,7 @@ func load_map(map_name:String):
 	player.position = new_map.start_location
 
 
-func start_battle(monsters:Array[String]):
+func start_battle(monsters:Array):
 	Globals.player.cam.enabled = false
 	Globals.player.is_battling = true
 	battle = preload("res://src/Battle.tscn").instantiate()

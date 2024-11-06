@@ -1,6 +1,11 @@
 extends Node2D
 class_name Battle
 #TODO basic battles - attack, select, kill, die, end
+# Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?). Ability select menu
+# Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance, update player hp
+# Select - left/right buttons? mouse select (would need physics object picking on viewport), move light indicator
+# Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
+# Die - when player hp 0 - death screen, kick to main menu?
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -13,9 +18,10 @@ class_name Battle
 @onready var hp_label : Label = %HPLabel
 @onready var mp_bar : ProgressBar = %MPBar
 @onready var mp_label : Label = %MPLabel
-@onready var enemy_hp_label : Label3D = %EnemyHPLabel
+@onready var enemy_hp_bar : ProgressBar = %EnemyHPBar
+@onready var weakness_label : Label3D = %WeaknessLabel
 
-var enemy_names : Array[String] = []
+var enemy_names := []
 var enemies : Array[Enemy] = []
 var cam_tween : Tween
 var turns := 1
@@ -64,7 +70,7 @@ func _ready() -> void:
 	
 	#setup hp/mp/turns
 	update_bars(Globals.party.hp1, Globals.party.stats1.hp, Globals.party.mp1, Globals.party.stats1.mp)
-
+	
 
 func _process(_delta: float) -> void:
 	idle_cam.look_at(battle_center.position)

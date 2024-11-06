@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=20 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
@@ -51,6 +51,30 @@ texture_filter = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_qke4o"]
 material = SubResource("StandardMaterial3D_y76i0")
 size = Vector2(5.46, 0.56)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fegov"]
+viewport_path = NodePath("CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/EnemyHPMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s7gk"]
+resource_local_to_scene = true
+disable_ambient_light = true
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_fegov")
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t3fcg"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5s7gk")
+size = Vector2(0.15, 0.615)
+orientation = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbtql"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxj7t"]
+bg_color = Color(0.984314, 0, 0, 1)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_2or6c")
@@ -306,10 +330,40 @@ shadow_enabled = true
 [node name="EnemyHPLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38926, 0.414536, 0)
+visible = false
 billboard = 2
 alpha_cut = 1
 texture_filter = 2
 text = "HP: 100%"
+
+[node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46461, 0.693375, -0.031354)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_t3fcg")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/EnemyHPMesh"]
+
+[node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/EnemyHPMesh/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_kbtql")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kxj7t")
+value = 73.26
+fill_mode = 3
+show_percentage = false
+
+[node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.629466, -0.330974)
+visible = false
+billboard = 2
+modulate = Color(1, 0, 0, 1)
+text = "Weakness!"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
 visible = false
@@ -472,6 +526,19 @@ text = "<-"
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "->"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5

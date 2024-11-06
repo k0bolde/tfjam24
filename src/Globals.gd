@@ -41,7 +41,7 @@ func _input(event):
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-
+## helper method to let you safely reuse the same tween by ending anything it was doing before giving you a clean one
 func get_tween(the_tween:Tween, node) -> Tween:
 	if the_tween:
 		the_tween.kill()
