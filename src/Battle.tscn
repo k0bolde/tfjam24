@@ -254,7 +254,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742395, -0.173048, -0.96493
 
 [node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0.736, 0.5, 0.808)
+transform = Transform3D(1, 0, 0, 0, 0.852641, 0.522499, 0, -0.522499, 0.852641, 1.036, 0.65, 0.808)
 
 [node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 
@@ -317,6 +317,7 @@ skeleton = NodePath("../..")
 [node name="IndicatorLight" type="SpotLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.95356, -0.262425, -0.14784, 0.15321, -4.31953e-08, 0.988194, -0.259327, -0.964952, 0.0402061, 1.26274, 1.04258, 0.117869)
+visible = false
 light_color = Color(0.313726, 0.968627, 0, 1)
 light_energy = 7.205
 spot_range = 2.60351
@@ -325,6 +326,7 @@ spot_angle = 22.4491
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 transform = Transform3D(0.923358, -0.347149, -0.164007, 0, -0.427168, 0.904172, -0.383941, -0.834874, -0.394429, -1.65025, 1.8002, -1.21696)
+light_color = Color(0.384314, 0.960784, 0, 1)
 shadow_enabled = true
 
 [node name="EnemyHPLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
@@ -523,6 +525,7 @@ layout_mode = 2
 
 [node name="TargetContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -576,6 +579,46 @@ text = "Attack"
 layout_mode = 2
 text = "Cancel"
 
+[node name="AbilityContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 134.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AbilityContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_xgkbo")
+
+[node name="AbilityGridContainer" type="GridContainer" parent="CanvasLayer/AbilityContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Ability"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "MP"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Desc"
+horizontal_alignment = 1
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Cancel"
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5
 
@@ -591,8 +634,10 @@ grow_vertical = 2
 mouse_filter = 2
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/BasicAttackButton" to="." method="_on_basic_attack_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/AbilitiesButton" to="." method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetLeftButton" to="." method="_on_target_left_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetRightButton" to="." method="_on_target_right_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/CancelTargetButton" to="." method="_on_cancel_target_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

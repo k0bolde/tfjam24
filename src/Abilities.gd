@@ -1,8 +1,8 @@
 extends Node
 # Holds the callables of all abilities
 var abilities := {
-	"basic": {"mp": 0, "type": "slash", "callable": basic_attack},
-	"fire breath": {"mp": 4, "type": "fire", "callable": fire_breath},
+	"basic": {"mp": 0, "type": "slash", "desc": "A basic attack", "callable": basic_attack},
+	"fire breath": {"mp": 4, "type": "fire", "desc": "Breath fire on enemy", "callable": fire_breath},
 }
 
 
@@ -22,3 +22,4 @@ func basic_attack(user, party, enemies, target, battle):
 	
 func fire_breath(user, party, enemies, target, battle):
 	enemies[target].hp -= 10
+	Globals.party.p[user]["mp"] -= abilities["fire breath"]["mp"]

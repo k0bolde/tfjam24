@@ -19,8 +19,12 @@ class_name Battle
 @onready var mp_bar : ProgressBar = %MPBar
 @onready var mp_label : Label = %MPLabel
 @onready var enemy_hp_bar : ProgressBar = %EnemyHPBar
+@onready var enemy_hp_mesh : MeshInstance3D = %EnemyHPMesh
 @onready var weakness_label : Label3D = %WeaknessLabel
+@onready var dmg_label : Label3D = %DmgLabel
 @onready var buttons_grid_container : Container = %ButtonsGridContainer
+@onready var ability_container : Container = %AbilityContainer
+@onready var ability_grid_container : Container = %AbilityGridContainer
 
 var enemy_names := []
 var enemies : Array[Enemy] = []
@@ -36,6 +40,7 @@ var curr_ability : String
 
 
 func _ready() -> void:
+	#make enemies from names
 	if enemy_names.size() > 0:
 		for en in enemy_names:
 			enemies.push_back(Globals.enemies[en.to_lower()].duplicate())
@@ -43,6 +48,7 @@ func _ready() -> void:
 		printerr("no enemy names, loading test enemies")
 		enemies.push_back(Globals.enemies["slime"].duplicate())
 		enemies.push_back(Globals.enemies["rat"].duplicate())
+	#Setup enemy sprites
 	for i in enemies.size():
 		enemies[i].position = %EnemyPos1.position
 		enemies[i].position.z -= i
@@ -134,36 +140,53 @@ func enemy_attack(which_enemy:int):
 	if turns > 0:
 		enemy_attack(which_enemy + 1)
 	else:
+		idle_cam.make_current()
 		is_player_turn = true
 
 
 func _on_basic_attack_button_pressed() -> void:
 	disable_buttons()
 	show_targeting()
-	#player_attack("basic")
 	curr_ability = "basic"
 
 
 func show_targeting():
 	%TargetContainer.visible = true
+	indicator_light.visible = true
+	action_cam.make_current()
 
 	
 func hide_targeting():
 	%TargetContainer.visible = false
+	indicator_light.visible = false
+	idle_cam.make_current()
 
 
 func _on_target_left_button_pressed() -> void:
 	#TODO move target light to next enemy
-	pass
+	targeted_enemy = (targeted_enemy - 1) % enemies.size()
+	update_selected_enemy()
 
 
 func _on_target_right_button_pressed() -> void:
-	pass # Replace with function body.
+	targeted_enemy = (targeted_enemy + 1) % enemies.size()
+	update_selected_enemy()
+
+
+func update_selected_enemy():
+	indicator_light.position = enemies[targeted_enemy].position
+	indicator_light.position.y += 1.0
+	enemy_hp_mesh.position = enemies[targeted_enemy].position
+	enemy_hp_mesh.position.y += 1.0
+	enemy_hp_bar.value = enemies[targeted_enemy].hp
+	enemy_hp_bar.max_value = enemies[targeted_enemy].stats.hp
 
 
 func battle_won():
-	#TODO show results screen
 	Globals.cash += enemies[0].cash_reward
+	for i in Globals.party.num:
+		Globals.party.p[i]["stats"].xp += enemies[0].xp_reward
+	#TODO show results screen
 	Events.battle_end.emit()
 	
 	
@@ -188,6 +211,42 @@ func _on_cancel_target_button_pressed() -> void:
 
 
 func _on_attack_button_pressed() -> void:
+	hide_targeting()
 	player_attack(curr_ability)
+	_on_cancel_button_pressed()
 	
 	
+func _on_abilities_button_pressed() -> void:
+	disable_buttons()
+	ability_container.visible = true
+	#TODO populate ability grid
+	for a in Globals.party.p[curr_party]["stats"].abilities:
+		var b := Button.new()
+		b.text = a.capitalize()
+		b.pressed.connect(func ():
+			curr_ability = a
+			_on_cancel_button_pressed()
+			disable_buttons()
+			show_targeting()
+			#player_attack(a["ability_name"])
+			)
+		b.disabled = Globals.party.p[curr_party]["mp"] < Abilities.abilities[a]["mp"]
+		b.add_to_group("ability_button")
+		#add it before the cancel button
+		ability_grid_container.get_child(2).add_sibling(b)
+		var mplab := Label.new()
+		mplab.text = "%d" % Abilities.abilities[a]["mp"]
+		mplab.add_to_group("ability_button")
+		mplab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		b.add_sibling(mplab)
+		var desclab := Label.new()
+		desclab.text = Abilities.abilities[a]["desc"]
+		desclab.add_to_group("ability_button")
+		mplab.add_sibling(desclab)
+
+
+func _on_cancel_button_pressed() -> void:
+	ability_container.visible = false
+	for b in get_tree().get_nodes_in_group("ability_button"):
+		b.queue_free()
+	enable_buttons()

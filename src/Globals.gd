@@ -25,6 +25,9 @@ func _ready() -> void:
 	e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
 	e.region_rect = Rect2(256 + 64, 512, 64, 64)
 	enemies[e.enemy_name] = e
+	
+	if OS.is_debug_build():
+		party.p[0].stats.abilities.push_back("fire breath")
 
 
 func _input(event):
