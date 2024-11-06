@@ -9,10 +9,6 @@ var save_data
 var party := Party.new()
 var inventory
 var cash := 0
-var abilities := {
-	"basic": {"mp": 0, "type": "slash"},
-	"fire breath": {"mp": 4, "type": "fire"}
-}
 var enemies := {}
 
 

@@ -1,7 +1,7 @@
 extends Node2D
 class_name Battle
 #TODO basic battles - attack, select, kill, die, end
-# Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?). Ability select menu
+# Attack - pick ability, pick target, apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?). Ability select menu
 # Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance, update player hp
 # Select - left/right buttons? mouse select (would need physics object picking on viewport), move light indicator
 # Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
@@ -20,11 +20,19 @@ class_name Battle
 @onready var mp_label : Label = %MPLabel
 @onready var enemy_hp_bar : ProgressBar = %EnemyHPBar
 @onready var weakness_label : Label3D = %WeaknessLabel
+@onready var buttons_grid_container : Container = %ButtonsGridContainer
 
 var enemy_names := []
 var enemies : Array[Enemy] = []
 var cam_tween : Tween
 var turns := 1
+var targeted_enemy := 0
+# the party member with the current turn
+var curr_party := 0
+# the enemy with the current turn
+var curr_enemy := 0
+var is_player_turn := true
+var curr_ability : String
 
 
 func _ready() -> void:
@@ -69,7 +77,7 @@ func _ready() -> void:
 	cam_tween.tween_property(idle_cam, "position:z", cam_start_pos.z, 0)
 	
 	#setup hp/mp/turns
-	update_bars(Globals.party.hp1, Globals.party.stats1.hp, Globals.party.mp1, Globals.party.stats1.mp)
+	update_bars(Globals.party.p[0]["hp"], Globals.party.p[0]["stats"].hp, Globals.party.p[0]["mp"], Globals.party.p[0]["stats"].mp)
 	
 
 func _process(_delta: float) -> void:
@@ -93,34 +101,93 @@ func _on_run_button_pressed() -> void:
 func player_attack(which_attack:String):
 	
 	turns -= 1
+	Abilities.abilities[which_attack]["callable"].call(0, Globals.party, enemies, targeted_enemy, self)
 	%TurnsLabel.text = "%d" % turns
+	var all_dead := true
+	for e in enemies:
+		if e.hp > 0:
+			all_dead = false
+	if all_dead:
+		battle_won()
 	if turns <= 0:
 		turns = enemies.size()
+		is_player_turn = false
 		enemy_attack(0)
+	else:
+		curr_party += 1
+		if curr_party >= Globals.party.num:
+			curr_party = 0
 	
 	
 func enemy_attack(which_enemy:int):
 	
 	turns -= 1
+	#TODO pick attack and target
+	Abilities.abilities["basic"]["callable"].call(0, Globals.party, enemies, -1, self)
+	
 	%TurnsLabel.text = "%d" % turns
+	var all_dead := true
+	if Globals.party.hp1 > 0 or Globals.party.hp2 > 0 or Globals.party.hp3 > 0 or Globals.party.hp4 > 0:
+		all_dead = false
+	if all_dead:
+		battle_lost()
 	if turns > 0:
 		enemy_attack(which_enemy + 1)
-		
-	
-func ability_callable(user, party:Array, enemies:Array, target:int, battle:Battle):
-	# applies an ability/item to the battle, each invididual ability should have its own func like this that the battle calls when its used
-	# target is pos int for enemy target, neg int for party target, null for self
-	# should modify turns, send weakness/other animations
-	pass
+	else:
+		is_player_turn = true
 
 
 func _on_basic_attack_button_pressed() -> void:
-	player_attack("basic")
+	disable_buttons()
+	show_targeting()
+	#player_attack("basic")
+	curr_ability = "basic"
+
+
+func show_targeting():
+	%TargetContainer.visible = true
+
+	
+func hide_targeting():
+	%TargetContainer.visible = false
 
 
 func _on_target_left_button_pressed() -> void:
-	pass # Replace with function body.
+	#TODO move target light to next enemy
+	pass
 
 
 func _on_target_right_button_pressed() -> void:
 	pass # Replace with function body.
+
+
+func battle_won():
+	#TODO show results screen
+	Globals.cash += enemies[0].cash_reward
+	Events.battle_end.emit()
+	
+	
+func battle_lost():
+	#TODO death screen
+	Globals.load_game()
+
+
+func disable_buttons():
+	for c in buttons_grid_container.get_children():
+		c.disabled = true
+		
+		
+func enable_buttons():
+	for c in buttons_grid_container.get_children():
+		c.disabled = false
+	
+
+func _on_cancel_target_button_pressed() -> void:
+	hide_targeting()
+	enable_buttons()
+
+
+func _on_attack_button_pressed() -> void:
+	player_attack(curr_ability)
+	
+	
