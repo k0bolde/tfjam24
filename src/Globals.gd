@@ -6,9 +6,29 @@ extends Node
 var player : Player
 var main 
 var save_data
-var party
+var party := Party.new()
 var inventory
 var cash := 0
+var abilities := {
+	"basic": {"mp": 0, "type": "slash"},
+	"fire breath": {"mp": 4, "type": "fire"}
+}
+var enemies := {}
+
+
+func _ready() -> void:
+	#Setup all the enemy data
+	var e := Enemy.new()
+	e.enemy_name = "rat"
+	e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.region_rect = Rect2(256, 512, 64, 64)
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "slime"
+	e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.region_rect = Rect2(256 + 64, 512, 64, 64)
+	enemies[e.enemy_name] = e
 
 
 func _input(event):

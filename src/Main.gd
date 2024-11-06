@@ -1,8 +1,7 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #nov 1st TODOS
-#TODO basic battles, kill, die, end
-#TODO intro cutscene
+#TODO intro cutscene map
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode
@@ -79,10 +78,11 @@ func load_map(map_name:String):
 	player.position = new_map.start_location
 
 
-func start_battle():
+func start_battle(monsters:Array[String]):
 	Globals.player.cam.enabled = false
 	Globals.player.is_battling = true
 	battle = preload("res://src/Battle.tscn").instantiate()
+	battle.enemy_names = monsters
 	battle_node.add_child(battle)
 	music_player.stream = preload("res://assets/audio/battle theme (very rough).mp3")
 	music_player.play()

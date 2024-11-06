@@ -82,6 +82,7 @@ sprint - shift/middle click
 Use mouse in battles"
 
 [node name="CreditsPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,13 +104,18 @@ layout_mode = 2
 [node name="TextEdit" type="TextEdit" parent="CreditsPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "By k0bold, skiesofsilver, Tavaer
+text = "Programming by k0bold https://k0bold.itch.io/ https://www.furaffinity.net/user/2718281828/
+Writing by skiesofsilver https://www.furaffinity.net/user/skiesofsilver
+Art by Tavaer https://itch.io/profile/tv42 https://www.furaffinity.net/gallery/tavaer/
+Music by Fulcrum https://www.instagram.com/fulcrummusic_/
 
 Uses Clyde Dialogue
 
 Tilesets:
 https://limezu.itch.io/modernexteriors
-https://guttykreum.itch.io/japanese-town"
+https://limezu.itch.io/moderninteriors
+https://guttykreum.itch.io/japanese-town
+https://oldninjacat.itch.io/skyscraper-buildings-asset"
 editable = false
 wrap_mode = 1
 

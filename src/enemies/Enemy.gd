@@ -1,10 +1,15 @@
-extends Node
+extends Resource
+class_name Enemy
 
+@export var enemy_name := "DefaultName"
+@export var texture_path : String
+@export var region_rect : Rect2
 @export var hp := 10
-var attack_probabilities := {}
+@export var attack_probabilities := {"basic": 1.0}
 @export var cash_reward := 100
 @export var xp_reward := 100
 @export var level := 1
-var item_drops := {}
+@export var item_drops := {"hp1": 1.0}
 
-var stats := Stats.new()
+@export var stats := Stats.new()
+var position := Vector3()

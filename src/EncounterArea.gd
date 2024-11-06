@@ -26,7 +26,7 @@ func check_for_battle():
 			#print("monster has %f rate, accum is now %f" % [encounter_rates[monster], accum])
 			if pick < accum:
 				#print("fight!")
-				Events.battle_start.emit()
+				Events.battle_start.emit([monster])
 				#TODO enemy groups
 				return monster
 		printerr("Bad encounter probabilities!")

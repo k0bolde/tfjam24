@@ -1,9 +1,10 @@
 extends Resource
+class_name Party
 # Holds info about the party, like stats and current numbers
 
 @export var num := 1
 
-@export var stats1 : Stats
+@export var stats1 := Stats.new()
 @export var hp1 := 100
 @export var mp1 := 100
 
