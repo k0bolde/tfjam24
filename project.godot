@@ -33,6 +33,12 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/clyde/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://assets/tv_sprites/": "purple"
+}
+
 [gui]
 
 theme/custom_font="res://assets/Ubuntu-R.ttf"
