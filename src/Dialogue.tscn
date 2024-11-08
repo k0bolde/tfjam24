@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ndu6nj6ov7t2"]
 
-[ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_23wno"]
 [ext_resource type="Script" path="res://src/Dialogue.gd" id="1_nnc88"]
+[ext_resource type="Texture2D" uid="uid://w6xijyxy0q4c" path="res://assets/portraits/SockFullDefault1.png" id="2_252ju"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="3_5qxu5"]
 
 [node name="Dialogue" type="Control"]
@@ -34,14 +34,15 @@ offset_top = -400.0
 offset_right = 340.0
 grow_vertical = 0
 size_flags_horizontal = 0
-theme_override_constants/margin_left = 40
 
 [node name="PortraitTexture" type="TextureRect" parent="CanvasLayer/PortraitContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 400)
+custom_minimum_size = Vector2(256, 512)
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("1_23wno")
+texture = ExtResource("2_252ju")
+stretch_mode = 4
+flip_h = true
 
 [node name="DialogueContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true

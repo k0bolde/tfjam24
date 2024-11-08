@@ -333,18 +333,10 @@ transform = Transform3D(0.923358, -0.347149, -0.164007, 0, -0.427168, 0.904172, 
 light_color = Color(0.384314, 0.960784, 0, 1)
 shadow_enabled = true
 
-[node name="EnemyHPLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38926, 0.414536, 0)
-visible = false
-billboard = 2
-alpha_cut = 1
-texture_filter = 2
-text = "HP: 100%"
-
 [node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46461, 0.693375, -0.031354)
+visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_t3fcg")
 

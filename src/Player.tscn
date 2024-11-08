@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c65yo83m0mymi"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_f7scq"]
-[ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="2_2rhfr"]
+[ext_resource type="Texture2D" uid="uid://cea2sl3107uxs" path="res://assets/tv_sprites/spr_overworld_pc_48x48.png" id="2_xj7y4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0mjl"]
 radius = 16.1245
@@ -13,8 +13,8 @@ script = ExtResource("1_f7scq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_2rhfr")
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("2_xj7y4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)

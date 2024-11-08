@@ -1,7 +1,7 @@
 extends Node2D
 class_name Battle
 #TODO basic battles - attack, select, kill, die, end
-# Attack - pick ability, pick target, apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?). Ability select menu
+# Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?). Ability select menu
 # Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance, update player hp
 # Select - left/right buttons? mouse select (would need physics object picking on viewport), move light indicator
 # Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
@@ -89,30 +89,34 @@ func _ready() -> void:
 	action_cam_shaky_tween_v = Globals.get_tween(action_cam_shaky_tween_v, self)
 	action_cam_shaky_tween_v.set_trans(Tween.TRANS_SINE)
 	action_cam_shaky_tween_v.set_loops()
-	action_cam_shaky_tween_v.tween_property(action_cam, "rotation_degrees:x", action_cam_start_rot.x - 5, 5)
-	action_cam_shaky_tween_v.tween_property(action_cam, "rotation_degrees:x", action_cam_start_rot.x + 5, 5)
+	action_cam_shaky_tween_v.tween_property(action_cam, "rotation_degrees:x", action_cam_start_rot.x - 2, 5)
+	action_cam_shaky_tween_v.tween_property(action_cam, "rotation_degrees:x", action_cam_start_rot.x + 2, 5)
 	action_cam_shaky_tween_h = Globals.get_tween(action_cam_shaky_tween_h, self)
 	action_cam_shaky_tween_h.set_trans(Tween.TRANS_SINE)
 	action_cam_shaky_tween_h.set_loops()
-	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y - 5, 11)
-	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y + 5, 11)
+	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y - 2, 11)
+	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y + 2, 11)
 	
 	#setup hp/mp/turns
-	update_bars(Globals.party.p[0]["hp"], Globals.party.p[0]["stats"].hp, Globals.party.p[0]["mp"], Globals.party.p[0]["stats"].mp)
+	update_bars(0)
+	turns_label.text = "%d" % turns
 	
+	#move enemy indicator
+	update_selected_enemy()
+
 
 func _process(_delta: float) -> void:
 	idle_cam.look_at(battle_center.position)
 
 
-func update_bars(hp, hp_max, mp, mp_max):
-	turns_label.text = "%d" % turns
-	hp_label.text = "%d/%d" % [hp, hp_max]
-	hp_bar.max_value = hp_max
-	hp_bar.value = hp
-	mp_label.text = "%d/%d" % [mp, mp_max]
-	mp_bar.max_value = mp_max
-	mp_bar.value = mp
+func update_bars(party_num):
+	#turns_label.text = "%d" % turns
+	hp_label.text = "%d/%d" % [Globals.party.p[party_num]["hp"], Globals.party.p[party_num]["stats"].hp]
+	hp_bar.max_value = Globals.party.p[party_num]["stats"].hp
+	hp_bar.value = Globals.party.p[party_num]["hp"]
+	mp_label.text = "%d/%d" % [Globals.party.p[party_num]["mp"], Globals.party.p[party_num]["stats"].mp]
+	mp_bar.max_value = Globals.party.p[party_num]["stats"].mp
+	mp_bar.value = Globals.party.p[party_num]["mp"]
 	
 
 func _on_run_button_pressed() -> void:
@@ -123,6 +127,8 @@ func player_attack(which_attack:String):
 	
 	turns -= 1
 	Abilities.abilities[which_attack]["callable"].call(0, Globals.party, enemies, targeted_enemy, self)
+	#update enemy hp bar
+	#show damage label
 	%TurnsLabel.text = "%d" % turns
 	var all_dead := true
 	for e in enemies:
@@ -145,11 +151,13 @@ func enemy_attack(which_enemy:int):
 	turns -= 1
 	#TODO pick attack and target
 	Abilities.abilities["basic"]["callable"].call(0, Globals.party, enemies, -1, self)
-	
+	#update party hp
+	update_bars(0)
 	%TurnsLabel.text = "%d" % turns
 	var all_dead := true
-	if Globals.party.hp1 > 0 or Globals.party.hp2 > 0 or Globals.party.hp3 > 0 or Globals.party.hp4 > 0:
-		all_dead = false
+	for p in Globals.party.p:
+		if p["hp"] > 0:
+			all_dead = false
 	if all_dead:
 		battle_lost()
 	if turns > 0:
@@ -168,17 +176,18 @@ func _on_basic_attack_button_pressed() -> void:
 func show_targeting():
 	%TargetContainer.visible = true
 	indicator_light.visible = true
+	enemy_hp_mesh.visible = true
 	action_cam.make_current()
 
 	
 func hide_targeting():
 	%TargetContainer.visible = false
 	indicator_light.visible = false
+	enemy_hp_mesh.visible = false
 	idle_cam.make_current()
 
 
 func _on_target_left_button_pressed() -> void:
-	#TODO move target light to next enemy
 	targeted_enemy = (targeted_enemy - 1) % enemies.size()
 	update_selected_enemy()
 
@@ -191,6 +200,7 @@ func _on_target_right_button_pressed() -> void:
 func update_selected_enemy():
 	indicator_light.position = enemies[targeted_enemy].position
 	indicator_light.position.y += 1.0
+	indicator_light.position.x -= 0.2
 	enemy_hp_mesh.position = enemies[targeted_enemy].position
 	enemy_hp_mesh.position.y += 0.75
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
