@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://onfsvhkd1276"
+path="res://.godot/imported/h_p.clyde-81dd43ba99362fbf67f862a1a4fc6f0b.res"
+
+[deps]
+
+source_file="res://assets/dialogue/h_p.clyde"
+dest_files=["res://.godot/imported/h_p.clyde-81dd43ba99362fbf67f862a1a4fc6f0b.res"]
+
+[params]
+

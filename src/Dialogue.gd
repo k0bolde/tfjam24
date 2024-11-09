@@ -4,6 +4,7 @@ class_name Dialogue
 @onready var speaker_label : Label = %SpeakerLabel
 @onready var dialogue_label : Label = %DialogueLabel
 @onready var portrait_texture : TextureRect = %PortraitTexture
+@onready var sting_player : AudioStreamPlayer = %StingPlayer
 
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
@@ -11,7 +12,8 @@ var dialogue_to_load : String
 var _external_persistence := {}
 var fade_tween : Tween
 var portraits := {
-	"finley": "res://assets/portraits/finley1.png"
+	"finley": "res://assets/portraits/finley1.png",
+	"sock": "res://assets/portraits/SockFullDefault1.png",
 }
 
 func _ready() -> void:
@@ -75,6 +77,9 @@ func _set_up_line(content):
 	if content.tags.has("fade_to_black"):
 		fade_tween = Globals.get_tween(fade_tween, self)
 		fade_tween.tween_property(%FadeRect, "modulate", Color.BLACK, 5)
+	if content.tags.has("sad"):
+		sting_player.stream = load("res://assets/audio/sad sting.mp3")
+		sting_player.play()
 
 
 #TODO implement choices

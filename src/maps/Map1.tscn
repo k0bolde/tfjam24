@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://djr6tmm2c5ili"]
+[gd_scene load_steps=7 format=4 uid="uid://djr6tmm2c5ili"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_i8kby"]
 [ext_resource type="TileSet" uid="uid://n5732p6rhqur" path="res://assets/JapaneseTownTileSet.tres" id="1_o5p2m"]
 [ext_resource type="PackedScene" uid="uid://dq4kio8vt8hy8" path="res://src/EncounterArea.tscn" id="3_drhkn"]
+[ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="4_gx7je"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ke71i"]
 size = Vector2(337, 167)
@@ -30,3 +31,7 @@ shape = SubResource("RectangleShape2D_ke71i")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_a5xpr")
+
+[node name="NPC" parent="." instance=ExtResource("4_gx7je")]
+position = Vector2(0, 88)
+dialogue_file = "res://assets/dialogue/test.clyde"

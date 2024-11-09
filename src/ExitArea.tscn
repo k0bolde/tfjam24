@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://baoqkmuq02pyw"]
+
+[ext_resource type="Script" path="res://src/maps/Exit.gd" id="1_r51y3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkbdd"]
+radius = 21.0238
+
+[node name="ExitArea" type="Area2D"]
+script = ExtResource("1_r51y3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mkbdd")
+metadata/_edit_lock_ = true

@@ -41,9 +41,10 @@ func _ready() -> void:
 	Events.battle_end.connect(end_battle)
 	Events.dialogue_start.connect(start_dialogue)
 	
-	load_map("Map1")
+	load_map("Apartment")
 	Globals.load2()
 	start_cutscene()
+
 
 func is_menu_up() -> bool:
 	return menu_node.get_child_count() > 0
@@ -68,14 +69,17 @@ func _input(event: InputEvent) -> void:
 			menu_node.add_child(menu)
 
 
-func load_map(map_name:String):
+func load_map(map_name:String, entrance_num := -1):
 	if map_node.get_child_count() > 0:
 		var old_map : Map = map_node.get_child(0)
 		map_node.remove_child(old_map)
 		old_map.queue_free()
 	var new_map : Map = load("res://src/maps/" + map_name + ".tscn").instantiate()
 	map_node.add_child(new_map)
-	player.position = new_map.start_location
+	if entrance_num >= 0 and new_map.entrances.size() >= entrance_num + 1:
+		player.position = new_map.entrances[entrance_num]
+	else:
+		player.position = new_map.start_location
 
 
 func start_battle(monsters:Array):
@@ -84,7 +88,7 @@ func start_battle(monsters:Array):
 	battle = preload("res://src/Battle.tscn").instantiate()
 	battle.enemy_names = monsters
 	battle_node.add_child(battle)
-	music_player.stream = preload("res://assets/audio/battle theme (very rough).mp3")
+	music_player.stream = preload("res://assets/audio/battle theme.mp3")
 	music_player.play()
 	
 	

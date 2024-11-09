@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://da1hpyxklkfy8"
+path="res://.godot/imported/critical attack hit.mp3-056a6f12a2d78cc2f6b8da2a7bbc4997.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/critical attack hit.mp3"
+dest_files=["res://.godot/imported/critical attack hit.mp3-056a6f12a2d78cc2f6b8da2a7bbc4997.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

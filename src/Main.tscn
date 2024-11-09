@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b30nllnfkvlpa"]
+[gd_scene load_steps=3 format=3 uid="uid://b30nllnfkvlpa"]
 
 [ext_resource type="Script" path="res://src/Main.gd" id="1_kawq1"]
 [ext_resource type="PackedScene" uid="uid://c65yo83m0mymi" path="res://src/Player.tscn" id="2_vtl2i"]
-[ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="3_2b0mk"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_kawq1")
@@ -10,10 +9,6 @@ script = ExtResource("1_kawq1")
 [node name="MapNode" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_vtl2i")]
-
-[node name="NPC" parent="." instance=ExtResource("3_2b0mk")]
-position = Vector2(0, 88)
-dialogue_file = "res://assets/dialogue/test.clyde"
 
 [node name="MenuNode" type="Node" parent="."]
 

@@ -101,4 +101,7 @@ layout_mode = 2
 [node name="BlinkTimer" type="Timer" parent="CanvasLayer/MarginContainer2"]
 autostart = true
 
+[node name="StingPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="CanvasLayer/MarginContainer2/BlinkTimer" to="." method="_on_blink_timer_timeout"]

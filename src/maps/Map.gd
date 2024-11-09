@@ -4,6 +4,7 @@ class_name Map
 
 @export var map_name : String
 @export var start_location := Vector2(0, 0)
+@export var entrances : Array[Vector2] = []
 
 func _ready() -> void:
 	#not sure why this is needed, but otherwise it shows above player

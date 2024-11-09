@@ -12,6 +12,7 @@ var npc : NPC
 var is_battling := false
 var is_talking := false
 var in_cutscene := false
+var interact_callback
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -19,6 +20,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("interact"):
+		if interact_callback:
+			interact_callback.call()
+			interact_container.visible = false
+			interact_callback = null
 		if npc:
 			npc.start_talk()
 			is_talking = true

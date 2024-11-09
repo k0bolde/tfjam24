@@ -56,7 +56,7 @@ material = SubResource("StandardMaterial3D_y76i0")
 size = Vector2(5.46, 0.56)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fegov"]
-viewport_path = NodePath("CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/EnemyHPMesh/SubViewport")
+viewport_path = NodePath("CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s7gk"]
 resource_local_to_scene = true
@@ -131,16 +131,17 @@ stretch = true
 unique_name_in_owner = true
 handle_input_locally = false
 scaling_3d_scale = 2.0
-size = Vector2i(960, 453)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
+[node name="Base3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
 
-[node name="Party" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="Party" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149, 0)
 
-[node name="Finley" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+[node name="Finley" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
 billboard = 2
 shaded = true
 alpha_cut = 1
@@ -149,7 +150,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(384, 256, 64, 64)
 
-[node name="Jesse" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+[node name="Jesse" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.714855)
 billboard = 2
 shaded = true
@@ -159,7 +160,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(512, 0, 64, 64)
 
-[node name="Sock" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+[node name="Sock" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.42286)
 billboard = 2
 shaded = true
@@ -169,7 +170,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(192, 0, 64, 64)
 
-[node name="Ceron" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Party"]
+[node name="Ceron" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.05535)
 billboard = 2
 shaded = true
@@ -179,10 +180,10 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(192, 128, 64, 64)
 
-[node name="Enemies" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="Enemies" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 
-[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, 0)
 visible = false
 flip_h = true
@@ -194,7 +195,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="Enemy2" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+[node name="Enemy2" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -0.646081)
 visible = false
 flip_h = true
@@ -206,7 +207,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="Enemy3" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+[node name="Enemy3" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -1.38009)
 visible = false
 flip_h = true
@@ -218,7 +219,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="Enemy4" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+[node name="Enemy4" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -2.07688)
 visible = false
 flip_h = true
@@ -230,11 +231,11 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/Enemies"]
+[node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91168, -0.0757137, 0)
 
-[node name="Selector" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="Selector" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 transform = Transform3D(1.555, 0, 0, 0, 1.555, 0, 0, 0, 1.555, 1.49206, 0.550306, -0.0949882)
 visible = false
 billboard = 2
@@ -244,81 +245,81 @@ texture = ExtResource("4_yn6p5")
 region_enabled = true
 region_rect = Rect2(256, 224, 32, 32)
 
-[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.809017, 0.16694, -0.56358, 0, 0.95882, 0.284015, 0.587785, -0.229773, 0.775701, -0.259, 0.315, 1.16)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 environment = SubResource("Environment_kkb66")
 
-[node name="BattleCenter" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="BattleCenter" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742395, -0.173048, -0.964932)
 
-[node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.95882, 0.284016, 0, -0.284016, 0.95882, 1.226, 0.545, 1.613)
 fov = 55.5
 
-[node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(24.885, 0, 0, 0, 24.885, 0, 0, 0, 24.885, 0, -2.19697, 0)
 mesh = SubResource("CylinderMesh_iac1n")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.612954, 0)
 mesh = SubResource("CylinderMesh_rdu10")
 
-[node name="bgcircle" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="bgcircle" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle2" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="bgcircle2" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle2"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.395628, 4.78431, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle3" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="bgcircle3" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle3"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle3"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle4" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="bgcircle4" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle4"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle4"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle5" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="bgcircle5" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle5"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle5"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle6" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG"]
+[node name="bgcircle6" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/BG/bgcircle6"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle6"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="IndicatorLight" type="SpotLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="IndicatorLight" type="SpotLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.95356, -0.262425, -0.14784, 0.15321, -4.31953e-08, 0.988194, -0.259327, -0.964952, 0.0402061, 1.26274, 1.04258, 0.117869)
 visible = false
@@ -328,21 +329,21 @@ spot_range = 2.60351
 spot_attenuation = 0.0
 spot_angle = 22.4491
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 transform = Transform3D(0.923358, -0.347149, -0.164007, 0, -0.427168, 0.904172, -0.383941, -0.834874, -0.394429, -1.65025, 1.8002, -1.21696)
 light_color = Color(0.384314, 0.960784, 0, 1)
 shadow_enabled = true
 
-[node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46461, 0.693375, -0.031354)
 visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_t3fcg")
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/EnemyHPMesh"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
 
-[node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D/EnemyHPMesh/SubViewport"]
+[node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport"]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -355,7 +356,7 @@ value = 73.26
 fill_mode = 3
 show_percentage = false
 
-[node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.629466, -0.330974)
 visible = false
@@ -364,7 +365,7 @@ texture_filter = 2
 modulate = Color(1, 0, 0, 1)
 text = "Weakness!"
 
-[node name="DmgLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Node3D"]
+[node name="DmgLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.350693, -0.330974)
 visible = false

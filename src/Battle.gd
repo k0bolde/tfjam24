@@ -25,6 +25,7 @@ class_name Battle
 @onready var buttons_grid_container : Container = %ButtonsGridContainer
 @onready var ability_container : Container = %AbilityContainer
 @onready var ability_grid_container : Container = %AbilityGridContainer
+@onready var base_3d : Node3D = %Base3D
 
 var enemy_names := []
 var enemies : Array[Enemy] = []
@@ -128,7 +129,7 @@ func player_attack(which_attack:String):
 	turns -= 1
 	Abilities.abilities[which_attack]["callable"].call(0, Globals.party, enemies, targeted_enemy, self)
 	#update enemy hp bar
-	#show damage label
+	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	%TurnsLabel.text = "%d" % turns
 	var all_dead := true
 	for e in enemies:
@@ -138,6 +139,9 @@ func player_attack(which_attack:String):
 		battle_won()
 	if turns <= 0:
 		turns = enemies.size()
+		for e in enemies:
+			if e.hp <= 0:
+				turns -= 1
 		is_player_turn = false
 		enemy_attack(0)
 	else:
@@ -165,6 +169,20 @@ func enemy_attack(which_enemy:int):
 	else:
 		idle_cam.make_current()
 		is_player_turn = true
+		turns = Globals.party.num
+		for i in Globals.party.num:
+			if Globals.party.p[i]["hp"] <= 0:
+				turns -= 1
+
+
+func show_dmg_label(dmg:int, pos:Vector3):
+	var dl := dmg_label.duplicate()
+	dl.text = "-%d" % dmg
+	dl.position = pos
+	base_3d.add_child(dl)
+	var t := get_tree().create_tween()
+	t.tween_property(dl, "position:y", pos.y + 1.0, 2.0)
+	t.tween_callback(dl.queue_free)
 
 
 func _on_basic_attack_button_pressed() -> void:
