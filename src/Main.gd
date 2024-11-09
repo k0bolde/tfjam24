@@ -29,6 +29,13 @@ var story_flags := {
 	"office": 0,
 	"lab": 0
 }
+#preload the maps so there isn't lag when switching maps
+var maps := {
+	"Apartment": preload("res://src/maps/Apartment.tscn"),
+	"ApartmentCorridor": preload("res://src/maps/ApartmentCorridor.tscn"),
+	"Hub": preload("res://src/maps/Hub.tscn"),
+	"Map1": preload("res://src/maps/Map1.tscn"),
+}
 
 
 func _ready() -> void:
@@ -74,7 +81,8 @@ func load_map(map_name:String, entrance_num := -1):
 		var old_map : Map = map_node.get_child(0)
 		map_node.remove_child(old_map)
 		old_map.queue_free()
-	var new_map : Map = load("res://src/maps/" + map_name + ".tscn").instantiate()
+	#var new_map : Map = load("res://src/maps/" + map_name + ".tscn").instantiate()
+	var new_map : Map = maps[map_name].instantiate()
 	map_node.add_child(new_map)
 	if entrance_num >= 0 and new_map.entrances.size() >= entrance_num + 1:
 		player.position = new_map.entrances[entrance_num]
