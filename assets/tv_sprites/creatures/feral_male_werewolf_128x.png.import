@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cea2sl3107uxs"
-path="res://.godot/imported/spr_overworld_pc_48x48.png-93697393c557ca3ca1e100cf0d921d68.ctex"
+uid="uid://idt7ss2xke37"
+path="res://.godot/imported/feral_male_werewolf_128x.png-40eadb94f254e426c82d828d62d34c8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tv_sprites/spr_overworld_pc_48x48.png"
-dest_files=["res://.godot/imported/spr_overworld_pc_48x48.png-93697393c557ca3ca1e100cf0d921d68.ctex"]
+source_file="res://assets/tv_sprites/creatures/feral_male_werewolf_128x.png"
+dest_files=["res://.godot/imported/feral_male_werewolf_128x.png-40eadb94f254e426c82d828d62d34c8d.ctex"]
 
 [params]
 
