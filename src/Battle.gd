@@ -1,11 +1,13 @@
 extends Node2D
 class_name Battle
-#TODO basic battles - attack, select, kill, die, end
-# Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?). Ability select menu
-# Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance, update player hp
-# Select - left/right buttons? mouse select (would need physics object picking on viewport), move light indicator
+#TODO battle basics
+# Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?)
+# Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance
 # Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
 # Die - when player hp 0 - death screen, kick to main menu?
+# weaknesses and turns
+# Item use
+# animations
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera

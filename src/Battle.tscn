@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=21 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
+[ext_resource type="Texture2D" uid="uid://cea2sl3107uxs" path="res://assets/tv_sprites/spr_overworld_pc_48x48.png" id="3_c6dyp"]
 [ext_resource type="Texture2D" uid="uid://c536pd00r41fc" path="res://assets/bgscrapers1.png" id="4_4vhkh"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="4_xgkbo"]
 [ext_resource type="Texture2D" uid="uid://2vgl33tsgtn3" path="res://assets/mart.png" id="4_yn6p5"]
@@ -85,12 +86,6 @@ script = ExtResource("1_2or6c")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(480, 270)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(100, 100)
-texture = ExtResource("1_t3y8g")
-
 [node name="Party" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Party"]
@@ -131,7 +126,7 @@ stretch = true
 unique_name_in_owner = true
 handle_input_locally = false
 scaling_3d_scale = 2.0
-size = Vector2i(2, 2)
+size = Vector2i(960, 453)
 render_target_update_mode = 4
 
 [node name="Base3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
@@ -162,12 +157,12 @@ region_rect = Rect2(512, 0, 64, 64)
 
 [node name="Sock" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.42286)
+flip_h = true
 billboard = 2
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-texture = ExtResource("2_22y0y")
-region_enabled = true
+texture = ExtResource("3_c6dyp")
 region_rect = Rect2(192, 0, 64, 64)
 
 [node name="Ceron" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
@@ -450,6 +445,10 @@ text = "Run"
 layout_mode = 2
 text = "Pass Turn"
 
+[node name="InspectButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+layout_mode = 2
+text = "Inspect"
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -521,6 +520,32 @@ grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+
+[node name="AttackNameContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.5
+offset_top = -139.0
+offset_right = 80.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/AttackNameContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_xgkbo")
+
+[node name="AttackNameLabel" type="Label" parent="CanvasLayer/AttackNameContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enemy Used Attack"
+horizontal_alignment = 1
 
 [node name="TargetContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true

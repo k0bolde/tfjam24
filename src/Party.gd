@@ -9,6 +9,8 @@ class_name Party
 	{"stats": Stats.new(), "hp": 100, "mp": 100},
 	{"stats": Stats.new(), "hp": 100, "mp": 100},
 ]
+@export var xp := 0
+@export var level := 1
 #@export var stats1 := Stats.new()
 #@export var hp1 := 100
 #@export var mp1 := 100

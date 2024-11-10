@@ -12,7 +12,6 @@ motion_mode = 1
 script = ExtResource("1_f7scq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
 scale = Vector2(0.66, 0.66)
 texture = ExtResource("2_xj7y4")
 

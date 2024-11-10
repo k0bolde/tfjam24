@@ -8,7 +8,8 @@ func _ready() -> void:
 	
 
 func _body_entered(body):
-	body.interact_label.text = "Exit"
+	#TODO don't show when 
+	body.interact_label.text = "Enter"
 	body.interact_container.visible = true
 	body.interact_callback = Globals.main.load_map.bind(map_name, entrance_num)
 	
