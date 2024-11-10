@@ -28,6 +28,9 @@ class_name Battle
 @onready var ability_container : Container = %AbilityContainer
 @onready var ability_grid_container : Container = %AbilityGridContainer
 @onready var base_3d : Node3D = %Base3D
+@onready var char_turn_label : Label = %CharTurnLabel
+@onready var attack_name_container : Container = %AttackNameContainer
+@onready var attack_name_label : Label = %AttackNameLabel
 
 var enemy_names := []
 var enemies : Array[Enemy] = []

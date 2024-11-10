@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/tv_sprites/Byrne.png" id="6_m5fui"]
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="7_ca6eg"]
 [ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/tv_sprites/Pean.png" id="7_n3ytn"]
-[ext_resource type="Texture2D" path="res://assets/tv_sprites/spr_overworld_pc_48x48.png" id="7_rk7hs"]
+[ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="7_rk7hs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um8dg"]
 size = Vector2(78, 971)
