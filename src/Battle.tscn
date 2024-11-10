@@ -1,12 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=23 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
-[ext_resource type="Texture2D" uid="uid://cea2sl3107uxs" path="res://assets/tv_sprites/spr_overworld_pc_48x48.png" id="3_c6dyp"]
+[ext_resource type="Texture2D" uid="uid://5sd8q27b5joi" path="res://assets/tv_sprites/player_chars/dragon_128x.png" id="3_13moi"]
 [ext_resource type="Texture2D" uid="uid://c536pd00r41fc" path="res://assets/bgscrapers1.png" id="4_4vhkh"]
+[ext_resource type="Texture2D" uid="uid://sv1tky5i3bqq" path="res://assets/tv_sprites/player_chars/wolf_girl_128x.png" id="4_rh3uv"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="4_xgkbo"]
 [ext_resource type="Texture2D" uid="uid://2vgl33tsgtn3" path="res://assets/mart.png" id="4_yn6p5"]
+[ext_resource type="Texture2D" uid="uid://clhrhsh8ecjm7" path="res://assets/tv_sprites/player_chars/sci_raptor_128x.png" id="5_abulm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kgb63"]
 sky_top_color = Color(0.627656, 0.872215, 0.6011, 1)
@@ -137,36 +139,36 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149, 0)
 
 [node name="Finley" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.0975856, 0)
 billboard = 2
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-texture = ExtResource("2_22y0y")
-region_enabled = true
+texture = ExtResource("3_13moi")
 region_rect = Rect2(384, 256, 64, 64)
 
 [node name="Jesse" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.714855)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.0843118, -0.912307)
 billboard = 2
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-texture = ExtResource("2_22y0y")
+texture = ExtResource("4_rh3uv")
 region_enabled = true
-region_rect = Rect2(512, 0, 64, 64)
+region_rect = Rect2(128, 0, 128, 128)
 
 [node name="Sock" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.42286)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.0779182, -1.74973)
 flip_h = true
 billboard = 2
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-texture = ExtResource("3_c6dyp")
+texture = ExtResource("5_abulm")
 region_rect = Rect2(192, 0, 64, 64)
 
 [node name="Ceron" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.05535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.34784)
 billboard = 2
 shaded = true
 alpha_cut = 1
@@ -228,7 +230,7 @@ region_rect = Rect2(256, 512, 64, 64)
 
 [node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91168, -0.0757137, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91168, 0.0480421, 0)
 
 [node name="Selector" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 transform = Transform3D(1.555, 0, 0, 0, 1.555, 0, 0, 0, 1.555, 1.49206, 0.550306, -0.0949882)
@@ -264,7 +266,7 @@ mesh = SubResource("CylinderMesh_iac1n")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.612954, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2368, -0.612954, 0)
 mesh = SubResource("CylinderMesh_rdu10")
 
 [node name="bgcircle" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]

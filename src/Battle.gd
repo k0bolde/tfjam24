@@ -59,11 +59,12 @@ func _ready() -> void:
 		enemies[i].position.z -= i * 0.75
 		var sprite := Sprite3D.new()
 		sprite.texture = load(enemies[i].texture_path)
-		sprite.region_enabled = true
-		sprite.region_rect = enemies[i].region_rect
+		if enemies[i].region_rect:
+			sprite.region_enabled = true
+			sprite.region_rect = enemies[i].region_rect
 		sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 		sprite.shaded = true
-		sprite.flip_h = true
+		sprite.flip_h = enemies[i].flip_h
 		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 		sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		sprite.position = enemies[i].position

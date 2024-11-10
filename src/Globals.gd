@@ -16,8 +16,8 @@ func _ready() -> void:
 	#Setup all the enemy data
 	var e := Enemy.new()
 	e.enemy_name = "rat"
-	e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
-	e.region_rect = Rect2(256, 512, 64, 64)
+	e.texture_path = "res://assets/tv_sprites/creatures/feral_male_werewolf_128x.png"
+	#e.region_rect = Rect2(256, 512, 64, 64)
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -25,6 +25,7 @@ func _ready() -> void:
 	e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
 	e.region_rect = Rect2(256 + 64, 512, 64, 64)
 	e.stats.weaknesses.push_back("fire")
+	e.flip_h = true
 	enemies[e.enemy_name] = e
 	
 	if OS.is_debug_build():
