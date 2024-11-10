@@ -14,6 +14,9 @@ var fade_tween : Tween
 var portraits := {
 	"finley": "res://assets/portraits/finley1.png",
 	"sock": "res://assets/portraits/SockFullDefault1.png",
+	"clem": "res://assets/clem-portrait.png",
+	"rene": "res://assets/portraits/Barista_Snake_small.png",
+	
 }
 
 func _ready() -> void:

@@ -1,8 +1,8 @@
 extends Node
 #TODO generic func for handling damage and weaknesses and limiting turns to double enemy count
 #for specific enemy flavor text, just add another entry with their specific text pointing to the same damage func
-# Holds the callables of all abilities
-# requires: mp, desc, callable
+# Holds the info on all abilities, player and enemy
+# requires: mp, desc, enemy_flavor (if usable by enemies), callable
 var abilities := {
 	"basic": {"mp": 0, "type": "slash", "desc": "A basic attack", "enemy_flavor": "They punch your kidney", "callable": basic_attack},
 	"fire breath": {"mp": 4, "type": "fire", "desc": "Breath fire on enemy", "callable": fire_breath},

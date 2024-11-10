@@ -82,7 +82,7 @@ sprint - shift/middle click
 Use mouse in battles"
 
 [node name="CreditsPanel" type="Panel" parent="."]
-visible = false
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,11 +104,13 @@ layout_mode = 2
 [node name="TextEdit" type="TextEdit" parent="CreditsPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Programming by k0bold https://k0bold.itch.io/ https://www.furaffinity.net/user/2718281828/
-Writing by skiesofsilver https://www.furaffinity.net/user/skiesofsilver https://skiesofsilver.itch.io/
+text = "Programming & art by k0bold https://k0bold.itch.io/ https://www.furaffinity.net/user/2718281828/
+Writing & art by skiesofsilver https://www.furaffinity.net/user/skiesofsilver https://skiesofsilver.itch.io/
 Art by Tavaer https://tv42.itch.io/ https://www.furaffinity.net/gallery/tavaer/
 Art by Malic https://malicthegreat.itch.io/
 Music by Fulcrum https://www.instagram.com/fulcrummusic_/
+Art by https://www.furaffinity.net/user/24hoursgyear/ https://itch.io/profile/necroblau
+Rene portrait by https://www.furaffinity.net/user/returnaddress/
 
 Uses Clyde Dialogue
 

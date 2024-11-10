@@ -166,6 +166,7 @@ func enemy_attack(which_enemy:int):
 	turns -= 1
 	#TODO pick attack and target
 	Abilities.abilities["basic"]["callable"].call(0, Globals.party, enemies, -1, self)
+	show_enemy_attack(Abilities.abilities["basic"]["enemy_flavor"])
 	#update party hp
 	update_bars(0)
 	%TurnsLabel.text = "%d" % turns
@@ -266,7 +267,8 @@ func _on_cancel_target_button_pressed() -> void:
 func _on_attack_button_pressed() -> void:
 	hide_targeting()
 	player_attack(curr_ability)
-	_on_cancel_button_pressed()
+	enable_buttons()
+	#_on_cancel_button_pressed()
 	
 	
 func _on_abilities_button_pressed() -> void:

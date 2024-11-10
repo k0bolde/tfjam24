@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://hk5dg6h0gury"]
+[gd_scene load_steps=18 format=4 uid="uid://hk5dg6h0gury"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_km1as"]
 [ext_resource type="Texture2D" uid="uid://4yak0eh5rks8" path="res://assets/TOWNMAP.png" id="2_mcdrc"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="7_ca6eg"]
 [ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/tv_sprites/Pean.png" id="7_n3ytn"]
 [ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="7_rk7hs"]
+[ext_resource type="Texture2D" uid="uid://c6qgbswo1rwxx" path="res://assets/Barista_Snake.png" id="9_s8jec"]
+[ext_resource type="Texture2D" uid="uid://b565ytd6yat1t" path="res://assets/morgan-ow.png" id="11_jenjj"]
+[ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/mark-ow.png" id="12_eprw0"]
+[ext_resource type="Texture2D" uid="uid://kuhofrthc1sw" path="res://assets/bubbles-ow.png" id="13_y5jew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um8dg"]
 size = Vector2(78, 971)
@@ -32,7 +36,6 @@ tile_map_data = PackedByteArray("AAD5/wAAAAAJAAAAAAD5/wEAAAAJAAEAAAD6/wAAAAAKAAA
 tile_set = ExtResource("3_3ifv0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.172549)
 position = Vector2(352, 125)
 texture = ExtResource("2_mcdrc")
@@ -118,7 +121,20 @@ image = ExtResource("7_rk7hs")
 
 [node name="Rene" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(361, -111)
+image = ExtResource("9_s8jec")
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(37, 197)
 image = ExtResource("7_ca6eg")
+
+[node name="Morgan" parent="NPCs" instance=ExtResource("4_vdb05")]
+position = Vector2(-113, 206)
+image = ExtResource("11_jenjj")
+
+[node name="Mark" parent="NPCs" instance=ExtResource("4_vdb05")]
+position = Vector2(249, 202)
+image = ExtResource("12_eprw0")
+
+[node name="Bubbles" parent="NPCs" instance=ExtResource("4_vdb05")]
+position = Vector2(578, 378)
+image = ExtResource("13_y5jew")
