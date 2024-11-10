@@ -14,6 +14,9 @@ var dialogue : Dialogue
 func _ready() -> void:
 	if image:
 		$Sprite2D.texture = image
+		if image.get_height() != 32:
+			var scaled := 32.0 / image.get_height()
+			$Sprite2D.scale = Vector2(scaled, scaled)
 	talk_area.body_entered.connect(_on_body_entered)
 	talk_area.body_exited.connect(_on_body_exited)
 	

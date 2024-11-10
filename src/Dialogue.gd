@@ -50,6 +50,7 @@ func _get_next_dialogue_line():
 		t.tween_property(%PortraitContainer, "rotation_degrees", 90, 0.5)
 		t.tween_property(%FadeRect, "modulate", Color(0, 0, 0, 0), 0.5)
 		t.set_parallel(false)
+		t.tween_callback(Events.dialogue_ended.emit)
 		t.tween_callback(queue_free)
 
 	if content.type == 'line':

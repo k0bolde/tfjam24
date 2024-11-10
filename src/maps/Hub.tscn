@@ -24,6 +24,7 @@ size = Vector2(115, 824)
 
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_km1as")
+entrances = Array[Vector2]([Vector2(-227, -11), Vector2(-158, 222), Vector2(-13, 216), Vector2(300, 218), Vector2(416, 303), Vector2(602, 417), Vector2(605, 252), Vector2(708, 38), Vector2(518, -103)])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -108,7 +109,7 @@ image = ExtResource("6_m5fui")
 position = Vector2(273, -150)
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
-position = Vector2(-392, 23)
+position = Vector2(-406, 106)
 image = ExtResource("7_n3ytn")
 
 [node name="Sock" parent="NPCs" instance=ExtResource("4_vdb05")]

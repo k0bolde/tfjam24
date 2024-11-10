@@ -28,6 +28,97 @@ func _ready() -> void:
 	e.flip_h = true
 	enemies[e.enemy_name] = e
 	
+	e = Enemy.new()
+	e.enemy_name = "some guy"
+	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.stats.atk = 15
+	e.stats.def = 0
+	e.stats.eva = 0
+	e.stats.lck = 0
+	e.stats.abilities.append_array(["some guy punch", "some guy kick", "some guy sob"])
+	e.cash_reward = 5
+	e.xp_reward = 1
+	e.flip_h = true
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "mutant man"
+	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.stats.atk = 20
+	e.stats.def = 5
+	e.stats.eva = 0
+	e.stats.lck = 5
+	e.stats.abilities.append_array(["man claw", "man tail whip", "man swipe"])
+	e.cash_reward = 5
+	e.xp_reward = 1
+	e.flip_h = true
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "mutant woman"
+	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.stats.atk = 20
+	e.stats.def = 5
+	e.stats.eva = 0
+	e.stats.lck = 5
+	e.stats.abilities.append_array(["woman bite", "woman spray", "woman aid"])
+	e.cash_reward = 5
+	e.xp_reward = 1
+	e.item_drops["dozeneggs"] = 1.0
+	e.flip_h = true
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "cat mutant"
+	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances.push_front("rending")
+	e.stats.weaknesses.push_front("fire")
+	e.stats.abilities.append_array(["cat pistol shot", "cat pistol whip", "swipe"])
+	e.cash_reward = 5
+	e.xp_reward = 1
+	e.item_drops["dozeneggs"] = 1.0
+	e.flip_h = true
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "lion mutant"
+	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.stats.hp = 80
+	e.stats.atk = 20
+	e.stats.def = 10
+	e.stats.eva = 0
+	e.stats.lck = 5
+	e.stats.resistances.push_front("bludgeoning")
+	e.stats.weaknesses.push_front("rending")
+	e.stats.abilities.append_array(["claw", "bite"])
+	e.cash_reward = 5
+	e.xp_reward = 1
+	e.item_drops["ankrpwease"] = 1.0
+	e.flip_h = true
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "eldritch being"
+	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.stats.hp = 200
+	e.stats.atk = 15
+	e.stats.def = 10
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances.append_array(["esoteric", "eldritch"])
+	e.stats.weaknesses.append_array(["piercing", "fire"])
+	e.stats.abilities.append_array(["tentacle whip", "shriek", "insane insight"])
+	e.cash_reward = 25
+	e.xp_reward = 5
+	e.item_drops["dozeneggs"] = 1.0
+	e.item_drops["lime time"] = 1.0
+	e.flip_h = true
+	enemies[e.enemy_name] = e
+	
 	if OS.is_debug_build():
 		party.p[0].stats.abilities.push_back("fire breath")
 

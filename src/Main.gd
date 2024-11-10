@@ -1,6 +1,5 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
-#nov 1st TODOS
 #TODO tutorial scripting
 #TODO battle
 
@@ -45,9 +44,28 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(0, -30)
 	#print("%f %f" % [db_to_linear(-80), db_to_linear(24)])
 	
+	#set up starting stats for party
+	Globals.party.p[0].stats.atk = 25
+	Globals.party.p[0].stats.def = 0
+	Globals.party.p[0].stats.eva = 5
+	Globals.party.p[0].stats.lck = 5
+	Globals.party.p[0].stats.resistances.push_front("fire")
+	Globals.party.p[0].stats.abilities.append_array(["punch", "kick", "fire breath", "tip the scales"])
+	
+	Globals.party.p[1].stats.hp = 125
+	Globals.party.p[1].stats.mp = 75
+	Globals.party.p[1].stats.atk = 35
+	Globals.party.p[1].stats.def = 5
+	Globals.party.p[1].stats.eva = 10
+	Globals.party.p[1].stats.lck = 0
+	Globals.party.p[1].stats.resistances.push_front("bludeoning")
+	Globals.party.p[1].stats.abilities.append_array(["punch", "swipe", "recovery strike", "wild wolf"])
+	
+	
 	Events.battle_start.connect(start_battle)
 	Events.battle_end.connect(end_battle)
 	Events.dialogue_start.connect(start_dialogue)
+	Events.dialogue_ended.connect(_dialogue_ended)
 	
 	load_map("Apartment")
 	Globals.load2()
@@ -118,7 +136,15 @@ func start_dialogue(clyde_file):
 
 
 func start_cutscene():
-	if story_flags["main"] == 0:
-		#start the intro cutscene
-		start_dialogue("res://assets/dialogue/intro_cutscene.clyde")
-		story_flags["main"] = 1
+	match story_flags["main"]:
+		0:
+			#start the intro cutscene
+			start_dialogue("res://assets/dialogue/intro_cutscene.clyde")
+			story_flags["main"] = 1
+		1:
+			start_dialogue("res://assets/dialogue/t_1.clyde")
+			story_flags["main"] = 2
+		
+		
+func _dialogue_ended():
+	start_cutscene()

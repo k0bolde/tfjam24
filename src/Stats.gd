@@ -22,3 +22,4 @@ class_name Stats
 @export var equipment := {"Head": "", "Body": "", "Ring": ""}
 # punch/claw/metal/esoteric/mutagenic/fire/bite
 @export var weaknesses := []
+@export var resistances := []
