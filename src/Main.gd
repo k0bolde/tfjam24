@@ -65,11 +65,9 @@ func _ready() -> void:
 	Events.battle_start.connect(start_battle)
 	Events.battle_end.connect(end_battle)
 	Events.dialogue_start.connect(start_dialogue)
-	Events.dialogue_ended.connect(_dialogue_ended)
 	
 	load_map("Apartment")
 	Globals.load2()
-	start_cutscene()
 
 
 func is_menu_up() -> bool:
@@ -109,11 +107,12 @@ func load_map(map_name:String, entrance_num := -1):
 		player.position = new_map.start_location
 
 
-func start_battle(monsters:Array):
+func start_battle(monsters:Array, can_run:bool):
 	Globals.player.cam.enabled = false
 	Globals.player.is_battling = true
 	battle = preload("res://src/Battle.tscn").instantiate()
 	battle.enemy_names = monsters
+	battle.can_run = can_run
 	battle_node.add_child(battle)
 	music_player.stream = preload("res://assets/audio/battle theme.mp3")
 	music_player.play()
@@ -133,18 +132,3 @@ func start_dialogue(clyde_file):
 	dialogue.dialogue_to_load = clyde_file
 	dialogue_node.add_child(dialogue)
 	player.is_talking = true
-
-
-func start_cutscene():
-	match story_flags["main"]:
-		0:
-			#start the intro cutscene
-			start_dialogue("res://assets/dialogue/intro_cutscene.clyde")
-			story_flags["main"] = 1
-		1:
-			start_dialogue("res://assets/dialogue/t_1.clyde")
-			story_flags["main"] = 2
-		
-		
-func _dialogue_ended():
-	start_cutscene()

@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=4 uid="uid://ba2m7gmlkvrrs"]
+[gd_scene load_steps=8 format=4 uid="uid://ba2m7gmlkvrrs"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_iew1y"]
 [ext_resource type="TileSet" uid="uid://ddlyt62oomuic" path="res://assets/interiors/interiors_tileset.tres" id="2_ex8nu"]
 [ext_resource type="PackedScene" uid="uid://baoqkmuq02pyw" path="res://src/ExitArea.tscn" id="3_i68s5"]
+[ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="4_qsq4r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36f41"]
+size = Vector2(36, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh37p"]
+size = Vector2(210, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbqpx"]
+size = Vector2(62, 59)
 
 [node name="Apartment" type="Node2D"]
 script = ExtResource("1_iew1y")
@@ -24,3 +34,22 @@ tile_set = ExtResource("2_ex8nu")
 [node name="ExitArea" parent="." instance=ExtResource("3_i68s5")]
 position = Vector2(36, -131)
 map_name = "ApartmentCorridor"
+
+[node name="CutsceneTriggerArea" parent="." instance=ExtResource("4_qsq4r")]
+dialogue = "res://assets/dialogue/t_1.clyde"
+story_flag = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea"]
+position = Vector2(-62, -50)
+shape = SubResource("RectangleShape2D_36f41")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CutsceneTriggerArea"]
+position = Vector2(29, -95.5)
+shape = SubResource("RectangleShape2D_eh37p")
+
+[node name="CutsceneTriggerArea2" parent="." instance=ExtResource("4_qsq4r")]
+dialogue = "res://assets/dialogue/intro_cutscene.clyde"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea2"]
+position = Vector2(14, 0.5)
+shape = SubResource("RectangleShape2D_bbqpx")

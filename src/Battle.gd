@@ -32,6 +32,7 @@ class_name Battle
 @onready var attack_name_container : Container = %AttackNameContainer
 @onready var attack_name_label : Label = %AttackNameLabel
 
+var can_run := true
 var enemy_names := []
 var enemies : Array[Enemy] = []
 var cam_tween : Tween
@@ -45,6 +46,7 @@ var is_player_turn := true
 var curr_ability : String
 var action_cam_shaky_tween_v : Tween
 var action_cam_shaky_tween_h : Tween
+var attack_name_tween : Tween
 
 
 func _ready() -> void:
@@ -127,7 +129,10 @@ func update_bars(party_num):
 	
 
 func _on_run_button_pressed() -> void:
-	Events.battle_end.emit()
+	if can_run:
+		Events.battle_end.emit()
+	else:
+		show_enemy_attack("Can't run!")
 	
 	
 func player_attack(which_attack:String):
@@ -233,8 +238,7 @@ func update_selected_enemy():
 
 func battle_won():
 	Globals.cash += enemies[0].cash_reward
-	for i in Globals.party.num:
-		Globals.party.p[i]["stats"].xp += enemies[0].xp_reward
+	Globals.party.xp += enemies[0].xp_reward
 	#TODO show results screen
 	Events.battle_end.emit()
 	
@@ -305,3 +309,11 @@ func _on_cancel_button_pressed() -> void:
 	for b in get_tree().get_nodes_in_group("ability_button"):
 		b.queue_free()
 	enable_buttons()
+
+
+func show_enemy_attack(attack:String):
+	attack_name_label.text = attack
+	attack_name_container.visible = true
+	attack_name_tween = Globals.get_tween(attack_name_tween, self)
+	attack_name_tween.tween_interval(2.0)
+	attack_name_tween.tween_property(attack_name_container, "visible", false, 0)

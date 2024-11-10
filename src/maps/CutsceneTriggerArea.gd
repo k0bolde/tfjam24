@@ -1,25 +1,28 @@
 extends Area2D
 
 @export_file("*.clyde") var dialogue : String
-## called when cutscene is finished
-@export var end_callback : Callable
-## the story_flag["main"] to activate this area
-@export var main_story_flag := 0
+@export var flag_type := "main"
+## the story_flag[flag_type] to activate this area
+@export var story_flag := 0
+
 
 func _ready() -> void:
 	body_entered.connect(_body_entered)
 	
 	
 func _body_entered(body):
-	if dialogue and Globals.main.story_flags["main"] == main_story_flag:
+	if dialogue and Globals.main.story_flags[flag_type] == story_flag:
+		Events.dialogue_ended.connect(_dialogue_ended)
 		Globals.main.start_dialogue(dialogue)
-		Globals.main.story_flags["main"] = main_story_flag + 1
-		if end_callback:
-			Events.dialogue_ended.connect(cutscene_ended)
 	else:
 		Globals.main.start_cutscene()
 		
 		
-func cutscene_ended():
-	end_callback.call()
-	Events.dialogue_ended.disconnect(cutscene_ended)
+func _dialogue_ended():
+	Events.dialogue_ended.disconnect(_dialogue_ended)
+	Globals.main.story_flags[flag_type] = story_flag + 1
+	# what to do when the dialogue ends - based on the story flag
+	match story_flag:
+		2:
+			#start tutorial battle against some guy
+			Events.battle_start.emit(["some guy"], false)
