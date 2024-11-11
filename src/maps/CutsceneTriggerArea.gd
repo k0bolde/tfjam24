@@ -14,8 +14,6 @@ func _body_entered(body):
 	if dialogue and Globals.main.story_flags[flag_type] == story_flag:
 		Events.dialogue_ended.connect(_dialogue_ended)
 		Globals.main.start_dialogue(dialogue)
-	else:
-		Globals.main.start_cutscene()
 		
 		
 func _dialogue_ended():

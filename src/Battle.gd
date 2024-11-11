@@ -8,6 +8,8 @@ class_name Battle
 # weaknesses and turns
 # Item use
 # animations
+# multi target attacks
+# party target buffs/heals
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
