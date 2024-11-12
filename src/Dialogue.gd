@@ -12,10 +12,9 @@ var dialogue_to_load : String
 var _external_persistence := {}
 var fade_tween : Tween
 var portraits := {
-	"finley": "res://assets/portraits/finley1.png",
-	"sock": "res://assets/portraits/SockFullDefault1.png",
-	"clem": "res://assets/clem-portrait.png",
-	"rene": "res://assets/portraits/Barista_Snake_small.png",
+	"Sock": "res://assets/portraits/SockFullDefault1.png",
+	"Clem": "res://assets/clem-portrait.png",
+	"Rene": "res://assets/portraits/Barista_Snake_small.png",
 	
 }
 

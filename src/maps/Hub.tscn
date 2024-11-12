@@ -126,6 +126,7 @@ image = ExtResource("9_s8jec")
 [node name="Clem" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(37, 197)
 image = ExtResource("7_ca6eg")
+dialogue_file = "res://assets/dialogue/hub_clem.clyde"
 
 [node name="Morgan" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-113, 206)

@@ -1,0 +1,38 @@
+At the pharmacy, you approach a sultry service synth. She smiles and waves.
+Clem: Hiya! I’m Clem. Thanks for the assistance back there! Besides that, have we met before?
+Finley: I don’t think so…
+Clem: You’re probably right. I’m too bright in the dark to forget such a nice face, heh heh.
+Finley: …
+Clem: But that’s my secondary function! What can I get ya?
+
++ Buy
+	Clem: Sure, and you even get a discount, cutie!
+	{ trigger clem_buy }
+	<-
++ Sell
+	Clem: Got anything interesting?
+	{ trigger clem_sell }
+	<-
++ Improve stat (HP)
+	Clem: Ooh, I can do that! Don’t worry, this won’t hurt. In fact, it’s going to feel really good…
+	Which character’s HP would you like to improve?
+	{ trigger clem_hp_choice }
+	CHAR comes out of the pharmacy looking pleased if a little dazed. CHAR’s HP improved!
+	<-
++ Talk
+	( shuffle cycle
+		-
+			Clem: I’m a service synth! I provide a multitude of services with passion! Come by after dark if you want to see my other side!
+			<-
+		-
+			Clem: I can make you more robust with an injection of nanites, for the right price! It’ll make you tougher. And hunkier…
+			<-
+		-
+			Clem: I’m designed to be extremely attractive and functional! Why do you think my batteries are so big?
+			<-
+		-
+			Clem: I don’t know who’s manufacturing these drugs. CausDek Corp would never do such a thing!
+			<-
+	)
++ Leave
+	-> END
