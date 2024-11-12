@@ -37,6 +37,7 @@ class_name Battle
 var can_run := true
 var enemy_names := []
 var enemies : Array[Enemy] = []
+var defeated_enemies : Array[Enemy] = []
 var cam_tween : Tween
 var turns := 1
 var targeted_enemy := 0
@@ -75,6 +76,7 @@ func _ready() -> void:
 		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 		sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		sprite.position = enemies[i].position
+		enemies[i].ingame_sprite = sprite
 		enemies_node.add_child(sprite)
 		
 	# fade in
@@ -143,6 +145,15 @@ func player_attack(which_attack:String):
 	Abilities.abilities[which_attack]["callable"].call(0, Globals.party, enemies, targeted_enemy, self)
 	#update enemy hp bar
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
+	if enemies[targeted_enemy].hp <= 0:
+		enemies[targeted_enemy].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+		enemies[targeted_enemy].ingame_sprite.rotation_degrees.x = 90.0
+		enemies[targeted_enemy].ingame_sprite.rotation_degrees.y = 90.0
+		enemies[targeted_enemy].ingame_sprite.position.y = -0.45
+		defeated_enemies.push_back(enemies[targeted_enemy])
+		enemies.remove_at(targeted_enemy)
+		if enemies.size() > 0:
+			_on_target_left_button_pressed()
 	%TurnsLabel.text = "%d" % turns
 	
 	var all_dead := true
@@ -245,8 +256,9 @@ func update_selected_enemy():
 
 
 func battle_won():
-	Globals.cash += enemies[0].cash_reward
-	Globals.party.xp += enemies[0].xp_reward
+	for e in defeated_enemies:
+		Globals.cash += e.cash_reward
+		Globals.party.xp += e.xp_reward
 	#TODO show results screen
 	Events.battle_end.emit()
 	

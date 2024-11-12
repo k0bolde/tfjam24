@@ -181,10 +181,8 @@ region_rect = Rect2(192, 128, 64, 64)
 unique_name_in_owner = true
 
 [node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, 0)
-visible = false
+transform = Transform3D(1.91069e-15, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, 1.48842, -0.509887, 0)
 flip_h = true
-billboard = 2
 shaded = true
 alpha_cut = 1
 texture_filter = 2

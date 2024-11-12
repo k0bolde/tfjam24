@@ -14,3 +14,4 @@ class_name Enemy
 
 @export var stats := Stats.new()
 var position := Vector3()
+var ingame_sprite : Sprite3D
