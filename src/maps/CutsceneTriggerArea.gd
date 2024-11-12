@@ -29,14 +29,16 @@ func _dialogue_ended():
 			#start tutorial battle against some guy
 			Events.battle_start.emit(["some guy"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/t_3.clyde")
+		3:
+			Globals.party.num = 2
 		4:
 			Events.battle_start.emit(["mutant man", "mutant woman"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/t_6.clyde")
 		5:
-			Events.battle_start.emit(["gat cat", "lion man"], false)
+			Events.battle_start.emit(["gat cat", "lion mutant"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/t_8.clyde")
 		6:
-			Events.battle_start.emit(["ceron1"], false)
+			Events.battle_start.emit(["eldritch being"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
 			
 	

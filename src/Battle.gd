@@ -144,12 +144,14 @@ func player_attack(which_attack:String):
 	#update enemy hp bar
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	%TurnsLabel.text = "%d" % turns
+	
 	var all_dead := true
 	for e in enemies:
 		if e.hp > 0:
 			all_dead = false
 	if all_dead:
 		battle_won()
+		
 	if turns <= 0:
 		turns = enemies.size()
 		for e in enemies:
@@ -221,6 +223,8 @@ func hide_targeting():
 
 func _on_target_left_button_pressed() -> void:
 	targeted_enemy = (targeted_enemy - 1) % enemies.size()
+	if targeted_enemy < 0:
+		targeted_enemy = enemies.size() - 1
 	update_selected_enemy()
 
 
@@ -230,6 +234,7 @@ func _on_target_right_button_pressed() -> void:
 
 
 func update_selected_enemy():
+	#print("targeted %d" % targeted_enemy)
 	indicator_light.position = enemies[targeted_enemy].position
 	indicator_light.position.y += 1.0
 	indicator_light.position.x -= 0.2

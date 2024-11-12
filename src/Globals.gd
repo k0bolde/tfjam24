@@ -72,7 +72,7 @@ func initialize_enemies():
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
-	e.enemy_name = "cat mutant"
+	e.enemy_name = "gat cat"
 	e.texture_path = "res://assets/gat-cat.png"
 	e.stats.atk = 20
 	e.stats.def = 0
