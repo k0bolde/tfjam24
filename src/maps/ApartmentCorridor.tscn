@@ -1,12 +1,33 @@
-[gd_scene load_steps=6 format=4 uid="uid://brnbc3b5bpicv"]
+[gd_scene load_steps=17 format=4 uid="uid://brnbc3b5bpicv"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_ubuer"]
 [ext_resource type="TileSet" uid="uid://ddlyt62oomuic" path="res://assets/interiors/interiors_tileset.tres" id="2_5ty82"]
 [ext_resource type="PackedScene" uid="uid://baoqkmuq02pyw" path="res://src/ExitArea.tscn" id="3_h8neh"]
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="4_5upgf"]
+[ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="5_mxnxr"]
+[ext_resource type="Texture2D" uid="uid://bpmx1xgi3lh13" path="res://assets/mutant-woman.png" id="6_4eb2u"]
+[ext_resource type="Texture2D" uid="uid://csqo0kln77bi7" path="res://assets/mutant-man-ow.png" id="6_gmhwd"]
+[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="8_24jqr"]
+[ext_resource type="Texture2D" uid="uid://b0pwxgr3467b1" path="res://assets/gat-cat-ow.png" id="9_c5lik"]
+[ext_resource type="Texture2D" uid="uid://dr13mif7eqp80" path="res://assets/mutant-lion-ow.png" id="10_wueg8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekjtx"]
 size = Vector2(45, 178)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52411"]
+size = Vector2(56, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_is5ah"]
+size = Vector2(54, 166)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcli7"]
+size = Vector2(46, 164)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km6ol"]
+size = Vector2(43, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30xbp"]
+size = Vector2(99, 131)
 
 [node name="ApartmentCorridor" type="Node2D"]
 script = ExtResource("1_ubuer")
@@ -41,3 +62,85 @@ story_flag = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea"]
 position = Vector2(100.5, 8)
 shape = SubResource("RectangleShape2D_ekjtx")
+
+[node name="CutsceneTriggerArea2" parent="." instance=ExtResource("4_5upgf")]
+position = Vector2(51, 33)
+dialogue = "res://assets/dialogue/t_4.clyde"
+story_flag = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea2"]
+position = Vector2(18, -30.5)
+shape = SubResource("RectangleShape2D_52411")
+
+[node name="Remove" type="Node2D" parent="CutsceneTriggerArea2"]
+position = Vector2(-51, -33)
+
+[node name="SomeGuyNPC" parent="CutsceneTriggerArea2/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(62, 9)
+
+[node name="CutsceneTriggerArea3" parent="." instance=ExtResource("4_5upgf")]
+position = Vector2(-207, 14)
+dialogue = "res://assets/dialogue/t_5.clyde"
+story_flag = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea3"]
+position = Vector2(17, -4)
+shape = SubResource("RectangleShape2D_is5ah")
+
+[node name="Remove" type="Node2D" parent="CutsceneTriggerArea3"]
+
+[node name="NPC2" parent="CutsceneTriggerArea3/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(5, 24)
+image = ExtResource("6_4eb2u")
+flip_h = true
+
+[node name="NPC" parent="CutsceneTriggerArea3/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(5, -23)
+image = ExtResource("6_gmhwd")
+flip_h = true
+
+[node name="CutsceneTriggerArea4" parent="." instance=ExtResource("4_5upgf")]
+position = Vector2(-577, 11)
+dialogue = "res://assets/dialogue/t_7.clyde"
+story_flag = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea4"]
+position = Vector2(13, 0)
+shape = SubResource("RectangleShape2D_xcli7")
+
+[node name="Remove" type="Node2D" parent="CutsceneTriggerArea4"]
+
+[node name="NPC" parent="CutsceneTriggerArea4/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(-12, -50)
+image = ExtResource("8_24jqr")
+
+[node name="NPC2" parent="CutsceneTriggerArea4/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(-40, -14)
+image = ExtResource("9_c5lik")
+
+[node name="NPC3" parent="CutsceneTriggerArea4/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(-2, -12)
+image = ExtResource("10_wueg8")
+
+[node name="CutsceneTriggerArea5" parent="." instance=ExtResource("4_5upgf")]
+position = Vector2(-742, 0)
+dialogue = "res://assets/dialogue/t_9.clyde"
+story_flag = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea5"]
+position = Vector2(11.5, 11.5)
+shape = SubResource("RectangleShape2D_km6ol")
+
+[node name="Remove" type="Node2D" parent="CutsceneTriggerArea5"]
+
+[node name="NPC" parent="CutsceneTriggerArea5/Remove" instance=ExtResource("5_mxnxr")]
+position = Vector2(-11, 2)
+
+[node name="CutsceneTriggerArea6" parent="." instance=ExtResource("4_5upgf")]
+position = Vector2(-820, -13)
+dialogue = "res://assets/dialogue/t_11.clyde"
+story_flag = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea6"]
+position = Vector2(39.5, 26.5)
+shape = SubResource("RectangleShape2D_30xbp")

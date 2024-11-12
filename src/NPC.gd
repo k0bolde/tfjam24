@@ -5,6 +5,7 @@ class_name NPC
 @export var image : Texture2D
 ## The clyde dialogue file 
 @export_file("*.clyde") var dialogue_file
+@export var flip_h := false
 
 @onready var talk_area : Area2D = $TalkArea
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 		if image.get_height() != 32:
 			var scaled := 32.0 / image.get_height()
 			$Sprite2D.scale = Vector2(scaled, scaled)
+		$Sprite2D.flip_h = flip_h
 	talk_area.body_entered.connect(_on_body_entered)
 	talk_area.body_exited.connect(_on_body_exited)
 	

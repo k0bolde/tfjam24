@@ -14,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_nnc88")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 6
 
 [node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -97,6 +97,7 @@ theme_override_constants/margin_bottom = 55
 unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
+color = Color(0.0186056, 0.241793, 5.05373e-07, 1)
 
 [node name="BlinkTimer" type="Timer" parent="CanvasLayer/MarginContainer2"]
 autostart = true

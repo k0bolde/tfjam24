@@ -29,6 +29,7 @@ var story_flags := {
 	"office": 0,
 	"lab": 0
 }
+var hub
 
 
 func _ready() -> void:
@@ -36,23 +37,7 @@ func _ready() -> void:
 	Globals.main = self
 	AudioServer.set_bus_volume_db(0, -30)
 	#print("%f %f" % [db_to_linear(-80), db_to_linear(24)])
-	
-	#set up starting stats for party
-	Globals.party.p[0].stats.atk = 25
-	Globals.party.p[0].stats.def = 0
-	Globals.party.p[0].stats.eva = 5
-	Globals.party.p[0].stats.lck = 5
-	Globals.party.p[0].stats.resistances.push_front("fire")
-	Globals.party.p[0].stats.abilities.append_array(["punch", "kick", "fire breath", "tip the scales"])
-	
-	Globals.party.p[1].stats.hp = 125
-	Globals.party.p[1].stats.mp = 75
-	Globals.party.p[1].stats.atk = 35
-	Globals.party.p[1].stats.def = 5
-	Globals.party.p[1].stats.eva = 10
-	Globals.party.p[1].stats.lck = 0
-	Globals.party.p[1].stats.resistances.push_front("bludeoning")
-	Globals.party.p[1].stats.abilities.append_array(["punch", "swipe", "recovery strike", "wild wolf"])
+
 	
 	
 	Events.battle_start.connect(start_battle)
@@ -61,7 +46,7 @@ func _ready() -> void:
 	
 	load_map("Apartment")
 	# hub uses big tilesets so it lags when loading, preload it
-	#ResourceLoader.load_threaded_request("res://src/maps/Hub.tscn")
+	ResourceLoader.load_threaded_request("res://src/maps/Hub.tscn")
 	Globals.load2()
 
 
@@ -81,8 +66,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
 		if is_menu_up():
 			menu._on_close_button_pressed()
-			#menu_node.remove_child(menu)
-			#menu.queue_free()
 		elif not is_battle_up() and not is_dialogue_up():
 			menu = preload("res://src/Menu.tscn").instantiate()
 			menu_node.add_child(menu)
@@ -94,10 +77,13 @@ func load_map(map_name:String, entrance_num := -1):
 		map_node.remove_child(old_map)
 		old_map.queue_free()
 	var new_map : Map 
-	#if map_name == "Hub":
-		#new_map = ResourceLoader.load_threaded_get("res://src/maps/Hub.tscn").instantiate()
-	#else:
-	new_map = load("res://src/maps/" + map_name + ".tscn").instantiate()
+	if map_name == "Hub":
+		if not hub:
+			# can only get this once, so save it for later for when we reuse it
+			hub = ResourceLoader.load_threaded_get("res://src/maps/Hub.tscn")
+		new_map = hub.instantiate()
+	else:
+		new_map = load("res://src/maps/" + map_name + ".tscn").instantiate()
 	map_node.add_child(new_map)
 	if entrance_num >= 0 and new_map.entrances.size() >= entrance_num + 1:
 		player.position = new_map.entrances[entrance_num]

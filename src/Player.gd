@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name Player
+#TODO add hp/mp ui in overworld
 
 @onready var cam : Camera2D = $Camera2D
 @onready var interact_container : Container = %InteractContainer
