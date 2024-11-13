@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ndu6nj6ov7t2"]
 
 [ext_resource type="Script" path="res://src/Dialogue.gd" id="1_nnc88"]
-[ext_resource type="Texture2D" uid="uid://cwkttbnrly0ns" path="res://assets/clem-portrait.png" id="2_ew2rb"]
+[ext_resource type="Texture2D" uid="uid://w6xijyxy0q4c" path="res://assets/portraits/SockFullDefault1.png" id="2_252ju"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="3_5qxu5"]
 
 [node name="Dialogue" type="Control"]
@@ -41,8 +41,9 @@ custom_minimum_size = Vector2(256, 512)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-texture = ExtResource("2_ew2rb")
+texture = ExtResource("2_252ju")
 expand_mode = 3
+flip_h = true
 
 [node name="DialogueContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -71,14 +72,15 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Speaker:"
 
-[node name="DialogueLabel" type="Label" parent="CanvasLayer/DialogueContainer/MarginContainer/VBoxContainer"]
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer/DialogueContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 107)
 layout_mode = 2
+bbcode_enabled = true
 text = "Dialogue
 "
-autowrap_mode = 3
-clip_text = true
+scroll_active = false
+shortcut_keys_enabled = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3

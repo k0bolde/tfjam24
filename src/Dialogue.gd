@@ -2,7 +2,7 @@ extends Control
 class_name Dialogue
 
 @onready var speaker_label : Label = %SpeakerLabel
-@onready var dialogue_label : Label = %DialogueLabel
+@onready var dialogue_label : RichTextLabel = %DialogueLabel
 @onready var portrait_texture : TextureRect = %PortraitTexture
 @onready var sting_player : AudioStreamPlayer = %StingPlayer
 
