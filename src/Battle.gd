@@ -7,9 +7,10 @@ class_name Battle
 # Die - when player hp 0 - death screen, kick to main menu?
 # weaknesses and turns
 # Item use
-# animations
+# animations for attacks, getting attacked
 # multi target attacks
 # party target buffs/heals
+# show party hp/mp all the time?
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -33,6 +34,7 @@ class_name Battle
 @onready var char_turn_label : Label = %CharTurnLabel
 @onready var attack_name_container : Container = %AttackNameContainer
 @onready var attack_name_label : Label = %AttackNameLabel
+@onready var enemy_name_label : Label3D = %EnemyNameLabel
 
 var can_run := true
 var enemy_names := []
@@ -63,8 +65,9 @@ func _ready() -> void:
 		enemies.push_back(Globals.enemies["rat"].duplicate())
 	#Setup enemy sprites
 	for i in enemies.size():
+		enemies[i].hp = enemies[i].stats.hp
 		enemies[i].position = %EnemyPos1.position
-		enemies[i].position.z -= i * 0.75
+		enemies[i].position.z -= i * 1.25
 		var sprite := Sprite3D.new()
 		sprite.texture = load(enemies[i].texture_path)
 		if enemies[i].region_rect:
@@ -253,6 +256,7 @@ func update_selected_enemy():
 	enemy_hp_mesh.position.y += 0.75
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	enemy_hp_bar.max_value = enemies[targeted_enemy].stats.hp
+	enemy_name_label.text = enemies[targeted_enemy].enemy_name.capitalize()
 
 
 func battle_won():

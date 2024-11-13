@@ -5,7 +5,7 @@ class_name Enemy
 @export var texture_path : String
 @export var region_rect : Rect2
 @export var flip_h := false
-@export var hp := 10
+@export var hp := 100
 @export var attack_probabilities := {"basic": 1.0}
 @export var cash_reward := 100
 @export var xp_reward := 100

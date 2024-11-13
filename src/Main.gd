@@ -16,9 +16,6 @@ var dialogue : Dialogue
 var menu
 var day := 1
 var story_flags := {
-	# 0 - new game
-	# 1 - intro done
-	# 2 - tutorial done
 	"main" : 0,
 	"jesse": 0,
 	"sock": 0,

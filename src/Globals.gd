@@ -35,7 +35,8 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "some guy"
-	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.texture_path = "res://assets/tv_sprites/player_chars/wolf_girl_128x.png"
+	e.region_rect = Rect2(0, 0, 128, 128)
 	e.stats.atk = 15
 	e.stats.def = 0
 	e.stats.eva = 0
@@ -88,7 +89,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "lion mutant"
-	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.texture_path = "res://assets/lion-mutant.png"
 	e.stats.hp = 80
 	e.stats.atk = 20
 	e.stats.def = 10

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=22 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c536pd00r41fc" path="res://assets/bgscrapers1.png" id="4_4vhkh"]
 [ext_resource type="Texture2D" uid="uid://sv1tky5i3bqq" path="res://assets/tv_sprites/player_chars/wolf_girl_128x.png" id="4_rh3uv"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="4_xgkbo"]
-[ext_resource type="Texture2D" uid="uid://2vgl33tsgtn3" path="res://assets/mart.png" id="4_yn6p5"]
 [ext_resource type="Texture2D" uid="uid://clhrhsh8ecjm7" path="res://assets/tv_sprites/player_chars/sci_raptor_128x.png" id="5_abulm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kgb63"]
@@ -229,17 +228,7 @@ region_rect = Rect2(256, 512, 64, 64)
 
 [node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91168, 0.0480421, 0)
-
-[node name="Selector" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
-transform = Transform3D(1.555, 0, 0, 0, 1.555, 0, 0, 0, 1.555, 1.49206, 0.550306, -0.0949882)
-visible = false
-billboard = 2
-alpha_cut = 1
-texture_filter = 2
-texture = ExtResource("4_yn6p5")
-region_enabled = true
-region_rect = Rect2(256, 224, 32, 32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28131, 0.0480421, 0)
 
 [node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
@@ -250,11 +239,11 @@ environment = SubResource("Environment_kkb66")
 
 [node name="BattleCenter" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742395, -0.173048, -0.964932)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31212, -0.173048, -0.964932)
 
 [node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.95882, 0.284016, 0, -0.284016, 0.95882, 1.226, 0.545, 1.613)
+transform = Transform3D(0.190809, 0.374069, -0.90756, 0, 0.924546, 0.381071, 0.981627, -0.0727117, 0.176412, -1.589, 1.15, -0.742)
 fov = 55.5
 
 [node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
@@ -266,6 +255,7 @@ skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2368, -0.612954, 0)
+visible = false
 mesh = SubResource("CylinderMesh_rdu10")
 
 [node name="bgcircle" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
@@ -333,7 +323,6 @@ shadow_enabled = true
 [node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46461, 0.693375, -0.031354)
-visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_t3fcg")
 
@@ -351,6 +340,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_kxj7t")
 value = 73.26
 fill_mode = 3
 show_percentage = false
+
+[node name="EnemyNameLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.319812, 0)
+pixel_size = 0.0041
+billboard = 2
+text = "Enemy Name"
 
 [node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true

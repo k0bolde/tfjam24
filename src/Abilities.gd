@@ -18,7 +18,7 @@ func ability_callable(user, party:Array, enemies:Array, target:int, battle:Battl
 	
 func basic_attack(user, party, enemies, target, battle):
 	if target >= 0:
-		enemies[target].hp -= 5
+		enemies[target].hp -= 50
 	else:
 		Globals.party.p[abs(target) - 1]["hp"] -= 5
 	

@@ -15,6 +15,10 @@ var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
 	"Clem": "res://assets/clem-portrait.png",
 	"Rene": "res://assets/portraits/Barista_Snake_small.png",
+	"Pean": "res://assets/portraits/Pean2.png",
+	"Byrne": "res://assets/portraits/byrne-portrait.png",
+	"Morgran": "res://assets/portraits/morgan.png",
+	"Bubbles": "res://assets/portraits/Bubbles.png",
 	
 }
 
