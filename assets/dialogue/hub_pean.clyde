@@ -1,0 +1,41 @@
+You approach a bright eyed weasel who’s busy working on …something? You’re not sure what, but you have questions.
+Pean: Can’t you see I’m busy? Why does everyone always ask me questions? 
+He seems distracted but open to whatever you might want to know.
+-- Ask about -
+--Game Mechanics
+--Pean: Mechanics, huh? Which one?
++ HP
+	Pean: Well, HP is your hit points. Run out of that and your character is knocked out. If all your characters are knocked out, it’s game over! HP recovers between each battle thanks to that drug you took. Of course, it’s why you’re in this situation in the first place, heh heh.
+	<-
++ MP
+	Pean: MP is mutagenic points. These are used to fuel your special and mutant abilities. This does not recover between each battle. You’ll have to return to town or use items for that, so use your MP wisely!
+	<-
++ Attack
+	Pean: Simply put, ATK is how much damage you do. Abilities modify your ATK by some amount but generally the higher the ATK, the better! Hit him hard and end fights fast! Wha-pow!
+	<-
++ Defense
+	Pean: DEF is how much you reduce damage from attacks. There’s some math behind it that I don’t have time to explain.Just know the higher, the better.
+	<-
++ Evasion
+	Pean: Evasion is a percentage chance to dodge and miss. It caps at 25%. You can only be so dodgy.
+	<-
++ Luck
+	Pean: Luck affects your chances of finding something and also your chance to inflict a critical hit. A critical hit is a devastating blow that deals double damage.  Wham!
+	<-
++ Resistances
+	Pean: Your characters have natural resistances that means certain attack types do half damage to them. The same applies to enemies!  Equipment (which aren’t implemented) can also grant resistances.
+	<-
++ Weaknesses
+	Pean: If a character or enemy is targeted with an attack type that matches their weakness, the attacker gets an extra turn and the attack also does 50% more damage. Wow!
+	<-
++ Attack Types
+	Pean: Each attack has different types. They are\: Rending, Piercing, Bludgeoning, Fiery, Frigid, Mutagenic, Esoteric, Eldritch. They range from hot to cold to spooky to mundane. Experiment!
+	<-
++ Items
+	Pean: You can use items in combat to recover HP, restore MP, and even revive characters. This does take your character’s action!
+	<-
+--+ Mutation
+--+ Drugs
+--+ Other NPCs
++ Leave
+	-> END

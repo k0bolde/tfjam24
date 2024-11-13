@@ -1,0 +1,38 @@
+You approach the coffee shop. Coffee sounds good right about now. It always sounds good now that you think about it. Behind the encounter is an impressively ample snake. She smiles and waves.
+
+Rene: Good day! Anything I can whip up for you?
+
++ Buy
+	Rene: You want the snilk, don’t you?
+	{ trigger rene_buy }
+	<-
++ Sell
+	Rene: I guess I can buy something you have? Kinda odd for a coffee shop.
+	{ trigger rene_sell}
+	<-
++ Improve Stat (MP)
+	Rene: Give me some time and I can whip you up something special!
+	Which character’s MP would you like to improve?
+	{ trigger stat_up_mp }
+	CHAR drinks Rene’s special concoction. CHAR’s mutagenic prowess expands thanks to their elixir.  CHAR’s MP improved!
+	<-
++ Talk
+	( shuffle cycle
+		-
+			Rene: I can make a special drink if you’d like! Everyone loves it.
+			<-
+		-
+			Rene: Yes, they’re real.
+			<-
+		-
+			Rene:  I have a tip myself every time someone says “ouch, her back.” Never heard of muscles?
+			<-
+		-
+			Rene:  I considered mixing that new drug with some of my drinks, but now I’m glad I didn’t!
+			<-
+		-
+			Rene: I got a package the other day full of pens, but it had no return address…
+			<-
+	)
++ Leave
+	-> END

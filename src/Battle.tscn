@@ -665,6 +665,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/BasicAttackButton" to="." method="_on_basic_attack_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/AbilitiesButton" to="." method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/RunButton" to="." method="_on_run_button_pressed"]

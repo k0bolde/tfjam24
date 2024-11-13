@@ -33,6 +33,8 @@ func _ready() -> void:
 	Globals.player = player 
 	Globals.main = self
 	AudioServer.set_bus_volume_db(0, -30)
+	music_player.stream = load("res://assets/audio/slow tempo synth thing.mp3")
+	music_player.play()
 	#print("%f %f" % [db_to_linear(-80), db_to_linear(24)])
 
 	

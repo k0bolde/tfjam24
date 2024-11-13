@@ -1,0 +1,53 @@
+You approach the antique shop. Apparently it’s run by a crow? Was he always a crow, or was he human once? His eyes glimmer with corvid intellect as you near.
+Mark: Caw! I’m Mark! I have an assortment of trinkets and baubles and I also know quite a lot!
+
++ Improve Stat (Luck)
+	Mark: I can rub some of my object’s luck onto you! What do you say?
+	Which character’s Luck would you like to improve?
+	{ trigger stat_up_lck }
+	Mark gives CHAR a coin and then takes it back. Somehow CHAR feels luckier, like they could call on how a coin lands and get it right more often than not. CHAR’s Luck improved!
+	<-
++ Talk
+	( shuffle cycle
+		-
+			Mark: I used to be a mascot for a site, but they replaced me with a letter. So mean to me…
+			<-
+		-
+			Mark: Did you know blue jays are corvids too? It’s true!
+			<-
+		-
+			Mark: Birds are so cool. Shame you aren’t one.
+			<-
+		-
+			Mark: I’ll be more helpful later. For now, you can enjoy my witty and humorous dialogue! Caw!
+			<-
+		-
+			Mark: Ka-caw! My knowledge is unmatched!
+			<-
+		-
+			Mark: I can make you luckier by transferring some of the luck from my shiny objects to you. Neat, huh?
+			<-
+		-
+			Mark: Did you know that Steller's Jays and Blue Jays can hybridize?
+			<-
+		-
+			Mark: Now where could my pipe be?
+			<-
+		-
+			Mark: The Tufted Titmice are coming!
+			<-
+		-
+			Mark: Caw?
+			<-
+		-
+			Mark: Caw!
+			<-
+		-
+			Mark: Blue Jays are corvids, like Crows and Ravens, and similarly can learn to mimic sounds.
+			<-
+		-
+			Mark: They call me the gambler because I wanna die on a train.
+			<-
+	)
++ Leave
+	-> END

@@ -16,7 +16,7 @@ Clem: But that’s my secondary function! What can I get ya?
 + Improve stat (HP)
 	Clem: Ooh, I can do that! Don’t worry, this won’t hurt. In fact, it’s going to feel really good…
 	Which character’s HP would you like to improve?
-	{ trigger clem_hp_choice }
+	{ trigger stat_up_hp }
 	CHAR comes out of the pharmacy looking pleased if a little dazed. CHAR’s HP improved!
 	<-
 + Talk

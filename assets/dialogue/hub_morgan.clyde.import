@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://bsw72vjuneq3d"
+path="res://.godot/imported/hub_morgan.clyde-66351982901d238efff17673c7febbf3.res"
+
+[deps]
+
+source_file="res://assets/dialogue/hub_morgan.clyde"
+dest_files=["res://.godot/imported/hub_morgan.clyde-66351982901d238efff17673c7febbf3.res"]
+
+[params]
+

@@ -1,0 +1,29 @@
+Ah, your friendly local game store. Could there be anything of use here? The worm woman behind the counter greets you with a chipper grin.
+
+Zal: Hi! Looking for anything specific? You can also just chill here!
+
++ Buy
+	Zal: Buy local!
+	{ trigger zal_buy }
+	<-
++ Sell
+	Zal: I have the best rates!
+	{ trigger zal_sell}
+	<-
++ Talk
+	( shuffle cycle
+		-
+			Zal: I’m a wurae! We can’t see well in the light.
+			<-
+		-
+			Zal: Why wurae? Things will turn out alright.
+			<-
+		-
+			Zal: Don’t forget you only have limited time to train stats and other activities before the city is overrun by mutants. Spooky!
+			<-
+		-
+			Zal: You can recruit me if you find a secret! Just kidding. I have a shop to run!
+			<-
+	)
++ Leave
+	-> END

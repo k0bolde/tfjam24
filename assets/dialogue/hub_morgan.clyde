@@ -1,0 +1,28 @@
+You enter the hobby shop but it looks more like a …blacksmith? Odd. A mantis stands by an anvil, hammering away at a sword. They look up as you approach, antennae twitching with curiosity.
+Morgan: Greetings! I am Morgan. Looking to tune up or purchase some gear? It will greatly aid in your adventures!
+
++ Buy
+	Morgan: Certainly! Only the finest steel!
+	{ trigger morgan_buy }
+	<-
++ Sell
+	Morgan: Surely you have something of value!
+	{ trigger morgan_sell }
+	<-
++ Talk
+	( shuffle cycle
+	-
+		Morgan: I do pray, twice daily. I don’t prey as much as I used to, though.
+		<-
+	-
+		Morgan: Things have gotten out of hand, haven’t they! Foul concoctions clog the streets
+		<-
+	-
+		Morgan: It helps to have many arms! Many hands make the work faster, as they say.
+		<-
+	-
+		Morgan: I may not be of much help if equipment isn’t implemented yet. So sorry.
+		<-
+	)
++ Leave
+	-> END

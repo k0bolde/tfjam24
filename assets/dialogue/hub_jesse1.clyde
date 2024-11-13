@@ -1,0 +1,38 @@
+Jesse smiles slightly at you. He looks a little bothered, though maybe you’re just reading his new lupine head wrong.
+
+Jesse: Hey, man.
+
+* Are you alright?
+	Finley: Are you doing ok?
+* What’s going on?
+	Finley: What’s on your mind?
+
+Jesse: Eh, I don’t know. It’s weird having your whole head change, you know. I mean, what’s next? A tail? Paws? #sad
+
+* Definitely paws
+	Finley: Paws might be next, I guess?
+* Something weird
+	Finley: Definitely tentacles!
+
+Jesse: Haha. Thanks, man. The weird thing is…I’m not too worried? This is kind of, I don’t know, exciting? It’s something new at least. Life felt so same-y before.
+Finley: I know what you mean.
+Jesse: Yeah, and what’s next for you? What do you think you’re turning into?
+
+* A dragon
+	Finley: Definitely a dragon!
+* A pangolin
+	Finley: Maybe a pangolin?
+
+Jesse: I guess we’ll see! Or we won’t. Hopefully your dealer has some way to reverse this. I don’t want the whole town going mad!
+
+* We’ll figure it out
+	Finley: I don’t either. We’ll figure something out.
+* It might be more fun that way.
+	Finley: I don’t know, it might be more fun that way.
+
+Jesse: I hope you’re right. Anyways, thanks for talking to me, man. I really appreciate it. Even though we  got off to a rough start, you’ve been a good friend the whole time.
+Finley: No problem. Ready to get going?
+Jesse: Whenever you are.
+
+Your heart warms. Your friendship with Jesse has improved!
+{ trigger jesse_bond_up }

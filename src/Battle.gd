@@ -35,6 +35,7 @@ class_name Battle
 @onready var attack_name_container : Container = %AttackNameContainer
 @onready var attack_name_label : Label = %AttackNameLabel
 @onready var enemy_name_label : Label3D = %EnemyNameLabel
+@onready var audio_stream_player : AudioStreamPlayer = %AudioStreamPlayer
 
 var can_run := true
 var enemy_names := []
@@ -146,6 +147,8 @@ func player_attack(which_attack:String):
 	
 	turns -= 1
 	Abilities.abilities[which_attack]["callable"].call(0, Globals.party, enemies, targeted_enemy, self)
+	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
+	audio_stream_player.play()
 	#update enemy hp bar
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	if enemies[targeted_enemy].hp <= 0:
@@ -184,6 +187,8 @@ func enemy_attack(which_enemy:int):
 	turns -= 1
 	#TODO pick attack and target
 	Abilities.abilities["basic"]["callable"].call(0, Globals.party, enemies, -1, self)
+	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
+	audio_stream_player.play()
 	show_enemy_attack(Abilities.abilities["basic"]["enemy_flavor"])
 	#update party hp
 	update_bars(0)
