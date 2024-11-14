@@ -148,6 +148,11 @@ func _input(event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	if event.is_action_pressed("sprint"):
+		player.is_sprinting = true
+	if event.is_action_released("sprint"):
+		player.is_sprinting = false
 
 
 ## helper method to let you safely reuse the same tween by ending anything it was doing before giving you a clean one

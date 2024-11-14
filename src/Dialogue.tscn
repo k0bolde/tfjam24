@@ -63,6 +63,7 @@ theme_override_styles/panel = ExtResource("3_5qxu5")
 [node name="SpeakerLabel" type="Label" parent="CanvasLayer/SpeakerContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Speaker:"
 
 [node name="Label" type="Label" parent="CanvasLayer/SpeakerContainer/PanelContainer"]
@@ -96,6 +97,7 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 107)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "Dialogue
 "

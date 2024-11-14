@@ -32,10 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# remove the npc ref so we don't get stuck in a talk loop
 			npc = null
 	
-	if event.is_action_pressed("sprint"):
-		is_sprinting = true
-	if event.is_action_released("sprint"):
-		is_sprinting = false
+
 
 
 func _physics_process(_delta: float) -> void:

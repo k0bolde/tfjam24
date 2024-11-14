@@ -260,7 +260,7 @@ func update_selected_enemy():
 	indicator_light.position.y += 1.0
 	indicator_light.position.x -= 0.2
 	enemy_hp_mesh.position = enemies[targeted_enemy].position
-	enemy_hp_mesh.position.y += 0.75
+	enemy_hp_mesh.position.y += 1.0
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	enemy_hp_bar.max_value = enemies[targeted_enemy].stats.hp
 	enemy_name_label.text = enemies[targeted_enemy].enemy_name.capitalize()
