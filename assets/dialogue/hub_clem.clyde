@@ -4,7 +4,6 @@ Finley: I don’t think so…
 Clem: You’re probably right. I’m too bright in the dark to forget such a nice face, heh heh.
 Finley: …
 Clem: But that’s my secondary function! What can I get ya?
-
 + Buy
 	Clem: Sure, and you even get a discount, cutie!
 	{ trigger clem_buy }

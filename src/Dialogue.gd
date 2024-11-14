@@ -6,12 +6,15 @@ class_name Dialogue
 @onready var portrait_texture : TextureRect = %PortraitTexture
 @onready var sting_player : AudioStreamPlayer = %StingPlayer
 @onready var speaker_container : Container = %SpeakerContainer
+@onready var option_container : Container = %OptionContainer
+@onready var option_button_container : Container = %OptionButtonContainer
 
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
 var dialogue_to_load : String
 var _external_persistence := {}
 var fade_tween : Tween
+var is_waiting_for_choice := false
 var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
 	"Clem": "res://assets/clem-portrait.png",
@@ -63,15 +66,12 @@ func _get_next_dialogue_line():
 		t.set_parallel(false)
 		t.tween_callback(Events.dialogue_ended.emit)
 		t.tween_callback(queue_free)
-
-	if content.type == 'line':
+	elif content.type == 'line':
 		_set_up_line(content)
-		#_line_container.show()
-		#_options_container.hide()
-	#else:
-		#_set_up_options(content)
-		#_options_container.show()
-		#_line_container.hide()
+	else:
+		_set_up_options(content)
+		# call_deferred because of strange bug that clicked on a different button than the user clicked sometimes
+		option_container.set_deferred("visible", true)
 
 
 func _set_up_line(content):
@@ -96,31 +96,34 @@ func _set_up_line(content):
 		sting_player.play()
 
 
-#TODO implement choices
-#func _set_up_options(options):
-	#for c in _options_container.get_node("items").get_children():
-		#c.queue_free()
-#
+func _set_up_options(options):
+	is_waiting_for_choice = true
+
 	#_options_container.get_node("name").text = options.get('name') if options.get('name') != null else ''
 	#_options_container.get_node("speaker").text = options.get('speaker') if options.get('speaker') != null else ''
 	#_options_container.get_node("speaker").visible = _options_container.get_node("speaker").text != ""
-#
-	#var index = 0
-	#for option in options.options:
-		#var btn = Button.new()
-		#btn.text = option.label
-		#btn.connect("button_down",Callable(self,"_on_option_selected").bind(index))
-		#_options_container.get_node("items").add_child(btn)
-		#index += 1
+
+	var index = 0
+	for option in options.options:
+		var btn = Button.new()
+		btn.text = option.label
+		btn.pressed.connect(_on_option_selected.bind(index))
+		option_button_container.add_child(btn)
+		index += 1
 
 
 func _on_option_selected(index):
+	is_waiting_for_choice = false
+	for c in option_button_container.get_children():
+		c.queue_free()
+	#print("sent option %d" % index)
 	dialogue.choose(index)
+	option_container.visible = false
 	_get_next_dialogue_line()
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if not is_waiting_for_choice and event.is_action_pressed("interact"):
 		#TODO wait an extra click or a certain amount of time so the player could presumably read it. Pause blink timer until such a state
 		_get_next_dialogue_line()
 	

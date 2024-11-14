@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://hk5dg6h0gury"]
+[gd_scene load_steps=23 format=4 uid="uid://hk5dg6h0gury"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_km1as"]
 [ext_resource type="Texture2D" uid="uid://4yak0eh5rks8" path="res://assets/TOWNMAP.png" id="2_mcdrc"]
@@ -25,6 +25,21 @@ size = Vector2(1459, 114)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tu4hp"]
 size = Vector2(115, 824)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p358w"]
+size = Vector2(831, 247)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayq0g"]
+size = Vector2(305, 340)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05amx"]
+size = Vector2(213, 221)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbv1x"]
+size = Vector2(383, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ftrs"]
+size = Vector2(286, 129)
 
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_km1as")
@@ -65,6 +80,26 @@ shape = SubResource("RectangleShape2D_346p6")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
 position = Vector2(968.5, 155)
 shape = SubResource("RectangleShape2D_tu4hp")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-33.5, 339.5)
+shape = SubResource("RectangleShape2D_p358w")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Borders"]
+position = Vector2(774.5, 291)
+shape = SubResource("RectangleShape2D_ayq0g")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Borders"]
+position = Vector2(708.5, -89.5)
+shape = SubResource("RectangleShape2D_05amx")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-119.5, -128)
+shape = SubResource("RectangleShape2D_nbv1x")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Borders"]
+position = Vector2(456, -184.5)
+shape = SubResource("RectangleShape2D_3ftrs")
 
 [node name="Exits" type="Node2D" parent="."]
 
@@ -121,7 +156,7 @@ position = Vector2(273, -150)
 dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
-position = Vector2(-406, 106)
+position = Vector2(-384, -20)
 image = ExtResource("7_n3ytn")
 dialogue_file = "res://assets/dialogue/hub_pean.clyde"
 

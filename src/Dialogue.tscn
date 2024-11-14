@@ -126,6 +126,26 @@ color = Color(0.0186056, 0.241793, 5.05373e-07, 1)
 [node name="BlinkTimer" type="Timer" parent="CanvasLayer/MarginContainer2"]
 autostart = true
 
+[node name="OptionContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_right = 44.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_5qxu5")
+
+[node name="OptionButtonContainer" type="VBoxContainer" parent="CanvasLayer/OptionContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="StingPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
