@@ -15,9 +15,10 @@ var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
 	"Clem": "res://assets/clem-portrait.png",
 	"Rene": "res://assets/portraits/Barista_Snake_small.png",
-	"Pean": "res://assets/portraits/pean2.png",
+	"Tutorial Pean": "res://assets/portraits/pean2.png",
+	"Pean": "res://assets/portraits/pean1.png",
 	"Byrne": "res://assets/portraits/byrne-portrait.png",
-	"Morgran": "res://assets/portraits/morgan.png",
+	"Morgan": "res://assets/portraits/morgan.png",
 	"Bubbles": "res://assets/portraits/Bubbles.png",
 	
 }
@@ -77,6 +78,8 @@ func _set_up_line(content):
 		portrait_texture.visible = true
 		if portraits.has(speaker):
 			portrait_texture.texture = load(portraits[speaker])
+		else:
+			portrait_texture.visible = false
 	else:
 		speaker_label.visible = false
 		portrait_texture.visible = false

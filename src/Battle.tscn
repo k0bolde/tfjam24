@@ -323,6 +323,7 @@ shadow_enabled = true
 [node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46461, 0.693375, -0.031354)
+visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_t3fcg")
 

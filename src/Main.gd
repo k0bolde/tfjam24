@@ -108,6 +108,8 @@ func end_battle():
 		music_player.stop()
 		Globals.player.cam.enabled = true
 		Globals.player.is_battling = false
+		music_player.stream = load("res://assets/audio/slow tempo synth thing.mp3")
+		music_player.play()
 
 
 func start_dialogue(clyde_file):

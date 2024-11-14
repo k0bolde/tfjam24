@@ -186,10 +186,12 @@ func enemy_attack(which_enemy:int):
 	
 	turns -= 1
 	#TODO pick attack and target
-	Abilities.abilities["basic"]["callable"].call(0, Globals.party, enemies, -1, self)
+	var enemy_attack := "punch"
+	var target_party := 0
+	Abilities.abilities[enemy_attack]["callable"].call(0, Globals.party, enemies, 0 - (target_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
-	show_enemy_attack(Abilities.abilities["basic"]["enemy_flavor"])
+	show_enemy_attack(Abilities.abilities[enemy_attack]["enemy_flavor"].replace("CHAR", Globals.party.names[target_party]))
 	#update party hp
 	update_bars(0)
 	%TurnsLabel.text = "%d" % turns
@@ -223,7 +225,7 @@ func show_dmg_label(dmg:int, pos:Vector3):
 func _on_basic_attack_button_pressed() -> void:
 	disable_buttons()
 	show_targeting()
-	curr_ability = "basic"
+	curr_ability = "punch"
 
 
 func show_targeting():

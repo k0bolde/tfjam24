@@ -11,3 +11,4 @@ class_name Party
 ]
 @export var xp := 0
 @export var level := 1
+var names := ["Finley", "Jesse", "Sock", "Ceron"]
