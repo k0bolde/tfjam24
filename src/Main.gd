@@ -1,7 +1,7 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
-#TODO tutorial scripting
 #TODO battle
+#TODO dialogue choices
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode
@@ -37,7 +37,6 @@ func _ready() -> void:
 	music_player.play()
 	#print("%f %f" % [db_to_linear(-80), db_to_linear(24)])
 
-	
 	
 	Events.battle_start.connect(start_battle)
 	Events.battle_end.connect(end_battle)

@@ -7,8 +7,8 @@ class_name Enemy
 @export var flip_h := false
 @export var hp := 100
 @export var attack_probabilities := {"basic": 1.0}
-@export var cash_reward := 100
-@export var xp_reward := 100
+@export var cash_reward := 10
+@export var xp_reward := 1
 @export var level := 1
 @export var item_drops := {"hp1": 1.0}
 

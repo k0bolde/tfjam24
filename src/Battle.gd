@@ -270,6 +270,13 @@ func battle_won():
 	for e in defeated_enemies:
 		Globals.cash += e.cash_reward
 		Globals.party.xp += e.xp_reward
+	var required_to_level := 0
+	for i in Globals.party.level + 1:
+		required_to_level += i * 10
+	if Globals.party.xp >= required_to_level:
+		#level up
+		print("level up %d! %d/%d required" % [Globals.party.level + 1, Globals.party.xp, required_to_level])
+		Globals.party.level += 1
 	#TODO show results screen
 	Events.battle_end.emit()
 	

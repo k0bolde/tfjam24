@@ -5,6 +5,7 @@ class_name Dialogue
 @onready var dialogue_label : RichTextLabel = %DialogueLabel
 @onready var portrait_texture : TextureRect = %PortraitTexture
 @onready var sting_player : AudioStreamPlayer = %StingPlayer
+@onready var speaker_container : Container = %SpeakerContainer
 
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
@@ -36,12 +37,14 @@ func _ready() -> void:
 	
 	%DialogueContainer.rotation_degrees = 90
 	%PortraitContainer.rotation_degrees = 90
+	speaker_container.rotation_degrees = 90
 	%FadeRect.modulate = Color(0, 0, 0, 0)
 	var t := get_tree().create_tween()
 	t.set_trans(Tween.TRANS_SINE)
 	t.set_parallel()
 	t.tween_property(%DialogueContainer, "rotation_degrees", 0, 0.5)
 	t.tween_property(%PortraitContainer, "rotation_degrees", 0, 0.5)
+	t.tween_property(speaker_container, "rotation_degrees", 0, 0.5)
 	t.tween_property(%FadeRect, "modulate", Color8(0, 0, 0, 100), 0.5)
 	
 	
@@ -54,6 +57,7 @@ func _get_next_dialogue_line():
 		t.set_trans(Tween.TRANS_SINE)
 		t.set_parallel()
 		t.tween_property(%DialogueContainer, "rotation_degrees", 90, 0.5)
+		t.tween_property(speaker_container, "rotation_degrees", 90, 0.5)
 		t.tween_property(%PortraitContainer, "rotation_degrees", 90, 0.5)
 		t.tween_property(%FadeRect, "modulate", Color(0, 0, 0, 0), 0.5)
 		t.set_parallel(false)
@@ -74,14 +78,14 @@ func _set_up_line(content):
 	var speaker = content.get('speaker')
 	if speaker:
 		speaker_label.text = speaker
-		speaker_label.visible = true
+		speaker_container.visible = true
 		portrait_texture.visible = true
 		if portraits.has(speaker):
 			portrait_texture.texture = load(portraits[speaker])
 		else:
 			portrait_texture.visible = false
 	else:
-		speaker_label.visible = false
+		speaker_container.visible = false
 		portrait_texture.visible = false
 	dialogue_label.text = content.text
 	if content.tags.has("fade_to_black"):

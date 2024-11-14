@@ -22,6 +22,7 @@ func initialize_enemies():
 	var e := Enemy.new()
 	e.enemy_name = "rat"
 	e.texture_path = "res://assets/tv_sprites/creatures/feral_male_werewolf_128x.png"
+	e.xp_reward = 12
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
