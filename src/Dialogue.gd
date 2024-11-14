@@ -15,6 +15,7 @@ var dialogue_to_load : String
 var _external_persistence := {}
 var fade_tween : Tween
 var is_waiting_for_choice := false
+var text_anim_tween : Tween
 var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
 	"Clem": "res://assets/clem-portrait.png",
@@ -87,7 +88,10 @@ func _set_up_line(content):
 	else:
 		speaker_container.visible = false
 		portrait_texture.visible = false
+	dialogue_label.visible_ratio = 0.0
 	dialogue_label.text = content.text
+	text_anim_tween = Globals.get_tween(text_anim_tween, self)
+	text_anim_tween.tween_property(dialogue_label, "visible_ratio", 1.0, dialogue_label.text.length() / 80.0)
 	if content.tags.has("fade_to_black"):
 		fade_tween = Globals.get_tween(fade_tween, self)
 		fade_tween.tween_property(%FadeRect, "modulate", Color.BLACK, 5)
@@ -125,7 +129,11 @@ func _on_option_selected(index):
 func _input(event: InputEvent) -> void:
 	if not is_waiting_for_choice and event.is_action_pressed("interact"):
 		#TODO wait an extra click or a certain amount of time so the player could presumably read it. Pause blink timer until such a state
-		_get_next_dialogue_line()
+		if text_anim_tween.is_running():
+			text_anim_tween.kill()
+			dialogue_label.visible_ratio = 1.0
+		else:
+			_get_next_dialogue_line()
 	
 	
 func _on_event_triggered(event_name):

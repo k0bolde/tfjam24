@@ -118,6 +118,7 @@ https://www.furaffinity.net/user/yafath - purple enemy
 https://bsky.app/profile/triti.bsky.social - Byrne portrait
 https://www.furaffinity.net/user/sloe/ - bull bro, security guard
 https://www.furaffinity.net/user/greatoverlordchickenmaster - sciraptor enemy
+Toastline - snot monster
 
 Uses Clyde Dialogue plugin
 
@@ -127,6 +128,7 @@ https://limezu.itch.io/moderninteriors
 https://guttykreum.itch.io/japanese-town
 https://oldninjacat.itch.io/skyscraper-buildings-asset"
 editable = false
+drag_and_drop_selection_enabled = false
 wrap_mode = 1
 
 [node name="QuitCreditsButton" type="Button" parent="CreditsPanel/PanelContainer/VBoxContainer"]

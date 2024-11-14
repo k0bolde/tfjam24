@@ -2,7 +2,7 @@ extends Node2D
 class_name Battle
 #TODO battle basics
 # Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?)
-# Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance
+# Enemy Attack - pick attack
 # Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
 # Die - when player hp 0 - death screen, kick to main menu?
 # party members switch every turn
@@ -12,6 +12,7 @@ class_name Battle
 # multi target attacks
 # party target buffs/heals
 # show party hp/mp all the time?
+#TODO battle enter animation
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -283,6 +284,9 @@ func battle_won():
 		#level up
 		print("level up %d! %d/%d required" % [Globals.party.level + 1, Globals.party.xp, required_to_level])
 		Globals.party.level += 1
+	#heal after battle
+	for p in Globals.party.p:
+		p["hp"] = p["stats"].hp
 	#TODO show results screen
 	Events.battle_end.emit()
 	

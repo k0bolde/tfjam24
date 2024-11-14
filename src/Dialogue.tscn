@@ -103,6 +103,7 @@ text = "Dialogue
 "
 scroll_active = false
 shortcut_keys_enabled = false
+visible_characters_behavior = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3
