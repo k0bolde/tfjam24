@@ -1,5 +1,4 @@
 extends Node
-#TODO generic func for handling damage and weaknesses and limiting turns to double enemy count
 #for specific enemy flavor text, just add another entry with their specific text pointing to the same damage func
 # crits add 1.0 to base atk
 # effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = two random targets
@@ -161,11 +160,48 @@ func _ready() -> void:
 			printerr("entry: %s is missing a required key" % a)
 
 
-func ability_callable(user, party:Array, enemies:Array, target:int, battle:Battle):
+func ability_callable(user, party, enemies:Array, target:int, battle:Battle):
 	# applies an ability/item to the battle, each invididual ability should have its own func like this that the battle calls when its used
 	# target is pos int for enemy target, neg int for party target, null for self
 	# should modify turns, send weakness/other animations
 	pass
+	
+	
+#TODO generic func for handling damage and weaknesses and limiting turns to double enemy count
+func single_attack(user, enemies:Array, party, target, battle:Battle, attack_name:String):
+	var the_target
+	var the_user
+	var the_attack = abilities[attack_name]
+	if target >= 0:
+		the_target = enemies[target]
+	else:
+		the_target = party.p[abs(target) - 1]
+	if user >= 0:
+		the_user = enemies[user]
+	else:
+		the_user = party.p[abs(user) - 1]
+		the_user["mp"] -= the_attack["mp"]
+		
+	var mult = the_attack["base_atk"]
+	#check weakness
+	if the_target["stats"]["weaknesses"].contains(the_attack["type"]):
+		#show the weakness label and sound
+		mult += 0.5
+	if randf() < (the_target["stats"].lck / 100.0):
+		#show crit label and sound
+		mult += 1.0
+	if the_target["stats"]["resistances"].contains(the_attack["type"]):
+		#show resist label and sound
+		mult -= 0.5
+		if mult < 0: mult = 0
+	if randf() < (the_target["stats"].eva - the_user["stats"].eva) / 100.0:
+		#show miss label and sound
+		pass
+	else:
+	#calculate damage
+		var dmg = (the_user["stats"].atk * mult) - the_target["stats"].def
+		#show damage label and animation
+		the_target["hp"] -= dmg
 	
 	
 func basic_attack(user, party, enemies, target, battle):

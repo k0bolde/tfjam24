@@ -15,6 +15,8 @@ var enemies := {}
 func _ready() -> void:
 	initialize_enemies()
 	initialize_party()
+	
+	#print("testing class member access\ndict access %s\nclass access %s" % [party.p[0]["stats"].hp, enemies["rat"]["stats"].hp])
 
 
 func initialize_enemies():
@@ -149,10 +151,11 @@ func _input(event):
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
-	if event.is_action_pressed("sprint"):
-		player.is_sprinting = true
-	if event.is_action_released("sprint"):
-		player.is_sprinting = false
+	if player:
+		if event.is_action_pressed("sprint"):
+			player.is_sprinting = true
+		if event.is_action_released("sprint"):
+			player.is_sprinting = false
 
 
 ## helper method to let you safely reuse the same tween by ending anything it was doing before giving you a clean one

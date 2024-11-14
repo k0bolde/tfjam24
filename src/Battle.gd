@@ -5,6 +5,7 @@ class_name Battle
 # Enemy Attack - pick attack, apply atk to player def, eva miss/crit chance
 # Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
 # Die - when player hp 0 - death screen, kick to main menu?
+# party members switch every turn
 # weaknesses and turns
 # Item use
 # animations for attacks, getting attacked
@@ -80,6 +81,8 @@ func _ready() -> void:
 		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 		sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		sprite.position = enemies[i].position
+		#TODO need to move it up a certain amount too
+		sprite.scale = Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
 		enemies[i].ingame_sprite = sprite
 		enemies_node.add_child(sprite)
 		
@@ -146,7 +149,7 @@ func _on_run_button_pressed() -> void:
 func player_attack(which_attack:String):
 	
 	turns -= 1
-	Abilities.abilities[which_attack]["callable"].call(0, Globals.party, enemies, targeted_enemy, self)
+	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	#update enemy hp bar
@@ -186,12 +189,12 @@ func enemy_attack(which_enemy:int):
 	
 	turns -= 1
 	#TODO pick attack and target
-	var enemy_attack := "punch"
+	var selected_attack := "punch"
 	var target_party := 0
-	Abilities.abilities[enemy_attack]["callable"].call(0, Globals.party, enemies, 0 - (target_party + 1), self)
+	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
-	show_enemy_attack(Abilities.abilities[enemy_attack]["enemy_flavor"].replace("CHAR", Globals.party.names[target_party]))
+	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.names[target_party]))
 	#update party hp
 	update_bars(0)
 	%TurnsLabel.text = "%d" % turns
@@ -226,6 +229,8 @@ func _on_basic_attack_button_pressed() -> void:
 	disable_buttons()
 	show_targeting()
 	curr_ability = "punch"
+	if enemies.size() == 1:
+		_on_attack_button_pressed()
 
 
 func show_targeting():
@@ -238,6 +243,7 @@ func show_targeting():
 func hide_targeting():
 	%TargetContainer.visible = false
 	indicator_light.visible = false
+	#TODO keep hp bar visible for a bit
 	enemy_hp_mesh.visible = false
 	idle_cam.make_current()
 
@@ -252,7 +258,7 @@ func _on_target_left_button_pressed() -> void:
 func _on_target_right_button_pressed() -> void:
 	targeted_enemy = (targeted_enemy + 1) % enemies.size()
 	update_selected_enemy()
-
+  
 
 func update_selected_enemy():
 	#print("targeted %d" % targeted_enemy)
@@ -319,6 +325,8 @@ func _on_abilities_button_pressed() -> void:
 			_on_cancel_button_pressed()
 			disable_buttons()
 			show_targeting()
+			if enemies.size() == 1:
+				_on_attack_button_pressed()
 			)
 		b.disabled = Globals.party.p[curr_party]["mp"] < Abilities.abilities[a]["mp"]
 		b.add_to_group("ability_button")

@@ -13,5 +13,6 @@ class_name Enemy
 @export var item_drops := {"hp1": 1.0}
 
 @export var stats := Stats.new()
+@export var visual_scale := 1.0
 var position := Vector3()
 var ingame_sprite : Sprite3D
