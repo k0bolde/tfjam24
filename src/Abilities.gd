@@ -185,23 +185,26 @@ func single_attack(user, enemies:Array, party, target, battle:Battle, attack_nam
 	var mult = the_attack["base_atk"]
 	#check weakness
 	if the_target["stats"]["weaknesses"].contains(the_attack["type"]):
-		#show the weakness label and sound
+		#TODO show the weakness label and sound
 		mult += 0.5
+		battle.add_turn(1)
 	if randf() < (the_target["stats"].lck / 100.0):
-		#show crit label and sound
+		#TODO show crit label and sound
 		mult += 1.0
+		battle.add_turn(1)
 	if the_target["stats"]["resistances"].contains(the_attack["type"]):
-		#show resist label and sound
+		#TODO show resist label and sound
 		mult -= 0.5
 		if mult < 0: mult = 0
 	if randf() < (the_target["stats"].eva - the_user["stats"].eva) / 100.0:
-		#show miss label and sound
-		pass
+		#TODO show miss label and sound
+		battle.add_turn(-1)
 	else:
-	#calculate damage
+		#calculate damage
 		var dmg = (the_user["stats"].atk * mult) - the_target["stats"].def
-		#show damage label and animation
 		the_target["hp"] -= dmg
+		#TODO show damage label and animation
+		battle.show_dmg_label(dmg, the_target.position)
 	
 	
 func basic_attack(user, party, enemies, target, battle):

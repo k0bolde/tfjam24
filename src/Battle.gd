@@ -55,6 +55,7 @@ var curr_ability : String
 var action_cam_shaky_tween_v : Tween
 var action_cam_shaky_tween_h : Tween
 var attack_name_tween : Tween
+var total_turns := 1
 
 
 func _ready() -> void:
@@ -119,6 +120,7 @@ func _ready() -> void:
 	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y + 2, 11)
 	
 	#setup hp/mp/turns
+	turns = Globals.party.num
 	update_bars(0)
 	turns_label.text = "%d" % turns
 	
@@ -164,7 +166,7 @@ func player_attack(which_attack:String):
 		enemies.remove_at(targeted_enemy)
 		if enemies.size() > 0:
 			_on_target_left_button_pressed()
-	%TurnsLabel.text = "%d" % turns
+	turns_label.text = "%d" % turns
 	
 	var all_dead := true
 	for e in enemies:
@@ -179,9 +181,11 @@ func player_attack(which_attack:String):
 			if e.hp <= 0:
 				turns -= 1
 		is_player_turn = false
+		total_turns = enemies.size()
 		enemy_attack(0)
 	else:
 		curr_party += 1
+		update_bars(curr_party)
 		if curr_party >= Globals.party.num:
 			curr_party = 0
 	
@@ -211,9 +215,11 @@ func enemy_attack(which_enemy:int):
 		idle_cam.make_current()
 		is_player_turn = true
 		turns = Globals.party.num
+		total_turns = Globals.party.num
 		for i in Globals.party.num:
 			if Globals.party.p[i]["hp"] <= 0:
 				turns -= 1
+		curr_party = 0
 
 
 func show_dmg_label(dmg:int, pos:Vector3):
@@ -292,7 +298,7 @@ func battle_won():
 	
 	
 func battle_lost():
-	#TODO death screen
+	#TODO death screen - text that tells you you turned into what defeated you
 	Globals.load_game()
 
 
@@ -368,3 +374,21 @@ func show_enemy_attack(attack:String):
 	attack_name_tween = Globals.get_tween(attack_name_tween, self)
 	attack_name_tween.tween_interval(2.0)
 	attack_name_tween.tween_property(attack_name_container, "visible", false, 0)
+
+
+func add_turn(num := 1, override_total := false):
+	if override_total:
+		turns += num
+		total_turns += abs(num)
+	else:
+		if is_player_turn:
+			#TODO add a turn when killing an enemy with a weakness
+			if total_turns < enemies.size() * 2:
+				turns += num
+				total_turns += abs(num)
+		else:
+			#TODO only check living teammates
+			if total_turns < Globals.party.num * 2:
+				turns += num
+				total_turns += abs(num)
+	turns_label.text = "%d" % turns
