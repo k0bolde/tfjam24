@@ -79,7 +79,7 @@ move - wasd/arrows keys
 menu - tab/ctrl/right click
 interact - space/left click
 sprint - shift/middle click
-Use mouse in battles"
+Use mouse/touch in battles"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -139,6 +139,7 @@ https://www.furaffinity.net/user/sloe/ - bull bro, security guard
 https://www.furaffinity.net/user/greatoverlordchickenmaster - sciraptor enemy
 Toastline - snot monster
 https://www.furaffinity.net/user/nevekard - twinning lizard, ants, moth, ai dragon, rat
+https://www.furaffinity.net/user/60PercentScalie - imps
 
 Uses Clyde Dialogue plugin
 

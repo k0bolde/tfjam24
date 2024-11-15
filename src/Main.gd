@@ -32,6 +32,7 @@ var hub
 func _ready() -> void:
 	Globals.player = player 
 	Globals.main = self
+	Globals.party.num = 1
 	AudioServer.set_bus_volume_db(0, -30)
 	music_player.stream = load("res://assets/audio/slow tempo synth thing.mp3")
 	music_player.play()

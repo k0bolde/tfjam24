@@ -8,10 +8,11 @@ func _ready() -> void:
 	
 
 func _body_entered(body):
-	#TODO don't show when 
-	body.interact_label.text = "Enter"
-	body.interact_container.visible = true
-	body.interact_callback = Globals.main.load_map.bind(map_name, entrance_num)
+	#TODO don't show when player just entered a new map
+	if ResourceLoader.exists("res://src/maps/" + map_name + ".tscn"):
+		body.interact_label.text = "Enter"
+		body.interact_container.visible = true
+		body.interact_callback = Globals.main.load_map.bind(map_name, entrance_num)
 	
 	
 func _body_exited(body):

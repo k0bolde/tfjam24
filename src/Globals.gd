@@ -29,7 +29,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "slime"
-	e.texture_path = "res://assets/battle/purple_critter.png"
+	e.texture_path = "res://assets/battle/AIdarongmommy.png"
 	e.stats.weaknesses.push_back("fire")
 	enemies[e.enemy_name] = e
 	
@@ -133,6 +133,7 @@ func initialize_party():
 	
 	Globals.party.p[1].stats.hp = 125
 	Globals.party.p[1].stats.mp = 75
+	Globals.party.p[1].mp = 75
 	Globals.party.p[1].stats.atk = 35
 	Globals.party.p[1].stats.def = 5
 	Globals.party.p[1].stats.eva = 10

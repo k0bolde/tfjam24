@@ -12,7 +12,7 @@ var abilities := {
 		"mp": 0,
 		"desc": "A basic punch",
 		"enemy_flavor": "They punch CHAR! Ouch!",
-		"callable": basic_attack,
+		"callable": single_attack,
 	},
 	"kick": {
 		"base_atk": 1.5,
@@ -167,8 +167,7 @@ func ability_callable(user, party, enemies:Array, target:int, battle:Battle):
 	pass
 	
 	
-#TODO generic func for handling damage and weaknesses and limiting turns to double enemy count
-func single_attack(user, enemies:Array, party, target, battle:Battle, attack_name:String):
+func single_attack(user, party, enemies:Array, target, battle:Battle, attack_name:String):
 	var the_target
 	var the_user
 	var the_attack = abilities[attack_name]
@@ -183,28 +182,35 @@ func single_attack(user, enemies:Array, party, target, battle:Battle, attack_nam
 		the_user["mp"] -= the_attack["mp"]
 		
 	var mult = the_attack["base_atk"]
+	var dmg_type := 0
+	var is_crit := false
 	#check weakness
-	if the_target["stats"]["weaknesses"].contains(the_attack["type"]):
-		#TODO show the weakness label and sound
+	if the_target["stats"]["weaknesses"].has(the_attack["type"]):
+		#TODO sound
 		mult += 0.5
 		battle.add_turn(1)
-	if randf() < (the_target["stats"].lck / 100.0):
-		#TODO show crit label and sound
-		mult += 1.0
-		battle.add_turn(1)
-	if the_target["stats"]["resistances"].contains(the_attack["type"]):
-		#TODO show resist label and sound
+		dmg_type = 1
+	elif the_target["stats"]["resistances"].has(the_attack["type"]):
+		#TODO sound
 		mult -= 0.5
 		if mult < 0: mult = 0
+		dmg_type = 2
+	if randf() < (the_target["stats"].lck / 100.0):
+		#TODO sound
+		mult += 1.0
+		battle.add_turn(1)
+		is_crit = true
 	if randf() < (the_target["stats"].eva - the_user["stats"].eva) / 100.0:
-		#TODO show miss label and sound
+		#TODO sound
 		battle.add_turn(-1)
-	else:
-		#calculate damage
-		var dmg = (the_user["stats"].atk * mult) - the_target["stats"].def
-		the_target["hp"] -= dmg
-		#TODO show damage label and animation
-		battle.show_dmg_label(dmg, the_target.position)
+		dmg_type = 3
+		mult = 0
+	#calculate damage
+	var dmg = (the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25))
+	dmg = clampi(dmg, 0, 9999)
+	the_target["hp"] -= dmg
+	#TODO show damage label and animation
+	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
 	
 	
 func basic_attack(user, party, enemies, target, battle):
@@ -213,10 +219,3 @@ func basic_attack(user, party, enemies, target, battle):
 	else:
 		Globals.party.p[abs(target) - 1]["hp"] -= 5
 	
-	
-func fire_breath(user, party, enemies, target, battle):
-	if enemies[target].stats.weaknesses.has("fire"):
-		enemies[target].hp -= 20
-	else:
-		enemies[target].hp -= 10
-	Globals.party.p[user]["mp"] -= abilities["fire breath"]["mp"]

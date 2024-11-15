@@ -38,6 +38,7 @@ class_name Battle
 @onready var attack_name_label : Label = %AttackNameLabel
 @onready var enemy_name_label : Label3D = %EnemyNameLabel
 @onready var audio_stream_player : AudioStreamPlayer = %AudioStreamPlayer
+@onready var crit_label : Label3D = %CritLabel
 
 var can_run := true
 var enemy_names := []
@@ -66,6 +67,7 @@ func _ready() -> void:
 	else:
 		printerr("no enemy names, loading test enemies")
 		enemies.push_back(Globals.enemies["slime"].duplicate())
+		enemies.push_back(Globals.enemies["rat"].duplicate())
 		enemies.push_back(Globals.enemies["rat"].duplicate())
 	#Setup enemy sprites
 	for i in enemies.size():
@@ -119,10 +121,25 @@ func _ready() -> void:
 	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y - 2, 11)
 	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y + 2, 11)
 	
+	#heal after battle
+	for p in Globals.party.p:
+		p["hp"] = p["stats"].hp
+	# set up party sprites
+	for i in Globals.party.num:
+		var sp := Sprite3D.new()
+		sp.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+		sp.shaded = true
+		sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+		sp.texture = load(Globals.party.p[i]["image"])
+		sp.scale = Vector3(0.75, 0.75, 0.75)
+		sp.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
+		sp.position.z = party_node.position.z - i
+		Globals.party.p[i]["ingame_sprite"] = sp
+		party_node.add_child(sp)
 	#setup hp/mp/turns
 	turns = Globals.party.num
 	update_bars(0)
-	turns_label.text = "%d" % turns
+	update_turns()
 	
 	#move enemy indicator
 	update_selected_enemy()
@@ -133,7 +150,6 @@ func _process(_delta: float) -> void:
 
 
 func update_bars(party_num):
-	#turns_label.text = "%d" % turns
 	hp_label.text = "%d/%d" % [Globals.party.p[party_num]["hp"], Globals.party.p[party_num]["stats"].hp]
 	hp_bar.max_value = Globals.party.p[party_num]["stats"].hp
 	hp_bar.value = Globals.party.p[party_num]["hp"]
@@ -144,15 +160,17 @@ func update_bars(party_num):
 
 func _on_run_button_pressed() -> void:
 	if can_run:
+		#TODO check if run is successful based on eva
+		turns -= 1
 		Events.battle_end.emit()
 	else:
 		show_enemy_attack("Can't run!")
 	
 	
 func player_attack(which_attack:String):
-	
+	#TODO don't give dead party members turns
 	turns -= 1
-	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
+	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self, which_attack)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	#update enemy hp bar
@@ -166,13 +184,8 @@ func player_attack(which_attack:String):
 		enemies.remove_at(targeted_enemy)
 		if enemies.size() > 0:
 			_on_target_left_button_pressed()
-	turns_label.text = "%d" % turns
 	
-	var all_dead := true
-	for e in enemies:
-		if e.hp > 0:
-			all_dead = false
-	if all_dead:
+	if enemies.size() == 0:
 		battle_won()
 		
 	if turns <= 0:
@@ -185,32 +198,36 @@ func player_attack(which_attack:String):
 		enemy_attack(0)
 	else:
 		curr_party += 1
-		update_bars(curr_party)
 		if curr_party >= Globals.party.num:
 			curr_party = 0
+		update_bars(curr_party)
+		update_turns()
 	
 	
 func enemy_attack(which_enemy:int):
-	
+	update_turns()
 	turns -= 1
 	#TODO pick attack and target
 	var selected_attack := "punch"
 	var target_party := 0
-	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self)
+	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self, selected_attack)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
-	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.names[target_party]))
+	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
 	#update party hp
 	update_bars(0)
 	%TurnsLabel.text = "%d" % turns
 	var all_dead := true
-	for p in Globals.party.p:
-		if p["hp"] > 0:
+	for i in Globals.party.num:
+		if Globals.party.p[i]["hp"] > 0:
 			all_dead = false
 	if all_dead:
 		battle_lost()
 	if turns > 0:
-		enemy_attack(which_enemy + 1)
+		var next_enemy := which_enemy + 1
+		if next_enemy >= enemies.size():
+			next_enemy = 0
+		enemy_attack(next_enemy)
 	else:
 		idle_cam.make_current()
 		is_player_turn = true
@@ -220,16 +237,49 @@ func enemy_attack(which_enemy:int):
 			if Globals.party.p[i]["hp"] <= 0:
 				turns -= 1
 		curr_party = 0
+		update_turns()
 
 
-func show_dmg_label(dmg:int, pos:Vector3):
+# type 0 = normal, 1 = weakness, 2 = resist, 3 = miss
+func show_dmg_label(dmg:int, target, type:=0, is_crit:=false):
+	var wl := weakness_label.duplicate()
+	var cl := crit_label.duplicate()
+	var the_target : Node3D
+	if target >= 0:
+		the_target = enemies[target].ingame_sprite
+	else:
+		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
+	wl.visible = true
+	match type:
+		0:
+			wl.visible = false
+		1:
+			wl.text = "WEAKNESS!"
+		2:
+			wl.text = "RESIST!"
+		3:
+			wl.text = "MISS!"
+	cl.visible = is_crit
 	var dl := dmg_label.duplicate()
+	dl.visible = true
 	dl.text = "-%d" % dmg
-	dl.position = pos
+	dl.position = the_target.position
+	cl.position = the_target.position
+	cl.position.y += 0.1
+	wl.position = the_target.position
+	wl.position.y += 0.2
 	base_3d.add_child(dl)
-	var t := get_tree().create_tween()
-	t.tween_property(dl, "position:y", pos.y + 1.0, 2.0)
-	t.tween_callback(dl.queue_free)
+	base_3d.add_child(wl)
+	base_3d.add_child(cl)
+	var dmg_t := get_tree().create_tween()
+	dmg_t.tween_property(dl, "position:y", the_target.position.y + 1.0, 2.0)
+	dmg_t.tween_callback(dl.queue_free)
+	var weak_t := get_tree().create_tween()
+	weak_t.tween_property(wl, "position:y", the_target.position.y + 1.2, 2.0)
+	weak_t.tween_callback(wl.queue_free)
+	var crit_t := get_tree().create_tween()
+	crit_t.tween_property(cl, "position:y", the_target.position.y + 1.1, 2.0)
+	crit_t.tween_callback(cl.queue_free)
 
 
 func _on_basic_attack_button_pressed() -> void:
@@ -256,14 +306,16 @@ func hide_targeting():
 
 
 func _on_target_left_button_pressed() -> void:
-	targeted_enemy = (targeted_enemy - 1) % enemies.size()
-	if targeted_enemy < 0:
-		targeted_enemy = enemies.size() - 1
+	targeted_enemy = (targeted_enemy + 1) % enemies.size()
 	update_selected_enemy()
 
 
 func _on_target_right_button_pressed() -> void:
-	targeted_enemy = (targeted_enemy + 1) % enemies.size()
+	if enemies.is_empty():
+		return
+	targeted_enemy = (targeted_enemy - 1) % enemies.size()
+	if targeted_enemy < 0:
+		targeted_enemy = enemies.size() - 1
 	update_selected_enemy()
   
 
@@ -321,7 +373,6 @@ func _on_attack_button_pressed() -> void:
 	hide_targeting()
 	player_attack(curr_ability)
 	enable_buttons()
-	#_on_cancel_button_pressed()
 	
 	
 func _on_abilities_button_pressed() -> void:
@@ -391,4 +442,13 @@ func add_turn(num := 1, override_total := false):
 			if total_turns < Globals.party.num * 2:
 				turns += num
 				total_turns += abs(num)
+		update_turns()
+
+
+func update_turns():
 	turns_label.text = "%d" % turns
+	var whose_turn : String = Globals.party.p[curr_party]["name"]
+	if not is_player_turn:
+		whose_turn = enemies[curr_enemy].enemy_name.capitalize()
+	char_turn_label.text = "%s's turn" % whose_turn
+	
