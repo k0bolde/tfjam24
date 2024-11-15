@@ -23,13 +23,13 @@ func initialize_enemies():
 	#Setup all the enemy data
 	var e := Enemy.new()
 	e.enemy_name = "rat"
-	e.texture_path = "res://assets/tv_sprites/creatures/feral_male_werewolf_128x.png"
+	e.texture_path = "res://assets/battle/ImpF.png"
 	e.xp_reward = 12
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
 	e.enemy_name = "slime"
-	e.texture_path = "res://assets/battle/AIdarongmommy.png"
+	e.texture_path = "res://assets/battle/ImpM.png"
 	e.stats.weaknesses.push_back("fire")
 	enemies[e.enemy_name] = e
 	

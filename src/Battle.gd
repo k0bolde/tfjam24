@@ -210,7 +210,10 @@ func player_attack(which_attack:String):
 	
 	if enemies.size() == 0:
 		battle_won()
-		
+	
+	curr_party += 1
+	if curr_party >= Globals.party.num:
+		curr_party = 0
 	if turns <= 0:
 		turns = enemies.size()
 		for e in enemies:
@@ -220,9 +223,6 @@ func player_attack(which_attack:String):
 		total_turns = enemies.size()
 		enemy_attack(0)
 	else:
-		curr_party += 1
-		if curr_party >= Globals.party.num:
-			curr_party = 0
 		update_bars(curr_party)
 		update_turns()
 	
@@ -477,12 +477,12 @@ func update_turns():
 
 
 func _on_pass_turn_button_pressed() -> void:
-	if total_turns < enemies.size() * 2:
+	if total_turns >= enemies.size() * 2:
 		show_enemy_attack("Can't pass turns, turn limit reached")
 		return
 	curr_party += 1
 	#TODO don't pass to dead party members
-	if curr_party >= Globals.p.num:
+	if curr_party >= Globals.party.num:
 		curr_party = 0
 	update_bars(curr_party)
 	update_turns()
