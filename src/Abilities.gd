@@ -205,11 +205,11 @@ func single_attack(user, party, enemies:Array, target, battle:Battle, attack_nam
 		battle.add_turn(-1)
 		dmg_type = 3
 		mult = 0
+		is_crit = false
 	#calculate damage
 	var dmg = (the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25))
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
-	#TODO show damage label and animation
 	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
 	
 	

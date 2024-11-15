@@ -665,6 +665,70 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Cancel"
 
+[node name="PartyBarsContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -31.0
+offset_right = 74.0
+offset_bottom = 31.0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PartyBarsContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_xgkbo")
+
+[node name="PartyBarsVBoxContainer" type="VBoxContainer" parent="CanvasLayer/PartyBarsContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ABarsContainer" type="GridContainer" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="Label2" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+text = "Finley"
+
+[node name="Label3" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+text = "HP"
+
+[node name="HPBar" type="ProgressBar" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+value = 25.77
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+text = "100/100"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+text = "MP"
+
+[node name="MPBar" type="ProgressBar" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+show_percentage = false
+
+[node name="MPLabel" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
+text = "100/100"
+horizontal_alignment = 1
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5
 
@@ -685,6 +749,7 @@ unique_name_in_owner = true
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/BasicAttackButton" to="." method="_on_basic_attack_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/AbilitiesButton" to="." method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetLeftButton" to="." method="_on_target_left_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetRightButton" to="." method="_on_target_right_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/AttackButton" to="." method="_on_attack_button_pressed"]

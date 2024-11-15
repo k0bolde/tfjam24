@@ -39,8 +39,11 @@ class_name Battle
 @onready var enemy_name_label : Label3D = %EnemyNameLabel
 @onready var audio_stream_player : AudioStreamPlayer = %AudioStreamPlayer
 @onready var crit_label : Label3D = %CritLabel
+@onready var party_bars_container : Container = %PartyBarsContainer
+@onready var party_bars_vbox_container : Container = %PartyBarsVBoxContainer
+@onready var a_bars_container : Container = %ABarsContainer
 
-var can_run := true
+var can_run := false
 var enemy_names := []
 var enemies : Array[Enemy] = []
 var defeated_enemies : Array[Enemy] = []
@@ -138,6 +141,7 @@ func _ready() -> void:
 		party_node.add_child(sp)
 	#setup hp/mp/turns
 	turns = Globals.party.num
+	a_bars_container.visible = false
 	update_bars(0)
 	update_turns()
 	
@@ -156,6 +160,25 @@ func update_bars(party_num):
 	mp_label.text = "%d/%d" % [Globals.party.p[party_num]["mp"], Globals.party.p[party_num]["stats"].mp]
 	mp_bar.max_value = Globals.party.p[party_num]["stats"].mp
 	mp_bar.value = Globals.party.p[party_num]["mp"]
+	
+	# add all party members not the party_num
+	for i in party_bars_vbox_container.get_children():
+		if i.visible:
+			i.queue_free()
+	for i in Globals.party.num:
+		if i == party_num:
+			continue
+		var bars := a_bars_container.duplicate()
+		bars.visible = true
+		bars.get_node("NameLabel").text = Globals.party.p[i]["name"]
+		bars.get_node("HPLabel").text = "%d/%d" % [Globals.party.p[i]["hp"], Globals.party.p[i]["stats"].hp]
+		bars.get_node("HPBar").max_value = Globals.party.p[i]["stats"].hp
+		bars.get_node("HPBar").value = Globals.party.p[i]["hp"]
+		bars.get_node("MPLabel").text = "%d/%d" % [Globals.party.p[i]["mp"], Globals.party.p[i]["stats"].mp]
+		bars.get_node("MPBar").max_value = Globals.party.p[i]["stats"].mp
+		bars.get_node("MPBar").value = Globals.party.p[i]["mp"]
+		
+		party_bars_vbox_container.add_child(bars)
 	
 
 func _on_run_button_pressed() -> void:
@@ -236,7 +259,7 @@ func enemy_attack(which_enemy:int):
 		for i in Globals.party.num:
 			if Globals.party.p[i]["hp"] <= 0:
 				turns -= 1
-		curr_party = 0
+		#curr_party = 0
 		update_turns()
 
 
@@ -451,4 +474,16 @@ func update_turns():
 	if not is_player_turn:
 		whose_turn = enemies[curr_enemy].enemy_name.capitalize()
 	char_turn_label.text = "%s's turn" % whose_turn
+
+
+func _on_pass_turn_button_pressed() -> void:
+	if total_turns < enemies.size() * 2:
+		show_enemy_attack("Can't pass turns, turn limit reached")
+		return
+	curr_party += 1
+	#TODO don't pass to dead party members
+	if curr_party >= Globals.p.num:
+		curr_party = 0
+	update_bars(curr_party)
+	update_turns()
 	
