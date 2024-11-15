@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c65yo83m0mymi"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_f7scq"]
-[ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="2_qkjnp"]
+[ext_resource type="Texture2D" uid="uid://yyb3gfqsnvry" path="res://assets/overworld/finley2-ow.png" id="2_8m2wv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0mjl"]
 radius = 16.1245
@@ -12,8 +12,7 @@ motion_mode = 1
 script = ExtResource("1_f7scq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.66, 0.66)
-texture = ExtResource("2_qkjnp")
+texture = ExtResource("2_8m2wv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)

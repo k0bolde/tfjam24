@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://hk5dg6h0gury"]
+[gd_scene load_steps=25 format=4 uid="uid://hk5dg6h0gury"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_km1as"]
 [ext_resource type="Texture2D" uid="uid://4yak0eh5rks8" path="res://assets/TOWNMAP.png" id="2_mcdrc"]
@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://baoqkmuq02pyw" path="res://src/ExitArea.tscn" id="4_pu8sb"]
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="4_vdb05"]
 [ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/tv_sprites/Byrne.png" id="6_m5fui"]
+[ext_resource type="Texture2D" uid="uid://cbi5d3p58daa5" path="res://assets/overworld/jesse2-ow.png" id="7_8xny6"]
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="7_ca6eg"]
 [ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/tv_sprites/Pean.png" id="7_n3ytn"]
 [ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="7_rk7hs"]
-[ext_resource type="Texture2D" uid="uid://c6qgbswo1rwxx" path="res://assets/Barista_Snake.png" id="9_s8jec"]
-[ext_resource type="Texture2D" uid="uid://b565ytd6yat1t" path="res://assets/morgan-ow.png" id="11_jenjj"]
-[ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/mark-ow.png" id="12_eprw0"]
-[ext_resource type="Texture2D" uid="uid://kuhofrthc1sw" path="res://assets/bubbles-ow.png" id="13_y5jew"]
+[ext_resource type="Texture2D" uid="uid://c6qgbswo1rwxx" path="res://assets/overworld/Barista_Snake.png" id="10_h7mch"]
+[ext_resource type="Texture2D" uid="uid://b565ytd6yat1t" path="res://assets/overworld/morgan-ow.png" id="12_a162i"]
+[ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/overworld/mark-ow.png" id="13_dhivg"]
+[ext_resource type="Texture2D" uid="uid://kuhofrthc1sw" path="res://assets/overworld/bubbles-ow.png" id="14_xs4qr"]
+[ext_resource type="Texture2D" uid="uid://bwjx77oupqvtv" path="res://assets/overworld/zal-ow.png" id="15_83ypt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um8dg"]
 size = Vector2(78, 971)
@@ -153,6 +155,7 @@ dialogue_file = "res://assets/dialogue/hub_byrne.clyde"
 
 [node name="Jesse" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(273, -150)
+image = ExtResource("7_8xny6")
 dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
@@ -167,7 +170,7 @@ dialogue_file = "res://assets/dialogue/hub_ulla.clyde"
 
 [node name="Rene" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(361, -111)
-image = ExtResource("9_s8jec")
+image = ExtResource("10_h7mch")
 dialogue_file = "res://assets/dialogue/hub_rene.clyde"
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_vdb05")]
@@ -177,19 +180,20 @@ dialogue_file = "res://assets/dialogue/hub_clem.clyde"
 
 [node name="Morgan" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-113, 206)
-image = ExtResource("11_jenjj")
+image = ExtResource("12_a162i")
 dialogue_file = "res://assets/dialogue/hub_morgan.clyde"
 
 [node name="Mark" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(249, 202)
-image = ExtResource("12_eprw0")
+image = ExtResource("13_dhivg")
 dialogue_file = "res://assets/dialogue/hub_mark.clyde"
 
 [node name="Bubbles" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(578, 378)
-image = ExtResource("13_y5jew")
+image = ExtResource("14_xs4qr")
 dialogue_file = "res://assets/dialogue/hub_bubbles.clyde"
 
 [node name="Zal" parent="NPCs" instance=ExtResource("4_vdb05")]
-position = Vector2(661, 49)
+position = Vector2(678, 51)
+image = ExtResource("15_83ypt")
 dialogue_file = "res://assets/dialogue/hub_zal.clyde"

@@ -81,9 +81,27 @@ interact - space/left click
 sprint - shift/middle click
 Use mouse in battles"
 
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.5
+offset_top = -69.0
+offset_right = 83.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+modulate = Color(1, 0.278431, 0.27451, 1)
+layout_mode = 2
+text = "NSFW Warning - boobs"
+
 [node name="CreditsPanel" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,7 +138,7 @@ https://bsky.app/profile/triti.bsky.social - Byrne portrait
 https://www.furaffinity.net/user/sloe/ - bull bro, security guard
 https://www.furaffinity.net/user/greatoverlordchickenmaster - sciraptor enemy
 Toastline - snot monster
-https://www.furaffinity.net/user/nevekard - twinning lizard, bug
+https://www.furaffinity.net/user/nevekard - twinning lizard, ants, moth
 
 Uses Clyde Dialogue plugin
 
@@ -136,25 +154,6 @@ wrap_mode = 1
 [node name="QuitCreditsButton" type="Button" parent="CreditsPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Return"
-
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -83.5
-offset_top = -40.0
-offset_right = 83.5
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_bottom = 50
-
-[node name="Label" type="Label" parent="MarginContainer2"]
-modulate = Color(1, 0.278431, 0.27451, 1)
-layout_mode = 2
-text = "Warning - NSFW nudity"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]

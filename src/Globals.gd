@@ -29,7 +29,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "slime"
-	e.texture_path = "res://assets/purple_critter.png"
+	e.texture_path = "res://assets/battle/purple_critter.png"
 	e.stats.weaknesses.push_back("fire")
 	enemies[e.enemy_name] = e
 	
@@ -49,7 +49,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "mutant man"
-	e.texture_path = "res://assets/mutant-man.png"
+	e.texture_path = "res://assets/battle/mutant-man.png"
 	e.stats.atk = 20
 	e.stats.def = 5
 	e.stats.eva = 0
@@ -61,7 +61,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "mutant woman"
-	e.texture_path = "res://assets/mutant-woman-battle.png"
+	e.texture_path = "res://assets/battle/mutant-woman-battle.png"
 	e.stats.atk = 20
 	e.stats.def = 5
 	e.stats.eva = 0
@@ -74,7 +74,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "gat cat"
-	e.texture_path = "res://assets/gat-cat.png"
+	e.texture_path = "res://assets/battle/gat-cat.png"
 	e.stats.atk = 20
 	e.stats.def = 0
 	e.stats.eva = 10
@@ -89,7 +89,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "lion mutant"
-	e.texture_path = "res://assets/lion-mutant.png"
+	e.texture_path = "res://assets/battle/lion-mutant.png"
 	e.stats.hp = 80
 	e.stats.atk = 20
 	e.stats.def = 10
@@ -105,7 +105,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "eldritch being"
-	#e.texture_path = "res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png"
+	e.texture_path = "res://assets/battle/ceron1-battle.png"
 	e.stats.hp = 200
 	e.stats.atk = 15
 	e.stats.def = 10

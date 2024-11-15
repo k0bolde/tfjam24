@@ -18,14 +18,18 @@ var is_waiting_for_choice := false
 var text_anim_tween : Tween
 var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
-	"Clem": "res://assets/clem-portrait.png",
+	"Clem": "res://assets/portraits/clem-portrait.png",
 	"Rene": "res://assets/portraits/Barista_Snake_small.png",
 	"Tutorial Pean": "res://assets/portraits/pean2.png",
 	"Pean": "res://assets/portraits/pean1.png",
 	"Byrne": "res://assets/portraits/byrne-portrait.png",
 	"Morgan": "res://assets/portraits/morgan.png",
 	"Bubbles": "res://assets/portraits/Bubbles.png",
-	
+	"Finley": "res://assets/portraits/finley2.png",
+	"Jesse": "res://assets/portraits/jesse2.png",
+	"Some Guy": "res://assets/portraits/jesse1.png",
+	"Mark": "res://assets/portraits/mark-portrait.png",
+	"Zal": "res://assets/portraits/zal.png",
 }
 
 func _ready() -> void:

@@ -1,15 +1,17 @@
-[gd_scene load_steps=17 format=4 uid="uid://brnbc3b5bpicv"]
+[gd_scene load_steps=19 format=4 uid="uid://brnbc3b5bpicv"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_ubuer"]
 [ext_resource type="TileSet" uid="uid://ddlyt62oomuic" path="res://assets/interiors/interiors_tileset.tres" id="2_5ty82"]
 [ext_resource type="PackedScene" uid="uid://baoqkmuq02pyw" path="res://src/ExitArea.tscn" id="3_h8neh"]
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="4_5upgf"]
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="5_mxnxr"]
-[ext_resource type="Texture2D" uid="uid://bpmx1xgi3lh13" path="res://assets/mutant-woman.png" id="6_4eb2u"]
-[ext_resource type="Texture2D" uid="uid://csqo0kln77bi7" path="res://assets/mutant-man-ow.png" id="6_gmhwd"]
+[ext_resource type="Texture2D" uid="uid://dn2xwu7d4qtvt" path="res://assets/overworld/jesse1-ow.png" id="6_c7svb"]
+[ext_resource type="Texture2D" uid="uid://bpmx1xgi3lh13" path="res://assets/overworld/mutant-woman.png" id="7_ycu6y"]
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="8_24jqr"]
-[ext_resource type="Texture2D" uid="uid://b0pwxgr3467b1" path="res://assets/gat-cat-ow.png" id="9_c5lik"]
-[ext_resource type="Texture2D" uid="uid://dr13mif7eqp80" path="res://assets/mutant-lion-ow.png" id="10_wueg8"]
+[ext_resource type="Texture2D" uid="uid://csqo0kln77bi7" path="res://assets/overworld/mutant-man-ow.png" id="8_y4vf8"]
+[ext_resource type="Texture2D" uid="uid://b0pwxgr3467b1" path="res://assets/overworld/gat-cat-ow.png" id="10_fcqa5"]
+[ext_resource type="Texture2D" uid="uid://dr13mif7eqp80" path="res://assets/overworld/mutant-lion-ow.png" id="11_qaywu"]
+[ext_resource type="Texture2D" uid="uid://cbvs4bpi3a6mf" path="res://assets/overworld/ceron1-ow.png" id="12_ognsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekjtx"]
 size = Vector2(45, 178)
@@ -77,6 +79,7 @@ position = Vector2(-51, -33)
 
 [node name="SomeGuyNPC" parent="CutsceneTriggerArea2/Remove" instance=ExtResource("5_mxnxr")]
 position = Vector2(62, 9)
+image = ExtResource("6_c7svb")
 
 [node name="CutsceneTriggerArea3" parent="." instance=ExtResource("4_5upgf")]
 position = Vector2(-207, 14)
@@ -91,12 +94,12 @@ shape = SubResource("RectangleShape2D_is5ah")
 
 [node name="NPC2" parent="CutsceneTriggerArea3/Remove" instance=ExtResource("5_mxnxr")]
 position = Vector2(5, 24)
-image = ExtResource("6_4eb2u")
+image = ExtResource("7_ycu6y")
 flip_h = true
 
 [node name="NPC" parent="CutsceneTriggerArea3/Remove" instance=ExtResource("5_mxnxr")]
 position = Vector2(5, -23)
-image = ExtResource("6_gmhwd")
+image = ExtResource("8_y4vf8")
 flip_h = true
 
 [node name="CutsceneTriggerArea4" parent="." instance=ExtResource("4_5upgf")]
@@ -116,11 +119,11 @@ image = ExtResource("8_24jqr")
 
 [node name="NPC2" parent="CutsceneTriggerArea4/Remove" instance=ExtResource("5_mxnxr")]
 position = Vector2(-40, -14)
-image = ExtResource("9_c5lik")
+image = ExtResource("10_fcqa5")
 
 [node name="NPC3" parent="CutsceneTriggerArea4/Remove" instance=ExtResource("5_mxnxr")]
 position = Vector2(-2, -12)
-image = ExtResource("10_wueg8")
+image = ExtResource("11_qaywu")
 
 [node name="CutsceneTriggerArea5" parent="." instance=ExtResource("4_5upgf")]
 position = Vector2(-742, 0)
@@ -135,6 +138,7 @@ shape = SubResource("RectangleShape2D_km6ol")
 
 [node name="NPC" parent="CutsceneTriggerArea5/Remove" instance=ExtResource("5_mxnxr")]
 position = Vector2(-11, 2)
+image = ExtResource("12_ognsl")
 
 [node name="CutsceneTriggerArea6" parent="." instance=ExtResource("4_5upgf")]
 position = Vector2(-820, -13)
