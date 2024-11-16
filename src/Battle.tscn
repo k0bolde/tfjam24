@@ -620,59 +620,14 @@ text = "Attack"
 layout_mode = 2
 text = "Cancel"
 
-[node name="AbilityContainer" type="MarginContainer" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 134.0
-offset_bottom = 20.0
-grow_vertical = 2
-theme_override_constants/margin_left = 100
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AbilityContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("4_xgkbo")
-
-[node name="AbilityGridContainer" type="GridContainer" parent="CanvasLayer/AbilityContainer/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 4
-
-[node name="Label" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
-layout_mode = 2
-text = "Ability"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
-layout_mode = 2
-text = "MP"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
-layout_mode = 2
-text = "Type"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
-layout_mode = 2
-text = "Desc"
-horizontal_alignment = 1
-
-[node name="CancelButton" type="Button" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
-layout_mode = 2
-text = "Cancel"
-
 [node name="PartyBarsContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -31.0
-offset_right = 74.0
-offset_bottom = 31.0
+offset_top = -42.5
+offset_right = 183.0
+offset_bottom = 42.5
 grow_vertical = 2
 theme_override_constants/margin_left = 20
 
@@ -728,6 +683,51 @@ show_percentage = false
 layout_mode = 2
 text = "100/100"
 horizontal_alignment = 1
+
+[node name="AbilityContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 134.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AbilityContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_xgkbo")
+
+[node name="AbilityGridContainer" type="GridContainer" parent="CanvasLayer/AbilityContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Ability"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "MP"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Type"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Desc"
+horizontal_alignment = 1
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer"]
+layout_mode = 2
+text = "Cancel"
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5
