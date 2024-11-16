@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2pedg8j3qk2"
-path="res://.godot/imported/Clem.png-e8a2ed6afc520ec3fb9df5cd871626d1.ctex"
+path="res://.godot/imported/Clem.png-0b27a43f48f05df783cd9f0857a58f95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tv_sprites/Clem.png"
-dest_files=["res://.godot/imported/Clem.png-e8a2ed6afc520ec3fb9df5cd871626d1.ctex"]
+source_file="res://assets/overworld/Clem.png"
+dest_files=["res://.godot/imported/Clem.png-0b27a43f48f05df783cd9f0857a58f95.ctex"]
 
 [params]
 

@@ -156,6 +156,8 @@ func update_bars(party_num):
 	mp_bar.value = Globals.party.p[party_num]["mp"]
 	
 	# add all party members not the party_num
+	if Globals.party.num == 1:
+		party_bars_container.visible = false
 	for i in party_bars_vbox_container.get_children():
 		if i.visible:
 			i.queue_free()

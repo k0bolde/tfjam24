@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpvotvbs7yfnl"]
 
 [ext_resource type="Script" path="res://src/NPC.gd" id="1_yfqx8"]
-[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="2_12rx6"]
+[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="2_12rx6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_75hbv"]
 radius = 11.0454

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d23syvup64hrc"
-path="res://.godot/imported/Pean.png-c087b2a3c0118bc5eb2193ca8670542e.ctex"
+uid="uid://bwfexmpiut3by"
+path="res://.godot/imported/Byrne.png-930e2eadc928c9a39cab2383570ee2b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tv_sprites/Pean.png"
-dest_files=["res://.godot/imported/Pean.png-c087b2a3c0118bc5eb2193ca8670542e.ctex"]
+source_file="res://assets/overworld/Byrne.png"
+dest_files=["res://.godot/imported/Byrne.png-930e2eadc928c9a39cab2383570ee2b5.ctex"]
 
 [params]
 

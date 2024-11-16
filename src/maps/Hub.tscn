@@ -5,12 +5,12 @@
 [ext_resource type="TileSet" uid="uid://c6i7odwo85epl" path="res://assets/exterior_tileset.tres" id="3_3ifv0"]
 [ext_resource type="PackedScene" uid="uid://baoqkmuq02pyw" path="res://src/ExitArea.tscn" id="4_pu8sb"]
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="4_vdb05"]
-[ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/tv_sprites/Byrne.png" id="6_m5fui"]
+[ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/overworld/Byrne.png" id="6_2i6pi"]
 [ext_resource type="Texture2D" uid="uid://cbi5d3p58daa5" path="res://assets/overworld/jesse2-ow.png" id="7_8xny6"]
-[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="7_ca6eg"]
-[ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/tv_sprites/Pean.png" id="7_n3ytn"]
 [ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="7_rk7hs"]
+[ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/overworld/Pean.png" id="8_77hjx"]
 [ext_resource type="Texture2D" uid="uid://c6qgbswo1rwxx" path="res://assets/overworld/Barista_Snake.png" id="10_h7mch"]
+[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="11_m5n03"]
 [ext_resource type="Texture2D" uid="uid://b565ytd6yat1t" path="res://assets/overworld/morgan-ow.png" id="12_a162i"]
 [ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/overworld/mark-ow.png" id="13_dhivg"]
 [ext_resource type="Texture2D" uid="uid://kuhofrthc1sw" path="res://assets/overworld/bubbles-ow.png" id="14_xs4qr"]
@@ -142,7 +142,7 @@ map_name = "QuarantineStart"
 
 [node name="Byrne" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(875, -157)
-image = ExtResource("6_m5fui")
+image = ExtResource("6_2i6pi")
 dialogue_file = "res://assets/dialogue/hub_byrne.clyde"
 
 [node name="Jesse" parent="NPCs" instance=ExtResource("4_vdb05")]
@@ -152,7 +152,7 @@ dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-384, -20)
-image = ExtResource("7_n3ytn")
+image = ExtResource("8_77hjx")
 dialogue_file = "res://assets/dialogue/hub_pean.clyde"
 
 [node name="Sock" parent="NPCs" instance=ExtResource("4_vdb05")]
@@ -167,7 +167,7 @@ dialogue_file = "res://assets/dialogue/hub_rene.clyde"
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(37, 197)
-image = ExtResource("7_ca6eg")
+image = ExtResource("11_m5n03")
 dialogue_file = "res://assets/dialogue/hub_clem.clyde"
 
 [node name="Morgan" parent="NPCs" instance=ExtResource("4_vdb05")]
