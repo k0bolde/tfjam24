@@ -12,7 +12,7 @@ var abilities := {
 		"mp": 0,
 		"desc": "A basic punch",
 		"enemy_flavor": "They punch CHAR! Ouch!",
-		"callable": single_attack,
+		"callable": single_attack.bind("punch"),
 	},
 	"kick": {
 		"base_atk": 1.5,
@@ -21,6 +21,7 @@ var abilities := {
 		"mp": 15,
 		"desc": "What you learned in karate",
 		"enemy_flavor": "They kick CHAR!! Oof!",
+		"callable": single_attack.bind("kick"),
 	},
 	"sob": {
 		"base_atk": 0,
@@ -29,6 +30,7 @@ var abilities := {
 		"mp": 0,
 		"desc": ":')",
 		"enemy_flavor": "They cry. You feel bad...",
+		"callable": single_attack.bind("sob"),
 	},
 	"claw": {
 		"base_atk": 1.0,
@@ -36,7 +38,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 0,
 		"desc": "Tear their flesh asunder!",
-		"enemy_flavor": "They claw CHAR with their, uh, claws!"
+		"enemy_flavor": "They claw CHAR with their, uh, claws!",
+		"callable": single_attack.bind("claw"),
 	},
 	"tail whip": {
 		"base_atk": 1.5,
@@ -44,7 +47,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 15,
 		"desc": "A quick whip of the tail",
-		"enemy_flavor": "They whip CHAR with their tail!"
+		"enemy_flavor": "They whip CHAR with their tail!",
+		"callable": single_attack.bind("tail whip"),
 	},
 	"tentacle whip": {
 		"base_atk": 1.5,
@@ -52,7 +56,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 15,
 		"desc": "A quick tentacle whip",
-		"enemy_flavor": "They whip CHAR with their tentacle!"
+		"enemy_flavor": "They whip CHAR with their tentacle!",
+		"callable": single_attack.bind("tentacle whip"),
 	},
 	"swipe": {
 		"base_atk": 1.0,
@@ -60,7 +65,8 @@ var abilities := {
 		"effect": 1,
 		"mp": 25,
 		"desc": "Hit all targets with a mighty swipe!",
-		"enemy_flavor": "The man growls as he hits all of you with a swipe of his claws!"
+		"enemy_flavor": "The man growls as he hits all of you with a swipe of his claws!",
+		#"callable": single_attack.bind("swipe"),
 	},
 	"bite": {
 		"base_atk": 2.0,
@@ -68,7 +74,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 25,
 		"desc": "Take a bite out of 'em",
-		"enemy_flavor": "They take a chunk out of you! Ouch!"
+		"enemy_flavor": "They take a chunk out of you! Ouch!",
+		"callable": single_attack.bind("bite"),
 	},
 	"spray": {
 		"base_atk": 2.0,
@@ -76,7 +83,8 @@ var abilities := {
 		"effect": 1,
 		"mp": 50,
 		"desc": "",
-		"enemy_flavor": "They spray you with mutagens! Gross!"
+		"enemy_flavor": "They spray you with mutagens! Gross!",
+		#"callable": single_attack.bind("spray"),
 	},
 	"aid": {
 		"base_atk": 1.0,
@@ -84,7 +92,8 @@ var abilities := {
 		"effect": 2,
 		"mp": 20,
 		"desc": "Heal an ally a small amount",
-		"enemy_flavor": "They wipe some gunk on their ally. It heals them!"
+		"enemy_flavor": "They wipe some gunk on their ally. It heals them!",
+		#"callable": single_attack.bind("aid"),
 	},
 	"pistol shot": {
 		"base_atk": 2.0,
@@ -92,7 +101,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 0,
 		"desc": "Give them the gat",
-		"enemy_flavor": "They quickly fire off two rounds of their pistol at you! Blam Blam!"
+		"enemy_flavor": "They quickly fire off two rounds of their pistol at you! Blam Blam!",
+		"callable": single_attack.bind("pistol shot"),
 	},
 	"pistol whip": {
 		"base_atk": 1.0,
@@ -100,7 +110,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 0,
 		"desc": "Hit them with your pistol!",
-		"enemy_flavor": "They whip you with their pistol!"
+		"enemy_flavor": "They whip you with their pistol!",
+		"callable": single_attack.bind("pistol whip"),
 	},
 	"shriek": {
 		"base_atk": 1.0,
@@ -108,7 +119,8 @@ var abilities := {
 		"effect": 1,
 		"mp": 10,
 		"desc": "A horrible wail that damages body and mind",
-		"enemy_flavor": "It wails, causing your body to ache and your mind to quail!"
+		"enemy_flavor": "It wails, causing your body to ache and your mind to quail!",
+		#"callable": single_attack.bind("shriek"),
 	},
 	"insane insight": {
 		"base_atk": 2.0,
@@ -116,7 +128,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 20,
 		"desc": "Reveal something they are not meant to know",
-		"enemy_flavor": "They reveal something to CHAR that CHAR cannot quite comprehend. CHAR reels as their head aches fiercely!"
+		"enemy_flavor": "They reveal something to CHAR that CHAR cannot quite comprehend. CHAR reels as their head aches fiercely!",
+		"callable": single_attack.bind("insane insight"),
 	},
 	"fire breath": {
 		"base_atk": 2.0,
@@ -124,7 +137,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 25,
 		"desc": "Unleash your inner fire!",
-		"enemy_flavor": "They breathe fire. CHAR is cooked!"
+		"enemy_flavor": "They breathe fire. CHAR is cooked!",
+		"callable": single_attack.bind("fire breath"),
 	},
 	"tip the scales": {
 		"base_atk": 1.5,
@@ -132,7 +146,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 20,
 		"desc": "Attack while temporarily increasing your defense!",
-		"enemy_flavor": "They strike CHAR and their scales shine. They look momentarily tougher."
+		"enemy_flavor": "They strike CHAR and their scales shine. They look momentarily tougher.",
+		"callable": single_attack.bind("tip the scales"),
 	},
 	"recovery strike": {
 		"base_atk": 1.0,
@@ -140,7 +155,8 @@ var abilities := {
 		"effect": 0,
 		"mp": 10,
 		"desc": "Hit them and heal some health",
-		"enemy_flavor": "They strike CHAR and some of their wounds heal!"
+		"enemy_flavor": "They strike CHAR and some of their wounds heal!",
+		"callable": single_attack.bind("recovery strike"),
 	},
 	"wild wolf": {
 		"base_atk": 1.5,
@@ -148,7 +164,8 @@ var abilities := {
 		"effect": 4,
 		"mp": 20,
 		"desc": "Strike wildly and randomly at two targets",
-		"enemy_flavor": "They attack wildly, hitting CHAR and CHAR!"
+		"enemy_flavor": "They attack wildly, hitting CHAR and CHAR!",
+		#"callable": single_attack.bind("wild wolf"),
 	},
 	
 }
@@ -188,7 +205,6 @@ func single_attack(user, party, enemies:Array, target, battle:Battle, attack_nam
 	if the_target["stats"]["weaknesses"].has(the_attack["type"]):
 		#TODO sound
 		mult += 0.5
-		battle.add_turn(1)
 		dmg_type = 1
 	elif the_target["stats"]["resistances"].has(the_attack["type"]):
 		#TODO sound
@@ -198,7 +214,6 @@ func single_attack(user, party, enemies:Array, target, battle:Battle, attack_nam
 	if randf() < (the_target["stats"].lck / 100.0):
 		#TODO sound
 		mult += 1.0
-		battle.add_turn(1)
 		is_crit = true
 	if randf() < (the_target["stats"].eva - the_user["stats"].eva) / 100.0:
 		#TODO sound
@@ -206,6 +221,9 @@ func single_attack(user, party, enemies:Array, target, battle:Battle, attack_nam
 		dmg_type = 3
 		mult = 0
 		is_crit = false
+	if is_crit or dmg_type == 1:
+		battle.add_turn(1)
+		
 	#calculate damage
 	var dmg = (the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25))
 	dmg = clampi(dmg, 0, 9999)

@@ -11,3 +11,11 @@ class_name Party
 ]
 @export var xp := 0
 @export var level := 1
+
+
+func num_alive() -> int:
+	var alive := 0
+	for i in num:
+		if p[i]["hp"] > 0:
+			alive += 1
+	return alive

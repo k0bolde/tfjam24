@@ -1,18 +1,12 @@
 extends Node2D
 class_name Battle
-#TODO battle basics
-# Attack - apply atk to enemy def, eva miss/crit chance, update enemy hp, animations and waiting for them (tweens with unlock callbacks?)
-# Enemy Attack - pick attack
-# Kill - when enemy hp 0 - remove sprite. When all enemies die, battle end. money and item drops - result screen?
-# Die - when player hp 0 - death screen, kick to main menu?
-# party members switch every turn
-# weaknesses and turns
-# Item use
-# animations for attacks, getting attacked
-# multi target attacks
-# party target buffs/heals
-# show party hp/mp all the time?
+#FIXME after hitting weakness player turn never ends?
+#TODO Item use
+#TODO animations for attacks, getting attacked
+#TODO multi target attacks
+#TODO party target buffs/heals
 #TODO battle enter animation
+#TODO enemy inspection
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -184,8 +178,11 @@ func update_bars(party_num):
 
 func _on_run_button_pressed() -> void:
 	if can_run:
-		#TODO check if run is successful based on eva
-		#turns -= 1
+		#TODO add together enemies eva and living party's eva
+		#if randf() < (enemies[0].stats.eva - Globals.party.p[0]["stats"].eva) / 100.0 + 50.0:
+			#Events.battle_end.emit()
+		#else:
+			#show_enemy_attack("Running unsucessful!")
 		add_turn(-1)
 		Events.battle_end.emit()
 	else:
@@ -195,7 +192,7 @@ func _on_run_button_pressed() -> void:
 func player_attack(which_attack:String):
 	#TODO don't give dead party members turns
 	add_turn(-1)
-	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self, which_attack)
+	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	#update enemy hp bar
@@ -213,6 +210,7 @@ func player_attack(which_attack:String):
 	if enemies.size() == 0:
 		battle_won()
 	
+	#TODO handle dead party members
 	curr_party += 1
 	if curr_party >= Globals.party.num:
 		curr_party = 0
@@ -222,7 +220,7 @@ func player_attack(which_attack:String):
 			if e.hp <= 0:
 				turns -= 1
 		is_player_turn = false
-		total_turns = enemies.size()
+		total_turns = 0
 		enemy_attack(0)
 	else:
 		update_bars(curr_party)
@@ -235,18 +233,14 @@ func enemy_attack(which_enemy:int):
 	#TODO pick attack and target
 	var selected_attack := "punch"
 	var target_party := 0
-	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self, selected_attack)
+	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
 	#update party hp
 	update_bars(0)
 	%TurnsLabel.text = "%d" % turns
-	var all_dead := true
-	for i in Globals.party.num:
-		if Globals.party.p[i]["hp"] > 0:
-			all_dead = false
-	if all_dead:
+	if Globals.party.num_alive() <= 0:
 		battle_lost()
 	if turns > 0:
 		var next_enemy := which_enemy + 1
@@ -256,12 +250,8 @@ func enemy_attack(which_enemy:int):
 	else:
 		idle_cam.make_current()
 		is_player_turn = true
-		turns = Globals.party.num
+		turns = Globals.party.num_alive()
 		total_turns = 0
-		for i in Globals.party.num:
-			if Globals.party.p[i]["hp"] <= 0:
-				turns -= 1
-		#curr_party = 0
 		update_turns()
 
 
@@ -463,9 +453,9 @@ func add_turn(num := 1, override_total := false):
 			if total_turns < enemies.size() * 2:
 				turns += num
 				total_turns += abs(num)
+				print("Added a turn - %d/%d" % [turns, total_turns])
 		else:
-			#TODO only check living teammates
-			if total_turns < Globals.party.num * 2:
+			if total_turns < Globals.party.num_alive() * 2:
 				turns += num
 				total_turns += abs(num)
 		update_turns()
