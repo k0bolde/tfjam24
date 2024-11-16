@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=21 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
-[ext_resource type="Texture2D" uid="uid://bt1rpg2uj1bod" path="res://icon.svg" id="1_t3y8g"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
 [ext_resource type="Texture2D" uid="uid://5sd8q27b5joi" path="res://assets/tv_sprites/player_chars/dragon_128x.png" id="3_13moi"]
 [ext_resource type="Texture2D" uid="uid://c536pd00r41fc" path="res://assets/bgscrapers1.png" id="4_4vhkh"]
@@ -58,7 +57,7 @@ material = SubResource("StandardMaterial3D_y76i0")
 size = Vector2(5.46, 0.56)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fegov"]
-viewport_path = NodePath("CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport")
+viewport_path = NodePath("CanvasLayer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s7gk"]
 resource_local_to_scene = true
@@ -109,35 +108,31 @@ region_rect = Rect2(256, 512, 64, 64)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 unique_name_in_owner = true
 handle_input_locally = false
 scaling_3d_scale = 2.0
-size = Vector2i(960, 453)
+size = Vector2i(960, 540)
 render_target_update_mode = 4
 
-[node name="Base3D" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport"]
+[node name="Base3D" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 
-[node name="Party" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="Party" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0347107, 0)
 
-[node name="Finley" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
+[node name="Finley" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 visible = false
 billboard = 2
@@ -147,7 +142,7 @@ texture_filter = 2
 texture = ExtResource("3_13moi")
 region_rect = Rect2(384, 256, 64, 64)
 
-[node name="Jesse" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
+[node name="Jesse" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.0843118, -0.912307)
 visible = false
 billboard = 2
@@ -158,7 +153,7 @@ texture = ExtResource("4_rh3uv")
 region_enabled = true
 region_rect = Rect2(128, 0, 128, 128)
 
-[node name="Sock" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
+[node name="Sock" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.0779182, -1.74973)
 visible = false
 flip_h = true
@@ -169,7 +164,7 @@ texture_filter = 2
 texture = ExtResource("5_abulm")
 region_rect = Rect2(192, 0, 64, 64)
 
-[node name="Ceron" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Party"]
+[node name="Ceron" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Party"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.34784)
 visible = false
 billboard = 2
@@ -180,10 +175,10 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(192, 128, 64, 64)
 
-[node name="Enemies" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="Enemies" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 
-[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
+[node name="Enemy1" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1.91069e-15, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, 1.48842, -0.509887, 0)
 visible = false
 flip_h = true
@@ -194,7 +189,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="Enemy2" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
+[node name="Enemy2" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -0.646081)
 visible = false
 flip_h = true
@@ -206,7 +201,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="Enemy3" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
+[node name="Enemy3" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -1.38009)
 visible = false
 flip_h = true
@@ -218,7 +213,7 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="Enemy4" type="Sprite3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
+[node name="Enemy4" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48842, 0, -2.07688)
 visible = false
 flip_h = true
@@ -230,86 +225,86 @@ texture = ExtResource("2_22y0y")
 region_enabled = true
 region_rect = Rect2(256, 512, 64, 64)
 
-[node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/Enemies"]
+[node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28131, 0.0480421, 0)
 
-[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="IdleCamera" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.809017, 0.16694, -0.56358, 0, 0.95882, 0.284015, 0.587785, -0.229773, 0.775701, -0.259, 0.315, 1.16)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 environment = SubResource("Environment_kkb66")
 
-[node name="BattleCenter" type="Marker3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="BattleCenter" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31212, -0.173048, -0.964932)
 
-[node name="ActionCamera" type="Camera3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="ActionCamera" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.190809, 0.374069, -0.90756, 0, 0.924546, 0.381071, 0.981627, -0.0727117, 0.176412, -1.589, 1.15, -0.742)
 fov = 55.5
 
-[node name="BG" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="BG" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(24.885, 0, 0, 0, 24.885, 0, 0, 0, 24.885, 0, -2.19697, 0)
 mesh = SubResource("CylinderMesh_iac1n")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2368, -0.612954, 0)
 visible = false
 mesh = SubResource("CylinderMesh_rdu10")
 
-[node name="bgcircle" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="bgcircle" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle2" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="bgcircle2" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle2"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.395628, 4.78431, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle3" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="bgcircle3" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle3"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle3"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle4" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="bgcircle4" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle4"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle4"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle5" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="bgcircle5" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle5"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle5"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="bgcircle6" type="Node3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG"]
+[node name="bgcircle6" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle6"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/BG/bgcircle6"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 0.39563, 4.2863, -63.4625)
 mesh = SubResource("PlaneMesh_qke4o")
 skeleton = NodePath("../..")
 
-[node name="IndicatorLight" type="SpotLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="IndicatorLight" type="SpotLight3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.95356, -0.262425, -0.14784, 0.15321, -4.31953e-08, 0.988194, -0.259327, -0.964952, 0.0402061, 1.26274, 1.04258, 0.117869)
 visible = false
@@ -319,21 +314,21 @@ spot_range = 2.60351
 spot_attenuation = 0.0
 spot_angle = 22.4491
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 transform = Transform3D(0.923358, -0.347149, -0.164007, 0, -0.427168, 0.904172, -0.383941, -0.834874, -0.394429, -1.65025, 1.8002, -1.21696)
 light_color = Color(0.384314, 0.960784, 0, 1)
 shadow_enabled = true
 
-[node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="EnemyHPMesh" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46461, 0.693375, -0.031354)
 visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_t3fcg")
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
 
-[node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport"]
+[node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport"]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -346,14 +341,14 @@ value = 73.26
 fill_mode = 3
 show_percentage = false
 
-[node name="EnemyNameLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
+[node name="EnemyNameLabel" type="Label3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.319812, 0)
 pixel_size = 0.0041
 billboard = 2
 text = "Enemy Name"
 
-[node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="WeaknessLabel" type="Label3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.629466, -0.330974)
 visible = false
@@ -362,7 +357,7 @@ texture_filter = 2
 modulate = Color(1, 0, 0, 1)
 text = "Weakness!"
 
-[node name="DmgLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="DmgLabel" type="Label3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45666, 0.350693, -0.330974)
 visible = false
@@ -371,7 +366,7 @@ texture_filter = 2
 modulate = Color(1, 0, 0, 1)
 text = "-5"
 
-[node name="CritLabel" type="Label3D" parent="CanvasLayer/VBoxContainer/SubViewportContainer/SubViewport/Base3D"]
+[node name="CritLabel" type="Label3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4013, 0.869586, -0.330974)
 visible = false
@@ -380,56 +375,29 @@ texture_filter = 2
 modulate = Color(1, 0, 0, 1)
 text = "Crit!"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("1_t3y8g")
-stretch_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2"]
-visible = false
-layout_mode = 2
-texture = ExtResource("1_t3y8g")
-stretch_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
-visible = false
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -87.0
+offset_right = 281.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_styles/panel = ExtResource("4_xgkbo")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="CharTurnLabel" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "CHAR's Turn"
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -486,6 +454,18 @@ text = "1"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
+layout_mode = 2
+
+[node name="CharTurnLabel" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CHAR"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/GridContainer2"]
@@ -577,7 +557,7 @@ offset_top = -70.0
 offset_right = 62.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_bottom = 104
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TargetContainer"]
 layout_mode = 2
@@ -622,13 +602,12 @@ text = "Cancel"
 
 [node name="PartyBarsContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -42.5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -85.0
 offset_right = 183.0
-offset_bottom = 42.5
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 20
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PartyBarsContainer"]
@@ -686,15 +665,17 @@ horizontal_alignment = 1
 
 [node name="AbilityContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
-anchors_preset = 4
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 134.0
-offset_bottom = 20.0
+offset_left = -284.0
+offset_top = -35.0
+offset_bottom = 35.0
+grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 20
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AbilityContainer"]
 layout_mode = 2

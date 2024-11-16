@@ -400,7 +400,6 @@ func _on_attack_button_pressed() -> void:
 	
 func _on_abilities_button_pressed() -> void:
 	disable_buttons()
-	ability_container.visible = true
 	for a in Globals.party.p[curr_party]["stats"].abilities:
 		var b := Button.new()
 		b.text = a.capitalize()
@@ -433,6 +432,8 @@ func _on_abilities_button_pressed() -> void:
 		desclab.text = Abilities.abilities[a]["desc"]
 		desclab.add_to_group("ability_button")
 		typelab.add_sibling(desclab)
+	#need to set deferred so it doesn't go off screen
+	ability_container.set_deferred("visible", true)
 
 
 func _on_cancel_button_pressed() -> void:
