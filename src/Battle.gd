@@ -164,7 +164,6 @@ func update_bars(party_num):
 		if i == party_num:
 			continue
 		var bars := a_bars_container.duplicate()
-		bars.visible = true
 		bars.get_node("NameLabel").text = Globals.party.p[i]["name"]
 		bars.get_node("HPLabel").text = "%d/%d" % [Globals.party.p[i]["hp"], Globals.party.p[i]["stats"].hp]
 		bars.get_node("HPBar").max_value = Globals.party.p[i]["stats"].hp
@@ -229,6 +228,8 @@ func player_attack(which_attack:String):
 	
 	
 func enemy_attack(which_enemy:int):
+	if get_tree() == null:
+		return
 	update_turns()
 	add_turn(-1)
 	#TODO pick attack and target
@@ -258,6 +259,8 @@ func enemy_attack(which_enemy:int):
 
 # type 0 = normal, 1 = weakness, 2 = resist, 3 = miss
 func show_dmg_label(dmg:int, target, type:=0, is_crit:=false):
+	if get_tree() == null:
+		return
 	var wl := weakness_label.duplicate()
 	var cl := crit_label.duplicate()
 	var the_target : Node3D
@@ -463,6 +466,8 @@ func add_turn(num := 1, override_total := false):
 
 
 func update_turns():
+	if enemies.size() == 0:
+		return
 	turns_label.text = "%d" % turns
 	var whose_turn : String = Globals.party.p[curr_party]["name"]
 	if not is_player_turn:

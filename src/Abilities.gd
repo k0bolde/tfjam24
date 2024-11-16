@@ -1,9 +1,9 @@
 extends Node
+#TODO multitarget attacks
 #for specific enemy flavor text, just add another entry with their specific text pointing to the same damage func
-# crits add 1.0 to base atk
 # effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = two random targets
 # Holds the info on all abilities, player and enemy
-# requires: mp, base_atk, desc, enemy_flavor (if usable by enemies), callable
+# requires: mp, base_atk, type, effect, desc, enemy_flavor (if usable by enemies), callable
 var abilities := {
 	"punch": {
 		"base_atk": 1.0,
@@ -147,7 +147,7 @@ var abilities := {
 		"mp": 20,
 		"desc": "Attack while temporarily increasing your defense!",
 		"enemy_flavor": "They strike CHAR and their scales shine. They look momentarily tougher.",
-		"callable": single_attack.bind("tip the scales"),
+		#"callable": single_attack.bind("tip the scales"),
 	},
 	"recovery strike": {
 		"base_atk": 1.0,
@@ -156,7 +156,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "Hit them and heal some health",
 		"enemy_flavor": "They strike CHAR and some of their wounds heal!",
-		"callable": single_attack.bind("recovery strike"),
+		#"callable": single_attack.bind("recovery strike"),
 	},
 	"wild wolf": {
 		"base_atk": 1.5,
@@ -193,6 +193,8 @@ func single_attack(user, party, enemies:Array, target, battle:Battle, attack_nam
 	else:
 		the_target = party.p[abs(target) - 1]
 	if user >= 0:
+		if enemies.size() == 0:
+			return
 		the_user = enemies[user]
 	else:
 		the_user = party.p[abs(user) - 1]

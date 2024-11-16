@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="5_mxnxr"]
 [ext_resource type="Texture2D" uid="uid://dn2xwu7d4qtvt" path="res://assets/overworld/jesse1-ow.png" id="6_c7svb"]
 [ext_resource type="Texture2D" uid="uid://bpmx1xgi3lh13" path="res://assets/overworld/mutant-woman.png" id="7_ycu6y"]
-[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/tv_sprites/Clem.png" id="8_24jqr"]
+[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="8_24jqr"]
 [ext_resource type="Texture2D" uid="uid://csqo0kln77bi7" path="res://assets/overworld/mutant-man-ow.png" id="8_y4vf8"]
 [ext_resource type="Texture2D" uid="uid://b0pwxgr3467b1" path="res://assets/overworld/gat-cat-ow.png" id="10_fcqa5"]
 [ext_resource type="Texture2D" uid="uid://dr13mif7eqp80" path="res://assets/overworld/mutant-lion-ow.png" id="11_qaywu"]

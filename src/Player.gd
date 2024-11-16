@@ -33,8 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			npc = null
 	
 
-
-
 func _physics_process(_delta: float) -> void:
 	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return

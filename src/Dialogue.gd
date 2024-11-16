@@ -19,6 +19,7 @@ var text_anim_tween : Tween
 var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
 	"Clem": "res://assets/portraits/clem-portrait.png",
+	"???": "res://assets/portraits/clem-portrait.png",
 	"Rene": "res://assets/portraits/Barista_Snake_small.png",
 	"Tutorial Pean": "res://assets/portraits/pean2.png",
 	"Pean": "res://assets/portraits/pean1.png",

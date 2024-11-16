@@ -1,7 +1,7 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
-#TODO battle
-#TODO dialogue choices
+#TODO unlock moves by leveling up
+#TODO battle animations/sounds
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode
@@ -27,6 +27,7 @@ var story_flags := {
 	"lab": 0
 }
 var hub
+var quarantine_zone
 
 
 func _ready() -> void:
@@ -46,6 +47,7 @@ func _ready() -> void:
 	load_map("Apartment")
 	# hub uses big tilesets so it lags when loading, preload it
 	ResourceLoader.load_threaded_request("res://src/maps/Hub.tscn")
+	ResourceLoader.load_threaded_request("res://src/maps/QuarantineZone.tscn")
 	Globals.load2()
 
 
@@ -81,6 +83,10 @@ func load_map(map_name:String, entrance_num := -1):
 			# can only get this once, so save it for later for when we reuse it
 			hub = ResourceLoader.load_threaded_get("res://src/maps/Hub.tscn")
 		new_map = hub.instantiate()
+	elif map_name == "QuarantineZone":
+		if not quarantine_zone:
+			quarantine_zone = ResourceLoader.load_threaded_get("res://src/maps/QuarantineZone.tscn")
+		new_map = quarantine_zone.instantiate()
 	else:
 		new_map = load("res://src/maps/" + map_name + ".tscn").instantiate()
 	map_node.add_child(new_map)

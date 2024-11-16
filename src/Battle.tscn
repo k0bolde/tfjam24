@@ -83,28 +83,6 @@ bg_color = Color(0.984314, 0, 0, 1)
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_2or6c")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(480, 270)
-
-[node name="Party" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Party"]
-position = Vector2(233, 299)
-scale = Vector2(4, 4)
-texture = ExtResource("2_22y0y")
-region_enabled = true
-region_rect = Rect2(384, 256, 64, 64)
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemies"]
-position = Vector2(717, 303)
-scale = Vector2(4, 4)
-texture = ExtResource("2_22y0y")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(256, 512, 64, 64)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
 
@@ -530,7 +508,7 @@ offset_right = 80.5
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_bottom = 104
 
 [node name="Panel" type="PanelContainer" parent="CanvasLayer/AttackNameContainer"]
 layout_mode = 2
