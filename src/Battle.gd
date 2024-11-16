@@ -158,13 +158,11 @@ func update_bars(party_num):
 	# add all party members not the party_num
 	if Globals.party.num == 1:
 		party_bars_container.visible = false
-	for i in party_bars_vbox_container.get_children():
-		if i.visible:
-			i.queue_free()
+	for i in party_bars_vbox_container.get_node("GridContainer").get_children():
+		i.queue_free()
 	for i in Globals.party.num:
 		if i == party_num:
 			continue
-		#TODO add these all to one grid so they're aligned
 		var bars := a_bars_container.duplicate()
 		bars.visible = true
 		bars.get_node("NameLabel").text = Globals.party.p[i]["name"]
@@ -174,8 +172,9 @@ func update_bars(party_num):
 		bars.get_node("MPLabel").text = "%d/%d" % [Globals.party.p[i]["mp"], Globals.party.p[i]["stats"].mp]
 		bars.get_node("MPBar").max_value = Globals.party.p[i]["stats"].mp
 		bars.get_node("MPBar").value = Globals.party.p[i]["mp"]
-		
-		party_bars_vbox_container.add_child(bars)
+		for n in bars.get_children():
+			n.reparent(party_bars_vbox_container.get_node("GridContainer"))
+		bars.queue_free()
 	
 
 func _on_run_button_pressed() -> void:
