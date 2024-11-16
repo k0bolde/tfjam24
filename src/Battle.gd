@@ -59,7 +59,7 @@ var curr_ability : String
 var action_cam_shaky_tween_v : Tween
 var action_cam_shaky_tween_h : Tween
 var attack_name_tween : Tween
-var total_turns := 1
+var total_turns := 0
 
 
 func _ready() -> void:
@@ -168,6 +168,7 @@ func update_bars(party_num):
 	for i in Globals.party.num:
 		if i == party_num:
 			continue
+		#TODO add these all to one grid so they're aligned
 		var bars := a_bars_container.duplicate()
 		bars.visible = true
 		bars.get_node("NameLabel").text = Globals.party.p[i]["name"]
@@ -184,7 +185,8 @@ func update_bars(party_num):
 func _on_run_button_pressed() -> void:
 	if can_run:
 		#TODO check if run is successful based on eva
-		turns -= 1
+		#turns -= 1
+		add_turn(-1)
 		Events.battle_end.emit()
 	else:
 		show_enemy_attack("Can't run!")
@@ -192,7 +194,7 @@ func _on_run_button_pressed() -> void:
 	
 func player_attack(which_attack:String):
 	#TODO don't give dead party members turns
-	turns -= 1
+	add_turn(-1)
 	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self, which_attack)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
@@ -229,7 +231,7 @@ func player_attack(which_attack:String):
 	
 func enemy_attack(which_enemy:int):
 	update_turns()
-	turns -= 1
+	add_turn(-1)
 	#TODO pick attack and target
 	var selected_attack := "punch"
 	var target_party := 0
@@ -255,7 +257,7 @@ func enemy_attack(which_enemy:int):
 		idle_cam.make_current()
 		is_player_turn = true
 		turns = Globals.party.num
-		total_turns = Globals.party.num
+		total_turns = 0
 		for i in Globals.party.num:
 			if Globals.party.p[i]["hp"] <= 0:
 				turns -= 1
@@ -419,7 +421,7 @@ func _on_abilities_button_pressed() -> void:
 		var mplab := Label.new()
 		mplab.text = "%d" % Abilities.abilities[a]["mp"]
 		mplab.add_to_group("ability_button")
-		mplab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		mplab.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		b.add_sibling(mplab)
 		
 		var typelab := Label.new()
@@ -481,6 +483,7 @@ func _on_pass_turn_button_pressed() -> void:
 	if total_turns >= enemies.size() * 2:
 		show_enemy_attack("Can't pass turns, turn limit reached")
 		return
+	total_turns += 1
 	curr_party += 1
 	#TODO don't pass to dead party members
 	if curr_party >= Globals.party.num:

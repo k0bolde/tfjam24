@@ -399,37 +399,36 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
-[node name="ButtonsGridContainer" type="GridContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2"]
+[node name="ButtonsGridContainer" type="GridContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
 columns = 3
 
-[node name="BasicAttackButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+[node name="BasicAttackButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Attack"
 
-[node name="AbilitiesButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+[node name="AbilitiesButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
 text = "Abilities"
 
-[node name="ItemsButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+[node name="ItemsButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
 text = "Items"
 
-[node name="RunButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+[node name="RunButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Run"
 
-[node name="PassTurnButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+[node name="PassTurnButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
 text = "Pass Turn"
 
-[node name="InspectButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer"]
+[node name="InspectButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
 text = "Inspect"
 
@@ -608,7 +607,7 @@ anchor_bottom = 1.0
 offset_top = -85.0
 offset_right = 183.0
 grow_vertical = 0
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 42
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PartyBarsContainer"]
 layout_mode = 2
@@ -623,12 +622,12 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
-[node name="Label2" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
-layout_mode = 2
-
 [node name="NameLabel" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
 layout_mode = 2
 text = "Finley"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
+layout_mode = 2
 
 [node name="Label3" type="Label" parent="CanvasLayer/PartyBarsContainer/PanelContainer/PartyBarsVBoxContainer/ABarsContainer"]
 layout_mode = 2
@@ -665,6 +664,7 @@ horizontal_alignment = 1
 
 [node name="AbilityContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -727,10 +727,10 @@ mouse_filter = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/BasicAttackButton" to="." method="_on_basic_attack_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/AbilitiesButton" to="." method="_on_abilities_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/RunButton" to="." method="_on_run_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/ButtonsGridContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/BasicAttackButton" to="." method="_on_basic_attack_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/AbilitiesButton" to="." method="_on_abilities_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetLeftButton" to="." method="_on_target_left_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetRightButton" to="." method="_on_target_right_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/AttackButton" to="." method="_on_attack_button_pressed"]
