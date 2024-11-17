@@ -305,6 +305,7 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_t3fcg")
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh"]
+size = Vector2i(40, 100)
 
 [node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/EnemyHPMesh/SubViewport"]
 unique_name_in_owner = true

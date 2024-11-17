@@ -86,7 +86,31 @@ func _ready() -> void:
 		sprite.scale = Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
 		enemies[i].ingame_sprite = sprite
 		enemies_node.add_child(sprite)
-		#TODO give each enemy their own hp bar - can I just duplicated the whole subviewport thing?
+		var hpmesh = enemy_hp_mesh.duplicate()
+		hpmesh.mesh.resource_local_to_scene = true
+		hpmesh.get_node("EnemyNameLabel").unique_name_in_owner = false
+		hpmesh.get_node("EnemyNameLabel").text = enemies[i].enemy_name
+		enemies[i].hp_mesh = hpmesh
+		hpmesh.position = sprite.position
+		hpmesh.unique_name_in_owner = false
+		enemies[i].hp_bar = hpmesh.get_node("SubViewport/EnemyHPBar")
+		enemies[i].hp_bar.unique_name_in_owner = false
+		enemies[i].hp_bar.value = i * (100.0 / enemies.size())
+		# needed to make a new mesh otherwise they all shared the same texture
+		var planemesh := PlaneMesh.new()
+		planemesh.size = Vector2(0.075, 0.465)
+		planemesh.orientation = PlaneMesh.FACE_Z
+		planemesh.resource_local_to_scene = true
+		hpmesh.mesh = planemesh
+		var mat := StandardMaterial3D.new()
+		mat.resource_local_to_scene = true
+		mat.albedo_color = Color.BLACK
+		mat.emission_enabled = true
+		mat.disable_ambient_light = true
+		mat.billboard_mode = BaseMaterial3D.BILLBOARD_FIXED_Y
+		hpmesh.mesh.material = mat
+		mat.emission_texture = hpmesh.get_node("SubViewport").get_texture()
+		enemies_node.add_child(hpmesh)
 		
 	# fade in
 	%FadeRect.visible = true
