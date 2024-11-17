@@ -19,3 +19,4 @@ var position := Vector3()
 var ingame_sprite : Sprite3D
 var hp_mesh : MeshInstance3D
 var hp_bar : ProgressBar
+var name_label : Label3D

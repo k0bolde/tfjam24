@@ -1,6 +1,5 @@
 extends Node2D
 class_name Battle
-#TODO use individual hp bars
 #TODO Item use
 #TODO animations for attacks, getting attacked
 #TODO multi target attacks
@@ -92,6 +91,7 @@ func _ready() -> void:
 		enemies_node.add_child(sprite)
 		var hpmesh = enemy_hp_mesh.duplicate()
 		hpmesh.mesh.resource_local_to_scene = true
+		enemies[i].name_label = hpmesh.get_node("EnemyNameLabel")
 		hpmesh.get_node("EnemyNameLabel").unique_name_in_owner = false
 		hpmesh.get_node("EnemyNameLabel").text = enemies[i].enemy_name
 		enemies[i].hp_mesh = hpmesh
@@ -169,7 +169,7 @@ func _ready() -> void:
 	update_turns()
 	
 	#move enemy indicator
-	update_selected_enemy()
+	#update_selected_enemy()
 
 
 func _process(_delta: float) -> void:
@@ -234,7 +234,7 @@ func player_attack(which_attack:String):
 		defeated_enemies.push_back(enemies[targeted_enemy])
 		enemies.remove_at(targeted_enemy)
 		if enemies.size() > 0:
-			_on_target_left_button_pressed()
+			_on_target_right_button_pressed(false)
 	
 	if enemies.size() == 0:
 		battle_won()
@@ -343,30 +343,32 @@ func show_targeting(is_attacking:=true):
 	%TargetContainer.get_node("PanelContainer/GridContainer/CancelTargetButton").visible = is_attacking
 	%TargetContainer.visible = true
 	indicator_light.visible = true
-	enemy_hp_mesh.visible = true
+	update_selected_enemy()
 	action_cam.make_current()
 
 	
 func hide_targeting():
 	%TargetContainer.visible = false
 	indicator_light.visible = false
-	#TODO keep hp bar visible for a bit
-	enemy_hp_mesh.visible = false
+	enemies[targeted_enemy].hp_mesh.visible = false
 	idle_cam.make_current()
 
 
 func _on_target_left_button_pressed() -> void:
+	enemies[targeted_enemy].hp_mesh.visible = false
 	targeted_enemy = (targeted_enemy + 1) % enemies.size()
 	update_selected_enemy()
 
 
-func _on_target_right_button_pressed() -> void:
+func _on_target_right_button_pressed(is_targeting:=true) -> void:
 	if enemies.is_empty():
 		return
+	enemies[targeted_enemy].hp_mesh.visible = false
 	targeted_enemy = (targeted_enemy - 1) % enemies.size()
 	if targeted_enemy < 0:
 		targeted_enemy = enemies.size() - 1
-	update_selected_enemy()
+	if is_targeting:
+		update_selected_enemy()
   
 
 func update_selected_enemy():
@@ -374,11 +376,12 @@ func update_selected_enemy():
 	indicator_light.position = e.position
 	indicator_light.position.y += 1.0
 	indicator_light.position.x -= 0.2
-	enemy_hp_mesh.position = e.position
-	enemy_hp_mesh.position.y += 1.0
-	enemy_hp_bar.value = e.hp
-	enemy_hp_bar.max_value = e.stats.hp
-	enemy_name_label.text = e.enemy_name.capitalize()
+	var hp_mesh := e.hp_mesh
+	hp_mesh.visible = true
+	hp_mesh.position = e.position
+	hp_mesh.position.y += 1.0
+	e.hp_bar.value = e.hp
+	e.hp_bar.max_value = e.stats.hp
 	inspect_name_label.text = e.enemy_name.capitalize()
 	inspect_desc_label.text = e.desc
 	if Globals.party.fought_enemies.has(e.enemy_name):
