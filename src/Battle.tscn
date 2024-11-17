@@ -693,6 +693,51 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Cancel"
 
+[node name="InspectContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -42.5
+offset_bottom = 42.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/InspectContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_xgkbo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InspectContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="InspectNameLabel" type="Label" parent="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enemy Name"
+
+[node name="InspectDescLabel" type="Label" parent="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enemy Desc"
+
+[node name="InspectWeakLabel" type="Label" parent="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Weak to"
+
+[node name="InspectResistLabel" type="Label" parent="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resists"
+
+[node name="InspectCancelButton" type="Button" parent="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5
 
@@ -714,8 +759,10 @@ unique_name_in_owner = true
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/AbilitiesButton" to="." method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer/InspectButton" to="." method="_on_inspect_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetLeftButton" to="." method="_on_target_left_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/TargetRightButton" to="." method="_on_target_right_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/CancelTargetButton" to="." method="_on_cancel_target_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer/InspectCancelButton" to="." method="_on_inspect_cancel_button_pressed"]

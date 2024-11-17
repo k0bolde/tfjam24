@@ -11,7 +11,7 @@ class_name Party
 ]
 @export var xp := 0
 @export var level := 1
-
+@export var fought_enemies := []
 
 func num_alive() -> int:
 	var alive := 0

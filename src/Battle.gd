@@ -1,6 +1,6 @@
 extends Node2D
 class_name Battle
-#FIXME after hitting weakness player turn never ends?
+#TODO use individual hp bars
 #TODO Item use
 #TODO animations for attacks, getting attacked
 #TODO multi target attacks
@@ -36,6 +36,11 @@ class_name Battle
 @onready var party_bars_container : Container = %PartyBarsContainer
 @onready var party_bars_vbox_container : Container = %PartyBarsVBoxContainer
 @onready var a_bars_container : Container = %ABarsContainer
+@onready var inspect_container : Container = %InspectContainer
+@onready var inspect_name_label : Label = %InspectNameLabel
+@onready var inspect_desc_label : Label = %InspectDescLabel
+@onready var inspect_weak_label : Label = %InspectWeakLabel
+@onready var inspect_resist_label : Label = %InspectResistLabel
 
 var can_run := false
 var enemy_names := []
@@ -334,7 +339,9 @@ func _on_basic_attack_button_pressed() -> void:
 		_on_attack_button_pressed()
 
 
-func show_targeting():
+func show_targeting(is_attacking:=true):
+	%TargetContainer.get_node("PanelContainer/GridContainer/AttackButton").visible = is_attacking
+	%TargetContainer.get_node("PanelContainer/GridContainer/CancelTargetButton").visible = is_attacking
 	%TargetContainer.visible = true
 	indicator_light.visible = true
 	enemy_hp_mesh.visible = true
@@ -364,14 +371,19 @@ func _on_target_right_button_pressed() -> void:
   
 
 func update_selected_enemy():
-	indicator_light.position = enemies[targeted_enemy].position
+	var e := enemies[targeted_enemy]
+	indicator_light.position = e.position
 	indicator_light.position.y += 1.0
 	indicator_light.position.x -= 0.2
-	enemy_hp_mesh.position = enemies[targeted_enemy].position
+	enemy_hp_mesh.position = e.position
 	enemy_hp_mesh.position.y += 1.0
-	enemy_hp_bar.value = enemies[targeted_enemy].hp
-	enemy_hp_bar.max_value = enemies[targeted_enemy].stats.hp
-	enemy_name_label.text = enemies[targeted_enemy].enemy_name.capitalize()
+	enemy_hp_bar.value = e.hp
+	enemy_hp_bar.max_value = e.stats.hp
+	enemy_name_label.text = e.enemy_name.capitalize()
+	inspect_name_label.text = e.enemy_name.capitalize()
+	inspect_desc_label.text = e.desc
+	inspect_weak_label.text = "%s" % e.stats.weaknesses
+	inspect_resist_label.text = "%s" % e.stats.resistances
 
 
 func battle_won():
@@ -388,6 +400,10 @@ func battle_won():
 	#heal after battle
 	for p in Globals.party.p:
 		p["hp"] = p["stats"].hp
+	#keep track of what enemies we've defeated so we can show full inspect info
+	for en in enemy_names:
+		if not Globals.party.fought_enemies.has(en):
+			Globals.party.fought_enemies.append(en)
 	#TODO show results screen
 	Events.battle_end.emit()
 	
@@ -522,3 +538,14 @@ func animate_sprite(target:int):
 	t.tween_property(the_target, "position:y", the_target.position.y + 0.5, 0.25)
 	t.tween_property(the_target, "position:y", the_target.position.y - 0.5, 0.25)
 	
+
+func _on_inspect_button_pressed() -> void:
+	disable_buttons()
+	show_targeting(false)
+	inspect_container.visible = true
+
+
+func _on_inspect_cancel_button_pressed() -> void:
+	enable_buttons()
+	hide_targeting()
+	inspect_container.visible = false
