@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dq4v76g3tsjtq"]
+[gd_scene load_steps=21 format=3 uid="uid://dq4v76g3tsjtq"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_kkp3q"]
 [ext_resource type="Texture2D" uid="uid://cd1u2n6lkl1mr" path="res://assets/QuarantineBlockDungeon.png" id="2_ydeac"]
 [ext_resource type="TileSet" uid="uid://c6i7odwo85epl" path="res://assets/exterior_tileset.tres" id="3_ly6hl"]
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="4_gejnf"]
+[ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="5_wod7b"]
 [ext_resource type="Texture2D" uid="uid://bjkn2pcbwq8hm" path="res://assets/overworld/savakOverworld.png" id="5_ygayf"]
 [ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/overworld/Byrne.png" id="6_sgl1j"]
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="7_7mer5"]
@@ -11,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/overworld/mark-ow.png" id="9_kuejc"]
 [ext_resource type="Texture2D" uid="uid://xskvh7afd8h5" path="res://assets/overworld/guard-ow.png" id="10_0i7xv"]
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="11_cv6q6"]
+[ext_resource type="Texture2D" uid="uid://cbvs4bpi3a6mf" path="res://assets/overworld/ceron1-ow.png" id="11_dah7q"]
+[ext_resource type="Texture2D" uid="uid://dlkg70pgsqlkr" path="res://assets/battle/tail.png" id="11_dwicd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ui67i"]
 size = Vector2(47, 327)
@@ -48,6 +51,7 @@ tile_set = ExtResource("3_ly6hl")
 
 [node name="Ulla" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(478, -560)
+image = ExtResource("5_wod7b")
 
 [node name="Savak" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1443, -108)
@@ -63,6 +67,7 @@ image = ExtResource("7_7mer5")
 
 [node name="Ulla2" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2431, -271)
+image = ExtResource("5_wod7b")
 
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1442, -577)
@@ -77,9 +82,11 @@ image = ExtResource("9_kuejc")
 
 [node name="Ulla3" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1759, -1022)
+image = ExtResource("5_wod7b")
 
 [node name="SusSynthTail" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1602, -1375)
+image = ExtResource("11_dwicd")
 
 [node name="RustRist" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2389, -1253)
@@ -92,6 +99,7 @@ position = Vector2(-12, -1268)
 
 [node name="Ceron" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(730, -817)
+image = ExtResource("11_dah7q")
 
 [node name="SkullfaceGang" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(434, -1430)

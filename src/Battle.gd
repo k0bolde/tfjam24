@@ -86,6 +86,7 @@ func _ready() -> void:
 		sprite.scale = Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
 		enemies[i].ingame_sprite = sprite
 		enemies_node.add_child(sprite)
+		#TODO give each enemy their own hp bar - can I just duplicated the whole subviewport thing?
 		
 	# fade in
 	%FadeRect.visible = true
@@ -485,4 +486,15 @@ func _on_pass_turn_button_pressed() -> void:
 		curr_party = 0
 	update_bars(curr_party)
 	update_turns()
+	
+
+func animate_sprite(target:int):
+	var the_target : Sprite3D
+	if target >= 0:
+		the_target = enemies[target]["ingame_sprite"]
+	else:
+		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
+	var t := get_tree().create_tween()
+	t.tween_property(the_target, "position:y", the_target.position.y + 0.5, 0.25)
+	t.tween_property(the_target, "position:y", the_target.position.y - 0.5, 0.25)
 	
