@@ -136,7 +136,7 @@ map_name = "Games"
 
 [node name="ExitQuarantine" parent="Exits" instance=ExtResource("4_pu8sb")]
 position = Vector2(-425, 194)
-map_name = "QuarantineStart"
+map_name = "QuarantineZone"
 
 [node name="NPCs" type="Node2D" parent="."]
 
