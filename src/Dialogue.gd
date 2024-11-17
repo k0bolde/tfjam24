@@ -31,6 +31,7 @@ var portraits := {
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
 	"Zal": "res://assets/portraits/zal.png",
+	"Ulla": "res://assets/portraits/UllaPortraitHuman.png",
 }
 
 func _ready() -> void:

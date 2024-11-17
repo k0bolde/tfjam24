@@ -258,7 +258,7 @@ func enemy_attack(which_enemy:int):
 
 
 # type 0 = normal, 1 = weakness, 2 = resist, 3 = miss
-func show_dmg_label(dmg:int, target, type:=0, is_crit:=false):
+func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	if get_tree() == null:
 		return
 	var wl := weakness_label.duplicate()
@@ -339,7 +339,6 @@ func _on_target_right_button_pressed() -> void:
   
 
 func update_selected_enemy():
-	#print("targeted %d" % targeted_enemy)
 	indicator_light.position = enemies[targeted_enemy].position
 	indicator_light.position.y += 1.0
 	indicator_light.position.x -= 0.2
@@ -453,7 +452,7 @@ func add_turn(num := 1, override_total := false):
 		total_turns += abs(num)
 	else:
 		if is_player_turn:
-			#TODO add a turn when killing an enemy with a weakness
+			#TODO allow adding a turn when killing an enemy with a weakness even if max turns hit
 			if total_turns < enemies.size() * 2:
 				turns += num
 				total_turns += abs(num)
