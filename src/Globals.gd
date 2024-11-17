@@ -15,6 +15,7 @@ var enemies := {}
 func _ready() -> void:
 	initialize_enemies()
 	initialize_party()
+	Globals.party.fought_enemies.append("slime")
 	
 	#print("testing class member access\ndict access %s\nclass access %s" % [party.p[0]["stats"].hp, enemies["rat"]["stats"].hp])
 

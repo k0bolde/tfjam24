@@ -6,7 +6,6 @@ class_name Battle
 #TODO multi target attacks
 #TODO party target buffs/heals
 #TODO battle enter animation
-#TODO enemy inspection
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -382,8 +381,18 @@ func update_selected_enemy():
 	enemy_name_label.text = e.enemy_name.capitalize()
 	inspect_name_label.text = e.enemy_name.capitalize()
 	inspect_desc_label.text = e.desc
-	inspect_weak_label.text = "%s" % e.stats.weaknesses
-	inspect_resist_label.text = "%s" % e.stats.resistances
+	if Globals.party.fought_enemies.has(e.enemy_name):
+		if e.stats.weaknesses.is_empty():
+			inspect_weak_label.text = "Weak to nothing"
+		else:
+			inspect_weak_label.text = "Weak to %s" % e.stats.weaknesses
+		if e.stats.resistances.is_empty():
+			inspect_resist_label.text = "Resists nothing"
+		else:
+			inspect_resist_label.text = "Reists %s" % e.stats.resistances
+	else:
+		inspect_weak_label.text = "???"
+		inspect_resist_label.text = "???"
 
 
 func battle_won():

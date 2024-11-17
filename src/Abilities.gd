@@ -177,14 +177,14 @@ func _ready() -> void:
 			printerr("entry: %s is missing a required key" % a)
 
 
-func ability_callable(user, party, enemies:Array, target:int, battle:Battle):
-	# applies an ability/item to the battle, each invididual ability should have its own func like this that the battle calls when its used
-	# target is pos int for enemy target, neg int for party target, null for self
-	# should modify turns, send weakness/other animations
-	pass
+#func ability_callable(user, party, enemies:Array, target:int, battle:Battle):
+	## applies an ability/item to the battle, each invididual ability should have its own func like this that the battle calls when its used
+	## target is pos int for enemy target, neg int for party target, null for self
+	## should modify turns, send weakness/other animations
+	#pass
 	
 	
-func single_attack(user, party, enemies:Array, target, battle:Battle, attack_name:String):
+func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
 	var the_target
 	var the_user
 	var the_attack = abilities[attack_name]
@@ -232,10 +232,4 @@ func single_attack(user, party, enemies:Array, target, battle:Battle, attack_nam
 	the_target["hp"] -= dmg
 	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
 	
-	
-func basic_attack(user, party, enemies, target, battle):
-	if target >= 0:
-		enemies[target].hp -= 50
-	else:
-		Globals.party.p[abs(target) - 1]["hp"] -= 5
 	
