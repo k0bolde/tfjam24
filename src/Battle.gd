@@ -1,9 +1,9 @@
 extends Node2D
 class_name Battle
-#TODO Item use
 #TODO animations for attacks, getting attacked
 #TODO multi target attacks
 #TODO party target buffs/heals
+#TODO Item use
 #TODO battle enter animation
 
 @onready var idle_cam : Camera3D = %IdleCamera
@@ -283,6 +283,7 @@ func enemy_attack(which_enemy:int):
 		is_player_turn = true
 		turns = Globals.party.num_alive()
 		total_turns = 0
+		update_bars(curr_party)
 		update_turns()
 
 
@@ -312,6 +313,9 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	dl.visible = true
 	dl.text = "-%d" % dmg
 	dl.position = the_target.position
+	if dmg < 0:
+		dl.modulate = Color.GREEN
+		dl.text = "+%d" % dmg
 	cl.position = the_target.position
 	cl.position.y += 0.1
 	wl.position = the_target.position
@@ -363,7 +367,8 @@ func _on_target_left_button_pressed() -> void:
 func _on_target_right_button_pressed(is_targeting:=true) -> void:
 	if enemies.is_empty():
 		return
-	enemies[targeted_enemy].hp_mesh.visible = false
+	if targeted_enemy < enemies.size():
+		enemies[targeted_enemy].hp_mesh.visible = false
 	targeted_enemy = (targeted_enemy - 1) % enemies.size()
 	if targeted_enemy < 0:
 		targeted_enemy = enemies.size() - 1

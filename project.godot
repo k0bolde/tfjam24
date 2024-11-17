@@ -41,6 +41,7 @@ folder_colors={
 
 [gui]
 
+theme/custom="res://assets/my_theme.tres"
 theme/custom_font="res://assets/Ubuntu-R.ttf"
 
 [input]

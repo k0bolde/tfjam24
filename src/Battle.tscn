@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://1fk0ydtef6ql"]
+[gd_scene load_steps=22 format=3 uid="uid://1fk0ydtef6ql"]
 
 [ext_resource type="Script" path="res://src/Battle.gd" id="1_2or6c"]
 [ext_resource type="Texture2D" uid="uid://de483dpp1jv25" path="res://assets/new Boss Monsters & Minions Complete Spritesheet_x.png" id="2_22y0y"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://sv1tky5i3bqq" path="res://assets/tv_sprites/player_chars/wolf_girl_128x.png" id="4_rh3uv"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="4_xgkbo"]
 [ext_resource type="Texture2D" uid="uid://clhrhsh8ecjm7" path="res://assets/tv_sprites/player_chars/sci_raptor_128x.png" id="5_abulm"]
+[ext_resource type="Theme" uid="uid://ganj77aglhwy" path="res://assets/my_theme.tres" id="8_c0yqx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kgb63"]
 sky_top_color = Color(0.627656, 0.872215, 0.6011, 1)
@@ -619,6 +620,7 @@ text = "HP"
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("8_c0yqx")
 value = 25.77
 show_percentage = false
 
