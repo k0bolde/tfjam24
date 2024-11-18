@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://bm7rlnrtxx2no"
+path="res://.godot/imported/qz_shortcut2.clyde-21a323a69dd728ad816aaebdd35ce21e.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_shortcut2.clyde"
+dest_files=["res://.godot/imported/qz_shortcut2.clyde-21a323a69dd728ad816aaebdd35ce21e.res"]
+
+[params]
+

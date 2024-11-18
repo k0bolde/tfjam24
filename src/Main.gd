@@ -19,12 +19,12 @@ var story_flags := {
 	"main" : 0,
 	"jesse": 0,
 	"sock": 0,
-	"ceron": 0,
+	#"ceron": 0,
 	
 	"quarantine": 0,
-	"factory": 0,
-	"office": 0,
-	"lab": 0
+	#"factory": 0,
+	#"office": 0,
+	#"lab": 0
 }
 var hub
 var quarantine_zone

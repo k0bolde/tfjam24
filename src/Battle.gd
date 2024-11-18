@@ -269,7 +269,7 @@ func enemy_attack(which_enemy:int):
 	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
 	#update party hp
 	update_bars(0)
-	%TurnsLabel.text = "%d" % turns
+	turns_label.text = "%d" % turns
 	if Globals.party.num_alive() <= 0:
 		battle_lost()
 	if turns > 0:
@@ -508,6 +508,7 @@ func add_turn(num := 1, override_total := false):
 		turns += num
 		total_turns += abs(num)
 	else:
+		print_stack()
 		if is_player_turn:
 			#TODO allow adding a turn when killing an enemy with a weakness even if max turns hit
 			if total_turns < enemies.size() * 2:

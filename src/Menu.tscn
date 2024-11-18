@@ -196,6 +196,15 @@ text = "Maps"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Label2" type="Label" parent="CanvasLayer/DebugContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Flags"
+
+[node name="FlagContainer" type="GridContainer" parent="CanvasLayer/DebugContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

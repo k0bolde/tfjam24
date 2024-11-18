@@ -4,6 +4,7 @@ extends Control
 @onready var menu_container : Container = %MenuContainer
 @onready var debug_container : Container = %DebugContainer
 @onready var debug_maps_container : Container = %DebugMapsContainer
+@onready var flag_container : Container = %FlagContainer
 
 
 func _ready() -> void:
@@ -21,6 +22,15 @@ func _ready() -> void:
 			mb.text = map_name
 			mb.pressed.connect(func (): Globals.main.load_map(map_name))
 			debug_maps_container.add_child(mb)
+	for f in Globals.main.story_flags.keys():
+		var l := Label.new()
+		l.text = f
+		flag_container.add_child(l)
+		var s := SpinBox.new()
+		s.update_on_text_changed = true
+		s.value = Globals.main.story_flags[f]
+		s.value_changed.connect(func (new_value): Globals.main.story_flags[f] = new_value)
+		flag_container.add_child(s)
 
 
 func _on_close_button_pressed() -> void:

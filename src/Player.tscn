@@ -62,5 +62,5 @@ theme_override_constants/margin_right = 5
 [node name="DayLabel" type="Label" parent="CanvasLayer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Sunday, July 5th
+text = "Saturday, July 5th
 Afternoon"

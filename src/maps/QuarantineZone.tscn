@@ -108,6 +108,12 @@ position = Vector2(434, -1430)
 position = Vector2(-61, -44)
 image = ExtResource("10_0i7xv")
 
+[node name="ShortcutEntrance" parent="NPCs" instance=ExtResource("4_gejnf")]
+position = Vector2(-173, -209)
+
+[node name="ShortcutExit" parent="NPCs" instance=ExtResource("4_gejnf")]
+position = Vector2(508, -996)
+
 [node name="Cutscenes" type="Node2D" parent="."]
 
 [node name="JesseTalk1" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
