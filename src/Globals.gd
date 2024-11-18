@@ -24,18 +24,21 @@ func initialize_enemies():
 	#Setup all the enemy data
 	var e := Enemy.new()
 	e.enemy_name = "rat"
+	e.desc = "A rat"
 	e.texture_path = "res://assets/battle/ImpF.png"
 	e.xp_reward = 12
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
 	e.enemy_name = "slime"
+	e.desc = "ooey gooey slime"
 	e.texture_path = "res://assets/battle/ImpM.png"
 	e.stats.weaknesses.push_back("fire")
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
 	e.enemy_name = "some guy"
+	e.desc = "Some guy. He doesn’t look like he’s in the proper state of mind."
 	e.texture_path = "res://assets/tv_sprites/player_chars/wolf_girl_128x.png"
 	e.region_rect = Rect2(0, 0, 128, 128)
 	e.stats.atk = 15
@@ -50,6 +53,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "mutant man"
+	e.desc = "He looks more octopus than human. He’s wearing a trash bag, zip lock bags for shoes, and wields an imposing fork."
 	e.texture_path = "res://assets/battle/mutant-man.png"
 	e.stats.atk = 20
 	e.stats.def = 5
@@ -62,6 +66,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "mutant woman"
+	e.desc = "She looks like she’s mutated into some sort of draconic creature. Part of her snout’s scales have peeled away to show only skull."
 	e.texture_path = "res://assets/battle/mutant-woman-battle.png"
 	e.stats.atk = 20
 	e.stats.def = 5
@@ -75,6 +80,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "gat cat"
+	e.desc = "It’s a mutant cat with a gat! Is she covered in blood or ketchup!"
 	e.texture_path = "res://assets/battle/gat-cat.png"
 	e.stats.atk = 20
 	e.stats.def = 0
@@ -90,6 +96,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "lion mutant"
+	e.desc = "It’s a mutant lion! He’s definitely covered in blood and wields a spear."
 	e.texture_path = "res://assets/battle/lion-mutant.png"
 	e.stats.hp = 80
 	e.stats.atk = 20
@@ -106,6 +113,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "eldritch being"
+	e.desc = "What the hell is this? It looks like a suit containing writhing tentacles and quite a bust!"
 	e.texture_path = "res://assets/battle/ceron1-battle.png"
 	e.stats.hp = 200
 	e.stats.atk = 15

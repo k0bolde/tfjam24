@@ -8,6 +8,7 @@ class_name Dialogue
 @onready var speaker_container : Container = %SpeakerContainer
 @onready var option_container : Container = %OptionContainer
 @onready var option_button_container : Container = %OptionButtonContainer
+@onready var blink_timer : Timer = %BlinkTimer
 
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
@@ -98,8 +99,11 @@ func _set_up_line(content):
 		portrait_texture.visible = false
 	dialogue_label.visible_ratio = 0.0
 	dialogue_label.text = content.text
+	blink_timer.stop()
+	%NextIndicator.visible = false
 	text_anim_tween = Globals.get_tween(text_anim_tween, self)
 	text_anim_tween.tween_property(dialogue_label, "visible_ratio", 1.0, dialogue_label.text.length() / 80.0)
+	text_anim_tween.tween_callback(func (): blink_timer.start())
 	if content.tags.has("fade_to_black"):
 		fade_tween = Globals.get_tween(fade_tween, self)
 		fade_tween.tween_property(%FadeRect, "modulate", Color.BLACK, 5)
@@ -135,8 +139,9 @@ func _on_option_selected(index):
 
 
 func _input(event: InputEvent) -> void:
-	if not is_waiting_for_choice and event.is_action_pressed("interact") and (not fade_tween.is_running() if fade_tween else true):
-		#TODO wait an extra click or a certain amount of time so the player could presumably read it. Pause blink timer until such a state
+	if not is_waiting_for_choice \
+		and event.is_action_pressed("interact") \
+		and (not fade_tween.is_running() if fade_tween else true):
 		if text_anim_tween.is_running():
 			text_anim_tween.kill()
 			dialogue_label.visible_ratio = 1.0

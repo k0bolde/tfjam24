@@ -120,11 +120,13 @@ theme_override_constants/margin_bottom = 55
 
 [node name="NextIndicator" type="ColorRect" parent="CanvasLayer/MarginContainer2"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 color = Color(0.0186056, 0.241793, 5.05373e-07, 1)
 
 [node name="BlinkTimer" type="Timer" parent="CanvasLayer/MarginContainer2"]
+unique_name_in_owner = true
 autostart = true
 
 [node name="OptionContainer" type="MarginContainer" parent="CanvasLayer"]
