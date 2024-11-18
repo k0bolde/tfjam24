@@ -94,7 +94,12 @@ func load_map(map_name:String, entrance_num := -1):
 		player.position = new_map.entrances[entrance_num]
 	else:
 		player.position = new_map.start_location
-
+	
+	if story_flags["main"] < 1:
+		player.player_sprite.texture = load("res://assets/overworld/finley1-ow.png")
+	else:
+		player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
+		
 
 func start_battle(monsters:Array, can_run:bool):
 	Globals.player.cam.enabled = false

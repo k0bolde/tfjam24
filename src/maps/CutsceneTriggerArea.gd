@@ -25,6 +25,8 @@ func _dialogue_ended():
 	Globals.main.story_flags[flag_type] = story_flag + 1
 	# what to do when the dialogue ends - based on the story flag
 	match story_flag:
+		0:
+			Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
 		2:
 			#start tutorial battle against some guy
 			Events.battle_start.emit(["some guy"], false)

@@ -16,6 +16,7 @@ var _external_persistence := {}
 var fade_tween : Tween
 var is_waiting_for_choice := false
 var text_anim_tween : Tween
+# the dupes aren't dupes, they have a zero-width space after their name. Used for changing portraits in cutscenes
 var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
 	"Clem": "res://assets/portraits/clem-portrait.png",
@@ -27,6 +28,8 @@ var portraits := {
 	"Morgan": "res://assets/portraits/morgan.png",
 	"Bubbles": "res://assets/portraits/Bubbles.png",
 	"Finley": "res://assets/portraits/finley2.png",
+	#evil zero-width space
+	"Jesse​": "res://assets/portraits/jesse1.png",
 	"Jesse": "res://assets/portraits/jesse2.png",
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
@@ -61,8 +64,6 @@ func _ready() -> void:
 func _get_next_dialogue_line():
 	var content = dialogue.get_content()
 	if content.type == "end":
-		#TODO don't do a naughty global call
-		Globals.player.is_talking = false
 		var t := get_tree().create_tween()
 		t.set_trans(Tween.TRANS_SINE)
 		t.set_parallel()
@@ -72,6 +73,7 @@ func _get_next_dialogue_line():
 		t.tween_property(%FadeRect, "modulate", Color(0, 0, 0, 0), 0.5)
 		t.set_parallel(false)
 		t.tween_callback(Events.dialogue_ended.emit)
+		t.tween_property(Globals.player, "is_talking", false, 0)
 		t.tween_callback(queue_free)
 	elif content.type == 'line':
 		_set_up_line(content)
@@ -88,7 +90,7 @@ func _set_up_line(content):
 		speaker_container.visible = true
 		portrait_texture.visible = true
 		if portraits.has(speaker):
-			portrait_texture.texture = load(portraits[speaker])
+			portrait_texture.texture = load(get_portrait(speaker))
 		else:
 			portrait_texture.visible = false
 	else:
@@ -133,13 +135,22 @@ func _on_option_selected(index):
 
 
 func _input(event: InputEvent) -> void:
-	if not is_waiting_for_choice and event.is_action_pressed("interact"):
+	if not is_waiting_for_choice and event.is_action_pressed("interact") and (not fade_tween.is_running() if fade_tween else true):
 		#TODO wait an extra click or a certain amount of time so the player could presumably read it. Pause blink timer until such a state
 		if text_anim_tween.is_running():
 			text_anim_tween.kill()
 			dialogue_label.visible_ratio = 1.0
 		else:
 			_get_next_dialogue_line()
+	
+	
+func get_portrait(npc_name:String) -> String:
+	match npc_name:
+		"Jesse":
+			if Globals.main.story_flags["main"] < 7:
+				#still uses a zero-width space in the tf cutscene to change
+				return portraits["Some Guy"]
+	return portraits[npc_name]
 	
 	
 func _on_event_triggered(event_name):

@@ -96,7 +96,6 @@ text = "Close"
 
 [node name="DebugButton" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -167,10 +166,41 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Reminder of what to do next goes here"
 
+[node name="DebugContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/DebugContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_fcs3w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Maps"
+
+[node name="DebugMapsContainer" type="VBoxContainer" parent="CanvasLayer/DebugContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugButton" to="." method="_on_debug_button_pressed"]
 [connection signal="toggled" from="CanvasLayer/SettingsPanel/VBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]
 [connection signal="value_changed" from="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

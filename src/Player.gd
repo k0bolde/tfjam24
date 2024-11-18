@@ -5,6 +5,7 @@ class_name Player
 @onready var cam : Camera2D = $Camera2D
 @onready var interact_container : Container = %InteractContainer
 @onready var interact_label : Label = %InteractLabel
+@onready var player_sprite : Sprite2D = %PlayerSprite
 
 @export var speed := 150.0
 var is_sprinting = false

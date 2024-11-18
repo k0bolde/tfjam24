@@ -2,16 +2,25 @@ extends Control
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
 @onready var menu_container : Container = %MenuContainer
+@onready var debug_container : Container = %DebugContainer
+@onready var debug_maps_container : Container = %DebugMapsContainer
 
 
 func _ready() -> void:
-	if OS.is_debug_build():
-		%DebugButton.visible = true
+	%DebugButton.visible = OS.is_debug_build()
 	menu_container.rotation_degrees = 90.0
 	var t : Tween = get_tree().create_tween()
 	t.set_trans(Tween.TRANS_SINE)
 	t.tween_property(menu_container, "rotation_degrees", 0.0, 0.35)
 	%CashLabel.text = "$%s" % Globals.cash
+	var map_dir := DirAccess.open("res://src/maps")
+	for m in map_dir.get_files():
+		if m.ends_with(".tscn"):
+			var mb := Button.new()
+			var map_name := m.trim_suffix(".tscn")
+			mb.text = map_name
+			mb.pressed.connect(func (): Globals.main.load_map(map_name))
+			debug_maps_container.add_child(mb)
 
 
 func _on_close_button_pressed() -> void:
@@ -67,3 +76,7 @@ func _on_save_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	Globals.load_game()
+
+
+func _on_debug_button_pressed() -> void:
+	debug_container.visible = not debug_container.visible

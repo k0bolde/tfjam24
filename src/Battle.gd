@@ -1,5 +1,6 @@
 extends Node2D
 class_name Battle
+#FIXME sometimes the player get unlimited turns? weakness related?
 #TODO animations for attacks, getting attacked
 #TODO multi target attacks
 #TODO party target buffs/heals
@@ -226,6 +227,7 @@ func player_attack(which_attack:String):
 	audio_stream_player.play()
 	#update enemy hp bar
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
+	#TODO show enemy hp bar for a bit after an attack
 	if enemies[targeted_enemy].hp <= 0:
 		enemies[targeted_enemy].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 		enemies[targeted_enemy].ingame_sprite.rotation_degrees.x = 90.0
@@ -245,9 +247,6 @@ func player_attack(which_attack:String):
 		curr_party = 0
 	if turns <= 0:
 		turns = enemies.size()
-		for e in enemies:
-			if e.hp <= 0:
-				turns -= 1
 		is_player_turn = false
 		total_turns = 0
 		enemy_attack(0)
