@@ -177,10 +177,10 @@ position = Vector2(2149, -1233)
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_h7uys")
 
-[node name="CutsceneTriggerArea" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+[node name="Entrance" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 dialogue = "res://assets/dialogue/qz_entrance.clyde"
 story_flag = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/CutsceneTriggerArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/Entrance"]
 position = Vector2(14.5, -3.5)
 shape = SubResource("RectangleShape2D_24857")

@@ -5,6 +5,8 @@ extends Area2D
 @export var flag_type := "main"
 ## the story_flag[flag_type] to activate this area
 @export var story_flag := 0
+## set to true to always trigger this cutscene
+@export var always_trigger := false
 
 
 func _ready() -> void:
@@ -14,8 +16,8 @@ func _ready() -> void:
 		get_node("Remove").queue_free()
 	
 	
-func _body_entered(body):
-	if dialogue and Globals.main.story_flags[flag_type] == story_flag:
+func _body_entered(_body):
+	if dialogue and (Globals.main.story_flags[flag_type] == story_flag or always_trigger):
 		Events.dialogue_ended.connect(_dialogue_ended)
 		Globals.main.start_dialogue(dialogue)
 		

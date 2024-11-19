@@ -9,6 +9,7 @@ class_name Dialogue
 @onready var option_container : Container = %OptionContainer
 @onready var option_button_container : Container = %OptionButtonContainer
 @onready var blink_timer : Timer = %BlinkTimer
+@onready var dialogue_container : MarginContainer = %DialogueContainer
 
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
@@ -89,6 +90,7 @@ func _get_next_dialogue_line():
 func _set_up_line(content):
 	var speaker = content.get('speaker')
 	if speaker:
+		dialogue_container.add_theme_constant_override("margin_left", 200)
 		speaker_label.text = speaker
 		speaker_container.visible = true
 		portrait_texture.visible = true
@@ -97,6 +99,7 @@ func _set_up_line(content):
 		else:
 			portrait_texture.visible = false
 	else:
+		dialogue_container.add_theme_constant_override("margin_left", 100)
 		speaker_container.visible = false
 		portrait_texture.visible = false
 	dialogue_label.visible_ratio = 0.0
@@ -164,8 +167,18 @@ func get_portrait(npc_name:String) -> String:
 			#TODO replace with actual flag number
 			if Globals.main.story_flags["main"] > 10:
 				return "res://assets/portraits/finley3.png"
-		"Ulla", "Ulla Tor":
-			return portraits["Ulla"]
+		"Ulla", "Ulla Tor", "Sock":
+			#TODO replace with actual flag number
+			if Globals.main.story_flags["main"] < 16:
+				return portraits["Ulla"]
+			#TODO replace with actual flag number
+			if Globals.main.story_flags["main"] < 24:
+				return "res://assets/portraits/UllaPortraitsScaled.png"
+			#TODO replace with actual flag number
+			elif Globals.main.story_flags["main"] < 30:
+				return "res://assets/portraits/UllaPortraitsRaptor.png"
+			else:
+				return "res://assets/portraits/SockFullDefault1.png"
 	return portraits[npc_name]
 	
 	

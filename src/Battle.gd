@@ -2,9 +2,12 @@ extends Node2D
 class_name Battle
 #FIXME sometimes the player get unlimited turns? weakness related?
 #TODO animations for attacks, getting attacked
+#TODO party members can die
+#TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals
 #TODO Item use
+#TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 
 @onready var idle_cam : Camera3D = %IdleCamera
