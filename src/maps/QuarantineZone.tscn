@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dq4v76g3tsjtq"]
+[gd_scene load_steps=28 format=3 uid="uid://dq4v76g3tsjtq"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_kkp3q"]
 [ext_resource type="Texture2D" uid="uid://cd1u2n6lkl1mr" path="res://assets/QuarantineBlockDungeon.png" id="2_ydeac"]
@@ -9,14 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/overworld/Byrne.png" id="6_sgl1j"]
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="7_7mer5"]
 [ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/overworld/Pean.png" id="8_vqqdb"]
+[ext_resource type="Texture2D" uid="uid://devo4t8hhiuh7" path="res://assets/overworld/witch.png" id="9_gxrl8"]
 [ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/overworld/mark-ow.png" id="9_kuejc"]
-[ext_resource type="Texture2D" uid="uid://sej8pqhacynt" path="res://assets/battle/goatwitch.png" id="9_phquk"]
 [ext_resource type="Texture2D" uid="uid://xskvh7afd8h5" path="res://assets/overworld/guard-ow.png" id="10_0i7xv"]
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="11_cv6q6"]
-[ext_resource type="Texture2D" uid="uid://cbvs4bpi3a6mf" path="res://assets/overworld/ceron1-ow.png" id="11_dah7q"]
-[ext_resource type="Texture2D" uid="uid://dlkg70pgsqlkr" path="res://assets/battle/tail.png" id="11_dwicd"]
-[ext_resource type="Texture2D" uid="uid://bhh2gs6dywbqa" path="res://assets/battle/hydraboobs.png" id="13_n82gp"]
+[ext_resource type="Texture2D" uid="uid://di1a7uoojtoqc" path="res://assets/overworld/sustail.png" id="12_ujgor"]
+[ext_resource type="Texture2D" uid="uid://ckoj4o00tatu3" path="res://assets/overworld/hydra.png" id="13_vrykg"]
+[ext_resource type="Texture2D" uid="uid://c84riepujxjnw" path="res://assets/overworld/rendm.png" id="14_4gae4"]
+[ext_resource type="Texture2D" uid="uid://ccq7mfqp163ng" path="res://assets/overworld/rendf.png" id="15_4pbbw"]
+[ext_resource type="Texture2D" uid="uid://dukwyf8b76rqf" path="res://assets/overworld/ceron2.png" id="16_11gcm"]
 [ext_resource type="Texture2D" uid="uid://c8ps1nxwh0ob8" path="res://assets/overworld/shortcut.png" id="16_60iah"]
+[ext_resource type="Texture2D" uid="uid://b7jih7i2kfegk" path="res://assets/overworld/bonegang.png" id="17_adcnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ui67i"]
 size = Vector2(47, 327)
@@ -77,7 +80,7 @@ image = ExtResource("5_1gfri")
 
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1442, -577)
-image = ExtResource("9_phquk")
+image = ExtResource("9_gxrl8")
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -916)
@@ -93,25 +96,27 @@ image = ExtResource("5_1gfri")
 
 [node name="SusSynthTail" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1602, -1375)
-image = ExtResource("11_dwicd")
+image = ExtResource("12_ujgor")
 
 [node name="RustRist" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2389, -1253)
-image = ExtResource("13_n82gp")
+image = ExtResource("13_vrykg")
 
 [node name="RendM" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2076, -832)
+image = ExtResource("14_4gae4")
 
 [node name="RendF" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-12, -1268)
+image = ExtResource("15_4pbbw")
 
 [node name="Ceron" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(730, -817)
-image = ExtResource("11_dah7q")
+image = ExtResource("16_11gcm")
 
 [node name="SkullfaceGang" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(434, -1430)
-image = ExtResource("6_sgl1j")
+image = ExtResource("17_adcnm")
 
 [node name="Security" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-61, -44)

@@ -24,24 +24,25 @@ func _dialogue_ended():
 	Events.dialogue_ended.disconnect(_dialogue_ended)
 	Globals.main.story_flags[flag_type] = story_flag + 1
 	# what to do when the dialogue ends - based on the story flag
-	match story_flag:
-		0:
-			Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
-		2:
-			#start tutorial battle against some guy
-			Events.battle_start.emit(["some guy"], false)
-			Globals.main.start_dialogue("res://assets/dialogue/t_3.clyde")
-		3:
-			Globals.party.num = 2
-		4:
-			Events.battle_start.emit(["mutant man", "mutant woman"], false)
-			Globals.main.start_dialogue("res://assets/dialogue/t_6.clyde")
-		5:
-			Events.battle_start.emit(["gat cat", "lion mutant"], false)
-			Globals.main.start_dialogue("res://assets/dialogue/t_8.clyde")
-		6:
-			Events.battle_start.emit(["eldritch being"], false)
-			Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
+	if flag_type == "main":
+		match story_flag:
+			0:
+				Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
+			2:
+				#start tutorial battle against some guy
+				Events.battle_start.emit(["some guy"], false)
+				Globals.main.start_dialogue("res://assets/dialogue/t_3.clyde")
+			3:
+				Globals.party.num = 2
+			4:
+				Events.battle_start.emit(["mutant man", "mutant woman"], false)
+				Globals.main.start_dialogue("res://assets/dialogue/t_6.clyde")
+			5:
+				Events.battle_start.emit(["gat cat", "lion mutant"], false)
+				Globals.main.start_dialogue("res://assets/dialogue/t_8.clyde")
+			6:
+				Events.battle_start.emit(["eldritch being"], false)
+				Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
 			
 	
 	if has_node("Remove"):
