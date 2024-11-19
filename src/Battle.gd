@@ -1,8 +1,8 @@
 extends Node2D
 class_name Battle
 #FIXME sometimes the player get unlimited turns? weakness related?
-#FIXME somtimes enemies get infinite turns? check add_turn code?
-#TODO animations for attacks, getting attacked
+#FIXME sometimes enemies get infinite turns? check add_turn code?
+#TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals
@@ -60,6 +60,8 @@ var is_player_turn := true
 var curr_ability : String
 var action_cam_shaky_tween_v : Tween
 var action_cam_shaky_tween_h : Tween
+var side_cam_shaky_tween_v : Tween
+var side_cam_shaky_tween_h : Tween
 var attack_name_tween : Tween
 var total_turns := 0
 enum turn_states {PLAYER, ENEMY}
@@ -153,6 +155,18 @@ func _ready() -> void:
 	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y - 2, 11)
 	action_cam_shaky_tween_h.tween_property(action_cam, "rotation_degrees:y", action_cam_start_rot.y + 2, 11)
 	
+	var side_cam_start_rot := side_cam.rotation_degrees
+	side_cam_shaky_tween_v = Globals.get_tween(side_cam_shaky_tween_v, self)
+	side_cam_shaky_tween_v.set_trans(Tween.TRANS_SINE)
+	side_cam_shaky_tween_v.set_loops()
+	side_cam_shaky_tween_v.tween_property(side_cam, "rotation_degrees:x", side_cam_start_rot.x - 2, 5)
+	side_cam_shaky_tween_v.tween_property(side_cam, "rotation_degrees:x", side_cam_start_rot.x + 2, 5)
+	side_cam_shaky_tween_h = Globals.get_tween(side_cam_shaky_tween_h, self)
+	side_cam_shaky_tween_h.set_trans(Tween.TRANS_SINE)
+	side_cam_shaky_tween_h.set_loops()
+	side_cam_shaky_tween_h.tween_property(side_cam, "rotation_degrees:y", side_cam_start_rot.y - 2, 11)
+	side_cam_shaky_tween_h.tween_property(side_cam, "rotation_degrees:y", side_cam_start_rot.y + 2, 11)
+	
 	#heal after battle
 	for p in Globals.party.p:
 		p["hp"] = p["stats"].hp
@@ -222,6 +236,7 @@ func _on_run_button_pressed() -> void:
 	
 	
 func player_attack(which_attack:String):
+	disable_buttons()
 	add_turn(-1)
 	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
@@ -230,6 +245,9 @@ func player_attack(which_attack:String):
 	enemy_hp_bar.value = enemies[targeted_enemy].hp
 	#TODO show enemy hp bar for a bit after an attack
 	if enemies[targeted_enemy].hp <= 0:
+		enemies[targeted_enemy].anim_tween.kill()
+		enemies[targeted_enemy].hp_bar_tween.kill()
+		enemies[targeted_enemy].hp_mesh.visible = false
 		enemies[targeted_enemy].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 		enemies[targeted_enemy].ingame_sprite.rotation_degrees.x = 90.0
 		enemies[targeted_enemy].ingame_sprite.rotation_degrees.y = 90.0
@@ -250,6 +268,7 @@ func player_attack(which_attack:String):
 		is_player_turn = false
 		total_turns = 0
 		turn_state = turn_states.ENEMY
+		#TODO change this from a method call to something else
 		enemy_attack(0)
 	else:
 		update_bars(curr_party)
@@ -287,9 +306,11 @@ func enemy_attack(which_enemy:int):
 		var next_enemy := which_enemy + 1
 		if next_enemy >= enemies.size():
 			next_enemy = 0
+		#TODO change this from a method call to something else
 		enemy_attack(next_enemy)
 	else:
-		idle_cam.make_current()
+		#idle_cam.make_current()
+		side_cam.make_current()
 		is_player_turn = true
 		turns = Globals.party.num_alive()
 		total_turns = 0
@@ -317,6 +338,20 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	var the_target : Node3D
 	if target >= 0:
 		the_target = enemies[target].ingame_sprite
+		var bar := enemies[target].hp_bar
+		enemies[target].hp_mesh.visible = true
+		enemies[target].hp_mesh.position = the_target.position
+		enemies[target].hp_mesh.position.y += 1.0
+		bar.value = enemies[target].hp
+		bar.max_value = enemies[target].stats.hp
+		var t := get_tree().create_tween()
+		enemies[target].hp_bar_tween = t
+		t.tween_interval(5)
+		t.tween_callback(func (): 
+			if curr_enemy == target and not indicator_light.visible:
+				enemies[target].hp_mesh.visible = false
+			)
+		#t.tween_property(enemies[target].hp_mesh, "visible", false, 0)
 	else:
 		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
 	wl.visible = true
@@ -376,7 +411,8 @@ func hide_targeting():
 	%TargetContainer.visible = false
 	indicator_light.visible = false
 	enemies[targeted_enemy].hp_mesh.visible = false
-	idle_cam.make_current()
+	#idle_cam.make_current()
+	side_cam.make_current()
 
 
 func _on_target_left_button_pressed() -> void:
@@ -469,7 +505,7 @@ func _on_cancel_target_button_pressed() -> void:
 func _on_attack_button_pressed() -> void:
 	hide_targeting()
 	player_attack(curr_ability)
-	enable_buttons()
+	#enable_buttons()
 	
 	
 func _on_abilities_button_pressed() -> void:
@@ -560,24 +596,24 @@ func _on_pass_turn_button_pressed() -> void:
 		show_enemy_attack("Can't pass turns, turn limit reached")
 		return
 	total_turns += 1
-	curr_party += 1
-	#TODO don't pass to dead party members
-	if curr_party >= Globals.party.num:
-		curr_party = 0
+	curr_party = find_next_teammate()
 	update_bars(curr_party)
 	update_turns()
 	
 
 func animate_sprite(target:int):
 	var the_target : Sprite3D
+	var t := get_tree().create_tween()
 	if target >= 0:
 		the_target = enemies[target]["ingame_sprite"]
+		enemies[target]["anim_tween"] = t
 	else:
 		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
-	var t := get_tree().create_tween()
-	t.tween_property(the_target, "position:y", the_target.position.y + 0.5, 0.25)
-	t.tween_property(the_target, "position:y", the_target.position.y - 0.5, 0.25)
-	
+	t.tween_property(the_target, "position:y", the_target.position.y + 0.25, 0.1)
+	t.tween_property(the_target, "position:y", the_target.position.y, 0.1)
+	t.tween_interval(0.5)
+	t.tween_callback(enable_buttons)
+
 
 func _on_inspect_button_pressed() -> void:
 	disable_buttons()

@@ -21,3 +21,5 @@ var ingame_sprite : Sprite3D
 var hp_mesh : MeshInstance3D
 var hp_bar : ProgressBar
 var name_label : Label3D
+var anim_tween : Tween
+var hp_bar_tween : Tween

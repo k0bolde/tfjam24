@@ -230,6 +230,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 	var dmg = (the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25))
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
+	battle.animate_sprite(target)
 	if target < 0:
 		if the_target["hp"] <= 0:
 			the_target["hp"] = 0
