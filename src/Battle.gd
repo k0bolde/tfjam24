@@ -2,6 +2,7 @@ extends Node2D
 class_name Battle
 #FIXME sometimes the player get unlimited turns? weakness related?
 #FIXME sometimes enemies get infinite turns? check add_turn code?
+#TODO make enemies wait a bit between attacks
 #TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
@@ -271,6 +272,8 @@ func player_attack(which_attack:String):
 		#TODO change this from a method call to something else
 		enemy_attack(0)
 	else:
+		await get_tree().create_timer(1).timeout
+		enable_buttons()
 		update_bars(curr_party)
 		update_turns()
 	
@@ -290,6 +293,7 @@ func enemy_attack(which_enemy:int):
 	if get_tree() == null:
 		return
 	update_turns()
+	await get_tree().create_timer(1).timeout
 	add_turn(-1)
 	#TODO pick attack and target - don't target dead party members
 	var selected_attack := "punch"
@@ -309,7 +313,6 @@ func enemy_attack(which_enemy:int):
 		#TODO change this from a method call to something else
 		enemy_attack(next_enemy)
 	else:
-		#idle_cam.make_current()
 		side_cam.make_current()
 		is_player_turn = true
 		turns = Globals.party.num_alive()
@@ -319,6 +322,7 @@ func enemy_attack(which_enemy:int):
 			curr_party = find_next_teammate()
 		update_bars(curr_party)
 		update_turns()
+		enable_buttons()
 
 
 func kill_party_member(party_num:int):
@@ -411,7 +415,6 @@ func hide_targeting():
 	%TargetContainer.visible = false
 	indicator_light.visible = false
 	enemies[targeted_enemy].hp_mesh.visible = false
-	#idle_cam.make_current()
 	side_cam.make_current()
 
 
@@ -612,7 +615,6 @@ func animate_sprite(target:int):
 	t.tween_property(the_target, "position:y", the_target.position.y + 0.25, 0.1)
 	t.tween_property(the_target, "position:y", the_target.position.y, 0.1)
 	t.tween_interval(0.5)
-	t.tween_callback(enable_buttons)
 
 
 func _on_inspect_button_pressed() -> void:
