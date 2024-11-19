@@ -9,6 +9,8 @@ extends Control
 
 
 func _ready() -> void:
+	debug_container.visible = false
+	settings_panel.visible = false
 	%DebugButton.visible = OS.is_debug_build()
 	menu_container.rotation_degrees = 90.0
 	var t : Tween = get_tree().create_tween()
@@ -66,6 +68,7 @@ func _on_settings_button_pressed() -> void:
 		settings_panel.visible = true
 		fullscreen_checkbutton.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 		%VolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(0))
+		%ActionCamButton.button_pressed = Globals.use_action_cam
 
 
 func _on_fullscreen_check_button_toggled(toggled_on: bool) -> void:
@@ -91,3 +94,7 @@ func _on_load_button_pressed() -> void:
 
 func _on_debug_button_pressed() -> void:
 	debug_container.visible = not debug_container.visible
+
+
+func _on_action_cam_button_toggled(toggled_on: bool) -> void:
+	Globals.use_action_cam = toggled_on

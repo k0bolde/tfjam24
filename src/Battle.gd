@@ -2,7 +2,6 @@ extends Node2D
 class_name Battle
 #FIXME sometimes the player get unlimited turns? weakness related?
 #FIXME sometimes enemies get infinite turns? check add_turn code?
-#TODO make enemies wait a bit between attacks
 #TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
@@ -69,6 +68,10 @@ enum turn_states {PLAYER, ENEMY}
 var turn_state := turn_states.PLAYER
 
 func _ready() -> void:
+	if Globals.use_action_cam:
+		idle_cam.make_current()
+	else:
+		side_cam.make_current()
 	#make enemies from names
 	if enemy_names.size() > 0:
 		for en in enemy_names:
@@ -313,7 +316,10 @@ func enemy_attack(which_enemy:int):
 		#TODO change this from a method call to something else
 		enemy_attack(next_enemy)
 	else:
-		side_cam.make_current()
+		if Globals.use_action_cam:
+			idle_cam.make_current()
+		else:
+			side_cam.make_current()
 		is_player_turn = true
 		turns = Globals.party.num_alive()
 		total_turns = 0
@@ -415,7 +421,10 @@ func hide_targeting():
 	%TargetContainer.visible = false
 	indicator_light.visible = false
 	enemies[targeted_enemy].hp_mesh.visible = false
-	side_cam.make_current()
+	if Globals.use_action_cam:
+		idle_cam.make_current()
+	else:
+		side_cam.make_current()
 
 
 func _on_target_left_button_pressed() -> void:

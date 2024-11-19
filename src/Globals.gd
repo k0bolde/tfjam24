@@ -10,6 +10,7 @@ var party := Party.new()
 var inventory
 var cash := 0
 var enemies := {}
+var use_action_cam := false
 
 
 func _ready() -> void:

@@ -110,7 +110,6 @@ text = "Debug"
 
 [node name="SettingsPanel" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 offset_left = 480.0
 offset_top = 270.0
 offset_right = 710.0
@@ -140,6 +139,11 @@ size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 
+[node name="ActionCamButton" type="CheckButton" parent="CanvasLayer/SettingsPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Action Battle Cam"
+
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -168,6 +172,7 @@ text = "Reminder of what to do next goes here"
 
 [node name="DebugContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -245,3 +250,4 @@ text = "Start"
 [connection signal="pressed" from="CanvasLayer/DebugButton" to="." method="_on_debug_button_pressed"]
 [connection signal="toggled" from="CanvasLayer/SettingsPanel/VBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]
 [connection signal="value_changed" from="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="CanvasLayer/SettingsPanel/VBoxContainer/ActionCamButton" to="." method="_on_action_cam_button_toggled"]
