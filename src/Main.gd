@@ -2,6 +2,7 @@ extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #TODO unlock moves by leveling up
 #TODO battle animations/sounds
+#TODO don't repeat start of hub dialogues while on same map
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode
@@ -97,8 +98,12 @@ func load_map(map_name:String, entrance_num := -1):
 	
 	if story_flags["main"] < 1:
 		player.player_sprite.texture = load("res://assets/overworld/finley1-ow.png")
-	else:
+	#TODO replace with actual flag
+	elif story_flags["main"] >= 1 and story_flags["main"] < 10:
 		player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
+	else:
+		player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")
+		
 		
 
 func start_battle(monsters:Array, can_run:bool):

@@ -24,6 +24,15 @@ Zal: Hi! Looking for anything specific? You can also just chill here!
 		-
 			Zal: You can recruit me if you find a secret! Just kidding. I have a shop to run!
 			<-
+		-
+        	Zal: I used to be a dude! Turns out you shouldn’t take secondhand drugs!
+        	<-
+		-
+        	Zal: It turns out having a tail is useful for many things!
+        	<-
+		-
+        	Zal: Have you noticed all the new girls are stacked? What’s that all about? Not that I’m complaining!
+        	<-
 	)
 + Leave
 	-> END

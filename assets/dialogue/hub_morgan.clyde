@@ -22,6 +22,15 @@ Morgan: Greetings! I am Morgan. Looking to tune up or purchase some gear? It wil
 	-
 		Morgan: I may not be of much help if equipment isn’t implemented yet. So sorry.
 		<-
+	-
+    	Morgan: I wasn’t always a blacksmith! I just figured having four arms was a good excuse to get into it.
+    	<-
+	-
+		Morgan: Having an exoskeleton is a good reason not to wear clothes!
+		<-
+	-
+    	Morgan: Rene and Clem have me cornered on the milk market, although mantis milk does have some nice alliteration.
+    	<-
 	)
 + Leave
 	-> END

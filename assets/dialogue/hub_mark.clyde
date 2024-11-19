@@ -48,6 +48,12 @@ Mark: Caw! I’m Mark! I have an assortment of trinkets and baubles and I also k
 		-
 			Mark: They call me the gambler because I wanna die on a train.
 			<-
+		-
+        	Mark: I was a programmer not too long ago. Now I’m a programmer and a crow!
+        	<-
+		-
+        	Mark: I don’t miss my hands. I have fwhands and fwingers instead!
+        	<-
 	)
 + Leave
 	-> END

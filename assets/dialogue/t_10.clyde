@@ -1,1 +1,7 @@
-???????: screech!!!
+???????: [i]screech[/i]!!!
+???????: danger… terror… submit…
+Submit?
++ Hell no! (enter fight)
+	{ trigger celon_fight }
++ Hell yeah! (Sparkledog and sparkledog TFTG)
+	{ trigger sparkle_bad_end }

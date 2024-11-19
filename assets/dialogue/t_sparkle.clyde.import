@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://cadcscoqxbq7b"
+path="res://.godot/imported/t_sparkle.clyde-fbbc5ccad30e6881a9d2ad23a04a9116.res"
+
+[deps]
+
+source_file="res://assets/dialogue/t_sparkle.clyde"
+dest_files=["res://.godot/imported/t_sparkle.clyde-fbbc5ccad30e6881a9d2ad23a04a9116.res"]
+
+[params]
+

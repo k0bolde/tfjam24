@@ -32,6 +32,12 @@ Clem: But that’s my secondary function! What can I get ya?
 		-
 			Clem: I don’t know who’s manufacturing these drugs. CausDek Corp would never do such a thing!
 			<-
+		-
+			Clem: What was I before my change? I’ve always been a service synth, silly!
+			<-
+		-
+			Clem: Now that I think about it, I might have been a dude once. So boring! I’d rather be a sexy synth with big boobies!
+			<-
 	)
 + Leave
 	-> END

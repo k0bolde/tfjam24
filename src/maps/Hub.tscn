@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bpvotvbs7yfnl" path="res://src/NPC.tscn" id="4_vdb05"]
 [ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/overworld/Byrne.png" id="6_2i6pi"]
 [ext_resource type="Texture2D" uid="uid://cbi5d3p58daa5" path="res://assets/overworld/jesse2-ow.png" id="7_8xny6"]
-[ext_resource type="Texture2D" uid="uid://evis5wd8defi" path="res://assets/tv_sprites/player_chars/spr_overworld_pc_48x48.png" id="7_rk7hs"]
 [ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/overworld/Pean.png" id="8_77hjx"]
+[ext_resource type="Texture2D" uid="uid://6rywphk86ecy" path="res://assets/overworld/ulla1-ow.png" id="9_nfygn"]
 [ext_resource type="Texture2D" uid="uid://c6qgbswo1rwxx" path="res://assets/overworld/Barista_Snake.png" id="10_h7mch"]
 [ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="11_m5n03"]
 [ext_resource type="Texture2D" uid="uid://b565ytd6yat1t" path="res://assets/overworld/morgan-ow.png" id="12_a162i"]
@@ -157,7 +157,7 @@ dialogue_file = "res://assets/dialogue/hub_pean.clyde"
 
 [node name="Sock" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(382, 20)
-image = ExtResource("7_rk7hs")
+image = ExtResource("9_nfygn")
 dialogue_file = "res://assets/dialogue/hub_ulla.clyde"
 
 [node name="Rene" parent="NPCs" instance=ExtResource("4_vdb05")]

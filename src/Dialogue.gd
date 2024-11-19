@@ -35,8 +35,10 @@ var portraits := {
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
 	"Zal": "res://assets/portraits/zal.png",
-	"Ulla": "res://assets/portraits/UllaPortraitHuman.png",
+	"Ulla": "res://assets/portraits/UllaPortraitsHuman.png",
+	"Security Guard": "res://assets/portraits/security.png",
 }
+
 
 func _ready() -> void:
 	dialogue.load_dialogue(dialogue_to_load)
@@ -155,6 +157,13 @@ func get_portrait(npc_name:String) -> String:
 			if Globals.main.story_flags["main"] < 7:
 				#still uses a zero-width space in the tf cutscene to change
 				return portraits["Some Guy"]
+			# TODO replace with actual flag
+			elif Globals.main.story_flags["main"] > 13:
+				return "res://assets/portraits/jesse3.png"
+		"Finley":
+			#TODO replace with actual flag number
+			if Globals.main.story_flags["main"] > 10:
+				return "res://assets/portraits/finley3.png"
 	return portraits[npc_name]
 	
 	

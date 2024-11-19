@@ -100,7 +100,7 @@ func _ready() -> void:
 		hpmesh.unique_name_in_owner = false
 		enemies[i].hp_bar = hpmesh.get_node("SubViewport/EnemyHPBar")
 		enemies[i].hp_bar.unique_name_in_owner = false
-		enemies[i].hp_bar.value = i * (100.0 / enemies.size())
+		#enemies[i].hp_bar.value = i * (100.0 / enemies.size())
 		# needed to make a new mesh otherwise they all shared the same texture
 		var planemesh := PlaneMesh.new()
 		planemesh.size = Vector2(0.075, 0.465)
