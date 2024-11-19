@@ -4,3 +4,9 @@ Finley: How should I know?
 Jesse: Fair enough…
 Looks like it wants to fight…
 Tutorial Pean: Uh oh! This is a boss fight! These fights are more difficult and will require a bit more brainpower to be successful in, but you’ve got to. I believe in you.   
+???????: danger… terror… submit…
+Submit?
++ Hell no! (enter fight)
+	{ trigger celon_fight }
++ Hell yeah! (Sparkledog and sparkledog TFTG)
+	{ trigger sparkle_bad_end }

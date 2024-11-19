@@ -1,8 +1,8 @@
 extends Node2D
 class_name Battle
 #FIXME sometimes the player get unlimited turns? weakness related?
+#FIXME somtimes enemies get infinite turns? check add_turn code?
 #TODO animations for attacks, getting attacked
-#TODO party members can die
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals
@@ -43,6 +43,7 @@ class_name Battle
 @onready var inspect_desc_label : Label = %InspectDescLabel
 @onready var inspect_weak_label : Label = %InspectWeakLabel
 @onready var inspect_resist_label : Label = %InspectResistLabel
+@onready var side_cam : Camera3D = %SideCam
 
 var can_run := false
 var enemy_names := []
@@ -61,7 +62,8 @@ var action_cam_shaky_tween_v : Tween
 var action_cam_shaky_tween_h : Tween
 var attack_name_tween : Tween
 var total_turns := 0
-
+enum turn_states {PLAYER, ENEMY}
+var turn_state := turn_states.PLAYER
 
 func _ready() -> void:
 	#make enemies from names
@@ -131,7 +133,7 @@ func _ready() -> void:
 	cam_tween.set_trans(Tween.TRANS_SINE)
 	cam_tween.set_loops()
 	var cam_start_pos := idle_cam.position
-	cam_tween.tween_property(idle_cam, "position:x", cam_start_pos.x + 2, 5)
+	cam_tween.tween_property(idle_cam, "position:x", cam_start_pos.x + 2, 10)
 	cam_tween.tween_property(idle_cam, "position:x", cam_start_pos.x, 0)
 	cam_tween.tween_property(idle_cam, "position:z", 0, 0)
 	cam_tween.tween_property(idle_cam, "position:y", cam_start_pos.y + 0.5, 5)
@@ -172,9 +174,6 @@ func _ready() -> void:
 	update_bars(0)
 	update_turns()
 	
-	#move enemy indicator
-	#update_selected_enemy()
-
 
 func _process(_delta: float) -> void:
 	idle_cam.look_at(battle_center.position)
@@ -223,7 +222,6 @@ func _on_run_button_pressed() -> void:
 	
 	
 func player_attack(which_attack:String):
-	#TODO don't give dead party members turns
 	add_turn(-1)
 	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
@@ -244,18 +242,29 @@ func player_attack(which_attack:String):
 	if enemies.size() == 0:
 		battle_won()
 	
-	#TODO handle dead party members
-	curr_party += 1
-	if curr_party >= Globals.party.num:
-		curr_party = 0
+	curr_party = find_next_teammate()
 	if turns <= 0:
-		turns = enemies.size()
+		turns = 0
+		for e in enemies:
+			turns += e.base_turns
 		is_player_turn = false
 		total_turns = 0
+		turn_state = turn_states.ENEMY
 		enemy_attack(0)
 	else:
 		update_bars(curr_party)
 		update_turns()
+	
+	
+func find_next_teammate() -> int:
+	var next_teammate := curr_party + 1
+	if next_teammate >= Globals.party.num:
+		next_teammate = 0
+	while Globals.party.p[next_teammate]["hp"] <= 0:
+		next_teammate += 1
+		if next_teammate >= Globals.party.num:
+			next_teammate = 0
+	return next_teammate
 	
 	
 func enemy_attack(which_enemy:int):
@@ -263,14 +272,13 @@ func enemy_attack(which_enemy:int):
 		return
 	update_turns()
 	add_turn(-1)
-	#TODO pick attack and target
+	#TODO pick attack and target - don't target dead party members
 	var selected_attack := "punch"
 	var target_party := 0
 	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
-	#update party hp
 	update_bars(0)
 	turns_label.text = "%d" % turns
 	if Globals.party.num_alive() <= 0:
@@ -285,9 +293,20 @@ func enemy_attack(which_enemy:int):
 		is_player_turn = true
 		turns = Globals.party.num_alive()
 		total_turns = 0
+		turn_state = turn_states.PLAYER
+		if Globals.party.p[curr_party]["hp"] <= 0:
+			curr_party = find_next_teammate()
 		update_bars(curr_party)
 		update_turns()
 
+
+func kill_party_member(party_num:int):
+	var sp : Sprite3D = Globals.party.p[party_num]["ingame_sprite"]
+	sp.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	sp.rotation_degrees.x = 90.0
+	sp.rotation_degrees.y = -90.0
+	sp.position.y = -0.45
+	
 
 # type 0 = normal, 1 = weakness, 2 = resist, 3 = miss
 func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
@@ -511,7 +530,7 @@ func add_turn(num := 1, override_total := false):
 		turns += num
 		total_turns += abs(num)
 	else:
-		print_stack()
+		#print_stack()
 		if is_player_turn:
 			#TODO allow adding a turn when killing an enemy with a weakness even if max turns hit
 			if total_turns < enemies.size() * 2:
@@ -522,6 +541,7 @@ func add_turn(num := 1, override_total := false):
 			if total_turns < Globals.party.num_alive() * 2:
 				turns += num
 				total_turns += abs(num)
+				print("Added enemy turn - %d/%d" % [turns, total_turns])
 		update_turns()
 
 

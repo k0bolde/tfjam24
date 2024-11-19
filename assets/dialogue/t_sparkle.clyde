@@ -16,5 +16,5 @@ Jesse: You’re [i]so[/i] right. I will NOT embarrass myself by, like, going out
 Finley: I get what you mean. I’m, uh, heading back to the apartment. Maybe this will wear off?
 Jesse: It better! Do you know how much of an ordeal it would be to, like, dye fur???
 It doesn’t wear off, of course. You and Jesse are stuck in your current forms and too embarrassed to venture outside. You don’t know what happens next, at least until you muster the courage to go outside again. But that’ll be a long while…
-[color=red]GAME OVER[/color]
+[center][color=red]GAME OVER[/color][/center]
 { trigger game_over }

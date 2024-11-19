@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://bvp3mvgdgfhlr"
+path="res://.godot/imported/qz_glenys.clyde-1a5fc993c633917f601c2f86225e021f.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_glenys.clyde"
+dest_files=["res://.godot/imported/qz_glenys.clyde-1a5fc993c633917f601c2f86225e021f.res"]
+
+[params]
+

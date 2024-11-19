@@ -206,7 +206,7 @@ region_rect = Rect2(256, 512, 64, 64)
 
 [node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28131, 0.0480421, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28131, 0.100173, 0)
 
 [node name="IdleCamera" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
@@ -354,6 +354,10 @@ billboard = 2
 texture_filter = 2
 modulate = Color(1, 0, 0, 1)
 text = "Crit!"
+
+[node name="SideCam" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16522, 0.35458, 1.588)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -739,6 +743,17 @@ text = "Resists"
 [node name="InspectCancelButton" type="Button" parent="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Cancel"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/MarginContainer2/PanelContainer"]
+layout_mode = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5

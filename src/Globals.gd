@@ -53,7 +53,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "mutant man"
-	e.desc = "He looks more octopus than human. He’s wearing a trash bag, zip lock bags for shoes, and wields an imposing fork."
+	e.desc = "He looks more octopus than human. He’s wearing a trash bag, \nzip lock bags for shoes, and wields an imposing fork."
 	e.texture_path = "res://assets/battle/mutant-man.png"
 	e.stats.atk = 20
 	e.stats.def = 5
@@ -66,7 +66,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "mutant woman"
-	e.desc = "She looks like she’s mutated into some sort of draconic creature. Part of her snout’s scales have peeled away to show only skull."
+	e.desc = "She looks like she’s mutated into some sort of draconic creature.\nPart of her snout’s scales have peeled away to show only skull."
 	e.texture_path = "res://assets/battle/mutant-woman-battle.png"
 	e.stats.atk = 20
 	e.stats.def = 5
@@ -125,6 +125,7 @@ func initialize_enemies():
 	e.stats.abilities.append_array(["tentacle whip", "shriek", "insane insight"])
 	e.cash_reward = 25
 	e.xp_reward = 5
+	e.base_turns = 2
 	e.item_drops["dozeneggs"] = 1.0
 	e.item_drops["lime time"] = 1.0
 	e.flip_h = true
@@ -133,6 +134,7 @@ func initialize_enemies():
 
 func initialize_party():	
 	#set up starting stats for party
+	#Globals.party.p[0].stats.hp = 10
 	Globals.party.p[0].stats.atk = 25
 	Globals.party.p[0].stats.def = 0
 	Globals.party.p[0].stats.eva = 5

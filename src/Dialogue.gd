@@ -184,6 +184,19 @@ func get_portrait(npc_name:String) -> String:
 	
 func _on_event_triggered(event_name):
 	print("Event received: %s" % event_name)
+	match event_name:
+		"celon_fight":
+			Events.battle_start.emit(["eldritch being"], false)
+			Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
+		"sparkle_bad_end":
+			Globals.main.start_dialogue("res://assets/dialogue/t_sparkle.clyde")
+		"game_over":
+			#TODO game over screen
+			get_tree().change_scene_to_file("res://src/Main.tscn")
+		_:
+			printerr("unhandled dialogue event %s" % event_name)
+			
+			
 
 
 func _on_variable_changed(variable_name, new_value, previous_value):

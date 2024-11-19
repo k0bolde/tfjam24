@@ -1,4 +1,5 @@
 extends Control
+#TODO debug options - start battle, party num, party levels
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
 @onready var menu_container : Container = %MenuContainer

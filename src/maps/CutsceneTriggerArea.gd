@@ -42,9 +42,9 @@ func _dialogue_ended():
 			5:
 				Events.battle_start.emit(["gat cat", "lion mutant"], false)
 				Globals.main.start_dialogue("res://assets/dialogue/t_8.clyde")
-			6:
-				Events.battle_start.emit(["eldritch being"], false)
-				Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
+			#6:
+				#Events.battle_start.emit(["eldritch being"], false)
+				#Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
 			
 	
 	if has_node("Remove"):

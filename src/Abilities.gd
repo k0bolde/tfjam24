@@ -230,6 +230,10 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 	var dmg = (the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25))
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
+	if target < 0:
+		if the_target["hp"] <= 0:
+			the_target["hp"] = 0
+			battle.kill_party_member(abs(target) - 1)
 	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
 	
 	

@@ -81,6 +81,7 @@ image = ExtResource("5_1gfri")
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1442, -577)
 image = ExtResource("9_gxrl8")
+dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -916)
@@ -117,6 +118,7 @@ image = ExtResource("16_11gcm")
 [node name="SkullfaceGang" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(434, -1430)
 image = ExtResource("17_adcnm")
+dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
 
 [node name="Security" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-61, -44)

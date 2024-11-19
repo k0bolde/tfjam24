@@ -98,7 +98,7 @@ func load_map(map_name:String, entrance_num := -1):
 	
 	if story_flags["main"] < 1:
 		player.player_sprite.texture = load("res://assets/overworld/finley1-ow.png")
-	#TODO replace with actual flag
+	#TODO replace with actual flaga
 	elif story_flags["main"] >= 1 and story_flags["main"] < 10:
 		player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
 	else:
