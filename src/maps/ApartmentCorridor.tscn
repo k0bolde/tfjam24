@@ -17,7 +17,7 @@
 size = Vector2(45, 178)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52411"]
-size = Vector2(56, 159)
+size = Vector2(45, 159)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is5ah"]
 size = Vector2(54, 166)
@@ -29,7 +29,7 @@ size = Vector2(46, 164)
 size = Vector2(43, 159)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30xbp"]
-size = Vector2(99, 131)
+size = Vector2(83, 131)
 
 [node name="ApartmentCorridor" type="Node2D"]
 script = ExtResource("1_ubuer")
@@ -71,7 +71,7 @@ dialogue = "res://assets/dialogue/t_4.clyde"
 story_flag = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea2"]
-position = Vector2(18, -30.5)
+position = Vector2(12.5, -30.5)
 shape = SubResource("RectangleShape2D_52411")
 
 [node name="Remove" type="Node2D" parent="CutsceneTriggerArea2"]
@@ -146,5 +146,5 @@ dialogue = "res://assets/dialogue/t_11.clyde"
 story_flag = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea6"]
-position = Vector2(39.5, 26.5)
+position = Vector2(31.5, 26.5)
 shape = SubResource("RectangleShape2D_30xbp")

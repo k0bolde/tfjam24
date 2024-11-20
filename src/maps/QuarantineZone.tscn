@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dq4v76g3tsjtq"]
+[gd_scene load_steps=30 format=3 uid="uid://dq4v76g3tsjtq"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_kkp3q"]
 [ext_resource type="Texture2D" uid="uid://cd1u2n6lkl1mr" path="res://assets/QuarantineBlockDungeon.png" id="2_ydeac"]
@@ -42,6 +42,11 @@ size = Vector2(20, 238)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24857"]
 size = Vector2(253, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aloq7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wre7"]
+size = Vector2(288, 20)
+
 [node name="QuarantineZone" type="Node2D"]
 script = ExtResource("1_kkp3q")
 map_name = "Quarantine Zone"
@@ -63,7 +68,7 @@ position = Vector2(478, -560)
 image = ExtResource("5_1gfri")
 
 [node name="Savak" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1443, -108)
+position = Vector2(1396, -648)
 image = ExtResource("5_ygayf")
 
 [node name="Byrne" parent="NPCs" instance=ExtResource("4_gejnf")]
@@ -79,7 +84,7 @@ position = Vector2(2431, -271)
 image = ExtResource("5_1gfri")
 
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1442, -577)
+position = Vector2(1410, -51)
 image = ExtResource("9_gxrl8")
 dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
 
@@ -121,7 +126,7 @@ image = ExtResource("17_adcnm")
 dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
 
 [node name="Security" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(-61, -44)
+position = Vector2(1, -81)
 image = ExtResource("10_0i7xv")
 dialogue_file = "res://assets/dialogue/qz_security.clyde"
 
@@ -186,3 +191,19 @@ story_flag = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/Entrance"]
 position = Vector2(14.5, -3.5)
 shape = SubResource("RectangleShape2D_24857")
+
+[node name="SecurityWall" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+story_flag = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/SecurityWall"]
+position = Vector2(-244, -79)
+shape = SubResource("RectangleShape2D_aloq7")
+
+[node name="Remove" type="Node2D" parent="Cutscenes/SecurityWall"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Cutscenes/SecurityWall/Remove"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/SecurityWall/Remove/StaticBody2D"]
+position = Vector2(11, -116)
+shape = SubResource("RectangleShape2D_6wre7")

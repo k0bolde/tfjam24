@@ -206,11 +206,13 @@ func _on_variable_changed(variable_name, new_value, previous_value):
 # if it tried to access { @health }, this method would be called and return the value from
 # _external_persistence["health"]
 func _on_external_variable_fetch(variable_name: String):
+	print("variable %s read" % variable_name)
 	return _external_persistence[variable_name]
 
 
 # This method is called when the dialogue tries to set an external variable. i.e { set @health = 10 }
 func _on_external_variable_update(variable_name: String, value: Variant):
+	print("variable %s updated to value %s" % [variable_name, value])
 	_external_persistence[variable_name] = value
 
 

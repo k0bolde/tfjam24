@@ -1,7 +1,6 @@
 extends Node2D
 class_name Battle
-#FIXME sometimes the player get unlimited turns? weakness related?
-#FIXME sometimes enemies get infinite turns? check add_turn code?
+#FIXME sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
 #TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
@@ -225,6 +224,48 @@ func update_bars(party_num):
 			n.reparent(party_bars_vbox_container.get_node("GridContainer"))
 		bars.queue_free()
 	
+	
+func turn_ended():
+	if is_player_turn:
+		curr_party = find_next_teammate()
+		if turns <= 0:
+			turns = 0
+			for e in enemies:
+				turns += e.base_turns
+			is_player_turn = false
+			total_turns = 0
+			turn_state = turn_states.ENEMY
+			#TODO change this from a method call to something else
+			enemy_attack(0)
+		else:
+			await get_tree().create_timer(1).timeout
+			enable_buttons()
+			update_bars(curr_party)
+			update_turns()
+	else:
+		if Globals.party.num_alive() <= 0:
+			battle_lost()
+		if turns > 0:
+			var next_enemy := curr_enemy + 1
+			if next_enemy >= enemies.size():
+				next_enemy = 0
+			#TODO change this from a method call to something else
+			enemy_attack(next_enemy)
+		else:
+			if Globals.use_action_cam:
+				idle_cam.make_current()
+			else:
+				side_cam.make_current()
+			is_player_turn = true
+			turns = Globals.party.num_alive()
+			total_turns = 0
+			turn_state = turn_states.PLAYER
+			if Globals.party.p[curr_party]["hp"] <= 0:
+				curr_party = find_next_teammate()
+			update_bars(curr_party)
+			update_turns()
+			enable_buttons()
+
 
 func _on_run_button_pressed() -> void:
 	if can_run:
@@ -241,7 +282,8 @@ func _on_run_button_pressed() -> void:
 	
 func player_attack(which_attack:String):
 	disable_buttons()
-	add_turn(-1)
+	turns -= 1
+	update_turns()
 	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
@@ -293,15 +335,15 @@ func find_next_teammate() -> int:
 	
 	
 func enemy_attack(which_enemy:int):
-	if get_tree() == null:
+	if not is_inside_tree():
 		return
+	curr_enemy = which_enemy
+	turns -= 1
 	update_turns()
-	await get_tree().create_timer(1).timeout
-	add_turn(-1)
 	#TODO pick attack and target - don't target dead party members
 	var selected_attack := "punch"
 	var target_party := 0
-	Abilities.abilities[selected_attack]["callable"].call(which_enemy, Globals.party, enemies, -(target_party + 1), self)
+	Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
@@ -310,7 +352,8 @@ func enemy_attack(which_enemy:int):
 	if Globals.party.num_alive() <= 0:
 		battle_lost()
 	if turns > 0:
-		var next_enemy := which_enemy + 1
+		await get_tree().create_timer(1).timeout
+		var next_enemy := curr_enemy + 1
 		if next_enemy >= enemies.size():
 			next_enemy = 0
 		#TODO change this from a method call to something else
@@ -341,7 +384,7 @@ func kill_party_member(party_num:int):
 
 # type 0 = normal, 1 = weakness, 2 = resist, 3 = miss
 func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
-	if get_tree() == null:
+	if not is_inside_tree():
 		return
 	var wl := weakness_label.duplicate()
 	var cl := crit_label.duplicate()
@@ -358,10 +401,9 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 		enemies[target].hp_bar_tween = t
 		t.tween_interval(5)
 		t.tween_callback(func (): 
-			if curr_enemy == target and not indicator_light.visible:
+			if targeted_enemy == target and not indicator_light.visible:
 				enemies[target].hp_mesh.visible = false
 			)
-		#t.tween_property(enemies[target].hp_mesh, "visible", false, 0)
 	else:
 		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
 	wl.visible = true
@@ -584,13 +626,13 @@ func add_turn(num := 1, override_total := false):
 			if total_turns < enemies.size() * 2:
 				turns += num
 				total_turns += abs(num)
-				print("Added a turn - %d/%d" % [turns, total_turns])
+				#print("Added a turn - %d/%d" % [turns, total_turns])
 		else:
 			if total_turns < Globals.party.num_alive() * 2:
 				turns += num
 				total_turns += abs(num)
-				print("Added enemy turn - %d/%d" % [turns, total_turns])
-		update_turns()
+				#print("Added enemy turn - %d/%d" % [turns, total_turns])
+	update_turns()
 
 
 func update_turns():

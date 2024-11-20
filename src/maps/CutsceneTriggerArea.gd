@@ -42,10 +42,7 @@ func _dialogue_ended():
 			5:
 				Events.battle_start.emit(["gat cat", "lion mutant"], false)
 				Globals.main.start_dialogue("res://assets/dialogue/t_8.clyde")
-			#6:
-				#Events.battle_start.emit(["eldritch being"], false)
-				#Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
-			
+			#TODO update player battle sprites
 	
 	if has_node("Remove"):
 		get_node("Remove").queue_free()

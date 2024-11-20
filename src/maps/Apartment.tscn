@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="4_qsq4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36f41"]
-size = Vector2(36, 168)
+size = Vector2(39, 168)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh37p"]
 size = Vector2(210, 21)
@@ -40,7 +40,7 @@ dialogue = "res://assets/dialogue/t_1.clyde"
 story_flag = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTriggerArea"]
-position = Vector2(-62, -50)
+position = Vector2(-60.5, -50)
 shape = SubResource("RectangleShape2D_36f41")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CutsceneTriggerArea"]
