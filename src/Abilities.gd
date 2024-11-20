@@ -68,7 +68,7 @@ var abilities := {
 		"mp": 25,
 		"desc": "Hit all targets with a mighty swipe!",
 		"enemy_flavor": "The man growls as he hits all of you with a swipe of his claws!",
-		#"callable": single_attack.bind("swipe"),
+		"callable": multi_attack.bind("swipe"),
 	},
 	"bite": {
 		"base_atk": 2.0,
@@ -86,7 +86,7 @@ var abilities := {
 		"mp": 50,
 		"desc": "",
 		"enemy_flavor": "They spray you with mutagens! Gross!",
-		#"callable": single_attack.bind("spray"),
+		"callable": multi_attack.bind("spray"),
 	},
 	"aid": {
 		"base_atk": 1.0,
@@ -95,7 +95,7 @@ var abilities := {
 		"mp": 20,
 		"desc": "Heal an ally a small amount",
 		"enemy_flavor": "They wipe some gunk on their ally. It heals them!",
-		#"callable": single_attack.bind("aid"),
+		"callable": heal.bind("aid"),
 	},
 	"pistol shot": {
 		"base_atk": 2.0,
@@ -122,7 +122,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "A horrible wail that damages body and mind",
 		"enemy_flavor": "It wails, causing your body to ache and your mind to quail!",
-		#"callable": single_attack.bind("shriek"),
+		"callable": multi_attack.bind("shriek"),
 	},
 	"insane insight": {
 		"base_atk": 2.0,
@@ -167,7 +167,7 @@ var abilities := {
 		"mp": 20,
 		"desc": "Strike wildly and randomly at two targets",
 		"enemy_flavor": "They attack wildly, hitting CHAR and CHAR!",
-		#"callable": single_attack.bind("wild wolf"),
+		"callable": random_attack.bind("wild wolf"),
 	},
 	
 }
@@ -201,7 +201,7 @@ func _ready() -> void:
 	# check that all abilities have the required keys
 	for a in abilities:
 		if not abilities[a].has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
-			printerr("%s is missing a required key" % a)
+			printerr("ability %s is missing a required key" % a)
 
 
 #func ability_callable(user, party, enemies:Array, target:int, battle:Battle):
@@ -263,5 +263,18 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 			the_target["hp"] = 0
 			battle.kill_party_member(abs(target) - 1)
 	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
+
+	
+## hits a random amount of targets
+func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
+	pass
+
+
+## hits all opposing targets
+func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
+	pass
 	
 	
+## heals the target
+func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
+	pass
