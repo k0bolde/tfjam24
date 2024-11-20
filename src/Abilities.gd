@@ -3,7 +3,7 @@ extends Node
 #TODO healing abilities
 #TODO random target attacks
 #for specific enemy flavor text, just add another entry with their specific text pointing to the same damage func
-# effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = two random targets
+# effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = two random targets, 5 = self target
 # Holds the info on all abilities, player and enemy
 # requires: mp, base_atk, type, effect, desc, enemy_flavor (if usable by enemies), callable
 var abilities := {
@@ -169,7 +169,114 @@ var abilities := {
 		"enemy_flavor": "They attack wildly, hitting CHAR and CHAR!",
 		"callable": random_attack.bind("wild wolf"),
 	},
-	
+	"potion throw": {
+		"base_atk": 1.0,
+		"type": "esoteric",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Toss a random potion!",
+		"enemy_flavor": "They toss a potion at CHAR! It explodes into arcane energy!",
+		"callable": single_attack.bind("potion throw")
+	},
+	"better aid": {
+		"base_atk": 0.0,
+		"type": "esoteric",
+		"effect": 2,
+		"mp": 30,
+		"desc": "Heal an ally a better amount",
+		"enemy_flavor": "They give their ally a huge. It heals them!",
+		"callable": heal.bind("better aid")
+	},
+	"bad pun": {
+		"base_atk": 2.0,
+		"type": "eldritch",
+		"effect": 0,
+		"mp": 25,
+		"desc": "Make a bad pun that makes the mind reel",
+		"enemy_flavor": "They say a pun so bad CHAR’s head aches awfully!",
+		"callable": single_attack.bind("bad pun")
+	},
+	"nervous stab": {
+		"base_atk": 1.0,
+		"type": "piercing",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Stab with no heart behind it",
+		"enemy_flavor": "They stab CHAR nervously. It still hurts.",
+		"callable": single_attack.bind("nervous stab")
+	},
+	"self repair": {
+		"base_atk": 0,
+		"type": "esoteric",
+		"effect": 5,
+		"mp": 0,
+		"desc": "Heal thyself",
+		"enemy_flavor": "It conducts self repair on itself!",
+		"callable": heal.bind("self repair")
+	},
+	"inspire": {
+		"base_atk": 0,
+		"type": "esoteric",
+		"effect": 2,
+		"mp": 20,
+		"desc": "Inspire an ally to fight harder",
+		"enemy_flavor": "It inspires its ally to fight harder!",
+		#"callable": 
+	},
+	"entice": {
+		"base_atk": 1.0,
+		"type": "esoteric",
+		"effect": 0,
+		"mp": 5,
+		"desc": "A flirty slap that drains their will to fight you",
+		"enemy_flavor": "They flirt and then slap CHAR. What a tease!",
+		#"callable": 
+	},
+	"confuse": {
+		"base_atk": 0.5,
+		"type": "esoteric",
+		"effect": 0,
+		"mp": 10,
+		"desc": "Cause your enemy to lower their guard with your wiles",
+		"enemy_flavor": "They perplex CHAR with a tricky strike! CHAR’s defense is down!",
+		#"callable":
+	},
+	"cackle": {
+		"base_atk": 0,
+		"type": "piercing",
+		"effect": 5,
+		"mp": 10,
+		"desc": "An evil laugh that draws inner strength",
+		"enemy_flavor": "They cackle, putting them into a frenzy!",
+		#"callable": 
+	},
+	"syringe shot": {
+		"base_atk": 1.0,
+		"type": "mutagenic",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Fire a mutagenic syringe at your foe.",
+		"enemy_flavor": "They fire a mutagenic syringe at CHAR! Ouch!",
+		"callable": single_attack.bind("syringe shot")
+	},
+	"fortify": {
+		"base_atk": 0,
+		"type": "bludgeoning",
+		"effect": 5,
+		"mp": 10,
+		"desc": "Increase your defenses temporarily",
+		"enemy_flavor": "They square up and increase their defenses!",
+		#"callable": 
+	},
+	"stare": {
+		"base_atk": 1.0,
+		"type": "eldritch",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Give them the eldritch eye.",
+		"enemy_flavor": "They give CHAR the eldritch eye. CHAR’s mind quakes!",
+		#"callable":
+	}
 }
 
 func _ready() -> void:
