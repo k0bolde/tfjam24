@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://dlt84np62eptx"
+path="res://.godot/imported/qz_synthtail.clyde-7ee55cce330269a1511018a5a456837c.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_synthtail.clyde"
+dest_files=["res://.godot/imported/qz_synthtail.clyde-7ee55cce330269a1511018a5a456837c.res"]
+
+[params]
+

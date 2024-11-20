@@ -1,0 +1,25 @@
+It’s Byrne! What’s she doing out here? 
+
+Byrne: Welcome to the quarantine block, heh heh…
+
+-- (triggers once)
+
+Byrne: Ask about-
+
++ Drug
+	Byrne: Yeah, I served as a dealer. Some of these mutants out here are former customers. They aren’t so happy with me.
+	<-
++ Rust
+	Byrne: A kobold that’s a bit high strung. Careful, she’s stronger than she looks! I’m not sure if she’s the dealer or supplier…
+	<-
++ Rist
+	Byrne: A kobold that’s very grumpy. Careful, she’s sharper than she looks! I’m not sure if she’s the supplier or dealer…
+	<-
++ Rend
+	Byrne: Rist’s…or maybe Rust’s second hand man. Dragon man. He’s tough, but I’m sure he’s weak to something.
+	<-
++ Skullface Gang
+	Byrne: Heh heh heh. Watch yourself out there. There’s a couple folks who looks sorta like me but they’re not so friendly. It’ll be a tough fight - you’ll probably be outnumbered!
+	<-
++ Leave
+	-> END

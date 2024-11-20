@@ -70,18 +70,22 @@ image = ExtResource("5_1gfri")
 [node name="Savak" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1396, -648)
 image = ExtResource("5_ygayf")
+dialogue_file = "res://assets/dialogue/qz_savak1.clyde"
 
 [node name="Byrne" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2331, -381)
 image = ExtResource("6_sgl1j")
+dialogue_file = "res://assets/dialogue/qz_byrne.clyde"
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2331, -176)
 image = ExtResource("7_7mer5")
+dialogue_file = "res://assets/dialogue/qz_clem.clyde"
 
 [node name="Ulla2" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2431, -271)
 image = ExtResource("5_1gfri")
+dialogue_file = "res://assets/dialogue/qz_ulla2.clyde"
 
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1410, -51)
@@ -103,6 +107,7 @@ image = ExtResource("5_1gfri")
 [node name="SusSynthTail" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1602, -1375)
 image = ExtResource("12_ujgor")
+dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
 
 [node name="RustRist" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2389, -1253)
@@ -111,10 +116,12 @@ image = ExtResource("13_vrykg")
 [node name="RendM" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2076, -832)
 image = ExtResource("14_4gae4")
+dialogue_file = "res://assets/dialogue/qz_rend1.clyde"
 
 [node name="RendF" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-12, -1268)
 image = ExtResource("15_4pbbw")
+dialogue_file = "res://assets/dialogue/qz_rend2.clyde"
 
 [node name="Ceron" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(730, -817)

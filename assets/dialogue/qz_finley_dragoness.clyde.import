@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://jexl83mbrpgc"
+path="res://.godot/imported/qz_finley_dragoness.clyde-48081d77651ecd6537bf39e9de39eb81.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_finley_dragoness.clyde"
+dest_files=["res://.godot/imported/qz_finley_dragoness.clyde-48081d77651ecd6537bf39e9de39eb81.res"]
+
+[params]
+

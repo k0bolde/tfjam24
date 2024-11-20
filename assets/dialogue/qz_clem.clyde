@@ -1,0 +1,23 @@
+Is that…Clem? She looks a little different.
+
+Clem: Hey there, cutie! You caught my other side! I knew you wouldn’t be able to stay away.
+
+Clem: Ask about -
+
++ Drug
+	Clem: I never dealt here, only offered my special services. Interested?
+	<-
++ Strange Markings
+	Clem: Careful if you see a pentagram! Just interacting it will summon a powerful witch. She won’t let you off easy, but I’m sure you can take care of her! Gosh, you’re strong!
+	<-
++ Door
+	Clem: Keep an eye out for a shortcut door! It’ll take you to and from halfway through the block!
+	<-
++ Appearance
+	Clem: This is how I dress for other occasions. How do you think I look?
+	<-
++ Other Synths
+	Clem: Keep an eye out for a lost synth tail. If you’re not careful, it’ll attach you and convert you to its former owner! But maybe you want that to happen? Being a synth is the best!
+	<-
++ Bye
+	-> END

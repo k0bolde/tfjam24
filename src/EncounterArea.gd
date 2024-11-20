@@ -17,6 +17,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func check_for_battle():
+	#TODO give a leeway of a bit between battles
 	if randf() < total_encounter_rate:
 		var pick := randf()
 		#print("picked %f" % pick)

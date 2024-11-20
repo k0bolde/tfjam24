@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://xr2prjmuwftp"
+path="res://.godot/imported/qz_rend1.clyde-65674daa0df76c155efda7778843255a.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_rend1.clyde"
+dest_files=["res://.godot/imported/qz_rend1.clyde-65674daa0df76c155efda7778843255a.res"]
+
+[params]
+

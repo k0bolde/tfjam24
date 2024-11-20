@@ -8,6 +8,7 @@ class_name Battle
 #TODO Item use
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
+#TODO result screen & end animation
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -515,6 +516,7 @@ func update_selected_enemy():
 
 
 func battle_won():
+	#TODO show results screen
 	for e in defeated_enemies:
 		Globals.cash += e.cash_reward
 		Globals.party.xp += e.xp_reward
@@ -532,8 +534,12 @@ func battle_won():
 	for en in enemy_names:
 		if not Globals.party.fought_enemies.has(en):
 			Globals.party.fought_enemies.append(en)
-	#TODO show results screen
-	Events.battle_end.emit()
+	# fade out
+	%FadeRect.visible = true
+	var t := get_tree().create_tween()
+	t.set_trans(Tween.TRANS_SINE)
+	t.tween_property(%FadeRect, "modulate", Color.BLACK, 1)
+	t.tween_callback(Events.battle_end.emit)
 	
 	
 func battle_lost():
