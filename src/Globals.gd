@@ -101,7 +101,7 @@ func initialize_enemies():
 	e.stats.abilities.append_array(["cat pistol shot", "cat pistol whip", "swipe"])
 	e.attack_probs["cat pistol shot"] = 0.25
 	e.attack_probs["swipe"] = 0.25
-	e.attack_probs["cat pistol whip"] = 0.25
+	e.attack_probs["cat pistol whip"] = 0.50
 	e.cash_reward = 5
 	e.xp_reward = 1
 	e.item_drops["dozeneggs"] = 1.0
@@ -161,12 +161,15 @@ func initialize_enemies():
 	e.attack_probs["potion throw"] = 0.55
 	e.attack_probs["better aid"] = 0.35
 	e.attack_probs["sob"] = 0.1
+	e.item_drops["ddew pamphlet"] = 0.5
+	e.cash_reward = 5
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
 	e.enemy_name = "lvl pun kobold"
 	e.desc = "He keeps making puns! Kill him!"
+	e.texture_path = "res://assets/battle/Omegatest.png"
 	e.stats.hp = 125
 	e.stats.atk = 20
 	e.stats.def = 10
@@ -177,6 +180,8 @@ func initialize_enemies():
 	e.attack_probs["potion throw"] = 0.5
 	e.attack_probs["bad pun"] = 0.25
 	e.attack_probs["nervous stab"] = 0.25
+	e.item_drops["weird writings"] = 0.5
+	e.cash_reward = 5
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
 	
@@ -189,9 +194,11 @@ func initialize_enemies():
 	e.stats.def = 10
 	e.stats.eva = 5
 	e.stats.lck = 10
-	e.attack_probs["entice"] = 0.3
-	e.attack_probs["tail whip"] = 0.3
-	e.attack_probs["confuse"] = 0.4
+	e.attack_probs["entice"] = 0.5
+	e.attack_probs["tail whip"] = 0.25
+	e.attack_probs["confuse"] = 0.25
+	e.item_drops["scale polish"] = 1.0
+	e.cash_reward = 5
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
 	
@@ -206,8 +213,11 @@ func initialize_enemies():
 	e.stats.lck = 10
 	e.stats.resistances = ["fire"]
 	e.stats.weaknesses = ["rending"]
-	e.attack_probs["tail whip"] = 0.5
-	e.attack_probs["better aid"] = 0.5
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["tail whip"] = 0.25
+	e.attack_probs["better aid"] = 0.25
+	e.item_drops["scale polish"] = 0.25
+	e.cash_reward = 5
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
 	
@@ -223,6 +233,9 @@ func initialize_enemies():
 	e.stats.lck = 10
 	e.stats.resistances = ["bludgeoning"]
 	e.stats.weaknesses = ["piercing"]
+	e.attack_probs["tail whip"] = 0.25
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["self repair"] = 0.25
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
 	
@@ -231,17 +244,175 @@ func initialize_enemies():
 	e.desc = "A sciraptor that orders the others around. It’s mad!"
 	e.texture_path = "res://assets/battle/sciraptorleadergj.png"
 	e.flip_h = true
+	e.stats.hp = 200
+	e.stats.atk = 20
+	e.stats.def = 10
+	e.stats.eva = 0
+	e.stats.lck = 10
+	e.stats.resistances = ["bludgeoning"]
+	e.stats.weaknesses = ["piercing"]
+	e.attack_probs["tail whip"] = 0.33
+	e.attack_probs["claw"] = 0.33
+	e.attack_probs["inspire"] = 0.34
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "mutant man"
+	e.desc = "An awfully mutated man wearing a trashbag and ziplock shoes"
+	e.texture_path = "res://assets/battle/mutant-man.png"
+	e.stats.hp = 100
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.attack_probs["punch"] = 0.6
+	e.attack_probs["tentacle whip"] = 0.4
+	e.xp_reward = 2
+	e.item_drops["prop axe"] = 0.25
+	e.cash_reward = 5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "glorp"
+	e.texture_path = "res://assets/battle/monster.png"
+	e.stats.hp = 200
+	e.stats.atk = 20
+	e.stats.def = 20
+	e.stats.eva = 0
+	e.stats.lck = 5
+	e.stats.resistances = ["bludgeoning", "rending"]
+	e.stats.weaknesses = ["piercing", "fire"]
+	e.attack_probs["stare"] = 0.25
+	e.attack_probs["claw"] = 0.6
+	e.attack_probs["spray"] = 0.15
+	e.xp_reward = 5
+	e.cash_reward = 7
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "moth"
+	e.desc = "A moth woman wielding a mutagenic drug. She’s flighty but loyal to the hive."
+	e.texture_path = "res://assets/battle/Moth.png"
+	e.stats.hp = 120
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 30
+	e.stats.lck = 15
+	e.stats.resistances = ["mutagenic"]
+	e.stats.weaknesses = ["fire"]
+	e.attack_probs["syringe shot"] = 0.75
+	e.attack_probs["confuse"] = 0.25
+	e.xp_reward = 3
+	e.cash_reward = 5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "ant"
+	e.desc = "An ant soldier wielding a syringe gun. She’s loyal to the hive."
+	e.texture_path = "res://assets/battle/ANTnano.png"
+	e.stats.hp = 150
+	e.stats.atk = 30
+	e.stats.def = 10
+	e.stats.eva = 15
+	e.stats.lck = 5
+	e.stats.resistances = ["mutagenic"]
+	e.stats.weaknesses = ["fire"]
+	e.attack_probs["syringe shot"] = 0.75
+	e.attack_probs["pistol whip"] = 0.25
+	e.xp_reward = 3
+	e.item_drops["empty rifle"] = 0.5
+	e.cash_reward = 5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "elite ant"
+	e.desc = "An ant officer wielding a syringe gun. Her loyalty to the hive is unwavering."
+	e.texture_path = "res://assets/battle/AntSyndi.png"
+	e.stats.hp = 200
+	e.stats.atk = 30
+	e.stats.def = 15
+	e.stats.eva = 20
+	e.stats.lck = 10
+	e.stats.resistances = ["mutagenic"]
+	e.stats.weaknesses = ["fire"]
+	e.attack_probs["syringe shot"] = 0.33
+	e.attack_probs["spray"] = 0.25
+	e.attack_probs["inspire"] = 0.42
+	e.xp_reward = 5
+	e.item_drops["ankrpwease"] = 0.25
+	e.cash_reward = 7
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "mutagenic mouse"
+	e.desc = "A large mouse wielding a large syringe"
+	e.texture_path = "res://assets/battle/mutarat.png"
+	e.stats.hp = 150
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 15
+	e.stats.lck = 7
+	e.attack_probs["swipe"] = 0.6
+	e.attack_probs["spray"] = 0.2
+	e.attack_probs["inspire"] = 0.2
+	e.xp_reward = 3
+	e.item_drops["spare syringe"] = 1.0
+	e.cash_reward = 5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "gallivanting goat"
+	e.desc = "A goat who appears to be very happy with what she is and wants you to be like her too!"
+	e.texture_path = "res://assets/battle/panflutesexual.png"
+	e.stats.hp = 150
+	e.stats.atk = 25
+	e.stats.def = 10
+	e.stats.eva = 15
+	e.stats.lck = 10
+	e.attack_probs["kick"] = 0.5
+	e.attack_probs["entice"] = 0.25
+	e.attack_probs["confuse"] = 0.25
+	e.xp_reward = 3
+	e.item_drops["dancing does"] = 0.5
+	e.cash_reward = 5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "haz"
+	e.desc = "A man who is supposed to be keeping this area contained. It doesn’t seem like he’s doing a good job…"
+	e.texture_path = "res://assets/battle/guard.png"
+	e.stats.hp = 150
+	e.stats.atk = 20
+	e.stats.def = 10
+	e.stats.eva = 5
+	e.stats.lck = 10
+	e.stats.weaknesses = ["mutagenic", "rending"]
+	e.attack_probs["punch"] = 0.5
+	e.attack_probs["kick"] = 0.25
+	e.attack_probs["fortify"] = 0.25
+	e.xp_reward = 3
+	e.item_drops["clem's pills"] = 0.33
+	e.cash_reward = 4
+	enemies[e.enemy_name] = e
+	
+	
 
 func verify_enemies():
+	#TODO check that item drop exists
 	for e in enemies.values():
+		if e.desc == "Default Description":
+			printerr("%s is missing desc" % e.enemy_name)
 		if e.attack_probs.is_empty():
 			printerr("%s is missing any attacks" % e.enemy_name)
 		#check that every attack_probs is in Abilities.abilities
+		var atk_accum := 0.0
 		for attack in e.attack_probs:
+			atk_accum += e.attack_probs[attack]
 			if not Abilities.abilities.has(attack):
 				printerr("Abilities.abilities missing %s" % attack)
+		if not is_equal_approx(atk_accum, 1.0):
+			printerr("%s attack probs don't add up to 1.0" % e.enemy_name)
 		for type in e.stats.resistances:
 			if not types.has(type):
 				printerr("%s resistances has unknown type %s" % [e.enemy_name, type])

@@ -23,7 +23,7 @@ func _ready() -> void:
 			var mb := Button.new()
 			var map_name := m.trim_suffix(".tscn")
 			mb.text = map_name
-			mb.pressed.connect(func (): Globals.main.load_map(map_name))
+			mb.pressed.connect(func (): Globals.main.load_map(map_name, 0))
 			debug_maps_container.add_child(mb)
 	for f in Globals.main.story_flags.keys():
 		var l := Label.new()
