@@ -44,8 +44,16 @@ func _on_close_button_pressed() -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
-	#TODO warning for not saving
-	get_tree().change_scene_to_file("res://src/TitleScreen.tscn")
+	var popup := PopupMenu.new()
+	popup.add_item("Are you sure? You might want to save.")
+	popup.set_item_disabled(0, true)
+	popup.add_item("Yes")
+	popup.index_pressed.connect(func (idx): 
+		if idx == 1:
+			get_tree().change_scene_to_file("res://src/TitleScreen.tscn")
+		)
+	%MainMenuButton.add_child(popup)
+	popup.popup_centered(Vector2i(100, 30))
 
 
 func disable_buttons():
@@ -84,12 +92,29 @@ func _on_volume_slider_value_changed(value: float) -> void:
 
 
 func _on_save_button_pressed() -> void:
-	#TODO warning for overwriting save
-	Globals.save_game()
+	var popup := PopupMenu.new()
+	popup.add_item("Are you sure? This will overwrite your old save.")
+	popup.set_item_disabled(0, true)
+	popup.add_item("Yes")
+	popup.index_pressed.connect(func (idx): 
+		if idx == 1:
+			Globals.save_game()
+		)
+	%SaveButton.add_child(popup)
+	popup.popup_centered(Vector2i(100, 30))
 
 
 func _on_load_button_pressed() -> void:
-	Globals.load_game()
+	var popup := PopupMenu.new()
+	popup.add_item("Are you sure?")
+	popup.set_item_disabled(0, true)
+	popup.add_item("Yes")
+	popup.index_pressed.connect(func (idx): 
+		if idx == 1:
+			Globals.load_game()
+		)
+	%LoadButton.add_child(popup)
+	popup.popup_centered(Vector2i(100, 30))
 
 
 func _on_debug_button_pressed() -> void:
