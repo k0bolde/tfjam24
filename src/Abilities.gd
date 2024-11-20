@@ -24,7 +24,7 @@ var abilities := {
 		"callable": single_attack.bind("kick"),
 	},
 	"sob": {
-		"base_atk": 0,
+		"base_atk": 0.0,
 		"type": "esoteric",
 		"effect": 0,
 		"mp": 0,
@@ -171,10 +171,35 @@ var abilities := {
 }
 
 func _ready() -> void:
+	#setup enemy specific moves
+	abilities["some guy punch"] = abilities["punch"].duplicate()
+	abilities["some guy punch"]["enemy_flavor"] = "Some guy punches you! Ouch!"
+	abilities["some guy kick"] = abilities["kick"].duplicate()
+	abilities["some guy kick"]["enemy_flavor"] = "Some guy kicks you! Oof!"
+	abilities["some guy sob"] = abilities["sob"].duplicate()
+	abilities["some guy sob"]["enemy_flavor"] = "Some guy cries. You feel bad…"
+	abilities["man claw"] = abilities["claw"].duplicate()
+	abilities["man claw"]["enemy_flavor"] = "The man claws you with his, uh, claws!"
+	abilities["man tail whip"] = abilities["tail whip"].duplicate()
+	abilities["man tail whip"]["enemy_flavor"] = "The man whips you with his tail!"
+	abilities["man swipe"] = abilities["swipe"].duplicate()
+	abilities["man swipe"]["enemy_flavor"] = "The man growls as he hits all of you with a swipe of his claws!"
+	abilities["woman bite"] = abilities["bite"].duplicate()
+	abilities["woman bite"]["enemy_flavor"] = "The woman takes a chunk out of you! Ouch!"
+	abilities["woman spray"] = abilities["spray"].duplicate()
+	abilities["woman spray"]["enemy_flavor"] = "The woman sprays some gunk from her mouth. Gross!"
+	abilities["woman aid"] = abilities["aid"].duplicate()
+	abilities["woman aid"]["enemy_flavor"] = "The woman wipes some gunk on the man. It heals him!"
+	abilities["cat pistol shot"] = abilities["pistol shot"].duplicate()
+	abilities["cat pistol shot"]["enemy_flavor"] = "The cat fires her pistol at you! Blam Blam!"
+	abilities["cat pistol whip"] = abilities["pistol whip"].duplicate()
+	abilities["cat pistol whip"]["enemy_flavor"] = "Her pistol jams! She hits CHAR with it instead!"
+	
+	
 	# check that all abilities have the required keys
-	for a in abilities.values():
-		if not a.has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
-			printerr("entry: %s is missing a required key" % a)
+	for a in abilities:
+		if not abilities[a].has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
+			printerr("%s is missing a required key" % a)
 
 
 #func ability_callable(user, party, enemies:Array, target:int, battle:Battle):

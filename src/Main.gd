@@ -2,6 +2,7 @@ extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #TODO unlock moves by leveling up
 #TODO don't repeat start of hub dialogues while on same map
+#TODO change party abilities in lab
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode

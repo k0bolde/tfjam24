@@ -2,7 +2,6 @@ extends Node2D
 class_name Battle
 #FIXME sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
 #TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
-#TODO enemies actually use their moves 
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals
@@ -69,6 +68,7 @@ enum turn_states {PLAYER, ENEMY}
 var turn_state := turn_states.PLAYER
 
 func _ready() -> void:
+	Globals.verify_enemies()
 	if Globals.use_action_cam:
 		idle_cam.make_current()
 	else:
@@ -319,7 +319,7 @@ func player_attack(which_attack:String):
 		#TODO change this from a method call to something else
 		enemy_attack(0)
 	else:
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.5).timeout
 		enable_buttons()
 		update_bars(curr_party)
 		update_turns()
@@ -343,9 +343,20 @@ func enemy_attack(which_enemy:int):
 	turns -= 1
 	await get_tree().create_timer(1).timeout
 	update_turns()
-	#TODO pick attack and target - don't target dead party members
-	var selected_attack := "punch"
-	var target_party := 0
+	var selected_attack : String = ""
+	var pick := randf()
+	var accum := 0.0
+	for attack in enemies[curr_enemy].attack_probs:
+		accum += enemies[curr_enemy].attack_probs[attack]
+		if pick < accum:
+			selected_attack = attack
+	if selected_attack == "":
+		printerr("oops %s couldn't pick an attack, picking random attack" % enemies[curr_enemy].enemy_name)
+		selected_attack = enemies[curr_enemy].stats.abilities.pick_random()
+	var target_party := randi_range(0, Globals.party.num - 1)
+	while Globals.party.p[target_party]["hp"] <= 0:
+		#bad code
+		target_party = randi_range(0, Globals.party.num - 1)
 	Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()

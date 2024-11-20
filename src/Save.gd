@@ -8,5 +8,6 @@ class_name Save
 @export var party : Resource
 @export var map := "map1"
 @export var day := 0
+@export var use_action_cam := false
 
 @export var location := Vector2()

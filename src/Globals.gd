@@ -11,7 +11,7 @@ var inventory
 var cash := 0
 var enemies := {}
 var use_action_cam := false
-
+var types := ["rending", "piercing", "bludgeoning", "fire", "ice", "mutagenic", "esoteric", "eldritch"]
 
 func _ready() -> void:
 	initialize_enemies()
@@ -23,10 +23,12 @@ func _ready() -> void:
 
 func initialize_enemies():
 	#Setup all the enemy data
+	## To add a new enemy, need to setup its data here and add its specific abilities to Abilities.abilities
 	var e := Enemy.new()
 	e.enemy_name = "rat"
 	e.desc = "A rat"
 	e.texture_path = "res://assets/battle/ImpF.png"
+	e.attack_probs["punch"] = 1.0
 	e.xp_reward = 12
 	enemies[e.enemy_name] = e
 	
@@ -34,6 +36,7 @@ func initialize_enemies():
 	e.enemy_name = "slime"
 	e.desc = "ooey gooey slime"
 	e.texture_path = "res://assets/battle/ImpM.png"
+	e.attack_probs["punch"] = 1.0
 	e.stats.weaknesses.push_back("fire")
 	enemies[e.enemy_name] = e
 	
@@ -46,7 +49,9 @@ func initialize_enemies():
 	e.stats.def = 0
 	e.stats.eva = 0
 	e.stats.lck = 0
-	e.stats.abilities.append_array(["some guy punch", "some guy kick", "some guy sob"])
+	e.attack_probs["some guy sob"] = 0.1
+	e.attack_probs["some guy kick"] = 0.3
+	e.attack_probs["some guy punch"] = 0.6
 	e.cash_reward = 5
 	e.xp_reward = 1
 	e.flip_h = true
@@ -60,7 +65,9 @@ func initialize_enemies():
 	e.stats.def = 5
 	e.stats.eva = 0
 	e.stats.lck = 5
-	e.stats.abilities.append_array(["man claw", "man tail whip", "man swipe"])
+	e.attack_probs["man tail whip"] = 0.2
+	e.attack_probs["man swipe"] = 0.2
+	e.attack_probs["man claw"] = 0.6
 	e.cash_reward = 5
 	e.xp_reward = 1
 	enemies[e.enemy_name] = e
@@ -73,7 +80,9 @@ func initialize_enemies():
 	e.stats.def = 5
 	e.stats.eva = 0
 	e.stats.lck = 5
-	e.stats.abilities.append_array(["woman bite", "woman spray", "woman aid"])
+	e.attack_probs["woman aid"] = 0.2
+	e.attack_probs["woman spray"] = 0.2
+	e.attack_probs["woman bite"] = 0.6
 	e.cash_reward = 5
 	e.xp_reward = 1
 	e.item_drops["dozeneggs"] = 1.0
@@ -90,6 +99,9 @@ func initialize_enemies():
 	e.stats.resistances.push_front("rending")
 	e.stats.weaknesses.push_front("fire")
 	e.stats.abilities.append_array(["cat pistol shot", "cat pistol whip", "swipe"])
+	e.attack_probs["cat pistol shot"] = 0.25
+	e.attack_probs["swipe"] = 0.25
+	e.attack_probs["cat pistol whip"] = 0.25
 	e.cash_reward = 5
 	e.xp_reward = 1
 	e.item_drops["dozeneggs"] = 1.0
@@ -106,7 +118,8 @@ func initialize_enemies():
 	e.stats.lck = 5
 	e.stats.resistances.push_front("bludgeoning")
 	e.stats.weaknesses.push_front("rending")
-	e.stats.abilities.append_array(["claw", "bite"])
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["bite"] = 0.5
 	e.cash_reward = 5
 	e.xp_reward = 1
 	e.item_drops["ankrpwease"] = 1.0
@@ -123,7 +136,9 @@ func initialize_enemies():
 	e.stats.lck = 10
 	e.stats.resistances.append_array(["esoteric", "eldritch"])
 	e.stats.weaknesses.append_array(["piercing", "fire"])
-	e.stats.abilities.append_array(["tentacle whip", "shriek", "insane insight"])
+	e.attack_probs["tentacle whip"] = 0.6
+	e.attack_probs["shriek"] = 0.2
+	e.attack_probs["insane insight"] = 0.2
 	e.cash_reward = 25
 	e.xp_reward = 5
 	e.base_turns = 2
@@ -131,6 +146,115 @@ func initialize_enemies():
 	e.item_drops["lime time"] = 1.0
 	e.flip_h = true
 	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "lvl 1 kobold"
+	e.desc = "A kobold with a huge hat and a modicum of magical powers"
+	e.texture_path = "res://assets/battle/mika.png"
+	e.stats.hp = 125
+	e.stats.atk = 15
+	e.stats.def = 0
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances = ["esoteric"]
+	e.stats.weaknesses = ["bludgeoning"]
+	e.attack_probs["potion throw"] = 0.55
+	e.attack_probs["better aid"] = 0.35
+	e.attack_probs["sob"] = 0.1
+	e.xp_reward = 3
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "lvl pun kobold"
+	e.desc = "He keeps making puns! Kill him!"
+	e.stats.hp = 125
+	e.stats.atk = 20
+	e.stats.def = 10
+	e.stats.eva = 5
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["rending"]
+	e.attack_probs["potion throw"] = 0.5
+	e.attack_probs["bad pun"] = 0.25
+	e.attack_probs["nervous stab"] = 0.25
+	e.xp_reward = 3
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "confident lizard lady"
+	e.desc = "A lizard lady who is quite confident in her looks. It appears she can force other people to have them."
+	e.texture_path = "res://assets/battle/confidntpurple.png"
+	e.stats.hp = 150
+	e.stats.atk = 25
+	e.stats.def = 10
+	e.stats.eva = 5
+	e.stats.lck = 10
+	e.attack_probs["entice"] = 0.3
+	e.attack_probs["tail whip"] = 0.3
+	e.attack_probs["confuse"] = 0.4
+	e.xp_reward = 3
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "twinned lizard lady"
+	e.desc = "Someone who has been transformed into a twin of the confident lizard lady. She seems nervous about her new curves…"
+	e.texture_path = "res://assets/battle/shypurple.png"
+	e.stats.hp = 150
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["rending"]
+	e.attack_probs["tail whip"] = 0.5
+	e.attack_probs["better aid"] = 0.5
+	e.xp_reward = 3
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "base sciraptor"
+	e.desc = "A raptor-like drone creature"
+	e.texture_path = "res://assets/battle/sciraptorgj.png"
+	e.flip_h = true
+	e.stats.hp = 150
+	e.stats.atk = 25
+	e.stats.def = 10
+	e.stats.eva = 0
+	e.stats.lck = 10
+	e.stats.resistances = ["bludgeoning"]
+	e.stats.weaknesses = ["piercing"]
+	e.xp_reward = 3
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "elite sciraptor"
+	e.desc = "A sciraptor that orders the others around. It’s mad!"
+	e.texture_path = "res://assets/battle/sciraptorleadergj.png"
+	e.flip_h = true
+	e.xp_reward = 3
+	enemies[e.enemy_name] = e
+
+func verify_enemies():
+	for e in enemies.values():
+		if e.attack_probs.is_empty():
+			printerr("%s is missing any attacks" % e.enemy_name)
+		#check that every attack_probs is in Abilities.abilities
+		for attack in e.attack_probs:
+			if not Abilities.abilities.has(attack):
+				printerr("Abilities.abilities missing %s" % attack)
+		for type in e.stats.resistances:
+			if not types.has(type):
+				printerr("%s resistances has unknown type %s" % [e.enemy_name, type])
+		for type in e.stats.weaknesses:
+			if not types.has(type):
+				printerr("%s weaknesses has unknown type %s" % [e.enemy_name, type])
+		#I don't think order matters?
+		#check that attack_probs adds up to 1.0 and is in ascending order
+		#var last_prob := 0.0
+		#for attack in e.attack_probs:
+			#if e.attack_probs[attack] < last_prob:
+				#printerr("attack probs in wrong order for %s" % e.enemy_name)
+			#last_prob = e.attack_probs[attack]
 
 
 func initialize_party():	
@@ -187,6 +311,7 @@ func save_game():
 	save_data.party = party
 	save_data.inventory = inventory
 	save_data.story_flags = main.story_flags
+	save_data.use_action_cam = use_action_cam
 	ResourceSaver.save(save_data, "user://save.tres")
 
 
@@ -203,6 +328,7 @@ func load2():
 		player.position = save_data.location
 		party = save_data.party
 		inventory = save_data.inventory
+		use_action_cam = save_data.use_action_cam
 		main.story_flags = save_data.story_flags
 		
 		save_data = null
