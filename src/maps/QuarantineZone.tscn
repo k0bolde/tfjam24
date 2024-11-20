@@ -94,6 +94,7 @@ tile_set = ExtResource("3_ly6hl")
 [node name="Ulla" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(478, -560)
 image = ExtResource("5_1gfri")
+dialogue_file = "res://assets/dialogue/qz_ulla1.clyde"
 
 [node name="Savak" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1396, -648)
