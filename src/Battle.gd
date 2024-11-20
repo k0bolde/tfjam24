@@ -2,6 +2,7 @@ extends Node2D
 class_name Battle
 #FIXME sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
 #TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
+#TODO enemies actually use their moves 
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals
@@ -340,6 +341,7 @@ func enemy_attack(which_enemy:int):
 		return
 	curr_enemy = which_enemy
 	turns -= 1
+	await get_tree().create_timer(1).timeout
 	update_turns()
 	#TODO pick attack and target - don't target dead party members
 	var selected_attack := "punch"
@@ -353,7 +355,6 @@ func enemy_attack(which_enemy:int):
 	if Globals.party.num_alive() <= 0:
 		battle_lost()
 	if turns > 0:
-		await get_tree().create_timer(1).timeout
 		var next_enemy := curr_enemy + 1
 		if next_enemy >= enemies.size():
 			next_enemy = 0
