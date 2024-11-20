@@ -1,5 +1,7 @@
 extends Node
 #TODO multitarget attacks
+#TODO healing abilities
+#TODO random target attacks
 #for specific enemy flavor text, just add another entry with their specific text pointing to the same damage func
 # effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = two random targets
 # Holds the info on all abilities, player and enemy

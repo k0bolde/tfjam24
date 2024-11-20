@@ -353,6 +353,9 @@ func enemy_attack(which_enemy:int):
 	if selected_attack == "":
 		printerr("oops %s couldn't pick an attack, picking random attack" % enemies[curr_enemy].enemy_name)
 		selected_attack = enemies[curr_enemy].stats.abilities.pick_random()
+	if Abilities.abilities[selected_attack]["effect"] == 2:
+		#healing ability, target an enemy not at max hp
+		pass
 	var target_party := randi_range(0, Globals.party.num - 1)
 	while Globals.party.p[target_party]["hp"] <= 0:
 		#bad code

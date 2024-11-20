@@ -1,5 +1,6 @@
 extends Resource
 class_name Save
+#TODO save volume setting
 
 # only things with @export are saved to file
 @export var cash := 0

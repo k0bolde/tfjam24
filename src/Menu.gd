@@ -1,5 +1,5 @@
 extends Control
-#TODO debug options - start battle, party num, party levels
+#TODO update player reminder text based on story_flag
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
 @onready var menu_container : Container = %MenuContainer
@@ -34,6 +34,12 @@ func _ready() -> void:
 		s.value = Globals.main.story_flags[f]
 		s.value_changed.connect(func (new_value): Globals.main.story_flags[f] = new_value)
 		flag_container.add_child(s)
+	for eb in get_tree().get_nodes_in_group("enemy_selector"):
+		eb.add_item("")
+	for en in Globals.enemies:
+		for eb in get_tree().get_nodes_in_group("enemy_selector"):
+			eb.add_item(en)
+	%PartyNumBox.value = Globals.party.num
 
 
 func _on_close_button_pressed() -> void:
@@ -123,3 +129,20 @@ func _on_debug_button_pressed() -> void:
 
 func _on_action_cam_button_toggled(toggled_on: bool) -> void:
 	Globals.use_action_cam = toggled_on
+
+
+func _on_party_num_box_value_changed(value: float) -> void:
+	Globals.party.num = value
+
+
+func _on_start_battle_button_pressed() -> void:
+	var ma := []
+	for eb in get_tree().get_nodes_in_group("enemy_selector"):
+		var i = eb.get_selected_id()
+		if i >= 0:
+			var m : String = eb.get_item_text(i)
+			if m != "":
+				ma.append(m)
+	if not ma.is_empty():
+		_on_close_button_pressed()
+		Events.battle_start.emit(ma, true)
