@@ -96,7 +96,7 @@ var abilities := {
 		"desc": "Heal an ally a small amount",
 		"enemy_flavor": "They wipe some gunk on their ally. It heals them!",
 		#heal ally 25
-		"callable": heal.bind("aid"),
+		"callable": heal.bind("aid", 25),
 	},
 	"pistol shot": {
 		"base_atk": 2.0,
@@ -153,6 +153,7 @@ var abilities := {
 		"enemy_flavor": "They strike CHAR and their scales shine. They look momentarily tougher.",
 		#x2 DEF 3 turns
 		#"callable": single_attack.bind("tip the scales"),
+		"callable": DONTUSEME
 	},
 	"recovery strike": {
 		"base_atk": 1.0,
@@ -163,6 +164,7 @@ var abilities := {
 		"enemy_flavor": "They strike CHAR and some of their wounds heal!",
 		#20 HP recovery
 		#"callable": single_attack.bind("recovery strike"),
+		"callable": DONTUSEME
 	},
 	"wild wolf": {
 		"base_atk": 1.5,
@@ -191,7 +193,7 @@ var abilities := {
 		"desc": "Heal an ally a better amount",
 		"enemy_flavor": "They give their ally a huge. It heals them!",
 		#heal ally 40
-		"callable": heal.bind("better aid")
+		"callable": heal.bind("better aid", 40)
 	},
 	"bad pun": {
 		"base_atk": 2.0,
@@ -219,7 +221,7 @@ var abilities := {
 		"desc": "Heal thyself",
 		"enemy_flavor": "It conducts self repair on itself!",
 		#heal self 30
-		"callable": heal.bind("self repair")
+		"callable": heal.bind("self repair", 30)
 	},
 	"inspire": {
 		"base_atk": 0,
@@ -229,7 +231,7 @@ var abilities := {
 		"desc": "Inspire an ally to fight harder",
 		"enemy_flavor": "It inspires its ally to fight harder!",
 		#ally ATK x1.3 and Luck x1.5 3 turns
-		#"callable": heal.bind("inspire")
+		"callable": DONTUSEME
 	},
 	"entice": {
 		"base_atk": 1.0,
@@ -239,7 +241,7 @@ var abilities := {
 		"desc": "A flirty slap that drains their will to fight you",
 		"enemy_flavor": "They flirt and then slap CHAR. What a tease!",
 		#-5 Evasion and -5 Luck 3 turns
-		#"callable": 
+		"callable": DONTUSEME
 	},
 	"confuse": {
 		"base_atk": 0.5,
@@ -249,7 +251,7 @@ var abilities := {
 		"desc": "Cause your enemy to lower their guard with your wiles",
 		"enemy_flavor": "They perplex CHAR with a tricky strike! CHAR’s defense is down!",
 		#-10 DEF and -10 Evasion 3 turns
-		#"callable":
+		"callable": DONTUSEME
 	},
 	"cackle": {
 		"base_atk": 0,
@@ -259,7 +261,7 @@ var abilities := {
 		"desc": "An evil laugh that draws inner strength",
 		"enemy_flavor": "They cackle, putting them into a frenzy!",
 		#ATK 1.3x and Evasion 1.3x 3 turns
-		#"callable": 
+		"callable": DONTUSEME
 	},
 	"syringe shot": {
 		"base_atk": 1.0,
@@ -278,7 +280,7 @@ var abilities := {
 		"desc": "Increase your defenses temporarily",
 		"enemy_flavor": "They square up and increase their defenses!",
 		#DEF 2x 3 turns
-		#"callable": 
+		"callable": DONTUSEME
 	},
 	"stare": {
 		"base_atk": 1.0,
@@ -288,7 +290,7 @@ var abilities := {
 		"desc": "Give them the eldritch eye.",
 		"enemy_flavor": "They give CHAR the eldritch eye. CHAR’s mind quakes!",
 		#Drains 10 MP
-		#"callable":
+		"callable": DONTUSEME
 	}
 }
 
@@ -396,5 +398,9 @@ func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, att
 	
 	
 ## heals the target
-func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
+func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String, amount:int):
 	pass
+
+
+func DONTUSEME():
+	printerr("DONTUSEME")
