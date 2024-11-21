@@ -24,9 +24,10 @@ func _ready() -> void:
 	
 	
 func _on_body_entered(body):
-	body.npc = self
-	body.interact_container.visible = true
-	body.interact_label.text = "Talk"
+	if dialogue_file:
+		body.npc = self
+		body.interact_container.visible = true
+		body.interact_label.text = "Talk"
 	
 	
 func _on_body_exited(body):

@@ -1,13 +1,11 @@
 extends Node2D
 class_name Battle
-#FIXME might be fixed - sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
-
 #major implementations
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
+#TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO Item use
-#TODO result screen - xp, cash, item, level, stat gains
 
 #tweaks
 #TODO some ui to pop up to tell you who's turn it is
@@ -116,7 +114,8 @@ func _ready() -> void:
 		hpmesh.unique_name_in_owner = false
 		enemies[i].hp_bar = hpmesh.get_node("SubViewport/EnemyHPBar")
 		enemies[i].hp_bar.unique_name_in_owner = false
-		#enemies[i].hp_bar.value = i * (100.0 / enemies.size())
+		enemies[i].hp_bar.value = enemies[i].stats.hp
+		enemies[i].hp_bar.max_value = enemies[i].stats.hp
 		# needed to make a new mesh otherwise they all shared the same texture
 		var planemesh := PlaneMesh.new()
 		planemesh.size = Vector2(0.075, 0.465)
@@ -371,6 +370,8 @@ func kill_party_member(party_num:int):
 	sp.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	sp.rotation_degrees.x = 90.0
 	sp.rotation_degrees.y = -90.0
+	#TODO lower player closer to the ground - the anim tween messes it up
+	#get_tree().create_timer(1).timeout.connect(func (): sp.position.y = -0.45)
 	sp.position.y = -0.45
 	
 
@@ -508,9 +509,13 @@ func update_selected_enemy():
 
 func battle_won():
 	#TODO show results screen
+	var earned_cash := 0
+	var earned_xp := 0
 	for e in defeated_enemies:
-		Globals.cash += e.cash_reward
-		Globals.party.xp += e.xp_reward
+		earned_cash += e.cash_reward
+		earned_xp += e.xp_reward
+	Globals.cash += earned_cash
+	Globals.party.xp += earned_xp
 	var required_to_level := 0
 	for i in Globals.party.level + 1:
 		required_to_level += i * 10
@@ -521,7 +526,7 @@ func battle_won():
 	#heal after battle
 	for p in Globals.party.p:
 		p["hp"] = p["stats"].hp
-	#keep track of what enemies we've defeated so we can show full inspect info
+	#keep track of what enemies we've defeated so we can show full inspect info/learn their abilities
 	for en in enemy_names:
 		if not Globals.party.fought_enemies.has(en):
 			Globals.party.fought_enemies.append(en)
@@ -529,13 +534,12 @@ func battle_won():
 	%FadeRect.visible = true
 	var t := get_tree().create_tween()
 	t.set_trans(Tween.TRANS_SINE)
-	t.tween_property(%FadeRect, "modulate", Color.BLACK, 1)
+	t.tween_property(%FadeRect, "modulate", Color.BLACK, 2)
 	t.tween_callback(Events.battle_end.emit)
 	
 	
 func battle_lost():
 	#TODO death screen - text that tells you you turned into what defeated you
-	#Globals.load_game()
 	get_tree().change_scene_to_file("res://src/TitleScreen.tscn")
 
 
@@ -621,10 +625,7 @@ func add_turn(num := 1, override_total := false):
 		#print_stack()
 		if is_player_turn:
 			#TODO allow adding a turn when killing an enemy with a weakness even if max turns hit
-			var base_enemy_turns := 0
-			for e in enemies:
-				base_enemy_turns += e.base_turns
-			if total_turns < base_enemy_turns:
+			if total_turns < enemies.size():
 				turns += num
 				total_turns += abs(num)
 				#print("Added a turn - %d/%d" % [turns, total_turns])
@@ -666,7 +667,7 @@ func animate_sprite(target:int):
 		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
 	t.tween_property(the_target, "position:y", the_target.position.y + 0.25, 0.1)
 	t.tween_property(the_target, "position:y", the_target.position.y, 0.1)
-	t.tween_interval(0.5)
+	#t.tween_interval(0.5)
 
 
 func _on_inspect_button_pressed() -> void:

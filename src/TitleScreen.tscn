@@ -79,7 +79,8 @@ move - wasd/arrows keys
 menu - tab/ctrl/right click
 interact - space/left click
 sprint - shift/middle click
-Use mouse/touch in battles"
+Use mouse/touch in battles
+fullscreen - f11/alt+enter"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -102,6 +103,7 @@ text = "NSFW Warning - boobs"
 
 [node name="CreditsPanel" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

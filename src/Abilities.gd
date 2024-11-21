@@ -229,7 +229,7 @@ var abilities := {
 		"desc": "Inspire an ally to fight harder",
 		"enemy_flavor": "It inspires its ally to fight harder!",
 		#ally ATK x1.3 and Luck x1.5 3 turns
-		#"callable": 
+		#"callable": heal.bind("inspire")
 	},
 	"entice": {
 		"base_atk": 1.0,
@@ -374,7 +374,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		battle.add_turn(1)
 		
 	#calculate damage
-	var dmg = (the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25))
+	var dmg : int = ceili((the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25.0)))
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
 	battle.animate_sprite(target)

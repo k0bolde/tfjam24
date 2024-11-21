@@ -257,6 +257,7 @@ func initialize_enemies():
 	e.xp_reward = 3
 	enemies[e.enemy_name] = e
 	
+	#TODO is it ok to overwrite the tutorial one?
 	e = Enemy.new()
 	e.enemy_name = "mutant man"
 	e.desc = "An awfully mutated man wearing a trashbag and ziplock shoes"
