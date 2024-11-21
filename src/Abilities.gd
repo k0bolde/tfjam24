@@ -389,8 +389,34 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 	
 ## hits a random amount of targets
 func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String, num_targets:int):
-	pass
-
+	var picks := []
+	if user < 0:
+		if num_targets < enemies.size():
+			for i in num_targets:
+				picks.append(randi_range(0, enemies.size() - 1))
+				for j in i:
+					while picks[i] == picks[j]:
+						picks[i] = randi_range(0, enemies.size() - 1)
+			for t in picks:
+				single_attack(user, party, enemies, t, battle, attack_name)
+		else:
+			multi_attack(user, party, enemies, target, battle, attack_name)
+	else:
+		#TODO test this
+		if num_targets < Globals.party.num_alive():
+			for i in num_targets:
+				picks.append(randi_range(0, Globals.party.p.size() - 1))
+				for j in i:
+					while picks[i] == picks[j] or Globals.party.p[picks[i]]["hp"] <= 0:
+						picks[i] = randi_range(0, Globals.party.p.size() - 1)
+			for i in picks.size():
+				picks[i] = -(picks[i] + 1)
+			for t in picks:
+				single_attack(user, party, enemies, t, battle, attack_name)
+		else:
+			multi_attack(user, party, enemies, target, battle, attack_name)
+		
+		
 
 ## hits all opposing targets
 func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
