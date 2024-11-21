@@ -1,17 +1,18 @@
 extends Node2D
 class_name Battle
-#FIXME sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
+#FIXME might be fixed - sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
+
 #major implementations
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
 #TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
 #TODO Item use
 #TODO result screen - xp, cash, item, level, stat gains
+
 #tweaks
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
-#TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -60,6 +61,7 @@ var curr_party := 0
 # the enemy with the current turn
 var curr_enemy := 0
 var is_player_turn := true
+var is_enemy_attacking := false
 var curr_ability : String
 var action_cam_shaky_tween_v : Tween
 var action_cam_shaky_tween_h : Tween
@@ -67,8 +69,7 @@ var side_cam_shaky_tween_v : Tween
 var side_cam_shaky_tween_h : Tween
 var attack_name_tween : Tween
 var total_turns := 0
-enum turn_states {PLAYER, ENEMY}
-var turn_state := turn_states.PLAYER
+
 
 func _ready() -> void:
 	Globals.verify_enemies()
@@ -199,6 +200,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	idle_cam.look_at(battle_center.position)
+	if not is_player_turn and not is_enemy_attacking:
+		enemy_attack()
+
 
 
 func update_bars(party_num):
@@ -227,51 +231,10 @@ func update_bars(party_num):
 		bars.get_node("MPBar").value = Globals.party.p[i]["mp"]
 		for n in bars.get_children():
 			n.reparent(party_bars_vbox_container.get_node("GridContainer"))
+			#n.call_deferred("reparent", party_bars_vbox_container.get_node("GridContainer"))
 		bars.queue_free()
 	
 	
-func turn_ended():
-	if is_player_turn:
-		curr_party = find_next_teammate()
-		if turns <= 0:
-			turns = 0
-			for e in enemies:
-				turns += e.base_turns
-			is_player_turn = false
-			total_turns = 0
-			turn_state = turn_states.ENEMY
-			#TODO change this from a method call to something else
-			enemy_attack(0)
-		else:
-			await get_tree().create_timer(1).timeout
-			enable_buttons()
-			update_bars(curr_party)
-			update_turns()
-	else:
-		if Globals.party.num_alive() <= 0:
-			battle_lost()
-		if turns > 0:
-			var next_enemy := curr_enemy + 1
-			if next_enemy >= enemies.size():
-				next_enemy = 0
-			#TODO change this from a method call to something else
-			enemy_attack(next_enemy)
-		else:
-			if Globals.use_action_cam:
-				idle_cam.make_current()
-			else:
-				side_cam.make_current()
-			is_player_turn = true
-			turns = Globals.party.num_alive()
-			total_turns = 0
-			turn_state = turn_states.PLAYER
-			if Globals.party.p[curr_party]["hp"] <= 0:
-				curr_party = find_next_teammate()
-			update_bars(curr_party)
-			update_turns()
-			enable_buttons()
-
-
 func _on_run_button_pressed() -> void:
 	if can_run:
 		#TODO add together enemies eva and living party's eva
@@ -318,9 +281,7 @@ func player_attack(which_attack:String):
 			turns += e.base_turns
 		is_player_turn = false
 		total_turns = 0
-		turn_state = turn_states.ENEMY
-		#TODO change this from a method call to something else
-		enemy_attack(0)
+		curr_enemy = 0
 	else:
 		await get_tree().create_timer(0.5).timeout
 		enable_buttons()
@@ -339,7 +300,7 @@ func find_next_teammate() -> int:
 			next_teammate = 0
 		total_checked += 1
 		#this shouldn't happen? but does?
-		if total_checked > Globals.party.num:
+		if total_checked > Globals.party.num or Globals.party.num_alive() == 0:
 			if is_inside_tree():
 				battle_lost()
 			else:
@@ -347,8 +308,8 @@ func find_next_teammate() -> int:
 	return next_teammate
 	
 	
-func enemy_attack(which_enemy:int):
-	curr_enemy = which_enemy
+func enemy_attack():
+	is_enemy_attacking = true
 	turns -= 1
 	#double check is nasty
 	if not is_inside_tree() or enemies.is_empty():
@@ -380,16 +341,15 @@ func enemy_attack(which_enemy:int):
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
-	update_bars(0)
-	turns_label.text = "%d" % turns
+	update_bars(curr_party)
+	update_turns()
 	if Globals.party.num_alive() <= 0:
 		battle_lost()
 	if turns > 0:
 		var next_enemy := curr_enemy + 1
 		if next_enemy >= enemies.size():
 			next_enemy = 0
-		#TODO change this from a method call to something else
-		enemy_attack(next_enemy)
+		curr_enemy = next_enemy
 	else:
 		if Globals.use_action_cam:
 			idle_cam.make_current()
@@ -398,12 +358,12 @@ func enemy_attack(which_enemy:int):
 		is_player_turn = true
 		turns = Globals.party.num_alive()
 		total_turns = 0
-		turn_state = turn_states.PLAYER
 		if Globals.party.p[curr_party]["hp"] <= 0:
 			curr_party = find_next_teammate()
 		update_bars(curr_party)
 		update_turns()
 		enable_buttons()
+	is_enemy_attacking = false
 
 
 func kill_party_member(party_num:int):
@@ -661,12 +621,15 @@ func add_turn(num := 1, override_total := false):
 		#print_stack()
 		if is_player_turn:
 			#TODO allow adding a turn when killing an enemy with a weakness even if max turns hit
-			if total_turns < enemies.size() * 2:
+			var base_enemy_turns := 0
+			for e in enemies:
+				base_enemy_turns += e.base_turns
+			if total_turns < base_enemy_turns:
 				turns += num
 				total_turns += abs(num)
 				#print("Added a turn - %d/%d" % [turns, total_turns])
 		else:
-			if total_turns < Globals.party.num_alive() * 2:
+			if total_turns < Globals.party.num_alive():
 				turns += num
 				total_turns += abs(num)
 				#print("Added enemy turn - %d/%d" % [turns, total_turns])
