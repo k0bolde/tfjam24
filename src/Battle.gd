@@ -363,7 +363,9 @@ func enemy_attack(which_enemy:int):
 	for attack in enemies[curr_enemy].attack_probs:
 		accum += enemies[curr_enemy].attack_probs[attack]
 		if pick < accum:
+			#print("pick %f accum %f picked %s" % [pick, accum, attack])
 			selected_attack = attack
+			break
 	if selected_attack == "":
 		printerr("oops %s couldn't pick an attack, picking random attack" % enemies[curr_enemy].enemy_name)
 		selected_attack = enemies[curr_enemy].stats.abilities.pick_random()

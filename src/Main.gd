@@ -3,6 +3,7 @@ extends Node2D
 #TODO unlock moves by leveling up
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
+#TODO save slots
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode

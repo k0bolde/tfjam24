@@ -19,6 +19,11 @@ var group_intros := [
 	]
 
 func _ready() -> void:
+	#check for data errors
+	for g in groups:
+		for e in groups[g]:
+			if not Globals.enemies.has(e):
+				printerr("group %s has non-existent enemy %s" % [g, e])
 	if not encounter_rates.is_empty():
 		var total := 0.0
 		for e in encounter_rates:
