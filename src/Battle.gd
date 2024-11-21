@@ -251,6 +251,7 @@ func player_attack(which_attack:String):
 	disable_buttons()
 	turns -= 1
 	update_turns()
+	Globals.party.p[curr_party]["mp"] -= Abilities.abilities[which_attack]["mp"]
 	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
@@ -394,7 +395,7 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 		enemies[target].hp_bar_tween = t
 		t.tween_interval(5)
 		t.tween_callback(func (): 
-			if is_inside_tree() and targeted_enemy == target and not indicator_light.visible and not enemies.is_empty():
+			if is_inside_tree()  and not indicator_light.visible and not enemies.is_empty(): #and targeted_enemy == target
 				enemies[target].hp_mesh.visible = false
 			)
 	else:
@@ -444,6 +445,7 @@ func _on_basic_attack_button_pressed() -> void:
 
 
 func show_targeting(is_attacking:=true):
+	#TODO for multi targets show all lights
 	%TargetContainer.get_node("PanelContainer/GridContainer/AttackButton").visible = is_attacking
 	%TargetContainer.get_node("PanelContainer/GridContainer/CancelTargetButton").visible = is_attacking
 	%TargetContainer.visible = true
@@ -658,6 +660,7 @@ func _on_pass_turn_button_pressed() -> void:
 	
 
 func animate_sprite(target:int):
+	#TODO different animations for attacking and getting hit
 	var the_target : Sprite3D
 	var t := get_tree().create_tween()
 	if target >= 0:

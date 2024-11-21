@@ -347,7 +347,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		the_user = enemies[user]
 	else:
 		the_user = party.p[abs(user) - 1]
-		the_user["mp"] -= the_attack["mp"]
+		#the_user["mp"] -= the_attack["mp"]
 		
 	var mult = the_attack["base_atk"]
 	var dmg_type := 0
@@ -394,7 +394,18 @@ func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 
 ## hits all opposing targets
 func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
-	pass
+	var targets := []
+	if user >= 0:
+		#enemy, targeting players
+		for p in party.size():
+			if party[p]["hp"] > 0:
+				targets.append(-(p + 1))
+	else:
+		#player, targeting enemies
+		for e in enemies.size():
+			targets.append(e)
+	for t in targets:
+		single_attack(user, party, enemies, t, battle, attack_name)
 	
 	
 ## heals the target
@@ -402,5 +413,5 @@ func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name
 	pass
 
 
-func DONTUSEME():
+func DONTUSEME(user:int, party, enemies:Array, target:int, battle:Battle):
 	printerr("DONTUSEME")
