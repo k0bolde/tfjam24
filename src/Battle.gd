@@ -1,14 +1,17 @@
 extends Node2D
 class_name Battle
 #FIXME sometimes the player/enemies get unlimited turns? weakness/crit related? check add_turn code?
-#TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
+#major implementations
 #TODO special effect attacks - tip the scales/etc
 #TODO multi target attacks
-#TODO party target buffs/heals
+#TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
 #TODO Item use
+#TODO result screen - xp, cash, item, level, stat gains
+#tweaks
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
-#TODO result screen & end animation
+#TODO battle exit animation
+#TODO fix how I call enemy_attack in player_attack and enemy_attack so it can't recurse. use states?
 
 @onready var idle_cam : Camera3D = %IdleCamera
 @onready var action_cam : Camera3D = %ActionCamera
@@ -329,19 +332,30 @@ func find_next_teammate() -> int:
 	var next_teammate := curr_party + 1
 	if next_teammate >= Globals.party.num:
 		next_teammate = 0
+	var total_checked := 0
 	while Globals.party.p[next_teammate]["hp"] <= 0:
 		next_teammate += 1
 		if next_teammate >= Globals.party.num:
 			next_teammate = 0
+		total_checked += 1
+		#this shouldn't happen? but does?
+		if total_checked > Globals.party.num:
+			if is_inside_tree():
+				battle_lost()
+			else:
+				break
 	return next_teammate
 	
 	
 func enemy_attack(which_enemy:int):
-	if not is_inside_tree():
-		return
 	curr_enemy = which_enemy
 	turns -= 1
+	#double check is nasty
+	if not is_inside_tree() or enemies.is_empty():
+		return
 	await get_tree().create_timer(1).timeout
+	if not is_inside_tree() or enemies.is_empty():
+		return
 	update_turns()
 	var selected_attack : String = ""
 	var pick := randf()
@@ -417,7 +431,7 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 		enemies[target].hp_bar_tween = t
 		t.tween_interval(5)
 		t.tween_callback(func (): 
-			if targeted_enemy == target and not indicator_light.visible:
+			if is_inside_tree() and targeted_enemy == target and not indicator_light.visible and not enemies.is_empty():
 				enemies[target].hp_mesh.visible = false
 			)
 	else:
@@ -559,7 +573,8 @@ func battle_won():
 	
 func battle_lost():
 	#TODO death screen - text that tells you you turned into what defeated you
-	Globals.load_game()
+	#Globals.load_game()
+	get_tree().change_scene_to_file("res://src/TitleScreen.tscn")
 
 
 func disable_buttons():

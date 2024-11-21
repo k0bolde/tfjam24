@@ -95,6 +95,7 @@ var abilities := {
 		"mp": 20,
 		"desc": "Heal an ally a small amount",
 		"enemy_flavor": "They wipe some gunk on their ally. It heals them!",
+		#heal ally 25
 		"callable": heal.bind("aid"),
 	},
 	"pistol shot": {
@@ -122,6 +123,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "A horrible wail that damages body and mind",
 		"enemy_flavor": "It wails, causing your body to ache and your mind to quail!",
+		#Hits ALL and drains 10 MP
 		"callable": multi_attack.bind("shriek"),
 	},
 	"insane insight": {
@@ -149,6 +151,7 @@ var abilities := {
 		"mp": 20,
 		"desc": "Attack while temporarily increasing your defense!",
 		"enemy_flavor": "They strike CHAR and their scales shine. They look momentarily tougher.",
+		#x2 DEF 3 turns
 		#"callable": single_attack.bind("tip the scales"),
 	},
 	"recovery strike": {
@@ -158,6 +161,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "Hit them and heal some health",
 		"enemy_flavor": "They strike CHAR and some of their wounds heal!",
+		#20 HP recovery
 		#"callable": single_attack.bind("recovery strike"),
 	},
 	"wild wolf": {
@@ -167,7 +171,8 @@ var abilities := {
 		"mp": 20,
 		"desc": "Strike wildly and randomly at two targets",
 		"enemy_flavor": "They attack wildly, hitting CHAR and CHAR!",
-		"callable": random_attack.bind("wild wolf"),
+		#two random targets
+		"callable": random_attack.bind("wild wolf", 2),
 	},
 	"potion throw": {
 		"base_atk": 1.0,
@@ -185,6 +190,7 @@ var abilities := {
 		"mp": 30,
 		"desc": "Heal an ally a better amount",
 		"enemy_flavor": "They give their ally a huge. It heals them!",
+		#heal ally 40
 		"callable": heal.bind("better aid")
 	},
 	"bad pun": {
@@ -212,6 +218,7 @@ var abilities := {
 		"mp": 0,
 		"desc": "Heal thyself",
 		"enemy_flavor": "It conducts self repair on itself!",
+		#heal self 30
 		"callable": heal.bind("self repair")
 	},
 	"inspire": {
@@ -221,6 +228,7 @@ var abilities := {
 		"mp": 20,
 		"desc": "Inspire an ally to fight harder",
 		"enemy_flavor": "It inspires its ally to fight harder!",
+		#ally ATK x1.3 and Luck x1.5 3 turns
 		#"callable": 
 	},
 	"entice": {
@@ -230,6 +238,7 @@ var abilities := {
 		"mp": 5,
 		"desc": "A flirty slap that drains their will to fight you",
 		"enemy_flavor": "They flirt and then slap CHAR. What a tease!",
+		#-5 Evasion and -5 Luck 3 turns
 		#"callable": 
 	},
 	"confuse": {
@@ -239,6 +248,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "Cause your enemy to lower their guard with your wiles",
 		"enemy_flavor": "They perplex CHAR with a tricky strike! CHAR’s defense is down!",
+		#-10 DEF and -10 Evasion 3 turns
 		#"callable":
 	},
 	"cackle": {
@@ -248,6 +258,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "An evil laugh that draws inner strength",
 		"enemy_flavor": "They cackle, putting them into a frenzy!",
+		#ATK 1.3x and Evasion 1.3x 3 turns
 		#"callable": 
 	},
 	"syringe shot": {
@@ -266,6 +277,7 @@ var abilities := {
 		"mp": 10,
 		"desc": "Increase your defenses temporarily",
 		"enemy_flavor": "They square up and increase their defenses!",
+		#DEF 2x 3 turns
 		#"callable": 
 	},
 	"stare": {
@@ -275,6 +287,7 @@ var abilities := {
 		"mp": 0,
 		"desc": "Give them the eldritch eye.",
 		"enemy_flavor": "They give CHAR the eldritch eye. CHAR’s mind quakes!",
+		#Drains 10 MP
 		#"callable":
 	}
 }
@@ -373,7 +386,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 
 	
 ## hits a random amount of targets
-func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
+func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String, num_targets:int):
 	pass
 
 

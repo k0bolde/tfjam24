@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://b1pnpi5pumbp1"
+path="res://.godot/imported/battle_intros.clyde-2890f62ccdabcd93db21a874a0ef54bd.res"
+
+[deps]
+
+source_file="res://assets/dialogue/battle_intros.clyde"
+dest_files=["res://.godot/imported/battle_intros.clyde-2890f62ccdabcd93db21a874a0ef54bd.res"]
+
+[params]
+

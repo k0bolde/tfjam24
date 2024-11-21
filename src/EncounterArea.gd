@@ -6,7 +6,25 @@ class_name EncounterArea
 @export var encounter_rates := {}
 #whats the chance of a battle happening at all?
 @export var total_encounter_rate := 0.008
+var groups := {
+	"qz-1-1": ["lvl 1 kobold", "lvl pun kobold"],
+	"qz-1-2": ["mutant man", "glorb"],
+	"qz-1-3": ["moth", "ant"],
+	"qz-1-4": ["gallivanting goat", "embarrassed lizard"],
+	"qz-1-5": ["haz", "haz", "haz"],
+	"qz-1-6": ["glorb", "mutagenic mouse"]
+}
+var group_intros := [
+	"qz-1-1", "qz-1-2", "qz-1-3", "qz-1-4", "qz-1-5", "qz-1-6",
+	]
 
+func _ready() -> void:
+	if not encounter_rates.is_empty():
+		var total := 0.0
+		for e in encounter_rates:
+			total += encounter_rates[e]
+		if not is_equal_approx(total, 1.0):
+			printerr("encounter rates don't add up to 1.0 in %s" % encounter_rates)
 
 func _on_body_entered(body: Node2D) -> void:
 	body.encounter_area = self
@@ -26,9 +44,12 @@ func check_for_battle():
 			accum += encounter_rates[monster]
 			#print("monster has %f rate, accum is now %f" % [encounter_rates[monster], accum])
 			if pick < accum:
-				var a := [monster]
-				Events.battle_start.emit(a, true)
-				#TODO enemy groups - take the assigned rates and map to a predefined monster array
+				if groups.has(monster):
+					Events.battle_start.emit(groups[monster], true)
+					if group_intros.has(monster):
+						Globals.main.start_dialogue("res://assets/dialogue/battle_intros.clyde", monster.replace("-", "_"))
+				else:
+					Events.battle_start.emit([monster], true)
 				return monster
 		printerr("Bad encounter probabilities!")
 	

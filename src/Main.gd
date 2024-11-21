@@ -96,6 +96,7 @@ func load_map(map_name:String, entrance_num := -1):
 	else:
 		player.position = new_map.start_location
 	
+	#handle overworld sprite changes
 	if story_flags["main"] < 1:
 		player.player_sprite.texture = load("res://assets/overworld/finley1-ow.png")
 	#TODO replace with actual flaga
@@ -128,8 +129,9 @@ func end_battle():
 		music_player.play()
 
 
-func start_dialogue(clyde_file):
+func start_dialogue(clyde_file, block:=""):
 	dialogue = preload("res://src/Dialogue.tscn").instantiate()
 	dialogue.dialogue_to_load = clyde_file
+	dialogue.block = block
 	dialogue_node.add_child(dialogue)
 	player.is_talking = true

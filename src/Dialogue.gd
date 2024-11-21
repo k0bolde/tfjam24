@@ -14,6 +14,7 @@ class_name Dialogue
 var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
 var dialogue_to_load : String
+var block := ""
 var _external_persistence := {}
 var fade_tween : Tween
 var is_waiting_for_choice := false
@@ -42,7 +43,7 @@ var portraits := {
 
 
 func _ready() -> void:
-	dialogue.load_dialogue(dialogue_to_load)
+	dialogue.load_dialogue(dialogue_to_load, block)
 
 	dialogue.event_triggered.connect(_on_event_triggered)
 	dialogue.variable_changed.connect(_on_variable_changed)
