@@ -172,7 +172,7 @@ var abilities := {
 		"effect": 4,
 		"mp": 20,
 		"desc": "Strike wildly and randomly at two targets",
-		"enemy_flavor": "They attack wildly, hitting CHAR and CHAR!",
+		"enemy_flavor": "They attack wildly!",
 		#two random targets
 		"callable": random_attack.bind("wild wolf", 2),
 	},
@@ -402,7 +402,6 @@ func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		else:
 			multi_attack(user, party, enemies, target, battle, attack_name)
 	else:
-		#TODO test this
 		if num_targets < Globals.party.num_alive():
 			for i in num_targets:
 				picks.append(randi_range(0, Globals.party.p.size() - 1))
@@ -423,8 +422,8 @@ func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, att
 	var targets := []
 	if user >= 0:
 		#enemy, targeting players
-		for p in party.size():
-			if party[p]["hp"] > 0:
+		for p in party.num:
+			if party.p[p]["hp"] > 0:
 				targets.append(-(p + 1))
 	else:
 		#player, targeting enemies

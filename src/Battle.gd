@@ -215,6 +215,7 @@ func update_bars(party_num):
 	# add all party members not the party_num
 	if Globals.party.num == 1:
 		party_bars_container.visible = false
+	#TODO fix the flicker
 	for i in party_bars_vbox_container.get_node("GridContainer").get_children():
 		i.queue_free()
 	for i in Globals.party.num:
