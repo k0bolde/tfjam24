@@ -1,0 +1,47 @@
+Ulla Tor: What happened to you two?
+
+Finley: We decided to have a girls’ night out.
+
+Ulla Tor: Har har. Your mutations are progressing faster than I would have thought. I don’t know how much time I have left…
+
+* Suggest hospital
+	Finley: You should go to a hospital!
+* Suggest find help
+	Finley: You should get help!
+
+Ulla Tor: That’s rich coming from you. Why didn’t you do that?
+
+Finley: I was taking initiative.
+
+Ulla Tor: And I’m doing the same. Can’t stop now. Someone has to expose them.
+
+Jesse: Who?
+
+Ulla Tor: You’ll see it on the news soon enough. Say…
+
+Finley: Yeah?
+
+Ulla Tor: Since you’re already out here even though I’ve told you many times to back off, do you mind dealing with Rustrydra?
+
+Finley: Say again?
+
+Jesse: Huh?
+
+Ulla Tor: You girls haven’t heard? That’s partially why this place is quarantined. Your dealer merged with their business partner.
+
+Finley: Wait, so did Rist merge with Rust, or Rist merge with Rist?
+
+Ulla Tor: …
+
+Finley: …
+
+Ulla Tor: Can you take care of her?
+
+Finley: Sure.
+
+Ulla Tor: Thanks. Be careful…
+
+Finley: You too.
+
+Your heart warms. Your friendship with Ulla Tor has improved!
+{ trigger sock_bond_up }

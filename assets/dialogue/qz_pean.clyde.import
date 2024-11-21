@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://bbc44cguwnmw7"
+path="res://.godot/imported/qz_pean.clyde-f4dca36d1d88906d13765b4b1c1ae193.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_pean.clyde"
+dest_files=["res://.godot/imported/qz_pean.clyde-f4dca36d1d88906d13765b4b1c1ae193.res"]
+
+[params]
+

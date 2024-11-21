@@ -1,0 +1,31 @@
+It’s Mark, the friendly crow! Maybe he has some advice? (plays once)
+
++ Talk
+	( shuffle cycle
+		-
+			Mark: Watch out for skulls just lying on the ground. They may be part of the skullface gang! They’re a tough bunch and will make you join them if you aren’t savvy enough. Caw!
+			<-
+		-
+			Mark: Ca-caw!
+			<-
+		-
+			Mark: I saw a synth tail just laying there. When I pecked at it, it tried to attach to me!
+			<-
+		-
+			Mark: It’s so crowver… #sad
+			<-
+		-
+			Mark: I saw a hydra just down the road. It’s true!
+			<-
+		-
+			Mark: The fellas here look tougher. Be careful!
+			<-
+		-
+			Mark: You look different! Did you change your scale polish?
+			<-
+		-
+			Mark: You may be different, but you have the same spirit!
+			<-
+	)
++ Leave
+	-> END

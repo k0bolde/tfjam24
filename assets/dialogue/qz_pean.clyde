@@ -1,0 +1,25 @@
+Pean: Hey, can’t you see I’m busy?
+
++ Talk
+	( shuffle cycle
+		-
+			Pean: The science out here isn’t mad enough for me!
+			<-
+		-
+			Pean: Are you sure I’ve talked to you before?
+			<-
+		-
+			Pean: You can hold Shift to sprint! It makes you faster but increases the chance you’ll encounter an enemy!
+			<-
+		-
+			Pean: I wish I could take credit for some of the things out here…#sad
+			<-
+		-
+			Pean: Once you’ve dealt with Rist, these streets are mine! Hahaha. I mean, good luck out there!
+			<-
+		-
+			Pean: Don’t forget to use items! They can provide powerful buffs or enable you to use a damage type you normally don’t have access to.
+			<-
+	)
++ Leave
+	-> END

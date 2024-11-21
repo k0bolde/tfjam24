@@ -124,14 +124,17 @@ dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
 [node name="Pean" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -916)
 image = ExtResource("8_vqqdb")
+dialogue_file = "res://assets/dialogue/qz_pean.clyde"
 
 [node name="Mark" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -1124)
 image = ExtResource("9_kuejc")
+dialogue_file = "res://assets/dialogue/qz_mark.clyde"
 
 [node name="Ulla3" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1759, -1022)
 image = ExtResource("5_1gfri")
+dialogue_file = "res://assets/dialogue/qz_ulla3.clyde"
 
 [node name="SusSynthTail" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(1602, -1375)
@@ -201,6 +204,7 @@ shape = SubResource("RectangleShape2D_lod4u")
 
 [node name="JesseTF" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(286, -800)
+dialogue = "res://assets/dialogue/qz_jesse_tf.clyde"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTF"]
 position = Vector2(3, -15.5)
@@ -208,6 +212,7 @@ shape = SubResource("RectangleShape2D_mp1ju")
 
 [node name="JesseTalk2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(930, -1215)
+dialogue = "res://assets/dialogue/qz_jesse_finley2.clyde"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTalk2"]
 position = Vector2(-9, 2.5)
@@ -215,6 +220,7 @@ shape = SubResource("RectangleShape2D_hdcis")
 
 [node name="JesseTalk3" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(2149, -1233)
+dialogue = "res://assets/dialogue/qz_jesse_finley3.clyde"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTalk3"]
 position = Vector2(0, -5)
