@@ -18,22 +18,22 @@ func _ready() -> void:
 	t.set_trans(Tween.TRANS_SINE)
 	t.tween_property(menu_container, "rotation_degrees", 0.0, 0.35)
 	%CashLabel.text = "$%s" % Globals.cash
-	var map_dir := DirAccess.open("res://src/maps")
-	for m in map_dir.get_files():
-		if m.ends_with(".tscn"):
-			var mb := Button.new()
-			var map_name := m.trim_suffix(".tscn")
-			mb.text = map_name
-			mb.pressed.connect(func (): Globals.main.load_map(map_name, 0))
-			debug_maps_container.add_child(mb)
-	if map_dir.get_files().is_empty():
+	if not OS.has_feature("editor"):
 		#diraccess doesn't work on exported games
 		for m in map_names:
 			var mb := Button.new()
 			mb.text = m
 			mb.pressed.connect(func (): Globals.main.load_map(m, 0))
 			debug_maps_container.add_child(mb)
-			
+	else:
+		var map_dir := DirAccess.open("res://src/maps")
+		for m in map_dir.get_files():
+			if m.ends_with(".tscn"):
+				var mb := Button.new()
+				var map_name := m.trim_suffix(".tscn")
+				mb.text = map_name
+				mb.pressed.connect(func (): Globals.main.load_map(map_name, 0))
+				debug_maps_container.add_child(mb)
 	for f in Globals.main.story_flags.keys():
 		var l := Label.new()
 		l.text = f
