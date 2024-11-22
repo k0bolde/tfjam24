@@ -33,7 +33,6 @@ Jesse: And blocking our way!
 	{ trigger tentacle_bad_end }
 	-> bad_end
 
--- Combat win:
 == combat_win
 Jesse: That was a tough one!
 
@@ -45,7 +44,6 @@ Finley: Thanks, I guess? Let’s keep moving.
 
 Jesse: Right on!
 
--- Bad End:
 == bad_end
 The writhing mass of tentacles advance but you can’t tear your gaze away from its eyes and Jesse seems equally entranced. They’re so entrancing, that before you realize it, the tentacles are wrapped around you. You squirm, but they hold you tightly. They’re a little slimy, but their touch is tender and warm. It’s not entirely unpleasant. In fact, it feels…good? It’s like a nice, comfy hug, one given by many arms. Many, many arms.
 

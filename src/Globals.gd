@@ -12,6 +12,7 @@ var cash := 0
 var enemies := {}
 var use_action_cam := false
 var types := ["rending", "piercing", "bludgeoning", "fire", "ice", "mutagenic", "esoteric", "eldritch"]
+var _external_persistence := {}
 
 func _ready() -> void:
 	initialize_enemies()

@@ -1,5 +1,6 @@
 extends Control
 class_name Dialogue
+#TODO don't repeat intros for some characters
 
 @onready var speaker_label : Label = %SpeakerLabel
 @onready var dialogue_label : RichTextLabel = %DialogueLabel
@@ -15,7 +16,6 @@ var dialogue := ClydeDialogue.new()
 #before adding this scene, set this to the clyde dialogue filepath
 var dialogue_to_load : String
 var block := ""
-var _external_persistence := {}
 var fade_tween : Tween
 var is_waiting_for_choice := false
 var text_anim_tween : Tween
@@ -39,6 +39,10 @@ var portraits := {
 	"Zal": "res://assets/portraits/zal.png",
 	"Ulla": "res://assets/portraits/UllaPortraitsHuman.png",
 	"Security Guard": "res://assets/portraits/security.png",
+	"Dark Clem": "res://assets/portraits/clem-dark.png",
+	"Rend": "res://assets/portraits/rendm.png",
+	"Rist": "res://assets/portraits/rist.png",
+	"Rust": "res://assets/portraits/rust.png",
 }
 
 
@@ -180,6 +184,12 @@ func get_portrait(npc_name:String) -> String:
 				return "res://assets/portraits/UllaPortraitsRaptor.png"
 			else:
 				return "res://assets/portraits/SockFullDefault1.png"
+		"Rend":
+			#TODO replace with actual flag
+			if Globals.main.story_flags["main"] > 14:
+				return "res://assets/portraits/rendf.png"
+			else:
+				return portraits["Rend"]
 	return portraits[npc_name]
 	
 	
@@ -208,13 +218,13 @@ func _on_variable_changed(variable_name, new_value, previous_value):
 # _external_persistence["health"]
 func _on_external_variable_fetch(variable_name: String):
 	print("variable %s read" % variable_name)
-	return _external_persistence[variable_name]
+	return Globals._external_persistence[variable_name]
 
 
 # This method is called when the dialogue tries to set an external variable. i.e { set @health = 10 }
 func _on_external_variable_update(variable_name: String, value: Variant):
 	print("variable %s updated to value %s" % [variable_name, value])
-	_external_persistence[variable_name] = value
+	Globals._external_persistence[variable_name] = value
 
 
 func _on_blink_timer_timeout() -> void:

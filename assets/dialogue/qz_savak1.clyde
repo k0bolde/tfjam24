@@ -1,15 +1,15 @@
 There’s a kobold stuck in a gap! Help them out?
 
 + Yes
-
--- (enter battle)
-
+	{ trigger savak_battle }
 + No
+	Alright then…  #sad
 
-Alright then…  #sad
+== battle_start
+Savak is stuck!
 
-Enter battle: Savak is stuck!
+== half_hp
+They’re halfway freed!
 
-50% HP: They’re halfway freed!
-
-0% HP: You freed them! They thank you for your assistance. You have been gifted x3 Ankrpwease!
+== win
+You freed them! They thank you for your assistance. You have been gifted x3 Ankrpwease!

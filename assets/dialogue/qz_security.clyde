@@ -2,6 +2,8 @@ You approach the security guard. He seems bored as you approach.
 Security Guard: Sorry can’t let you through.
 -> start
 == start
++ I’ll pay you
+	-> pay
 + I’ll fight you
 	Security Guard: Bring it on, mutie!
 	{ trigger security_fight }
@@ -33,14 +35,14 @@ Security Guard: Sorry can’t let you through.
 	Jesse: I know. It’s cooler!
 	{ trigger security_tf }
 	-> END
-+ I’ll pay you
-	Security Guard: \$1000 and you’re through.
-	+ Sure\! \(Spend \$1000. Security Guard disappears\)
-		Security Guard: Thanks, pal\!
-		-> END
-	+ Nah\!
-		Security Guard: Your loss.
-		-> start
--- FIXME "I'll pay you" option cuts off all options after it
 + Leave
 	-> END
+	
+== pay
+Security Guard: \$1000 and you’re through.
++ Sure\! \(Spend \$1000. Security Guard disappears\)
+	Security Guard: Thanks, pal\!
+	-> END
++ Nah\!
+	Security Guard: Your loss.
+	-> start

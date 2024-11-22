@@ -16,11 +16,11 @@ Finley: I’m confused…
 
 Jesse: About what, dude? It’s a fight!
 
--- (enter fight)
+== fight_start
 
 Rend takes an offensive stance, his muscles rippling!
 
-Upon winning: a
+== win_fight
 
 Rend: Ouch! You guys pack a punch. Good thing the boss gave me more of those drugs.
 
