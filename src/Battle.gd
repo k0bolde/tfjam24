@@ -2,7 +2,6 @@ extends Node2D
 class_name Battle
 #major implementations
 #TODO special effect attacks - tip the scales/etc
-#TODO multi target attacks
 #TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
 #TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO Item use
@@ -338,6 +337,8 @@ func enemy_attack():
 			target_enemy = enemies.pick_random()
 		Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, target_enemy, self)
 		show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", enemies[target_enemy].enemy_name.capitalize()))
+	elif Abilities.abilities[selected_attack]["effect"] == 5:
+		pass
 	else:
 		var target_party := randi_range(0, Globals.party.num - 1)
 		while Globals.party.p[target_party]["hp"] <= 0:
