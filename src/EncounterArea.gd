@@ -10,9 +10,9 @@ var groups := {
 	"qz-1-1": ["lvl 1 kobold", "lvl pun kobold"],
 	"qz-1-2": ["mutant man", "glorb"],
 	"qz-1-3": ["moth", "ant"],
-	"qz-1-4": ["gallivanting goat", "embarrassed lizard"],
+	"qz-1-4": ["gallivanting goat", "twinned lizard lady"],
 	"qz-1-5": ["haz", "haz", "haz"],
-	"qz-1-6": ["glorb", "mutagenic mouse"]
+	"qz-1-6": ["glorp", "mutagenic mouse"]
 }
 var group_intros := [
 	"qz-1-1", "qz-1-2", "qz-1-3", "qz-1-4", "qz-1-5", "qz-1-6",

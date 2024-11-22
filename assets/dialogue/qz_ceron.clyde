@@ -1,0 +1,86 @@
+Jesse: It’s that thing again!
+
+Finley: You sure?
+
+Jesse: Yeah, it just shed its suit! Dang, those breasts were eyes!
+
+Finley: …are you disappointed at that?
+
+Jesse: Yeah, who doesn’t love some curvy tentacles?
+
+Finley: …
+
+Jesse: …
+
+Finley: You’re weird.
+
+Jesse: I know, right?
+
+???????: [i]shrieks[/i]
+
+???????: let…me…be…
+
+Finley: You’re the one following us!
+
+Jesse: And blocking our way!
+
+???????: submit…to…me…look…what…do…you…see?
+
++ Nice try!
+	{ trigger celon2_fight }
+	-> combat_win
++ Can’t…r-resist (Tentacle Creature TF)
+	{ trigger tentacle_bad_end }
+	-> bad_end
+
+-- Combat win:
+== combat_win
+Jesse: That was a tough one!
+
+Finley: Tell me about it.
+
+Jesse: Maybe it’s good you mutated more. You put up an awesome fight, dude!
+
+Finley: Thanks, I guess? Let’s keep moving.
+
+Jesse: Right on!
+
+-- Bad End:
+== bad_end
+The writhing mass of tentacles advance but you can’t tear your gaze away from its eyes and Jesse seems equally entranced. They’re so entrancing, that before you realize it, the tentacles are wrapped around you. You squirm, but they hold you tightly. They’re a little slimy, but their touch is tender and warm. It’s not entirely unpleasant. In fact, it feels…good? It’s like a nice, comfy hug, one given by many arms. Many, many arms.
+
+Then something seeps into you. What exactly, you’re not sure, but it creeps into your every pore. Your sight goes black and your mind is a little hazy. You feel like you’re falling into a dream. You’re disconnecting from your body.
+
+No.
+
+You’re connecting to something else. While your connection to your limbs, your bones, even your blood loosens, your mind has sprouted new appendages. Tiny tendrils of your own origin swim through the haze, thickening and lengthening with every passing moment. Your awareness of how the creature’s tentacles are wrapped around your body fades as you, or the new you, slips inside yourself. You continue to spread, a multitude of tentacles connecting to the suit of skin and scales you once so easily inhabited. As you do so, you feel the other tentacled entity retreat. It withdraws as you expand and as you do, your senses slowly return.
+
+First is the feeling of flesh, your tentacled form mingling with your new skinsuit. Then hearing, as you can both hear yourself and Jesse besides you flop about. Afterwards, smell, your old nose taking in the hazy odors of the city that your tentacled form can mostly comprehend. Taste…taste is there but unnecessary for the moment.
+
+Finally, with sight comes mobility. You sit up awkwardly, almost lurching and look over to Jesse. He looks the same, and so do you, but you know you’re both different now. He gets up to his feet, stumbling a bit.
+
+Jesse: T-This…is…weird, d-dude.
+
+The words come out in a drawl, as if he’s unused to speaking.
+
+Finley: T-t…tell me about it-it.
+
+That was tough! It feels weird puppeting this flesh suit you know inhabit. It’d be easier just to slither around as a mass of tentacles but you don’t do so because…maybe you’re too attached to what you were?
+
+Jesse: If I’m g-going to be-be honest…I’m not sure I-I can fight well like this.
+
+Finley: S-same! Let’s get used to this and, uh, deal with that other stuff later?
+
+Jesse: Deal, du-dude. But, uh, I need a break for now. I’m just gonna…
+
+You hear a wet squelch and see a rather curvy set of tentacles emerge from Jesse. You shrug your shoulders slowly and awkwardly and then decide to do the same. It takes more effort than you thought, but you’re able to detach yourself from…yourself and find you’re not too much different than Jesse.
+
+Jesse: Wild!
+
+Jesse speaks not with a mouth, but with the vibrations of his many tentacles and some sort of sac. You can respond the same way!
+
+Jesse: Does this mean I can inhabit your body too! Damn, I could be a big titty dragoness!
+
+Finley: Not so soon! Let’s, uh, let’s get back in and, uh, get a beer or something. I need to drink this off.
+
+Jesse: Same, dude. Same.
