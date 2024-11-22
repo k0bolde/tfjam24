@@ -4,6 +4,8 @@ extends Control
 
 func _ready() -> void:
 	credits_panel.visible = false
+	if not FileAccess.file_exists("user://save.tres"):
+		%LoadGameButton.disabled = true
 	
 
 func _on_new_game_button_pressed() -> void:

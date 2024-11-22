@@ -112,13 +112,16 @@ func _on_save_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	var popup := PopupMenu.new()
-	popup.add_item("Are you sure?")
-	popup.set_item_disabled(0, true)
-	popup.add_item("Yes")
-	popup.index_pressed.connect(func (idx): 
-		if idx == 1:
-			Globals.load_game()
-		)
+	if FileAccess.file_exists("user://save.tres"):
+		popup.add_item("Are you sure?")
+		popup.set_item_disabled(0, true)
+		popup.add_item("Yes")
+		popup.index_pressed.connect(func (idx): 
+			if idx == 1:
+				Globals.load_game()
+			)
+	else:
+		popup.add_item("No save file exists. Save first!")
 	%LoadButton.add_child(popup)
 	popup.popup_centered(Vector2i(100, 30))
 

@@ -45,6 +45,7 @@ layout_mode = 2
 text = "New Game"
 
 [node name="LoadGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Load Game"
 
@@ -103,7 +104,6 @@ text = "NSFW Warning - boobs"
 
 [node name="CreditsPanel" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,11 +126,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 text = "Programming & art by k0bold https://k0bold.itch.io/ https://www.furaffinity.net/user/2718281828/
-Writing & art by skiesofsilver https://www.furaffinity.net/user/skiesofsilver https://skiesofsilver.itch.io/
+Writing & art & mapping by skiesofsilver https://www.furaffinity.net/user/skiesofsilver https://skiesofsilver.itch.io/
 Art by Tavaer https://tv42.itch.io/ https://www.furaffinity.net/gallery/tavaer/
-Art by Malic https://malicthegreat.itch.io/
 Music by Fulcrum https://www.instagram.com/fulcrummusic_/
 Art by NecroBLAU https://www.furaffinity.net/user/24hoursgyear/ https://itch.io/profile/necroblau
+Art by Malic https://malicthegreat.itch.io/
 
 Additional art by
 https://www.furaffinity.net/user/returnaddress/ - Rene portrait

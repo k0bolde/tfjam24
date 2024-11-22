@@ -475,6 +475,9 @@ func get_tween(the_tween:Tween, node) -> Tween:
 	return get_tree().create_tween().bind_node(node)
 
 
+#Windows: %APPDATA%\Godot\app_userdata\[project_name]
+#macOS: ~/Library/Application Support/Godot/app_userdata/[project_name]
+#Linux: ~/.local/share/godot/app_userdata/[project_name]
 func save_game():
 	save_data = Save.new()
 	save_data.cash = cash
