@@ -446,7 +446,6 @@ func _on_basic_attack_button_pressed() -> void:
 
 
 func show_targeting(is_attacking:=true):
-	#TODO for multi targets show all lights
 	%TargetContainer.get_node("PanelContainer/GridContainer/AttackButton").visible = is_attacking
 	%TargetContainer.get_node("PanelContainer/GridContainer/CancelTargetButton").visible = is_attacking
 	%TargetContainer.visible = true
@@ -577,7 +576,7 @@ func _on_abilities_button_pressed() -> void:
 			_on_cancel_button_pressed()
 			disable_buttons()
 			show_targeting()
-			if enemies.size() == 1:
+			if enemies.size() == 1 or Abilities.abilities[curr_ability]["effect"] == 1:
 				_on_attack_button_pressed()
 			)
 		b.disabled = Globals.party.p[curr_party]["mp"] < Abilities.abilities[a]["mp"]
