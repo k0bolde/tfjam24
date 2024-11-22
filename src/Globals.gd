@@ -398,7 +398,82 @@ func initialize_enemies():
 	e.cash_reward = 4
 	enemies[e.enemy_name] = e
 	
+	e = Enemy.new()
+	e.enemy_name = "savak"
+	e.desc = "This poor kobold is stuck! Help them out!"
+	e.texture_path = "res://assets/battle/savakStuck.png"
+	e.stats.hp = 250
+	e.stats.atk = 10
+	e.stats.def = 20
+	e.stats.eva = 20
+	e.stats.lck = 10
+	e.attack_probs["tail whip"] = 0.25
+	e.attack_probs["struggle"] = 0.5
+	e.attack_probs["thank"] = 0.25
+	e.xp_reward = 10
+	e.base_turns = 2
+	e.item_drops["ankrpwease"] = 1
+	e.cash_reward = 35
+	enemies[e.enemy_name] = e
 	
+	e = Enemy.new()
+	e.enemy_name = "rend"
+	e.desc = "Rust or Rist’s (you’re not sure) right hand man"
+	e.texture_path = "res://assets/battle/rendm.png"
+	e.stats.hp = 250
+	e.stats.atk = 25
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances.append_array(["fire"])
+	e.stats.weaknesses.append_array(["mutagenic","rending"])
+	e.attack_probs["swipe"] = 0.5
+	e.attack_probs["claw"] = 0.25
+	e.attack_probs["wild wolf"] = 0.25
+	e.cash_reward = 35
+	e.xp_reward = 15
+	e.item_drops["rend roid"] = 1.0
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "imp"
+	e.desc = "A cackling axe wielding imp. Is it actually a demon or a mutant?"
+	e.texture_path = "res://assets/battle/ImpM.png"
+	e.stats.hp = 100
+	e.stats.atk = 20
+	e.stats.def = 5
+	e.stats.eva = 15
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["esoteric"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["claw"] = 0.60
+	e.attack_probs["cackle"] = 0.20
+	e.attack_probs["swipe"] = 0.20
+	e.xp_reward = 3
+	e.item_drops["prop axe"] = 0.5
+	e.cash_reward = 7
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "impess"
+	e.desc = "A smug pitchfork wielding female imp. Is it actually a demon or a mutant?"
+	e.texture_path = "res://assets/battle/ImpF.png"
+	e.stats.hp = 100
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 20
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["esoteric"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["confuse"] = 0.60
+	e.attack_probs["entice"] = 0.20
+	e.attack_probs["cackle"] = 0.20
+	e.xp_reward = 3
+	e.item_drops["nid's captured cold"] = 0.5
+	e.cash_reward = 7
+	enemies[e.enemy_name] = e
 
 func verify_enemies():
 	#TODO check that item drop exists

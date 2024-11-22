@@ -291,7 +291,26 @@ var abilities := {
 		"enemy_flavor": "They give CHAR the eldritch eye. CHAR’s mind quakes!",
 		#Drains 10 MP
 		"callable": DONTUSEME
-	}
+	},
+	"struggle": {
+		"base_atk": 1.0,
+		"type": "bludgeoning",
+		"effect": 0,
+		"mp": 0,
+		"desc": "hit yourself in confusion",
+		"enemy_flavor": "They thank CHAR for trying to free them!",
+		#20 self damage - put in later
+		"callable": DONTUSEME
+	},
+	"thank": {
+		"base_atk": 0,
+		"type": "eldritch",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Thank your enemy!",
+		"enemy_flavor": "They thank CHAR for trying to free them!",
+		"callable": single_attack.bind("thank")
+	},
 }
 
 func _ready() -> void:
