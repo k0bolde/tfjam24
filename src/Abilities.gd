@@ -310,6 +310,37 @@ var abilities := {
 		"enemy_flavor": "They thank CHAR for trying to free them!",
 		"callable": single_attack.bind("thank")
 	},
+	"fireball": {
+		"base_atk": 1.0,
+		"type": "fire",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Fling a fireball!",
+		"enemy_flavor": "They toss a fireball at CHAR! Fwoosh!",
+		"callable": single_attack.bind("fireball")
+	},
+		"metamorphic attempt": {
+		"base_atk": 1.0,
+		"type": "fire",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Attempt to change your enemy, leaving them woozy!",
+		"enemy_flavor": "They attempt to transform CHAR. It doesn’t quite work, but leaves them  woozy!",
+		#-5 Evasion and -5DEF for 3 turns
+		"callable": single_attack.bind("metamorphic attempt")
+	},
+		"greater inspire": {
+		"base_atk": 0,
+		"type": "esoteric",
+		"effect": 3,
+		"mp": 30,
+		"desc": "Inspire all allies to fight harder",
+		"enemy_flavor": "They inspire their allies to fight harder!",
+		#ally ATK x1.3 and Luck x1.5 3 turns
+		"callable": DONTUSEME
+	},
+	
+	
 }
 
 func _ready() -> void:

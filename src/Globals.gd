@@ -277,6 +277,7 @@ func initialize_enemies():
 	
 	e = Enemy.new()
 	e.enemy_name = "glorp"
+	e.desc = "What the heck is this?"
 	e.texture_path = "res://assets/battle/monster.png"
 	e.stats.hp = 200
 	e.stats.atk = 20
@@ -432,6 +433,7 @@ func initialize_enemies():
 	e.attack_probs["wild wolf"] = 0.25
 	e.cash_reward = 35
 	e.xp_reward = 15
+	e.base_turns = 2
 	e.item_drops["rend roid"] = 1.0
 	enemies[e.enemy_name] = e
 	
@@ -485,13 +487,200 @@ func initialize_enemies():
 	e.stats.eva = 20
 	e.stats.lck = 15
 	e.stats.resistances.append_array(["fire"])
-	e.stats.weaknesses.append_array(["mutagenic","rending"])
+	e.stats.weaknesses.append_array(["mutagenic"])
 	e.attack_probs["entice"] = 0.5
 	e.attack_probs["claw"] = 0.25
 	e.attack_probs["swipe"] = 0.25
 	e.cash_reward = 35
 	e.xp_reward = 15
+	e.base_turns = 2
 	e.item_drops["scale polish"] = 1.0
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "dragoness"
+	e.desc = " A man mutated into a busty dragoness. She’s flirty. Watch out!"
+	e.texture_path = "res://assets/battle/purple_critter.png"
+	e.stats.hp = 200
+	e.stats.atk = 30
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances.append_array(["fire", "bludgeoning"])
+	e.stats.weaknesses.append_array(["frigid","esoteric"])
+	e.attack_probs["swipe"] = 0.25
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["entice"] = 0.25
+	e.cash_reward = 10
+	e.xp_reward = 5
+	e.item_drops["scale polish"] = .5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "eerie suit"
+	e.desc = "Something mutated by eldritch energy"
+	e.texture_path = "res://assets/battle/tentacle_girl_128x.png"
+	e.stats.hp = 50
+	e.stats.atk = 25
+	e.stats.def = 50
+	e.stats.eva = 20
+	e.stats.lck = 15
+	e.stats.resistances.append_array(["eldritch"])
+	e.stats.weaknesses.append_array(["esoteric"])
+	e.attack_probs["shriek"] = 0.2
+	e.attack_probs["insane insight"] = 0.4
+	e.attack_probs["stare"] = 0.4
+	e.cash_reward = 10
+	e.xp_reward = 5
+	e.item_drops["sealed soul"] = .25
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "wolf"
+	e.desc = " Part of a pack of people who have mutated into wolves. Was it the same bad batch?"
+	e.texture_path = "res://assets/battle/wolfm.png"
+	e.stats.hp = 100
+	e.stats.atk = 20
+	e.stats.def = 10
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.attack_probs["claw"] = 0.6
+	e.attack_probs["bite"] = 0.1
+	e.attack_probs["wild wolf"] = 0.3
+	e.cash_reward = 5
+	e.xp_reward = 3
+	e.item_drops["pizza"] = 1.0
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "wolfess"
+	e.desc = "Part of a pack of people who have mutated into wolves. This one’s a bitch!"
+	e.texture_path = "res://assets/battle/wolff.png"
+	e.stats.hp = 125
+	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 20
+	e.stats.lck = 15
+	e.attack_probs["claw"] = 0.6
+	e.attack_probs["bite"] = 0.1
+	e.attack_probs["inspire"] = 0.3
+	e.cash_reward = 5
+	e.xp_reward = 3
+	e.item_drops["coffee"] = 1.0
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "eye Teeth"
+	e.desc = "This guy is going through a bad trip"
+	e.texture_path = "res://assets/battle/battle_formed_critter.png"
+	e.stats.hp = 50
+	e.stats.atk = 25
+	e.stats.def = 20
+	e.stats.eva = 50
+	e.stats.lck = 15
+	e.stats.resistances.append_array(["eldritch"])
+	e.stats.weaknesses.append_array(["esoteric", "fire"])
+	e.attack_probs["inspire"] = 0.3
+	e.attack_probs["confuse"] = 0.5
+	e.attack_probs["shriek"] = 0.2
+	e.cash_reward = 10
+	e.xp_reward = 5
+	e.item_drops["sealed soul"] = .25
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "cowbro"
+	e.desc = "A bull bro with an udder"
+	e.texture_path = "res://assets/battle/bro.png"
+	e.stats.hp = 150
+	e.stats.atk = 30
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.attack_probs["punch"] = 0.8
+	e.attack_probs["spray"] = 0.2
+	e.cash_reward = 7
+	e.xp_reward = 3
+	e.item_drops["a dozen eggs"] = .50
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "elite imp"
+	e.desc = "An elite cackling axe wielding imp. Is it actually a demon or a mutant?"
+	e.texture_path = "res://assets/battle/ImpM.png"
+	e.stats.hp = 135
+	e.stats.atk = 25
+	e.stats.def = 10
+	e.stats.eva = 15
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["esoteric"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["claw"] = 0.60
+	e.attack_probs["cackle"] = 0.20
+	e.attack_probs["swipe"] = 0.20
+	e.xp_reward = 5
+	e.item_drops["prop axe"] = 1.0
+	e.cash_reward = 9
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "impess"
+	e.desc = "An elite smug pitchfork wielding female imp. Is it actually a demon or a mutant?"
+	e.texture_path = "res://assets/battle/ImpF.png"
+	e.stats.hp = 135
+	e.stats.atk = 25
+	e.stats.def = 0
+	e.stats.eva = 25
+	e.stats.lck = 15
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["esoteric"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["confuse"] = 0.60
+	e.attack_probs["entice"] = 0.20
+	e.attack_probs["cackle"] = 0.20
+	e.xp_reward = 5
+	e.item_drops["nid's captured cold"] = 1.0
+	e.cash_reward = 7
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "glenys' goat"
+	e.desc = "One of Glenys' favored goats. She's cute!"
+	e.texture_path = "res://assets/battle/panflutesexual.png"
+	e.stats.hp = 100
+	e.stats.atk = 25
+	e.stats.def = 10
+	e.stats.eva = 15
+	e.stats.lck = 10
+	e.stats.resistances.append_array(["fire"])
+	e.attack_probs["kick"] = 0.5
+	e.attack_probs["entice"] = 0.25
+	e.attack_probs["confuse"] = 0.25
+	e.xp_reward = 3
+	e.item_drops["dancing does"] = 0.5
+	e.cash_reward = 5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "glenys"
+	e.desc = "A goat witch with a silky smooth voice and heaving honkers"
+	e.texture_path = "res://assets/battle/goatwitch.png"
+	e.stats.hp = 200
+	e.stats.atk = 30
+	e.stats.def = 20
+	e.stats.eva = 5
+	e.stats.lck = 10
+	e.attack_probs["fireball"] = 0.25
+	e.attack_probs["metamorphic attempt"] = 0.25
+	e.attack_probs["entice"] = 0.25
+	e.attack_probs["greater inspire"] = 0.25
+	e.cash_reward = 35
+	e.xp_reward = 15
+	e.base_turns = 2
+	e.item_drops["ddew pamphlet"] = 1.0
+	e.item_drops["ankrpwease"] = 1.0
+	e.item_drops["weird writings"] = 1.0
 	enemies[e.enemy_name] = e
 
 func verify_enemies():
