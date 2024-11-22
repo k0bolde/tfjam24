@@ -172,7 +172,7 @@ func get_portrait(npc_name:String) -> String:
 			#TODO replace with actual flag number
 			if Globals.main.story_flags["main"] > 10:
 				return "res://assets/portraits/finley3.png"
-		"Ulla", "Ulla Tor", "Sock":
+		"Ulla Tor":
 			#TODO replace with actual flag number
 			if Globals.main.story_flags["main"] < 16:
 				return portraits["Ulla"]

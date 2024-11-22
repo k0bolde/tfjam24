@@ -256,24 +256,6 @@ func player_attack(which_attack:String):
 	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
-	#update enemy hp bar
-	enemy_hp_bar.value = enemies[targeted_enemy].hp
-	#TODO show enemy hp bar for a bit after an attack
-	if enemies[targeted_enemy].hp <= 0:
-		enemies[targeted_enemy].anim_tween.kill()
-		enemies[targeted_enemy].hp_bar_tween.kill()
-		enemies[targeted_enemy].hp_mesh.visible = false
-		enemies[targeted_enemy].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-		enemies[targeted_enemy].ingame_sprite.rotation_degrees.x = 90.0
-		enemies[targeted_enemy].ingame_sprite.rotation_degrees.y = 90.0
-		enemies[targeted_enemy].ingame_sprite.position.y = -0.45
-		defeated_enemies.push_back(enemies[targeted_enemy])
-		enemies.remove_at(targeted_enemy)
-		if enemies.size() > 0:
-			_on_target_right_button_pressed(false)
-	
-	if enemies.size() == 0:
-		battle_won()
 	
 	curr_party = find_next_teammate()
 	if turns <= 0:
@@ -308,6 +290,23 @@ func find_next_teammate() -> int:
 				break
 	return next_teammate
 	
+	
+func kill_enemy(target):
+	enemies[target].anim_tween.kill()
+	#why is this not killing the tween?
+	enemies[target].hp_bar_tween.stop()
+	enemies[target].hp_bar_tween.kill()
+	enemies[target].hp_mesh.visible = false
+	enemies[target].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	enemies[target].ingame_sprite.rotation_degrees.x = 90.0
+	enemies[target].ingame_sprite.rotation_degrees.y = 90.0
+	enemies[target].ingame_sprite.position.y = -0.45
+	defeated_enemies.push_back(enemies[target])
+	enemies.remove_at(target)
+	if enemies.size() > 0:
+		_on_target_right_button_pressed(false)
+	else:
+		battle_won()
 	
 func enemy_attack():
 	is_enemy_attacking = true
@@ -385,19 +384,21 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	var cl := crit_label.duplicate()
 	var the_target : Node3D
 	if target >= 0:
-		the_target = enemies[target].ingame_sprite
-		var bar := enemies[target].hp_bar
-		enemies[target].hp_mesh.visible = true
-		enemies[target].hp_mesh.position = the_target.position
-		enemies[target].hp_mesh.position.y += 1.0
-		bar.value = enemies[target].hp
-		bar.max_value = enemies[target].stats.hp
+		var the_enemy := enemies[target]
+		the_target = the_enemy.ingame_sprite
+		var bar := the_enemy.hp_bar
+		the_enemy.hp_mesh.visible = true
+		the_enemy.hp_mesh.position = the_target.position
+		the_enemy.hp_mesh.position.y += 1.0
+		bar.value = the_enemy.hp
+		bar.max_value = the_enemy.stats.hp
 		var t := get_tree().create_tween()
-		enemies[target].hp_bar_tween = t
+		the_enemy.hp_bar_tween = t
 		t.tween_interval(5)
+		#FIXME last enemy's hp bar not disappearing on multi targets, sometimes?
 		t.tween_callback(func (): 
-			if is_inside_tree()  and not indicator_light.visible and not enemies.is_empty(): #and targeted_enemy == target
-				enemies[target].hp_mesh.visible = false
+			if is_inside_tree() and not indicator_light.visible and not enemies.is_empty() and the_target.is_inside_tree(): #and targeted_enemy == target
+				the_enemy.hp_mesh.visible = false
 			)
 	else:
 		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
@@ -576,7 +577,7 @@ func _on_abilities_button_pressed() -> void:
 			_on_cancel_button_pressed()
 			disable_buttons()
 			show_targeting()
-			if enemies.size() == 1 or Abilities.abilities[curr_ability]["effect"] == 1:
+			if enemies.size() == 1 or Abilities.abilities[curr_ability]["effect"] == 1 or Abilities.abilities[curr_ability]["effect"] == 4:
 				_on_attack_button_pressed()
 			)
 		b.disabled = Globals.party.p[curr_party]["mp"] < Abilities.abilities[a]["mp"]

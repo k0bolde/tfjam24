@@ -3,7 +3,7 @@ extends Node
 #TODO healing abilities
 #TODO random target attacks
 #for specific enemy flavor text, just add another entry with their specific text pointing to the same damage func
-# effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = two random targets, 5 = self target
+# effect: 0 = single target, 1 = target all, 2 = target ally, 3 = target all allies, 4 = random targets, 5 = self target
 # Holds the info on all abilities, player and enemy
 # requires: mp, base_atk, type, effect, desc, enemy_flavor (if usable by enemies), callable
 var abilities := {
@@ -399,11 +399,14 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
 	battle.animate_sprite(target)
+	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
 	if target < 0:
 		if the_target["hp"] <= 0:
 			the_target["hp"] = 0
 			battle.kill_party_member(abs(target) - 1)
-	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
+	else:
+		if the_target["hp"] <= 0:
+			battle.kill_enemy(target)
 
 	
 ## hits a random amount of targets
@@ -429,6 +432,9 @@ func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 						picks[i] = randi_range(0, Globals.party.p.size() - 1)
 			for i in picks.size():
 				picks[i] = -(picks[i] + 1)
+			#reverse so we can kill enemies
+			picks.sort()
+			picks.reverse()
 			for t in picks:
 				single_attack(user, party, enemies, t, battle, attack_name)
 		else:
@@ -437,7 +443,7 @@ func random_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		
 
 ## hits all opposing targets
-func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
+func multi_attack(user:int, party, enemies:Array, _target:int, battle:Battle, attack_name:String):
 	var targets := []
 	if user >= 0:
 		#enemy, targeting players
@@ -448,6 +454,8 @@ func multi_attack(user:int, party, enemies:Array, target:int, battle:Battle, att
 		#player, targeting enemies
 		for e in enemies.size():
 			targets.append(e)
+		#reverse so we can kill enemies
+		targets.reverse()
 	for t in targets:
 		single_attack(user, party, enemies, t, battle, attack_name)
 	
