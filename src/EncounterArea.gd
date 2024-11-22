@@ -8,7 +8,7 @@ class_name EncounterArea
 @export var total_encounter_rate := 0.008
 var groups := {
 	"qz-1-1": ["lvl 1 kobold", "lvl pun kobold"],
-	"qz-1-2": ["mutant man", "glorb"],
+	"qz-1-2": ["mutant man", "glorp"],
 	"qz-1-3": ["moth", "ant"],
 	"qz-1-4": ["gallivanting goat", "twinned lizard lady"],
 	"qz-1-5": ["haz", "haz", "haz"],
