@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dq4v76g3tsjtq"]
+[gd_scene load_steps=44 format=4 uid="uid://dq4v76g3tsjtq"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_kkp3q"]
 [ext_resource type="Texture2D" uid="uid://cd1u2n6lkl1mr" path="res://assets/QuarantineBlockDungeon.png" id="2_ydeac"]
@@ -47,6 +47,18 @@ size = Vector2(253, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wre7"]
 size = Vector2(233, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xgkj"]
+size = Vector2(47, 161)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dglm"]
+size = Vector2(58, 261)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnkvd"]
+size = Vector2(113, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssco0"]
+size = Vector2(64, 242)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmm8"]
 size = Vector2(1164, 252)
@@ -160,16 +172,6 @@ scale = Vector2(4.11, 4.11)
 image = ExtResource("13_vrykg")
 dialogue_file = "res://assets/dialogue/qz_rustrydra.clyde"
 
-[node name="RendM" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(2061, -814)
-image = ExtResource("14_4gae4")
-dialogue_file = "res://assets/dialogue/qz_rend1.clyde"
-
-[node name="RendF" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(-13, -1325)
-image = ExtResource("15_4pbbw")
-dialogue_file = "res://assets/dialogue/qz_rend2.clyde"
-
 [node name="Ceron" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(730, -817)
 image = ExtResource("16_11gcm")
@@ -197,7 +199,6 @@ image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
 
 [node name="Cutscenes" type="Node2D" parent="."]
-visible = false
 
 [node name="JesseTalk1" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(996, -266)
@@ -267,6 +268,42 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/SecurityWall/Remove/StaticBody2D"]
 position = Vector2(-16.5, -116)
 shape = SubResource("RectangleShape2D_6wre7")
+
+[node name="RendMFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(2054, -773)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/RendMFight"]
+position = Vector2(-149.5, -91.5)
+shape = SubResource("RectangleShape2D_4xgkj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cutscenes/RendMFight"]
+position = Vector2(-202, -41.5)
+shape = SubResource("RectangleShape2D_5dglm")
+
+[node name="Remove" type="Node2D" parent="Cutscenes/RendMFight"]
+
+[node name="RendM" parent="Cutscenes/RendMFight/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(-174, -49)
+image = ExtResource("14_4gae4")
+dialogue_file = "res://assets/dialogue/qz_rend1.clyde"
+
+[node name="RendFFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(-13, -1259)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/RendFFight"]
+position = Vector2(27.5, -64.5)
+shape = SubResource("RectangleShape2D_qnkvd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cutscenes/RendFFight"]
+position = Vector2(111, 30)
+shape = SubResource("RectangleShape2D_ssco0")
+
+[node name="Remove" type="Node2D" parent="Cutscenes/RendFFight"]
+
+[node name="RendF" parent="Cutscenes/RendFFight/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(64, -64)
+image = ExtResource("15_4pbbw")
+dialogue_file = "res://assets/dialogue/qz_rend2.clyde"
 
 [node name="EncounterAreas" type="Node2D" parent="."]
 visible = false
