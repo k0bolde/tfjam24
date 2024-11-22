@@ -37,7 +37,7 @@ var portraits := {
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
 	"Zal": "res://assets/portraits/zal.png",
-	"Ulla": "res://assets/portraits/UllaPortraitsHuman.png",
+	"Ulla Tor": "res://assets/portraits/UllaPortraitsHuman.png",
 	"Security Guard": "res://assets/portraits/security.png",
 	"Dark Clem": "res://assets/portraits/clem-dark.png",
 	"Rend": "res://assets/portraits/rendm.png",
@@ -175,9 +175,9 @@ func get_portrait(npc_name:String) -> String:
 		"Ulla Tor":
 			#TODO replace with actual flag number
 			if Globals.main.story_flags["main"] < 16:
-				return portraits["Ulla"]
+				return portraits["Ulla Tor"]
 			#TODO replace with actual flag number
-			if Globals.main.story_flags["main"] < 24:
+			elif Globals.main.story_flags["main"] < 24:
 				return "res://assets/portraits/UllaPortraitsScaled.png"
 			#TODO replace with actual flag number
 			elif Globals.main.story_flags["main"] < 30:
