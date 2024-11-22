@@ -42,6 +42,10 @@ func _dialogue_ended():
 			5:
 				Events.battle_start.emit(["gat cat", "lion mutant"], false)
 				Globals.main.start_dialogue("res://assets/dialogue/t_8.clyde")
+			7:
+				#fill mp after tutorial
+				Globals.party.p[0]["mp"] = Globals.party.p[0].stats.mp
+				Globals.party.p[1]["mp"] = Globals.party.p[1].stats.mp
 			#TODO update player battle sprites, they'll get saved
 	
 	if has_node("Remove"):

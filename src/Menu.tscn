@@ -215,6 +215,10 @@ columns = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer"]
 layout_mode = 2
 
+[node name="MPButton" type="Button" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Fill MP"
+
 [node name="Label" type="Label" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Start Battle"
@@ -255,6 +259,19 @@ min_value = 1.0
 max_value = 4.0
 value = 1.0
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "Level"
+
+[node name="LevelSpinbox" type="SpinBox" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 20.0
+
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -264,5 +281,7 @@ value = 1.0
 [connection signal="toggled" from="CanvasLayer/SettingsPanel/VBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]
 [connection signal="value_changed" from="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="toggled" from="CanvasLayer/SettingsPanel/VBoxContainer/ActionCamButton" to="." method="_on_action_cam_button_toggled"]
+[connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/MPButton" to="." method="_on_mp_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/StartBattleButton" to="." method="_on_start_battle_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer/PartyNumBox" to="." method="_on_party_num_box_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer2/LevelSpinbox" to="." method="_on_level_spinbox_value_changed"]

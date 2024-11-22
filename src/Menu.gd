@@ -146,3 +146,13 @@ func _on_start_battle_button_pressed() -> void:
 	if not ma.is_empty():
 		_on_close_button_pressed()
 		Events.battle_start.emit(ma, true)
+
+
+func _on_level_spinbox_value_changed(value: float) -> void:
+	#TODO set player level
+	pass # Replace with function body.
+
+
+func _on_mp_button_pressed() -> void:
+	for p in Globals.party.p:
+		p["mp"] = p.stats.mp
