@@ -625,7 +625,7 @@ func initialize_enemies():
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
-	e.enemy_name = "impess"
+	e.enemy_name = "elite impess"
 	e.desc = "An elite smug pitchfork wielding female imp. Is it actually a demon or a mutant?"
 	e.texture_path = "res://assets/battle/ImpF.png"
 	e.stats.hp = 135
@@ -649,7 +649,7 @@ func initialize_enemies():
 	e.desc = "One of Glenys' favored goats. She's cute!"
 	e.texture_path = "res://assets/battle/panflutesexual.png"
 	e.stats.hp = 100
-	e.stats.atk = 25
+	e.stats.atk = 20
 	e.stats.def = 10
 	e.stats.eva = 15
 	e.stats.lck = 10
@@ -681,6 +681,26 @@ func initialize_enemies():
 	e.item_drops["ddew pamphlet"] = 1.0
 	e.item_drops["ankrpwease"] = 1.0
 	e.item_drops["weird writings"] = 1.0
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "synthia tail"
+	e.desc = "A discarded synth tail with the ambition to assimilate"
+	e.texture_path = "res://assets/battle/tail.png"
+	e.stats.hp = 250
+	e.stats.atk = 30
+	e.stats.def = 10
+	e.stats.eva = 20
+	e.stats.lck = 10
+	e.attack_probs["zap"] = 0.40
+	e.attack_probs["slap"] = 0.40
+	e.attack_probs["zap slap"] = 0.2
+	e.cash_reward = 30
+	e.xp_reward = 20
+	e.base_turns = 2
+	e.item_drops["condensed synth snilk"] = 1.0
+	e.item_drops["condensed synth snilk"] = 1.0
+	e.item_drops["condensed synth snilk"] = 1.0
 	enemies[e.enemy_name] = e
 
 func verify_enemies():

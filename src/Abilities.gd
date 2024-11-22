@@ -339,7 +339,33 @@ var abilities := {
 		#ally ATK x1.3 and Luck x1.5 3 turns
 		"callable": DONTUSEME
 	},
-	
+		"zap": {
+		"base_atk": 1.0,
+		"type": "fire",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Zap them with electric fire!",
+		"enemy_flavor": "They zap CHAR with electric fire! Zowch!",
+		"callable": single_attack.bind("zap")
+	},
+		"slap": {
+		"base_atk": 1.0,
+		"type": "bludgeoning",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Backhand them",
+		"enemy_flavor": "They flail and slap CHAR with an appendage!",
+		"callable": single_attack.bind("slap")
+	},
+		"zapslap": {
+		"base_atk": 2.0,
+		"type": "fire",
+		"effect": 0,
+		"mp": 20,
+		"desc": "Zap ‘em and slap ‘em!",
+		"enemy_flavor": "They zap and slap CHAR!",
+		"callable": single_attack.bind("zapslap")
+	},
 	
 }
 
