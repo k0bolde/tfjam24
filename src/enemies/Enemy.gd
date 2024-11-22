@@ -1,5 +1,6 @@
 extends Resource
 class_name Enemy
+#TODO add repel & block?
 
 @export var enemy_name := "DefaultName"
 @export var desc := "Default Description"
@@ -11,7 +12,8 @@ class_name Enemy
 @export var cash_reward := 10
 @export var xp_reward := 1
 @export var level := 1
-@export var item_drops := {"hp1": 1.0}
+@export var item_drops := {}
+@export var item_pulls := 1
 @export var base_turns := 1
 
 @export var stats := Stats.new()

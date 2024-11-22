@@ -366,7 +366,6 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		the_user = enemies[user]
 	else:
 		the_user = party.p[abs(user) - 1]
-		#the_user["mp"] -= the_attack["mp"]
 		
 	var mult = the_attack["base_atk"]
 	var dmg_type := 0
@@ -462,7 +461,23 @@ func multi_attack(user:int, party, enemies:Array, _target:int, battle:Battle, at
 	
 ## heals the target
 func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String, amount:int):
-	pass
+	var the_target
+	var the_user
+	var the_attack = abilities[attack_name]
+	if target >= 0:
+		the_target = enemies[target]
+	else:
+		the_target = party.p[abs(target) - 1]
+	if user >= 0:
+		if enemies.size() == 0:
+			return
+		the_user = enemies[user]
+	else:
+		the_user = party.p[abs(user) - 1]
+		
+	the_target["hp"] += amount
+	battle.animate_sprite(target)
+	battle.show_dmg_label(-amount, target)
 
 
 func DONTUSEME(user:int, party, enemies:Array, target:int, battle:Battle):

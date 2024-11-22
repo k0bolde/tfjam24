@@ -332,16 +332,23 @@ func enemy_attack():
 		selected_attack = enemies[curr_enemy].stats.abilities.pick_random()
 	if Abilities.abilities[selected_attack]["effect"] == 2:
 		#healing ability, target an enemy not at max hp
-		pass
-	var target_party := randi_range(0, Globals.party.num - 1)
-	while Globals.party.p[target_party]["hp"] <= 0:
-		#bad code
-		target_party = randi_range(0, Globals.party.num - 1)
-	Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
-	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
-	audio_stream_player.play()
-	show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
-	update_bars(curr_party)
+		var target_enemy = enemies.pick_random()
+		#only retarget once so we don't have to figure out more complicated logic
+		if enemies[target_enemy]["hp"] == enemies[target_enemy].stats.hp:
+			target_enemy = enemies.pick_random()
+		Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, target_enemy, self)
+		show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", enemies[target_enemy].enemy_name.capitalize()))
+	else:
+		var target_party := randi_range(0, Globals.party.num - 1)
+		while Globals.party.p[target_party]["hp"] <= 0:
+			#bad code
+			target_party = randi_range(0, Globals.party.num - 1)
+		Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
+		audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
+		audio_stream_player.play()
+		show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
+		update_bars(curr_party)
+		
 	update_turns()
 	if Globals.party.num_alive() <= 0:
 		battle_lost()
@@ -576,6 +583,7 @@ func _on_abilities_button_pressed() -> void:
 			curr_ability = a
 			_on_cancel_button_pressed()
 			disable_buttons()
+			#TODO for party targets, target party instead. New cam position, new target code
 			show_targeting()
 			if enemies.size() == 1 or Abilities.abilities[curr_ability]["effect"] == 1 or Abilities.abilities[curr_ability]["effect"] == 4:
 				_on_attack_button_pressed()
