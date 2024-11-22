@@ -1,0 +1,74 @@
+Finley: Alright Rust or Rist or whatever your name is. Your number one customer is back!
+
+Rist: Who are you?
+
+Finley: Finley?
+
+Rist: Don’t remember you. Do you, Rust?
+
+Rust: This shrimp? Nope!
+
+Finley: You know, the guy with the hat. I’m wearing the same clothes…
+
+Rist: Finley?
+
+Rust: That’s you???
+
+Rist: Hahaha! How’s the tits?
+
+Finley: F-fine, thank you very much. Now tell me how I can change back.
+
+Rist: You can’t.
+
+Finley and Jesse: W-what?
+
+Rist: At least there’s nothing I can do. You’ll need someone from the corp for that.
+
+Finley: Corp? What corp?
+
+Rust: You think we’re just gonna tell you and your girlfriend, you ditzy dragoness?
+
+Finley: Fine! I can pay for info!
+
+Rist: It’s not for sale!
+
+Rust: Why would it be, broad?
+
+Finley: That’s it! I guess I’ll have to beat the info out of you!
+
+Rist: You can-
+
+Rust: Try!
+
+Rist: Hey, I was going to say that!
+
+Rust: Shut up! It sounds cool when I end your sentences.
+
+Rist: No, it’s just-
+
+Rust: Annoying!
+
+Rist: …
+
+Rust: Isn’t it cool?
+
+Finley: I guess? I’m going to beat you up now.
+
+Rust: Give me your best-
+
+Rist: Shot!
+
+Rust: …ok, I get your point.
+
+Rist: See?
+
+Finley: Can I breathe fire now?
+
+Rust: Or…
+
+Rist: You could be more like us! You have no chance against us.
+
++ As if!
+	{ trigger hydra_fight }
++ That might be neat. What do you think, Jesse?
+	{ trigger hydra_bad_end }

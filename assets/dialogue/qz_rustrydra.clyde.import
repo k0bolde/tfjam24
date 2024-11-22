@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://b4lbueqdph05i"
+path="res://.godot/imported/qz_rustrydra.clyde-f012fccfdc1e58bb127db6f97baabfef.res"
+
+[deps]
+
+source_file="res://assets/dialogue/qz_rustrydra.clyde"
+dest_files=["res://.godot/imported/qz_rustrydra.clyde-f012fccfdc1e58bb127db6f97baabfef.res"]
+
+[params]
+

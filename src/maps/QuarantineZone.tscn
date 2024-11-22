@@ -107,12 +107,13 @@ image = ExtResource("5_1gfri")
 dialogue_file = "res://assets/dialogue/qz_ulla1.clyde"
 
 [node name="Savak" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1396, -648)
+position = Vector2(1392, -583)
 image = ExtResource("5_ygayf")
 dialogue_file = "res://assets/dialogue/qz_savak1.clyde"
 
 [node name="Byrne" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2331, -381)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("6_sgl1j")
 dialogue_file = "res://assets/dialogue/qz_byrne.clyde"
 
@@ -127,12 +128,14 @@ image = ExtResource("5_1gfri")
 dialogue_file = "res://assets/dialogue/qz_ulla2.clyde"
 
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1410, -51)
+position = Vector2(1426, -60)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("9_gxrl8")
 dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -916)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("8_vqqdb")
 dialogue_file = "res://assets/dialogue/qz_pean.clyde"
 
@@ -153,15 +156,17 @@ dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
 
 [node name="RustRist" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2389, -1253)
+scale = Vector2(4.11, 4.11)
 image = ExtResource("13_vrykg")
+dialogue_file = "res://assets/dialogue/qz_rustrydra.clyde"
 
 [node name="RendM" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(2076, -832)
+position = Vector2(2061, -814)
 image = ExtResource("14_4gae4")
 dialogue_file = "res://assets/dialogue/qz_rend1.clyde"
 
 [node name="RendF" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(-12, -1268)
+position = Vector2(-13, -1325)
 image = ExtResource("15_4pbbw")
 dialogue_file = "res://assets/dialogue/qz_rend2.clyde"
 
@@ -180,12 +185,14 @@ image = ExtResource("10_0i7xv")
 dialogue_file = "res://assets/dialogue/qz_security.clyde"
 
 [node name="ShortcutEntrance" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(-173, -209)
+position = Vector2(-150, -259)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut1.clyde"
 
 [node name="ShortcutExit" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(508, -996)
+position = Vector2(502, -1026)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
 

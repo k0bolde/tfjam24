@@ -6,6 +6,7 @@ extends Control
 @onready var debug_container : Container = %DebugContainer
 @onready var debug_maps_container : Container = %DebugMapsContainer
 @onready var flag_container : Container = %FlagContainer
+var map_names := ["Apartment", "ApartmentCorridor", "Hub", "Map1", "QuarantineZone"]
 
 
 func _ready() -> void:
@@ -25,6 +26,14 @@ func _ready() -> void:
 			mb.text = map_name
 			mb.pressed.connect(func (): Globals.main.load_map(map_name, 0))
 			debug_maps_container.add_child(mb)
+	if map_dir.get_files().is_empty():
+		#diraccess doesn't work on exported games
+		for m in map_names:
+			var mb := Button.new()
+			mb.text = m
+			mb.pressed.connect(func (): Globals.main.load_map(m, 0))
+			debug_maps_container.add_child(mb)
+			
 	for f in Globals.main.story_flags.keys():
 		var l := Label.new()
 		l.text = f

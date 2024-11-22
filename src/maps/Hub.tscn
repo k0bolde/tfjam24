@@ -142,6 +142,7 @@ map_name = "QuarantineZone"
 
 [node name="Byrne" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(875, -157)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("6_2i6pi")
 dialogue_file = "res://assets/dialogue/hub_byrne.clyde"
 
@@ -152,6 +153,7 @@ dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-384, -20)
+scale = Vector2(1.5, 1.5)
 image = ExtResource("8_77hjx")
 dialogue_file = "res://assets/dialogue/hub_pean.clyde"
 

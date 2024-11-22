@@ -271,6 +271,7 @@ text = "Level"
 layout_mode = 2
 size_flags_horizontal = 8
 max_value = 20.0
+editable = false
 
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
