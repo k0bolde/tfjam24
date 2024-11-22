@@ -309,7 +309,6 @@ image = ExtResource("15_4pbbw")
 dialogue_file = "res://assets/dialogue/qz_rend2.clyde"
 
 [node name="EncounterAreas" type="Node2D" parent="."]
-visible = false
 
 [node name="EncounterArea" parent="EncounterAreas" instance=ExtResource("21_caehc")]
 position = Vector2(496, -278)
