@@ -500,11 +500,11 @@ func load_game():
 func load2():
 	if save_data:
 		cash = save_data.cash
-		main.load_map(save_data.map)
-		player.position = save_data.location
 		party = save_data.party
 		inventory = save_data.inventory
 		use_action_cam = save_data.use_action_cam
 		main.story_flags = save_data.story_flags
+		main.load_map(save_data.map)
+		player.position = save_data.location
 		
 		save_data = null
