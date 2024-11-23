@@ -46,7 +46,7 @@ func check_for_battle(delta):
 	check_accum += delta
 	#TODO give a leeway of a bit between battles
 	var encounter_rate = check_accum / total_encounter_rate
-	print("encounter rate %s" % encounter_rate)
+	#print("encounter rate %s" % encounter_rate)
 	if randf() < encounter_rate:
 		check_accum = 0.0
 		var pick := randf()
