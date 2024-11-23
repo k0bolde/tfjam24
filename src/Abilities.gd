@@ -319,7 +319,7 @@ var abilities := {
 		"enemy_flavor": "They toss a fireball at CHAR! Fwoosh!",
 		"callable": single_attack.bind("fireball")
 	},
-		"metamorphic attempt": {
+	"metamorphic attempt": {
 		"base_atk": 1.0,
 		"type": "fire",
 		"effect": 0,
@@ -329,7 +329,7 @@ var abilities := {
 		#-5 Evasion and -5DEF for 3 turns
 		"callable": single_attack.bind("metamorphic attempt")
 	},
-		"greater inspire": {
+	"greater inspire": {
 		"base_atk": 0,
 		"type": "esoteric",
 		"effect": 3,
@@ -339,7 +339,7 @@ var abilities := {
 		#ally ATK x1.3 and Luck x1.5 3 turns
 		"callable": DONTUSEME
 	},
-		"zap": {
+	"zap": {
 		"base_atk": 1.0,
 		"type": "fire",
 		"effect": 0,
@@ -348,7 +348,7 @@ var abilities := {
 		"enemy_flavor": "They zap CHAR with electric fire! Zowch!",
 		"callable": single_attack.bind("zap")
 	},
-		"slap": {
+	"slap": {
 		"base_atk": 1.0,
 		"type": "bludgeoning",
 		"effect": 0,
@@ -357,14 +357,14 @@ var abilities := {
 		"enemy_flavor": "They flail and slap CHAR with an appendage!",
 		"callable": single_attack.bind("slap")
 	},
-		"zapslap": {
+	"zap slap": {
 		"base_atk": 2.0,
 		"type": "fire",
 		"effect": 0,
 		"mp": 20,
 		"desc": "Zap ‘em and slap ‘em!",
 		"enemy_flavor": "They zap and slap CHAR!",
-		"callable": single_attack.bind("zapslap")
+		"callable": single_attack.bind("zap slap")
 	},
 	
 }

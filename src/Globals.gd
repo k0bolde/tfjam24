@@ -11,7 +11,7 @@ var inventory
 var cash := 0
 var enemies := {}
 var use_action_cam := false
-var types := ["rending", "piercing", "bludgeoning", "fire", "ice", "mutagenic", "esoteric", "eldritch"]
+var types := ["rending", "piercing", "bludgeoning", "fire", "frigid", "mutagenic", "esoteric", "eldritch"]
 var _external_persistence := {}
 
 func _ready() -> void:
@@ -414,6 +414,7 @@ func initialize_enemies():
 	e.xp_reward = 10
 	e.base_turns = 2
 	e.item_drops["ankrpwease"] = 1
+	e.item_pulls = 3
 	e.cash_reward = 35
 	enemies[e.enemy_name] = e
 	
@@ -570,7 +571,7 @@ func initialize_enemies():
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
-	e.enemy_name = "eye Teeth"
+	e.enemy_name = "eye teeth"
 	e.desc = "This guy is going through a bad trip"
 	e.texture_path = "res://assets/battle/battle_formed_critter.png"
 	e.stats.hp = 50
@@ -699,9 +700,9 @@ func initialize_enemies():
 	e.xp_reward = 20
 	e.base_turns = 2
 	e.item_drops["condensed synth snilk"] = 1.0
-	e.item_drops["condensed synth snilk"] = 1.0
-	e.item_drops["condensed synth snilk"] = 1.0
+	e.item_pulls = 3
 	enemies[e.enemy_name] = e
+
 
 func verify_enemies():
 	#TODO check that item drop exists

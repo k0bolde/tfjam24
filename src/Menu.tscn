@@ -56,16 +56,19 @@ layout_mode = 2
 
 [node name="PartyButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer" groups=["disableable"]]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Party"
 
 [node name="ItemsButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer" groups=["disableable"]]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Items"
 
 [node name="EquipmentButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer" groups=["disableable"]]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Equipment"
 

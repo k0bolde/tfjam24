@@ -5,8 +5,10 @@ class_name Battle
 #TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
 #TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO Item use
+#TODO bad ends by losing
 
 #tweaks
+#TODO enemy scaling and not clipping into the floor. first scale to 128x128 size, then use math to figure out how much to raise them
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
@@ -22,7 +24,6 @@ class_name Battle
 @onready var hp_label : Label = %HPLabel
 @onready var mp_bar : ProgressBar = %MPBar
 @onready var mp_label : Label = %MPLabel
-@onready var enemy_hp_bar : ProgressBar = %EnemyHPBar
 @onready var enemy_hp_mesh : MeshInstance3D = %EnemyHPMesh
 @onready var weakness_label : Label3D = %WeaknessLabel
 @onready var dmg_label : Label3D = %DmgLabel
@@ -251,8 +252,17 @@ func player_attack(which_attack:String):
 	disable_buttons()
 	turns -= 1
 	update_turns()
-	Globals.party.p[curr_party]["mp"] -= Abilities.abilities[which_attack]["mp"]
-	Abilities.abilities[which_attack]["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
+	var the_attack : Dictionary = Abilities.abilities[which_attack]
+	Globals.party.p[curr_party]["mp"] -= the_attack["mp"]
+	match the_attack["effect"]:
+		0, 1, 4:
+			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
+		2, 3:
+			#ally target
+			pass
+		5:
+			#self target
+			pass
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	
@@ -290,22 +300,6 @@ func find_next_teammate() -> int:
 	return next_teammate
 	
 	
-func kill_enemy(target):
-	enemies[target].anim_tween.kill()
-	#why is this not killing the tween?
-	enemies[target].hp_bar_tween.stop()
-	enemies[target].hp_bar_tween.kill()
-	enemies[target].hp_mesh.visible = false
-	enemies[target].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-	enemies[target].ingame_sprite.rotation_degrees.x = 90.0
-	enemies[target].ingame_sprite.rotation_degrees.y = 90.0
-	enemies[target].ingame_sprite.position.y = -0.45
-	defeated_enemies.push_back(enemies[target])
-	enemies.remove_at(target)
-	if enemies.size() > 0:
-		_on_target_right_button_pressed(false)
-	else:
-		battle_won()
 	
 func enemy_attack():
 	is_enemy_attacking = true
@@ -329,26 +323,28 @@ func enemy_attack():
 	if selected_attack == "":
 		printerr("oops %s couldn't pick an attack, picking random attack" % enemies[curr_enemy].enemy_name)
 		selected_attack = enemies[curr_enemy].stats.abilities.pick_random()
-	if Abilities.abilities[selected_attack]["effect"] == 2:
-		#healing ability, target an enemy not at max hp
-		var target_enemy = enemies.pick_random()
-		#only retarget once so we don't have to figure out more complicated logic
-		if enemies[target_enemy]["hp"] == enemies[target_enemy].stats.hp:
-			target_enemy = enemies.pick_random()
-		Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, target_enemy, self)
-		show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", enemies[target_enemy].enemy_name.capitalize()))
-	elif Abilities.abilities[selected_attack]["effect"] == 5:
-		pass
-	else:
-		var target_party := randi_range(0, Globals.party.num - 1)
-		while Globals.party.p[target_party]["hp"] <= 0:
-			#bad code
-			target_party = randi_range(0, Globals.party.num - 1)
-		Abilities.abilities[selected_attack]["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
-		audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
-		audio_stream_player.play()
-		show_enemy_attack(Abilities.abilities[selected_attack]["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
-		update_bars(curr_party)
+	var the_attack : Dictionary = Abilities.abilities[selected_attack]
+	match the_attack["effect"]:
+		0, 1, 4:
+			var target_party := randi_range(0, Globals.party.num - 1)
+			while Globals.party.p[target_party]["hp"] <= 0:
+				#bad code
+				target_party = randi_range(0, Globals.party.num - 1)
+			the_attack["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
+			audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
+			audio_stream_player.play()
+			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
+			update_bars(curr_party)
+		2, 3:
+			#healing ability, target an enemy not at max hp
+			var target_enemy = enemies.pick_random()
+			#only retarget once so we don't have to figure out more complicated logic
+			if enemies[target_enemy]["hp"] == enemies[target_enemy].stats.hp:
+				target_enemy = enemies.pick_random()
+			the_attack["callable"].call(curr_enemy, Globals.party, enemies, target_enemy, self)
+			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", enemies[target_enemy].enemy_name.capitalize()))
+		5:
+			pass
 		
 	update_turns()
 	if Globals.party.num_alive() <= 0:
@@ -383,6 +379,24 @@ func kill_party_member(party_num:int):
 	#get_tree().create_timer(1).timeout.connect(func (): sp.position.y = -0.45)
 	sp.position.y = -0.45
 	
+	
+func kill_enemy(target):
+	enemies[target].anim_tween.kill()
+	#why is this not killing the tween?
+	enemies[target].hp_bar_tween.stop()
+	enemies[target].hp_bar_tween.kill()
+	enemies[target].hp_mesh.visible = false
+	enemies[target].ingame_sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	enemies[target].ingame_sprite.rotation_degrees.x = 90.0
+	enemies[target].ingame_sprite.rotation_degrees.y = 90.0
+	enemies[target].ingame_sprite.position.y = -0.45
+	defeated_enemies.push_back(enemies[target])
+	enemies.remove_at(target)
+	if enemies.size() > 0:
+		_on_target_right_button_pressed(false)
+	else:
+		battle_won()
+
 
 # type 0 = normal, 1 = weakness, 2 = resist, 3 = miss
 func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
@@ -401,6 +415,8 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 		bar.value = the_enemy.hp
 		bar.max_value = the_enemy.stats.hp
 		var t := get_tree().create_tween()
+		if the_enemy.hp_bar_tween:
+			the_enemy.hp_bar_tween.kill()
 		the_enemy.hp_bar_tween = t
 		t.tween_interval(5)
 		#FIXME last enemy's hp bar not disappearing on multi targets, sometimes?
