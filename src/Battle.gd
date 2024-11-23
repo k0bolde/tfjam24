@@ -1,7 +1,6 @@
 extends Node2D
 class_name Battle
 #major implementations
-#TODO special effect attacks - tip the scales/etc
 #TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
 #TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO Item use

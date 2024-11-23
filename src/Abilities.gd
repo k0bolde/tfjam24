@@ -125,7 +125,7 @@ var abilities := {
 		#Hits ALL and drains 10 MP
 		"callable":
 func (user, party, enemies, target, battle): 
-	multi_mp_drain(user, 10) 
+	multi_mp_drain(user, party, enemies, target, battle, 10) 
 	multi_attack(user, party, enemies, target, battle, "shriek")
 	},
 	"insane insight": {
@@ -306,7 +306,9 @@ func (user, party, enemies, target, battle):
 		"desc": "Give them the eldritch eye.",
 		"enemy_flavor": "They give CHAR the eldritch eye. CHAR’s mind quakes!",
 		#Drains 10 MP
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle):
+	single_mp_drain(user, party, enemies, target, battle, 10)
 	},
 	"struggle": {
 		"base_atk": 1.0,
@@ -315,8 +317,10 @@ func (user, party, enemies, target, battle):
 		"mp": 0,
 		"desc": "hit yourself in confusion",
 		"enemy_flavor": "They thank CHAR for trying to free them!",
-		#20 self damage - put in later
-		"callable": DONTUSEME
+		#20 self damage
+		"callable": 
+func (user, party, enemies, target, battle): 
+	single_attack(user, party, enemies, user, battle, "struggle")
 	},
 	"thank": {
 		"base_atk": 0,
@@ -357,7 +361,9 @@ func (user, party, enemies, target, battle):
 		"desc": "Inspire all allies to fight harder",
 		"enemy_flavor": "They inspire their allies to fight harder!",
 		#all ally ATK x1.3 and Luck x1.5 3 turns
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	multi_stat_modify(user, party, enemies, target, battle, "greater inspire", true, 30, 0, 0, 50)
 	},
 	"zap": {
 		"base_atk": 1.0,
@@ -533,14 +539,25 @@ func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name
 	the_target["hp"] += amount
 	battle.animate_sprite(target)
 	battle.show_dmg_label(-amount, target)
+	#TODO anim
 
 
-func multi_mp_drain(user:int, mp_drain_amt:int):
+func single_mp_drain(user, party, enemies, target, battle, mp_drain_amt):
+	#TODO test
+	var the_target = get_user(target, party, enemies)
+	if target < 0:
+		the_target["mp"] -= mp_drain_amt
+		the_target["mp"] = clampi(the_target["mp"], 0, 99999)
+	#TODO anim
+	
+
+func multi_mp_drain(user:int, party, enemies, target, battle, mp_drain_amt:int):
 	if user >= 0:
 		for i in Globals.party.num:
 			if Globals.party.p[i]["hp"] >= 0:
 				Globals.party.p[i]["mp"] -= mp_drain_amt
 				Globals.party.p[i]["mp"] = clampi(Globals.party.p[i]["mp"], 0, 99999)
+	#TODO anim
 
 
 func stat_modify(user:int, party, enemies, target:int, battle, attack_name:String, percent:bool, atk:int, def:int, eva:int, lck:int):
@@ -565,6 +582,23 @@ func stat_modify(user:int, party, enemies, target:int, battle, attack_name:Strin
 			s.eva = eva
 			s.lck = lck
 		the_target.stats.temp_stats[the_key] = {"turns": 3, "stats": s}
+	#TODO anim
+	
+
+func multi_stat_modify(user:int, party, enemies, target:int, battle, attack_name:String, percent:bool, atk:int, def:int, eva:int, lck:int):
+	#TODO test
+	var targets := []
+	if (user >= 0 and target < 0):
+		#targeting players
+		for p in party.num:
+			if party.p[p]["hp"] > 0:
+				targets.append(-(p + 1))
+	else:
+		#targeting enemies
+		for e in enemies.size():
+			targets.append(e)
+	for t in targets:
+		stat_modify(user, party, enemies, t, battle, attack_name, percent, atk, def, eva, lck)
 	
 
 func DONTUSEME(user:int, party, enemies:Array, target:int, battle:Battle):
