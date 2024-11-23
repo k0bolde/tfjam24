@@ -274,7 +274,7 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They cackle, putting them into a frenzy!",
 		#ATK 1.3x and Evasion 1.3x 3 turns
 		"callable": 
-func (user, party, enemies, target, battle): 
+func (user, party, enemies, _target, battle): 
 	stat_modify(user, party, enemies, user, battle, "cackle", true, 30, 0, 30, 0)
 	},
 	"syringe shot": {
@@ -295,7 +295,7 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They square up and increase their defenses!",
 		#DEF 2x 3 turns
 		"callable": 
-func (user, party, enemies, target, battle): 
+func (user, party, enemies, _target, battle): 
 	stat_modify(user, party, enemies, user, battle, "fortify", true, 0, 100, 0, 0)
 	},
 	"stare": {
@@ -319,7 +319,7 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They thank CHAR for trying to free them!",
 		#20 self damage
 		"callable": 
-func (user, party, enemies, target, battle): 
+func (user, party, enemies, _target, battle): 
 	single_attack(user, party, enemies, user, battle, "struggle")
 	},
 	"thank": {
@@ -531,10 +531,8 @@ func multi_attack(user:int, party, enemies:Array, _target:int, battle:Battle, at
 	
 	
 ## heals the target
-func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String, amount:int):
+func heal(_user:int, party, enemies:Array, target:int, battle:Battle, _attack_name:String, amount:int):
 	var the_target = get_user(target, party, enemies)
-	var the_user = get_user(user, party, enemies)
-	var the_attack = abilities[attack_name]
 		
 	the_target["hp"] += amount
 	battle.animate_sprite(target)
@@ -542,7 +540,7 @@ func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name
 	#TODO anim
 
 
-func single_mp_drain(user, party, enemies, target, battle, mp_drain_amt):
+func single_mp_drain(_user, party, enemies, target, _battle, mp_drain_amt):
 	#TODO test
 	var the_target = get_user(target, party, enemies)
 	if target < 0:
@@ -551,7 +549,7 @@ func single_mp_drain(user, party, enemies, target, battle, mp_drain_amt):
 	#TODO anim
 	
 
-func multi_mp_drain(user:int, party, enemies, target, battle, mp_drain_amt:int):
+func multi_mp_drain(user:int, party, _enemies, _target, _battle, mp_drain_amt:int):
 	if user >= 0:
 		for i in Globals.party.num:
 			if Globals.party.p[i]["hp"] >= 0:
@@ -560,7 +558,7 @@ func multi_mp_drain(user:int, party, enemies, target, battle, mp_drain_amt:int):
 	#TODO anim
 
 
-func stat_modify(user:int, party, enemies, target:int, battle, attack_name:String, percent:bool, atk:int, def:int, eva:int, lck:int):
+func stat_modify(user:int, party, enemies, target:int, _battle, attack_name:String, percent:bool, atk:int, def:int, eva:int, lck:int):
 	#check if target has stats.temp_stats key attack_name+user name
 	var the_user = get_user(user, party, enemies)
 	var the_target = get_user(target, party, enemies)
@@ -601,7 +599,7 @@ func multi_stat_modify(user:int, party, enemies, target:int, battle, attack_name
 		stat_modify(user, party, enemies, t, battle, attack_name, percent, atk, def, eva, lck)
 	
 
-func DONTUSEME(user:int, party, enemies:Array, target:int, battle:Battle):
+func DONTUSEME(_user:int, _party, _enemies:Array, _target:int, _battle:Battle):
 	printerr("DONTUSEME")
 
 

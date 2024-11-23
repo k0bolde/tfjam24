@@ -1,10 +1,10 @@
 extends Node2D
 class_name Battle
 #major implementations
-#TODO party target buffs/heals - same buff should just refresh cooldown not add to buff
 #TODO result screen - xp, cash, item, level, stat/slot gains
-#TODO Item use
 #TODO bad ends by losing
+#TODO Item use
+#TODO party targeting for buffs/heals
 
 #tweaks
 #TODO enemy scaling and not clipping into the floor. first scale to 128x128 size, then use math to figure out how much to raise them
@@ -258,10 +258,11 @@ func player_attack(which_attack:String):
 			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 		2, 3:
 			#ally target
+			#TODO implement
 			pass
 		5:
 			#self target
-			pass
+			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, -(curr_party + 1), self)
 	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
 	audio_stream_player.play()
 	
@@ -341,7 +342,7 @@ func enemy_attack():
 			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
 			update_bars(curr_party)
 		2, 3:
-			#healing ability, target an enemy not at max hp
+			#healing/buff ability, target an enemy not at max hp
 			var target_enemy = enemies.pick_random()
 			#only retarget once so we don't have to figure out more complicated logic
 			if target_enemy["hp"] == target_enemy.stats.hp:
@@ -349,7 +350,8 @@ func enemy_attack():
 			the_attack["callable"].call(curr_enemy, Globals.party, enemies, enemies.find(target_enemy), self)
 			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", target_enemy.enemy_name.capitalize()))
 		5:
-			pass
+			the_attack["callable"].call(curr_enemy, Globals.party, enemies, curr_enemy, self)
+			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", enemies[curr_enemy].enemy_name.capitalize()))
 		
 	update_turns()
 	if Globals.party.num_alive() <= 0:
