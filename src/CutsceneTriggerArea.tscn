@@ -4,4 +4,5 @@
 
 [node name="CutsceneTriggerArea" type="Area2D"]
 collision_layer = 0
+monitorable = false
 script = ExtResource("1_5lraw")

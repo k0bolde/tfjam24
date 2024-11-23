@@ -5,7 +5,7 @@ class_name EncounterArea
 #map of probabilities to monsters- EX: {"Rat" - 0.3, "Dragon" -  0.7} - MUST ADD UP TO 1.0 and be sorted low to high!!
 @export var encounter_rates := {}
 #whats the chance of a battle happening at all?
-@export var total_encounter_rate := 0.008
+@export var total_encounter_rate := 10000.0
 var groups := {
 	"qz-1-1": ["lvl 1 kobold", "lvl pun kobold"],
 	"qz-1-2": ["mutant man", "glorp"],
@@ -17,6 +17,7 @@ var groups := {
 var group_intros := [
 	"qz-1-1", "qz-1-2", "qz-1-3", "qz-1-4", "qz-1-5", "qz-1-6",
 	]
+var check_accum := 0.0
 
 func _ready() -> void:
 	#check for data errors
@@ -32,22 +33,26 @@ func _ready() -> void:
 			printerr("encounter rates don't add up to 1.0 in %s" % encounter_rates)
 
 func _on_body_entered(body: Node2D) -> void:
+	check_accum = 0
 	body.encounter_area = self
 
 
 func _on_body_exited(body: Node2D) -> void:
-	body.encounter_area = null
+	if body.encounter_area and body.encounter_area == self:
+		body.encounter_area = null
 
 
 func check_for_battle():
+	check_accum += 1.0
 	#TODO give a leeway of a bit between battles
-	if randf() < total_encounter_rate:
+	var encounter_rate = check_accum / total_encounter_rate
+	print("encounter rate %s" % encounter_rate)
+	if randf() < encounter_rate:
+		check_accum = 0.0
 		var pick := randf()
-		#print("picked %f" % pick)
 		var accum := 0.0
 		for monster in encounter_rates:
 			accum += encounter_rates[monster]
-			#print("monster has %f rate, accum is now %f" % [encounter_rates[monster], accum])
 			if pick < accum:
 				if groups.has(monster):
 					Events.battle_start.emit(groups[monster], true)

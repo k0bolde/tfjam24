@@ -4,6 +4,7 @@
 
 [node name="EncounterArea" type="Area2D"]
 collision_layer = 0
+monitorable = false
 script = ExtResource("1_wi3rp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

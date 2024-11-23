@@ -65,7 +65,7 @@ size = Vector2(64, 242)
 size = Vector2(1164, 252)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfgp3"]
-size = Vector2(812, 295)
+size = Vector2(811, 295)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cv1fp"]
 size = Vector2(308, 795)
@@ -329,7 +329,7 @@ shape = SubResource("RectangleShape2D_7vmm8")
 position = Vector2(1437, -263)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterAreas/EncounterArea2"]
-position = Vector2(42, -17.5)
+position = Vector2(42.5, -17.5)
 shape = SubResource("RectangleShape2D_bfgp3")
 
 [node name="EncounterArea3" parent="EncounterAreas" instance=ExtResource("21_caehc")]
