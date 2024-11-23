@@ -137,7 +137,8 @@ shape = SubResource("RectangleShape2D_km6ol")
 [node name="Remove" type="Node2D" parent="CutsceneTriggerArea5"]
 
 [node name="NPC" parent="CutsceneTriggerArea5/Remove" instance=ExtResource("5_mxnxr")]
-position = Vector2(-11, 2)
+position = Vector2(-42.575, 10.16)
+scale = Vector2(1.58, 1.58)
 image = ExtResource("12_ognsl")
 
 [node name="CutsceneTriggerArea6" parent="." instance=ExtResource("4_5upgf")]

@@ -35,7 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			npc = null
 	
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return
 	var dir := Input.get_vector("left", "right", "up", "down")
@@ -44,10 +44,8 @@ func _physics_process(_delta: float) -> void:
 		velocity *= 2.0
 	move_and_slide()
 	if velocity.length_squared() > 0.0 and encounter_area:
-		#TODO fight cooldown - don't get right after we fight one
-		#TODO should pass delta
 		#ask if we hit a battle
-		encounter_area.check_for_battle()
 		if is_sprinting:
-			#TODO more checks if sprint (3 -4)
-			pass
+			encounter_area.check_for_battle(delta * 4.0)
+		else:
+			encounter_area.check_for_battle(delta)

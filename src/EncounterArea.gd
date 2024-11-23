@@ -5,7 +5,7 @@ class_name EncounterArea
 #map of probabilities to monsters- EX: {"Rat" - 0.3, "Dragon" -  0.7} - MUST ADD UP TO 1.0 and be sorted low to high!!
 @export var encounter_rates := {}
 #whats the chance of a battle happening at all?
-@export var total_encounter_rate := 10000.0
+@export var total_encounter_rate := 300.0
 var groups := {
 	"qz-1-1": ["lvl 1 kobold", "lvl pun kobold"],
 	"qz-1-2": ["mutant man", "glorp"],
@@ -42,8 +42,8 @@ func _on_body_exited(body: Node2D) -> void:
 		body.encounter_area = null
 
 
-func check_for_battle():
-	check_accum += 1.0
+func check_for_battle(delta):
+	check_accum += delta
 	#TODO give a leeway of a bit between battles
 	var encounter_rate = check_accum / total_encounter_rate
 	print("encounter rate %s" % encounter_rate)
