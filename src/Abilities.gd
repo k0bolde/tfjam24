@@ -443,20 +443,16 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 	var is_crit := false
 	#check weakness
 	if the_target["stats"]["weaknesses"].has(the_attack["type"]):
-		#TODO sound
 		mult += 0.5
 		dmg_type = 1
 	elif the_target["stats"]["resistances"].has(the_attack["type"]):
-		#TODO sound
 		mult -= 0.5
 		if mult < 0: mult = 0
 		dmg_type = 2
 	if randf() < (the_target["stats"].get_lck() / 100.0):
-		#TODO sound
 		mult += 1.0
 		is_crit = true
 	if randf() < (the_target["stats"].get_eva() - the_user["stats"].get_eva()) / 100.0:
-		#TODO sound
 		battle.add_turn(-1)
 		dmg_type = 3
 		mult = 0

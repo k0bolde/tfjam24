@@ -3,7 +3,7 @@ class_name Battle
 #major implementations
 #TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO bad ends by losing
-#TODO Item use
+#TODO Item use/drops
 #TODO party targeting for buffs/heals
 
 #tweaks
@@ -263,8 +263,6 @@ func player_attack(which_attack:String):
 		5:
 			#self target
 			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, -(curr_party + 1), self)
-	audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
-	audio_stream_player.play()
 	
 	curr_party = find_next_teammate()
 	if turns <= 0:
@@ -337,8 +335,6 @@ func enemy_attack():
 				#bad code
 				target_party = randi_range(0, Globals.party.num - 1)
 			the_attack["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
-			audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
-			audio_stream_player.play()
 			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
 			update_bars(curr_party)
 		2, 3:
@@ -443,12 +439,19 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	match type:
 		0:
 			wl.visible = false
+			audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
+			audio_stream_player.play()
 		1:
 			wl.text = "WEAKNESS!"
+			audio_stream_player.stream = load("res://assets/audio/critical attack hit.mp3")
+			audio_stream_player.play()
 		2:
 			wl.text = "RESIST!"
 		3:
 			wl.text = "MISS!"
+	if is_crit:
+		audio_stream_player.stream = load("res://assets/audio/critical attack hit.mp3")
+		audio_stream_player.play()
 	cl.visible = is_crit
 	var dl := dmg_label.duplicate()
 	dl.visible = true

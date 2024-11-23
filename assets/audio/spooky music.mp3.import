@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/spooky music.mp3-72ddbb973e07cd15caff72086c00
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
