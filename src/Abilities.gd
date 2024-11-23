@@ -123,7 +123,10 @@ var abilities := {
 		"desc": "A horrible wail that damages body and mind",
 		"enemy_flavor": "It wails, causing your body to ache and your mind to quail!",
 		#Hits ALL and drains 10 MP
-		"callable": multi_attack.bind("shriek"),
+		"callable":
+func (user, party, enemies, target, battle): 
+	multi_mp_drain(user, 10) 
+	multi_attack(user, party, enemies, target, battle, "shriek")
 	},
 	"insane insight": {
 		"base_atk": 2.0,
@@ -151,8 +154,10 @@ var abilities := {
 		"desc": "Attack while temporarily increasing your defense!",
 		"enemy_flavor": "They strike CHAR and their scales shine. They look momentarily tougher.",
 		#x2 DEF 3 turns
-		#"callable": single_attack.bind("tip the scales"),
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, user, battle, "tip the scales", true, 0, 100, 0, 0)
+	single_attack(user, party, enemies, target, battle, "tip the scales")
 	},
 	"recovery strike": {
 		"base_atk": 1.0,
@@ -162,8 +167,10 @@ var abilities := {
 		"desc": "Hit them and heal some health",
 		"enemy_flavor": "They strike CHAR and some of their wounds heal!",
 		#20 HP recovery
-		#"callable": single_attack.bind("recovery strike"),
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	heal(user, party, enemies, user, battle, "recovery strike", 20)
+	single_attack(user, party, enemies, target, battle, "recovery strike")
 	},
 	"wild wolf": {
 		"base_atk": 1.5,
@@ -230,7 +237,9 @@ var abilities := {
 		"desc": "Inspire an ally to fight harder",
 		"enemy_flavor": "It inspires its ally to fight harder!",
 		#ally ATK x1.3 and Luck x1.5 3 turns
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "inspire", true, 30, 0, 0, 50)
 	},
 	"entice": {
 		"base_atk": 1.0,
@@ -240,7 +249,9 @@ var abilities := {
 		"desc": "A flirty slap that drains their will to fight you",
 		"enemy_flavor": "They flirt and then slap CHAR. What a tease!",
 		#-5 Evasion and -5 Luck 3 turns
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "entice", false, 0, 0, -5, -5)
 	},
 	"confuse": {
 		"base_atk": 0.5,
@@ -250,7 +261,9 @@ var abilities := {
 		"desc": "Cause your enemy to lower their guard with your wiles",
 		"enemy_flavor": "They perplex CHAR with a tricky strike! CHAR’s defense is down!",
 		#-10 DEF and -10 Evasion 3 turns
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "confuse", false, 0, -10, -10, 0)
 	},
 	"cackle": {
 		"base_atk": 0,
@@ -260,7 +273,9 @@ var abilities := {
 		"desc": "An evil laugh that draws inner strength",
 		"enemy_flavor": "They cackle, putting them into a frenzy!",
 		#ATK 1.3x and Evasion 1.3x 3 turns
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, user, battle, "cackle", true, 30, 0, 30, 0)
 	},
 	"syringe shot": {
 		"base_atk": 1.0,
@@ -279,7 +294,9 @@ var abilities := {
 		"desc": "Increase your defenses temporarily",
 		"enemy_flavor": "They square up and increase their defenses!",
 		#DEF 2x 3 turns
-		"callable": DONTUSEME
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, user, battle, "fortify", true, 0, 100, 0, 0)
 	},
 	"stare": {
 		"base_atk": 1.0,
@@ -327,7 +344,10 @@ var abilities := {
 		"desc": "Attempt to change your enemy, leaving them woozy!",
 		"enemy_flavor": "They attempt to transform CHAR. It doesn’t quite work, but leaves them  woozy!",
 		#-5 Evasion and -5DEF for 3 turns
-		"callable": single_attack.bind("metamorphic attempt")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "metamorphic attempt", false, 0, -5, -5, 0)
+	single_attack(user, party, enemies, target, battle, "metamorphic attempt")
 	},
 	"greater inspire": {
 		"base_atk": 0,
@@ -336,7 +356,7 @@ var abilities := {
 		"mp": 30,
 		"desc": "Inspire all allies to fight harder",
 		"enemy_flavor": "They inspire their allies to fight harder!",
-		#ally ATK x1.3 and Luck x1.5 3 turns
+		#all ally ATK x1.3 and Luck x1.5 3 turns
 		"callable": DONTUSEME
 	},
 	"zap": {
@@ -409,20 +429,9 @@ func _ready() -> void:
 	
 	
 func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String):
-	var the_target
-	var the_user
+	var the_target = get_user(target, party, enemies)
+	var the_user = get_user(user, party, enemies)
 	var the_attack = abilities[attack_name]
-	if target >= 0:
-		the_target = enemies[target]
-	else:
-		the_target = party.p[abs(target) - 1]
-	if user >= 0:
-		if enemies.size() == 0:
-			return
-		the_user = enemies[user]
-	else:
-		the_user = party.p[abs(user) - 1]
-		
 	var mult = the_attack["base_atk"]
 	var dmg_type := 0
 	var is_crit := false
@@ -436,11 +445,11 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		mult -= 0.5
 		if mult < 0: mult = 0
 		dmg_type = 2
-	if randf() < (the_target["stats"].lck / 100.0):
+	if randf() < (the_target["stats"].get_lck() / 100.0):
 		#TODO sound
 		mult += 1.0
 		is_crit = true
-	if randf() < (the_target["stats"].eva - the_user["stats"].eva) / 100.0:
+	if randf() < (the_target["stats"].get_eva() - the_user["stats"].get_eva()) / 100.0:
 		#TODO sound
 		battle.add_turn(-1)
 		dmg_type = 3
@@ -450,7 +459,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		battle.add_turn(1)
 		
 	#calculate damage
-	var dmg : int = ceili((the_user["stats"].atk * mult) - (the_target["stats"].def / (the_target["stats"].def + 25.0)))
+	var dmg : int = ceili((the_user["stats"].get_atk() * mult) - (the_target["stats"].get_def() / (the_target["stats"].get_def() + 25.0)))
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
 	battle.animate_sprite(target)
@@ -517,24 +526,57 @@ func multi_attack(user:int, party, enemies:Array, _target:int, battle:Battle, at
 	
 ## heals the target
 func heal(user:int, party, enemies:Array, target:int, battle:Battle, attack_name:String, amount:int):
-	var the_target
-	var the_user
+	var the_target = get_user(target, party, enemies)
+	var the_user = get_user(user, party, enemies)
 	var the_attack = abilities[attack_name]
-	if target >= 0:
-		the_target = enemies[target]
-	else:
-		the_target = party.p[abs(target) - 1]
-	if user >= 0:
-		if enemies.size() == 0:
-			return
-		the_user = enemies[user]
-	else:
-		the_user = party.p[abs(user) - 1]
 		
 	the_target["hp"] += amount
 	battle.animate_sprite(target)
 	battle.show_dmg_label(-amount, target)
 
 
+func multi_mp_drain(user:int, mp_drain_amt:int):
+	if user >= 0:
+		for i in Globals.party.num:
+			if Globals.party.p[i]["hp"] >= 0:
+				Globals.party.p[i]["mp"] -= mp_drain_amt
+				Globals.party.p[i]["mp"] = clampi(Globals.party.p[i]["mp"], 0, 99999)
+
+
+func stat_modify(user:int, party, enemies, target:int, battle, attack_name:String, percent:bool, atk:int, def:int, eva:int, lck:int):
+	#check if target has stats.temp_stats key attack_name+user name
+	var the_user = get_user(user, party, enemies)
+	var the_target = get_user(target, party, enemies)
+	var the_key := "%s-%s" % [the_user["enemy_name"], attack_name]
+	if the_target.stats.temp_stats.has(the_key):
+		#if it does, update temp_stats["turns"] to 3
+		the_target.stats.temp_stats[the_key]["turns"] = 3
+	else:
+		#if it doesn't, add key with given stats
+		var s := Stats.new()
+		if percent:
+			s.atk = floori(the_target.stats["atk"] * (atk / 100.0))
+			s.def = floori(the_target.stats["def"] * (def / 100.0))
+			s.eva = floori(the_target.stats["eva"] * (eva / 100.0))
+			s.lck = floori(the_target.stats["lck"] * (lck / 100.0))
+		else:
+			s.atk = atk
+			s.def = def
+			s.eva = eva
+			s.lck = lck
+		the_target.stats.temp_stats[the_key] = {"turns": 3, "stats": s}
+	
+
 func DONTUSEME(user:int, party, enemies:Array, target:int, battle:Battle):
 	printerr("DONTUSEME")
+
+
+func get_user(user:int, party, enemies):
+	var the_user
+	if user >= 0:
+		if enemies.size() == 0:
+			return
+		the_user = enemies[user]
+	else:
+		the_user = party.p[abs(user) - 1]
+	return the_user

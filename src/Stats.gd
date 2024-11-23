@@ -23,3 +23,30 @@ class_name Stats
 # punch/claw/metal/esoteric/mutagenic/fire/bite
 @export var weaknesses := []
 @export var resistances := []
+
+# ability name & user -> the stats & turns left
+var temp_stats := {}
+
+func get_atk() -> int:
+	var a := 0
+	for d in temp_stats.values():
+		a += d["stats"].atk
+	return a + atk
+	
+func get_def() -> int:
+	var a := 0
+	for d in temp_stats.values():
+		a += d["stats"].def
+	return a + def
+	
+func get_eva() -> int:
+	var a := 0
+	for d in temp_stats.values():
+		a += d["stats"].eva
+	return a + eva
+	
+func get_lck() -> int:
+	var a := 0
+	for d in temp_stats.values():
+		a += d["stats"].lck
+	return a + lck

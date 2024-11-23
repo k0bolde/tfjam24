@@ -4,10 +4,10 @@ class_name Party
 
 @export var num := 2
 @export var p := [
-	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Finley", "ingame_sprite": null, "image": "res://assets/battle/finley2.png"},
-	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Jesse", "ingame_sprite": null, "image": "res://assets/tv_sprites/player_chars/jesse1.png"},
-	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Sock", "ingame_sprite": null, "image": "res://assets/tv_sprites/player_chars/sci_raptor_128x.png"},
-	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Ceron", "ingame_sprite": null, "image": ""},
+	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Finley", "enemy_name": "Finley", "ingame_sprite": null, "image": "res://assets/battle/finley2.png"},
+	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Jesse", "enemy_name": "Jesse", "ingame_sprite": null, "image": "res://assets/tv_sprites/player_chars/jesse1.png"},
+	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Sock", "enemy_name": "Sock", "ingame_sprite": null, "image": "res://assets/tv_sprites/player_chars/sci_raptor_128x.png"},
+	{"stats": Stats.new(), "hp": 100, "mp": 100, "name": "Ceron", "enemy_name": "Ceron", "ingame_sprite": null, "image": ""},
 ]
 @export var xp := 0
 @export var level := 1

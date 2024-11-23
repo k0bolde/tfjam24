@@ -238,7 +238,7 @@ func update_bars(party_num):
 func _on_run_button_pressed() -> void:
 	if can_run:
 		#TODO add together enemies eva and living party's eva
-		#if randf() < (enemies[0].stats.eva - Globals.party.p[0]["stats"].eva) / 100.0 + 50.0:
+		#if randf() < (enemies[0].stats.get_eva() - Globals.party.p[0]["stats"].get_eva()) / 100.0 + 50.0:
 			#Events.battle_end.emit()
 		#else:
 			#show_enemy_attack("Running unsucessful!")
@@ -268,6 +268,12 @@ func player_attack(which_attack:String):
 	
 	curr_party = find_next_teammate()
 	if turns <= 0:
+		#remove a turn from temp_stats
+		for i in Globals.party.num:
+			for k in Globals.party.p[i].stats.temp_stats.keys():
+				Globals.party.p[i].stats.temp_stats[k]["turns"] -= 1
+				if Globals.party.p[i].stats.temp_stats[k]["turns"] <= 0:
+					Globals.party.p[i].stats.temp_stats.erase(k)
 		turns = 0
 		for e in enemies:
 			turns += e.base_turns
@@ -307,7 +313,7 @@ func enemy_attack():
 	#double check is nasty
 	if not is_inside_tree() or enemies.is_empty():
 		return
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	if not is_inside_tree() or enemies.is_empty():
 		return
 	update_turns()
@@ -355,6 +361,12 @@ func enemy_attack():
 			next_enemy = 0
 		curr_enemy = next_enemy
 	else:
+		#remove a turn from temp_stats
+		for i in enemies.size():
+			for k in enemies[i].stats.temp_stats.keys():
+				enemies[i].stats.temp_stats[k]["turns"] -= 1
+				if enemies[i].stats.temp_stats[k]["turns"] <= 0:
+					enemies[i].stats.temp_stats.erase(k)
 		if Globals.use_action_cam:
 			idle_cam.make_current()
 		else:
@@ -700,6 +712,7 @@ func animate_sprite(target:int):
 
 
 func _on_inspect_button_pressed() -> void:
+	#TODO allow inspection of party
 	disable_buttons()
 	show_targeting(false)
 	inspect_container.visible = true

@@ -37,11 +37,8 @@ func _ready() -> void:
 	Globals.main = self
 	Globals.party.num = 1
 	AudioServer.set_bus_volume_db(0, -30)
-	music_player.stream = load("res://assets/audio/slow tempo synth thing.mp3")
-	music_player.play()
 	#print("%f %f" % [db_to_linear(-80), db_to_linear(24)])
 
-	
 	Events.battle_start.connect(start_battle)
 	Events.battle_end.connect(end_battle)
 	Events.dialogue_start.connect(start_dialogue)
@@ -96,6 +93,7 @@ func load_map(map_name:String, entrance_num := -1):
 		player.position = new_map.entrances[entrance_num]
 	else:
 		player.position = new_map.start_location
+	map = new_map
 	
 	#handle overworld sprite changes
 	if story_flags["main"] < 1:
@@ -106,6 +104,7 @@ func load_map(map_name:String, entrance_num := -1):
 	else:
 		player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")
 		
+	play_music()
 		
 
 func start_battle(monsters:Array, can_run:bool):
@@ -126,8 +125,7 @@ func end_battle():
 		music_player.stop()
 		Globals.player.cam.enabled = true
 		Globals.player.is_battling = false
-		music_player.stream = load("res://assets/audio/slow tempo synth thing.mp3")
-		music_player.play()
+		play_music()
 
 
 func start_dialogue(clyde_file, block:=""):
@@ -136,3 +134,13 @@ func start_dialogue(clyde_file, block:=""):
 	dialogue.block = block
 	dialogue_node.add_child(dialogue)
 	player.is_talking = true
+
+
+func play_music():
+	match map.map_name:
+		"Quarantine Zone":
+			music_player.stream = load("res://assets/audio/spooky music.mp3")
+		_:
+			music_player.stream = load("res://assets/audio/slow tempo synth thing.mp3")
+	music_player.play()
+	

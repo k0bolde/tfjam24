@@ -738,7 +738,7 @@ func initialize_party():
 	#set up starting stats for party
 	#Globals.party.p[0].stats.hp = 10
 	Globals.party.p[0].stats.atk = 25
-	Globals.party.p[0].stats.def = 0
+	Globals.party.p[0].stats.def = 5
 	Globals.party.p[0].stats.eva = 5
 	Globals.party.p[0].stats.lck = 5
 	Globals.party.p[0].stats.resistances.push_front("fire")
