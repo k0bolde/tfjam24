@@ -345,10 +345,10 @@ func enemy_attack():
 			#healing ability, target an enemy not at max hp
 			var target_enemy = enemies.pick_random()
 			#only retarget once so we don't have to figure out more complicated logic
-			if enemies[target_enemy]["hp"] == enemies[target_enemy].stats.hp:
+			if target_enemy["hp"] == target_enemy.stats.hp:
 				target_enemy = enemies.pick_random()
-			the_attack["callable"].call(curr_enemy, Globals.party, enemies, target_enemy, self)
-			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", enemies[target_enemy].enemy_name.capitalize()))
+			the_attack["callable"].call(curr_enemy, Globals.party, enemies, enemies.find(target_enemy), self)
+			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", target_enemy.enemy_name.capitalize()))
 		5:
 			pass
 		
@@ -455,7 +455,7 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	dl.position = the_target.position
 	if dmg < 0:
 		dl.modulate = Color.GREEN
-		dl.text = "+%d" % dmg
+		dl.text = "+%d" % abs(dmg)
 	cl.position = the_target.position
 	cl.position.y += 0.1
 	wl.position = the_target.position
