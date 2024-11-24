@@ -36,6 +36,8 @@ var story_flags := {
 }
 var hub
 var quarantine_zone
+var after_battle_dialogue
+var after_battle_block := ""
 
 
 func _ready() -> void:
@@ -131,6 +133,10 @@ func end_battle():
 		Globals.player.cam.enabled = true
 		Globals.player.is_battling = false
 		play_music()
+		if after_battle_dialogue:
+			start_dialogue(after_battle_dialogue, after_battle_block)
+			after_battle_dialogue = null
+			after_battle_block = ""
 
 
 func start_dialogue(clyde_file, block:=""):

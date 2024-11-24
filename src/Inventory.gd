@@ -1,11 +1,11 @@
 extends Resource
 # Keep track of what items and equipment the player has
 # name, id, amount, description, mechanically how they're used
-
+@export var inv := {}
 var items := {
 	"lime time": {
 		"name": "Lime Time",
-		"desc": "A CausDek branded engery drink that restores 50% of MP",
+		"desc": "A CausDek branded energy drink that restores 50% of MP",
 		"callable": mp_restore.bind(50, true)
 	},
 	"dozen eggs": {

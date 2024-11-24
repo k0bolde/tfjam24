@@ -35,6 +35,8 @@ var portraits := {
 	"Bubbles": "res://assets/portraits/Bubbles.png",
 	"Finley": "res://assets/portraits/finley2.png",
 	#evil zero-width space
+	"Finley​": "res://assets/portraits/finley3.png",
+	#evil zero-width space
 	"Jesse​": "res://assets/portraits/jesse1.png",
 	"Jesse": "res://assets/portraits/jesse2.png",
 	"Some Guy": "res://assets/portraits/jesse1.png",
@@ -195,7 +197,6 @@ func get_portrait(npc_name:String) -> String:
 	
 	
 func _on_event_triggered(event_name):
-	print("Event received: %s" % event_name)
 	match event_name:
 		"celon_fight":
 			Events.battle_start.emit(["eldritch being"], false)
@@ -213,14 +214,17 @@ func _on_event_triggered(event_name):
 		"rendm_fight":
 			Events.battle_start.emit(["rend"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend1.clyde", "fight_start")
-			#TODO fight won dialogue
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
+			Globals.main.after_battle_block = "win_fight"
 		"rendf_fight":
 			Events.battle_start.emit(["rend (female)"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend2.clyde", "fight_start")
-			#TODO fight won dialogue
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
+			Globals.main.after_battle_block = "win_fight"
 		"ceron2_fight":
 			Events.battle_start.emit(["eldritch being"], false)
-			#TODO fight won dialogue
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_ceron.clyde"
+			Globals.main.after_battle_block = "win_fight"
 		"tentacle_bad_end":
 			Globals.main.start_dialogue("res://assets/dialogue/qz_ceron.clyde", "bad_end")
 		"jesse_bond_up":
@@ -234,15 +238,14 @@ func _on_event_triggered(event_name):
 		"savak_battle":
 			Events.battle_start.emit(["savak"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_savak1.clyde", "fight_start")
-			#TODO fight mid/won dialogue
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_savak1.clyde"
+			Globals.main.after_battle_block = "win"
 		"qz_shortcut_open":
 			Globals.main.story_flags["qz"] = 1
 		_:
 			printerr("unhandled dialogue event %s" % event_name)
 			
 			
-
-
 func _on_variable_changed(variable_name, new_value, previous_value):
 	print("variable changed: %s old %s new %s" % [variable_name, previous_value, new_value])
 	

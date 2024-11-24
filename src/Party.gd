@@ -21,10 +21,11 @@ func num_alive() -> int:
 			alive += 1
 	return alive
 
-func level_up_stats(level:int) -> String:
+
+func level_up_stats(l:int) -> String:
 	#TODO different stats for different party members
 	for i in num:
-		match level:
+		match l:
 			2:
 				p[i].stats.hp += 10
 				p[i].stats.mp += 10

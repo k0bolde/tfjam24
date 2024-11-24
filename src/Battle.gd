@@ -615,6 +615,10 @@ func battle_won():
 	for fi in found_items:
 		got_item_label.text += "%s, " % fi
 		got_item_label.text = got_item_label.text.trim_suffix(", ")
+		if Globals.inventory.inv.has(fi):
+			Globals.inventory.inv[fi] += 1
+		else:
+			Globals.inventory.inv[fi] = 1
 	
 	
 func battle_lost():

@@ -7,6 +7,8 @@ extends Area2D
 @export var story_flag := 0
 ## set to true to always trigger this cutscene
 @export var always_trigger := false
+@export var trigger_once_per_load := false
+var triggered := false
 
 
 func _ready() -> void:
