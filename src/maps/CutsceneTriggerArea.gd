@@ -54,9 +54,12 @@ func _dialogue_ended():
 				Globals.party.p[0]["image"] = "res://assets/battle/finley3.png"
 				Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")
 				Globals.party.p[0].stats.abilities.append("freezing breath")
+				Globals.party.p[0].stats.abilities.append("egg lay")
 			13:
 				#jesse tf
 				Globals.party.p[1]["image"] = "res://assets/tv_sprites/player_chars/jesse3.png"
+				Globals.party.p[1].stats.abilities.append("Howl UwU")
+				Globals.party.p[1].stats.abilities.append("distract :3c")
 	
 	if has_node("Remove"):
 		get_node("Remove").queue_free()

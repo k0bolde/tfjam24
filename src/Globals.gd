@@ -771,6 +771,13 @@ func verify_enemies():
 		for type in e.stats.weaknesses:
 			if not types.has(type):
 				printerr("%s weaknesses has unknown type %s" % [e.enemy_name, type])
+		var item_accum := 0.0
+		for item in e.item_drops.keys():
+			item_accum += e.item_drops[item]
+			if not Globals.inventory.items.has(item):
+				printerr("enemy %s item drop %s doesn't exist in Inventory.items" % [e.enemy_name, item])
+		if item_accum > 1.0:
+			printerr("enemy %s item_drops shouldn't add up to over 1.0 (under is ok - means no item drop)" % e.enemy_name)
 		#I don't think order matters?
 		#check that attack_probs adds up to 1.0 and is in ascending order
 		#var last_prob := 0.0
