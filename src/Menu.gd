@@ -51,7 +51,17 @@ func _ready() -> void:
 		for eb in get_tree().get_nodes_in_group("enemy_selector"):
 			eb.add_item(en)
 	%PartyNumBox.value = Globals.party.num
-	
+	inventory_container.visible = false
+	for item in Globals.inventory.inv.keys():
+		var amt_label := Label.new()
+		amt_label.text = "%d" % Globals.inventory.inv[item]
+		var name_label := Label.new()
+		name_label.text = item
+		var desc_label := Label.new()
+		desc_label.text = Globals.inventory.items[item]["desc"]
+		item_grid_container.add_child(amt_label)
+		item_grid_container.add_child(name_label)
+		item_grid_container.add_child(desc_label)
 
 
 func _on_close_button_pressed() -> void:

@@ -189,7 +189,7 @@ func get_portrait(npc_name:String) -> String:
 			else:
 				return "res://assets/portraits/SockFullDefault1.png"
 		"Rend":
-			if Globals.main.story_flags["main"] > 11:
+			if Globals.main.story_flags["main"] > 12:
 				return "res://assets/portraits/rendf.png"
 			else:
 				return portraits["Rend"]
@@ -210,6 +210,7 @@ func _on_event_triggered(event_name):
 			Globals.main.story_flags["main"] = 9
 		"security_tf":
 			Globals.main.story_flags["qz_security_lizard"] = 1
+			Globals.main.story_flags["main"] = 9
 		"rendm_fight":
 			Events.battle_start.emit(["rend"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend1.clyde", "fight_start")

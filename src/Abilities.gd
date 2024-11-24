@@ -536,7 +536,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 		battle.add_turn(1)
 		
 	#calculate damage
-	var dmg : int = ceili((the_user["stats"].get_atk() * mult) - (the_target["stats"].get_def() / (the_target["stats"].get_def() + 25.0)))
+	var dmg : int = ceili((the_user["stats"].get_atk() * mult) * ( 1 - (the_target["stats"].get_def() / (the_target["stats"].get_def() + 25.0))))
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
 	battle.animate_sprite(target)
