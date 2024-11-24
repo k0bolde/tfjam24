@@ -1,6 +1,9 @@
 extends Control
 class_name Dialogue
 #TODO don't repeat intros for some characters
+#TODO glenys
+#TODO half hp dialogue
+#TODO fight won dialogue
 
 @onready var speaker_label : Label = %SpeakerLabel
 @onready var dialogue_label : RichTextLabel = %DialogueLabel
@@ -165,28 +168,25 @@ func get_portrait(npc_name:String) -> String:
 			if Globals.main.story_flags["main"] < 7:
 				#still uses a zero-width space in the tf cutscene to change
 				return portraits["Some Guy"]
-			# TODO replace with actual flag
 			elif Globals.main.story_flags["main"] > 13:
 				return "res://assets/portraits/jesse3.png"
 		"Finley":
-			#TODO replace with actual flag number
 			if Globals.main.story_flags["main"] > 10:
 				return "res://assets/portraits/finley3.png"
 		"Ulla Tor":
 			#TODO replace with actual flag number
-			if Globals.main.story_flags["main"] < 16:
+			if Globals.main.story_flags["ulla"] < 16:
 				return portraits["Ulla Tor"]
 			#TODO replace with actual flag number
-			elif Globals.main.story_flags["main"] < 24:
+			elif Globals.main.story_flags["ulla"] < 24:
 				return "res://assets/portraits/UllaPortraitsScaled.png"
 			#TODO replace with actual flag number
-			elif Globals.main.story_flags["main"] < 30:
+			elif Globals.main.story_flags["ulla"] < 30:
 				return "res://assets/portraits/UllaPortraitsRaptor.png"
 			else:
 				return "res://assets/portraits/SockFullDefault1.png"
 		"Rend":
-			#TODO replace with actual flag
-			if Globals.main.story_flags["main"] > 14:
+			if Globals.main.story_flags["main"] > 11:
 				return "res://assets/portraits/rendf.png"
 			else:
 				return portraits["Rend"]
@@ -204,6 +204,37 @@ func _on_event_triggered(event_name):
 		"game_over":
 			#TODO game over screen
 			get_tree().change_scene_to_file("res://src/Main.tscn")
+		"security_fight":
+			Events.battle_start.emit(["haz"], false)
+			Globals.main.story_flags["main"] = 9
+		"security_tf":
+			#remove security from map
+			Globals.main.story_flags["main"] = 9
+		"rendm_fight":
+			Events.battle_start.emit(["rend"], false)
+			Globals.main.start_dialogue("res://assets/dialogue/qz_rend1.clyde", "fight_start")
+			#TODO fight won dialogue
+		"rendf_fight":
+			Events.battle_start.emit(["rend (female)"], false)
+		"ceron2_fight":
+			Events.battle_start.emit(["eldritch being"], false)
+			#TODO fight won dialogue
+		"tentacle_bad_end":
+			Globals.main.start_dialogue("res://assets/dialogue/qz_ceron.clyde", "bad_end")
+		"jesse_bond_up":
+			Globals.main.story_flags["jesse"] += 1
+		"ulla_bond_up":
+			Globals.main.story_flags["ulla"] += 1
+		"hydra_fight":
+			Events.battle_start.emit(["rust & rist hydra"], false)
+		"hydra_bad_end":
+			Globals.main.start_dialogue("res://assets/dialogue/qz_rustrydra.clyde", "bad_end")
+		"savak_battle":
+			Events.battle_start.emit(["savak"], false)
+			Globals.main.start_dialogue("res://assets/dialogue/qz_savak.clyde", "fight_start")
+			#TODO fight mid/won dialogue
+		"qz_shortcut_open":
+			Globals.main.story_flags["qz"] = 1
 		_:
 			printerr("unhandled dialogue event %s" % event_name)
 			

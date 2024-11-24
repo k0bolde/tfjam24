@@ -44,4 +44,4 @@ Ulla Tor: Thanks. Be careful…
 Finley: You too.
 
 Your heart warms. Your friendship with Ulla Tor has improved!
-{ trigger sock_bond_up }
+{ trigger ulla_bond_up }

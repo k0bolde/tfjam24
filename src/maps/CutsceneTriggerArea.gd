@@ -46,7 +46,22 @@ func _dialogue_ended():
 				#fill mp after tutorial
 				Globals.party.p[0]["mp"] = Globals.party.p[0].stats.mp
 				Globals.party.p[1]["mp"] = Globals.party.p[1].stats.mp
+			8:
+				#security guard
+				pass
+			10:
+				#finley tf
+				Globals.main.party.p[0]["image"] = "res://assets/battle/finley3.png"
+				Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")
+			13:
+				#jesse tf
+				Globals.main.party.p[1]["image"] = "res://assets/tv_sprites/player_chars/jesse3.png"
 			#TODO update player battle sprites, they'll get saved
 	
 	if has_node("Remove"):
+		get_node("Remove").queue_free()
+
+
+func _on_remove_timer_timeout() -> void:
+	if Globals.main.story_flags[flag_type] > story_flag and has_node("Remove"):
 		get_node("Remove").queue_free()

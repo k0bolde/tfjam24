@@ -20,11 +20,13 @@ Rend: Not a chance! Round two!
 
 Jesse: Here we go again, and this time we’re all gals! Wow!
 
+{ trigger rendf_fight }
+
 == fight_start
 
 Rend takes an offensive stance, her breasts bouncing!
 
-== win
+== win_fight
 
 Rend: Gah! You two are tough. You win again, this time…I’ll be back!
 

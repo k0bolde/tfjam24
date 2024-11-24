@@ -6,3 +6,8 @@
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_5lraw")
+
+[node name="RemoveTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="RemoveTimer" to="." method="_on_remove_timer_timeout"]

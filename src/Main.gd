@@ -4,6 +4,7 @@ extends Node2D
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
 #TODO save slots
+#TODO qz shortcut
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode
@@ -20,10 +21,10 @@ var day := 1
 var story_flags := {
 	"main" : 0,
 	"jesse": 0,
-	"sock": 0,
+	"ulla": 0,
 	#"ceron": 0,
 	
-	"quarantine": 0,
+	"qz": 0,
 	#"factory": 0,
 	#"office": 0,
 	#"lab": 0
@@ -98,8 +99,7 @@ func load_map(map_name:String, entrance_num := -1):
 	#handle overworld sprite changes
 	if story_flags["main"] < 1:
 		player.player_sprite.texture = load("res://assets/overworld/finley1-ow.png")
-	#TODO replace with actual flaga
-	elif story_flags["main"] >= 1 and story_flags["main"] < 10:
+	elif story_flags["main"] >= 1 and story_flags["main"] < 11:
 		player.player_sprite.texture = load("res://assets/overworld/finley2-ow.png")
 	else:
 		player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")

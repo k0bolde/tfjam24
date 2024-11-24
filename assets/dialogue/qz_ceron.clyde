@@ -27,13 +27,13 @@ Jesse: And blocking our way!
 ???????: submit…to…me…look…what…do…you…see?
 
 + Nice try!
-	{ trigger celon2_fight }
+	{ trigger ceron2_fight }
 	-> combat_win
 + Can’t…r-resist (Tentacle Creature TF)
 	{ trigger tentacle_bad_end }
 	-> bad_end
 
-== combat_win
+== win_fight
 Jesse: That was a tough one!
 
 Finley: Tell me about it.

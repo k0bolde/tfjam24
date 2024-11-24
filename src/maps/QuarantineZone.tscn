@@ -69,7 +69,7 @@ size = Vector2(38, 225)
 size = Vector2(20, 238)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24857"]
-size = Vector2(318, 41)
+size = Vector2(318, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aloq7"]
 
@@ -247,11 +247,6 @@ position = Vector2(434, -1430)
 image = ExtResource("17_adcnm")
 dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
 
-[node name="Security" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1, -81)
-image = ExtResource("10_0i7xv")
-dialogue_file = "res://assets/dialogue/qz_security.clyde"
-
 [node name="ShortcutEntrance" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-150, -259)
 scale = Vector2(1.5, 1.5)
@@ -268,6 +263,8 @@ dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
 
 [node name="JesseTalk1" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(996, -266)
+dialogue = "res://assets/dialogue/qz_jesse_finley1.clyde"
+story_flag = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTalk1"]
 position = Vector2(-13.5, -18.5)
@@ -275,6 +272,8 @@ shape = SubResource("RectangleShape2D_ui67i")
 
 [node name="FinleyDragon" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(2025, -283)
+dialogue = "res://assets/dialogue/qz_finley_dragoness.clyde"
+story_flag = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/FinleyDragon"]
 position = Vector2(-110.5, 2.5)
@@ -282,6 +281,8 @@ shape = SubResource("RectangleShape2D_bm0na")
 
 [node name="Midboss" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(797, -816)
+dialogue = "res://assets/dialogue/qz_ceron.clyde"
+story_flag = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/Midboss"]
 position = Vector2(0, 4.5)
@@ -297,6 +298,7 @@ image = ExtResource("16_11gcm")
 [node name="JesseTF" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(286, -800)
 dialogue = "res://assets/dialogue/qz_jesse_tf.clyde"
+story_flag = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTF"]
 position = Vector2(3, -15.5)
@@ -305,6 +307,7 @@ shape = SubResource("RectangleShape2D_mp1ju")
 [node name="JesseTalk2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(930, -1215)
 dialogue = "res://assets/dialogue/qz_jesse_finley2.clyde"
+story_flag = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTalk2"]
 position = Vector2(-9, 2.5)
@@ -313,6 +316,7 @@ shape = SubResource("RectangleShape2D_hdcis")
 [node name="JesseTalk3" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(2149, -1233)
 dialogue = "res://assets/dialogue/qz_jesse_finley3.clyde"
+story_flag = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/JesseTalk3"]
 position = Vector2(0, -5)
@@ -320,14 +324,14 @@ shape = SubResource("RectangleShape2D_h7uys")
 
 [node name="Entrance" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 dialogue = "res://assets/dialogue/qz_entrance.clyde"
-story_flag = 8
+always_trigger = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/Entrance"]
-position = Vector2(12, -3.5)
+position = Vector2(12, 22.5)
 shape = SubResource("RectangleShape2D_24857")
 
 [node name="SecurityWall" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
-story_flag = 9
+story_flag = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/SecurityWall"]
 position = Vector2(-244, -79)
@@ -342,8 +346,15 @@ collision_layer = 2
 position = Vector2(-16.5, -116)
 shape = SubResource("RectangleShape2D_6wre7")
 
+[node name="Security" parent="Cutscenes/SecurityWall/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(1, -81)
+image = ExtResource("10_0i7xv")
+dialogue_file = "res://assets/dialogue/qz_security.clyde"
+
 [node name="RendMFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(2054, -773)
+dialogue = "res://assets/dialogue/qz_rend1.clyde"
+story_flag = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/RendMFight"]
 position = Vector2(-149.5, -91.5)
@@ -362,6 +373,8 @@ dialogue_file = "res://assets/dialogue/qz_rend1.clyde"
 
 [node name="RendFFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(-13, -1259)
+dialogue = "res://assets/dialogue/qz_rend2.clyde"
+story_flag = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/RendFFight"]
 position = Vector2(27.5, -64.5)

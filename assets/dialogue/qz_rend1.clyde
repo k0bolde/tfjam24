@@ -16,6 +16,8 @@ Finley: I’m confused…
 
 Jesse: About what, dude? It’s a fight!
 
+{ trigger rendm_fight }
+
 == fight_start
 
 Rend takes an offensive stance, his muscles rippling!
