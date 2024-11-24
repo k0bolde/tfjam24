@@ -13,6 +13,7 @@ script = ExtResource("1_f7scq")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 1
 texture = ExtResource("2_5oece")
 
 [node name="Camera2D" type="Camera2D" parent="."]

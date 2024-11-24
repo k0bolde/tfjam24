@@ -5,7 +5,7 @@ class_name EncounterArea
 #map of probabilities to monsters- EX: {"Rat" - 0.3, "Dragon" -  0.7} - MUST ADD UP TO 1.0 and be sorted low to high!!
 @export var encounter_rates := {}
 #whats the chance of a battle happening at all?
-@export var total_encounter_rate := 300.0
+@export var total_encounter_rate := 7.0
 var groups := {
 	"qz-1-1": ["lvl 1 kobold", "lvl pun kobold"],
 	"qz-1-2": ["mutant man", "glorp"],
@@ -18,6 +18,7 @@ var group_intros := [
 	"qz-1-1", "qz-1-2", "qz-1-3", "qz-1-4", "qz-1-5", "qz-1-6",
 	]
 var check_accum := 0.0
+var encounter_pick := randf_range(0.1, 1.0)
 
 func _ready() -> void:
 	#check for data errors
@@ -34,6 +35,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	check_accum = 0
+	encounter_pick = randf_range(0.1, 1.0)
 	body.encounter_area = self
 
 
@@ -46,14 +48,15 @@ func check_for_battle(delta):
 	check_accum += delta
 	#TODO give a leeway of a bit between battles
 	var encounter_rate = check_accum / total_encounter_rate
-	#print("encounter rate %s" % encounter_rate)
-	if randf() < encounter_rate:
+	print("encounter pick %s rate %s" % [encounter_pick, encounter_rate])
+	if encounter_pick < encounter_rate:
 		check_accum = 0.0
 		var pick := randf()
 		var accum := 0.0
 		for monster in encounter_rates:
 			accum += encounter_rates[monster]
 			if pick < accum:
+				encounter_pick = randf_range(0.1, 1.0)
 				if groups.has(monster):
 					Events.battle_start.emit(groups[monster], true)
 					if group_intros.has(monster):
