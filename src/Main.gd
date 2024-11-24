@@ -4,6 +4,7 @@ extends Node2D
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
 #TODO save slots
+#TODO ulla triggers
 #TODO qz shortcut
 
 @onready var player = $Player

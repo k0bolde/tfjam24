@@ -465,6 +465,7 @@ func single_attack(user:int, party, enemies:Array, target:int, battle:Battle, at
 	dmg = clampi(dmg, 0, 9999)
 	the_target["hp"] -= dmg
 	battle.animate_sprite(target)
+	battle.animate_sprite(user, false)
 	battle.show_dmg_label(dmg, target, dmg_type, is_crit)
 	if target < 0:
 		if the_target["hp"] <= 0:

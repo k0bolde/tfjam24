@@ -8,6 +8,8 @@ class_name Battle
 
 #tweaks
 #TODO enemy scaling and not clipping into the floor. first scale to 128x128 size, then use math to figure out how much to raise them
+#TODO dmg label positioning
+#TODO anims for attacking
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
@@ -166,13 +168,13 @@ func _ready() -> void:
 	side_cam_shaky_tween_v = Globals.get_tween(side_cam_shaky_tween_v, self)
 	side_cam_shaky_tween_v.set_trans(Tween.TRANS_SINE)
 	side_cam_shaky_tween_v.set_loops()
-	side_cam_shaky_tween_v.tween_property(side_cam, "rotation_degrees:x", side_cam_start_rot.x - 2, 5)
-	side_cam_shaky_tween_v.tween_property(side_cam, "rotation_degrees:x", side_cam_start_rot.x + 2, 5)
+	side_cam_shaky_tween_v.tween_property(side_cam, "rotation_degrees:x", side_cam_start_rot.x - 1, 5)
+	side_cam_shaky_tween_v.tween_property(side_cam, "rotation_degrees:x", side_cam_start_rot.x + 1, 5)
 	side_cam_shaky_tween_h = Globals.get_tween(side_cam_shaky_tween_h, self)
 	side_cam_shaky_tween_h.set_trans(Tween.TRANS_SINE)
 	side_cam_shaky_tween_h.set_loops()
-	side_cam_shaky_tween_h.tween_property(side_cam, "rotation_degrees:y", side_cam_start_rot.y - 2, 11)
-	side_cam_shaky_tween_h.tween_property(side_cam, "rotation_degrees:y", side_cam_start_rot.y + 2, 11)
+	side_cam_shaky_tween_h.tween_property(side_cam, "rotation_degrees:y", side_cam_start_rot.y - 1, 11)
+	side_cam_shaky_tween_h.tween_property(side_cam, "rotation_degrees:y", side_cam_start_rot.y + 1, 11)
 	
 	#heal after battle
 	for p in Globals.party.p:
@@ -701,19 +703,26 @@ func _on_pass_turn_button_pressed() -> void:
 	update_turns()
 	
 
-func animate_sprite(target:int):
+func animate_sprite(target:int, is_hit:=true):
 	#TODO different animations for attacking and getting hit
 	var the_target : Sprite3D
 	var t := get_tree().create_tween()
+	t.set_trans(Tween.TRANS_SINE)
 	if target >= 0:
 		the_target = enemies[target]["ingame_sprite"]
 		enemies[target]["anim_tween"] = t
 	else:
 		the_target = Globals.party.p[abs(target) - 1]["ingame_sprite"]
-	t.tween_property(the_target, "position:y", the_target.position.y + 0.25, 0.1)
-	t.tween_property(the_target, "position:y", the_target.position.y, 0.1)
-	#t.tween_interval(0.5)
-
+	if is_hit:
+		t.tween_property(the_target, "position:y", the_target.position.y + 0.25, 0.1)
+		t.tween_property(the_target, "position:y", the_target.position.y, 0.1)
+	else:
+		if target >= 0:
+			t.tween_property(the_target, "position:x", the_target.position.x - 0.25, 0.1)
+		else:
+			t.tween_property(the_target, "position:x", the_target.position.x + 0.25, 0.1)
+		t.tween_property(the_target, "position:x", the_target.position.x, 0.1)
+			
 
 func _on_inspect_button_pressed() -> void:
 	#TODO allow inspection of party
