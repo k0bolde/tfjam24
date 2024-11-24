@@ -1,10 +1,11 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
+#TODO how to regen mp?
 #TODO unlock moves by leveling up
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
 #TODO save slots
-#TODO ulla triggers
+#TODO ulla triggers - only be in one spot at a time
 #TODO qz shortcut
 #TODO items
 #	view inventory - icon, name, desc, amount, use in field
@@ -30,6 +31,7 @@ var story_flags := {
 	#"ceron": 0,
 	
 	"qz": 0,
+	"qz_security_lizard": 0,
 	#"factory": 0,
 	#"office": 0,
 	#"lab": 0

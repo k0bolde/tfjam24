@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dq4v76g3tsjtq"]
+[gd_scene load_steps=47 format=4 uid="uid://dq4v76g3tsjtq"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_kkp3q"]
 [ext_resource type="Texture2D" uid="uid://cd1u2n6lkl1mr" path="res://assets/QuarantineBlockDungeon.png" id="2_ydeac"]
@@ -21,7 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://dukwyf8b76rqf" path="res://assets/overworld/ceron2.png" id="16_11gcm"]
 [ext_resource type="Texture2D" uid="uid://c8ps1nxwh0ob8" path="res://assets/overworld/shortcut.png" id="16_60iah"]
 [ext_resource type="Texture2D" uid="uid://b7jih7i2kfegk" path="res://assets/overworld/bonegang.png" id="17_adcnm"]
+[ext_resource type="Texture2D" uid="uid://c3a3wa5bqacd6" path="res://assets/battle/shypurpleclothes.png" id="18_41ks2"]
 [ext_resource type="PackedScene" uid="uid://dq4kio8vt8hy8" path="res://src/EncounterArea.tscn" id="21_caehc"]
+[ext_resource type="PackedScene" uid="uid://baoqkmuq02pyw" path="res://src/ExitArea.tscn" id="24_3yv1n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmm8"]
 size = Vector2(1142, 296)
@@ -259,6 +261,11 @@ scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
 
+[node name="NPC" parent="NPCs" instance=ExtResource("4_gejnf")]
+position = Vector2(-104, -91)
+scale = Vector2(1.49, 1.49)
+image = ExtResource("18_41ks2")
+
 [node name="Cutscenes" type="Node2D" parent="."]
 
 [node name="JesseTalk1" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
@@ -388,3 +395,9 @@ shape = SubResource("RectangleShape2D_ssco0")
 [node name="RendF" parent="Cutscenes/RendFFight/Remove" instance=ExtResource("4_gejnf")]
 position = Vector2(64, -64)
 image = ExtResource("15_4pbbw")
+
+[node name="ExitArea" parent="." instance=ExtResource("24_3yv1n")]
+position = Vector2(2.48, 87.01)
+scale = Vector2(3.055, 3.055)
+map_name = "Hub"
+entrance_num = 7

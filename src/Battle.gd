@@ -596,6 +596,8 @@ func battle_won():
 	#heal after battle
 	for p in Globals.party.p:
 		p["hp"] = p["stats"].hp
+		#restore half mp after battles for now?
+		p["mp"] = clampi(p["mp"] + p["stats"].mp / 2, 0, p["stats"].mp)
 	#keep track of what enemies we've defeated so we can show full inspect info/learn their abilities
 	for en in enemy_names:
 		if not Globals.party.fought_enemies.has(en):

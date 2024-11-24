@@ -19,9 +19,10 @@ func _ready() -> void:
 	
 	
 func _body_entered(_body):
-	if dialogue and (Globals.main.story_flags[flag_type] == story_flag or always_trigger):
+	if dialogue and (Globals.main.story_flags[flag_type] == story_flag or always_trigger or (trigger_once_per_load and not triggered)):
 		Events.dialogue_ended.connect(_dialogue_ended)
 		Globals.main.start_dialogue(dialogue)
+		triggered = true
 		
 		
 func _dialogue_ended():
@@ -48,13 +49,11 @@ func _dialogue_ended():
 				#fill mp after tutorial
 				Globals.party.p[0]["mp"] = Globals.party.p[0].stats.mp
 				Globals.party.p[1]["mp"] = Globals.party.p[1].stats.mp
-			8:
-				#security guard
-				pass
 			10:
 				#finley tf
 				Globals.party.p[0]["image"] = "res://assets/battle/finley3.png"
 				Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")
+				Globals.party.p[0].stats.abilities.append("freezing breath")
 			13:
 				#jesse tf
 				Globals.party.p[1]["image"] = "res://assets/tv_sprites/player_chars/jesse3.png"

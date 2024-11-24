@@ -208,7 +208,7 @@ region_rect = Rect2(256, 512, 64, 64)
 
 [node name="EnemyPos1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28131, -0.516049, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28131, -0.516049, 0.510365)
 
 [node name="IdleCamera" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true

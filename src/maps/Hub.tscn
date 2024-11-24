@@ -135,7 +135,8 @@ position = Vector2(708, 38)
 map_name = "Games"
 
 [node name="ExitQuarantine" parent="Exits" instance=ExtResource("4_pu8sb")]
-position = Vector2(-425, 194)
+position = Vector2(-440, 159)
+scale = Vector2(3.2, 3.2)
 map_name = "QuarantineZone"
 
 [node name="NPCs" type="Node2D" parent="."]

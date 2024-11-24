@@ -1,4 +1,5 @@
 extends Resource
+class_name Inventory
 # Keep track of what items and equipment the player has
 # name, id, amount, description, mechanically how they're used
 @export var inv := {}

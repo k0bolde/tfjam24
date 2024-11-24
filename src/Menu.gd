@@ -6,6 +6,8 @@ extends Control
 @onready var debug_container : Container = %DebugContainer
 @onready var debug_maps_container : Container = %DebugMapsContainer
 @onready var flag_container : Container = %FlagContainer
+@onready var inventory_container : Container = %InventoryContainer
+@onready var item_grid_container : Container = %ItemGridContainer
 var map_names := ["Apartment", "ApartmentCorridor", "Hub", "Map1", "QuarantineZone"]
 
 
@@ -49,6 +51,7 @@ func _ready() -> void:
 		for eb in get_tree().get_nodes_in_group("enemy_selector"):
 			eb.add_item(en)
 	%PartyNumBox.value = Globals.party.num
+	
 
 
 func _on_close_button_pressed() -> void:
@@ -168,3 +171,13 @@ func _on_level_spinbox_value_changed(value: float) -> void:
 func _on_mp_button_pressed() -> void:
 	for p in Globals.party.p:
 		p["mp"] = p.stats.mp
+
+
+func _on_items_button_pressed() -> void:
+	disable_buttons()
+	inventory_container.visible = true
+
+
+func _on_close_inventory_button_pressed() -> void:
+	enable_buttons()
+	inventory_container.visible = false

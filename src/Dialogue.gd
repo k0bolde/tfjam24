@@ -209,8 +209,7 @@ func _on_event_triggered(event_name):
 			Events.battle_start.emit(["haz"], false)
 			Globals.main.story_flags["main"] = 9
 		"security_tf":
-			#TODO change to lizard lady
-			Globals.main.story_flags["main"] = 9
+			Globals.main.story_flags["qz_security_lizard"] = 1
 		"rendm_fight":
 			Events.battle_start.emit(["rend"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend1.clyde", "fight_start")

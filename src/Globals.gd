@@ -7,7 +7,7 @@ var player : Player
 var main 
 var save_data
 var party := Party.new()
-var inventory
+var inventory := Inventory.new()
 var cash := 0
 var enemies := {}
 var use_action_cam := false

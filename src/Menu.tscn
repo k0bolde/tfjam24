@@ -62,9 +62,8 @@ text = "Party"
 
 [node name="ItemsButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer" groups=["disableable"]]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-text = "Items"
+text = "Inventory"
 
 [node name="EquipmentButton" type="Button" parent="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer" groups=["disableable"]]
 unique_name_in_owner = true
@@ -276,6 +275,55 @@ size_flags_horizontal = 8
 max_value = 20.0
 editable = false
 
+[node name="InventoryContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/InventoryContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_fcs3w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InventoryContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ItemGridContainer" type="GridContainer" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Amount"
+
+[node name="Label2" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="Label3" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Description"
+
+[node name="CloseInventoryButton" type="Button" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Close"
+
+[connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -289,3 +337,4 @@ editable = false
 [connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/StartBattleButton" to="." method="_on_start_battle_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer/PartyNumBox" to="." method="_on_party_num_box_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer2/LevelSpinbox" to="." method="_on_level_spinbox_value_changed"]
+[connection signal="pressed" from="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/CloseInventoryButton" to="." method="_on_close_inventory_button_pressed"]
