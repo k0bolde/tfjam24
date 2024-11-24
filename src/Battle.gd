@@ -1,13 +1,12 @@
 extends Node2D
 class_name Battle
 #major implementations
-#TODO bad ends by losing
 #TODO Item use
 #TODO party targeting for buffs/heals
 
 #tweaks
-#TODO dmg label positioning
-#TODO some ui to pop up tLo tell you who's turn it is
+#TODO dmg label positioning - move down for party, move forward for all so there's no z-fighting
+#TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
 
@@ -625,10 +624,17 @@ func battle_won():
 			Globals.inventory.inv[fi] += 1
 		else:
 			Globals.inventory.inv[fi] = 1
+	Globals.bad_end_dialogue = null
+	Globals.bad_end_block = null
 	
 	
 func battle_lost():
-	get_tree().change_scene_to_file("res://src/gameover.tscn")
+	if Globals.bad_end_dialogue:
+		Globals.main.start_dialogue(Globals.bad_end_dialogue, Globals.bad_end_block)
+		Globals.bad_end_dialogue = null
+		Globals.bad_end_block = null
+	else:
+		get_tree().change_scene_to_file("res://src/gameover.tscn")
 
 
 func disable_buttons():

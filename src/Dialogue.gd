@@ -200,6 +200,7 @@ func _on_event_triggered(event_name):
 		"celon_fight":
 			Events.battle_start.emit(["eldritch being"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/t_10.clyde")
+			Globals.bad_end_dialogue = "res://assets/dialogue/t_sparkle.clyde"
 		"sparkle_bad_end":
 			Globals.main.start_dialogue("res://assets/dialogue/t_sparkle.clyde")
 		"game_over":
@@ -224,6 +225,8 @@ func _on_event_triggered(event_name):
 			Events.battle_start.emit(["revealed eldritch being"], false)
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_ceron.clyde"
 			Globals.main.after_battle_block = "win_fight"
+			Globals.bad_end_dialogue = "res://assets/dialogue/qz_ceron.clyde"
+			Globals.bad_end_block = "bad_end"
 		"tentacle_bad_end":
 			Globals.main.start_dialogue("res://assets/dialogue/qz_ceron.clyde", "bad_end")
 		"jesse_bond_up":
@@ -232,6 +235,8 @@ func _on_event_triggered(event_name):
 			Globals.main.story_flags["ulla"] += 1
 		"hydra_fight":
 			Events.battle_start.emit(["rust and rist hydra"], false)
+			Globals.bad_end_dialogue = "res://assets/dialogue/qz_rustrydra.clyde"
+			Globals.bad_end_block = "bad_end"
 		"hydra_bad_end":
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rustrydra.clyde", "bad_end")
 		"savak_battle":
