@@ -426,7 +426,7 @@ func initialize_enemies():
 	e.desc = "Rust or Rist’s (you’re not sure) right hand man"
 	e.texture_path = "res://assets/battle/rendm.png"
 	e.stats.hp = 250
-	e.stats.atk = 20
+	e.stats.atk = 25
 	e.stats.def = 20
 	e.stats.eva = 10
 	e.stats.lck = 10
@@ -485,7 +485,7 @@ func initialize_enemies():
 	e.desc = "Rust or Rist’s (you’re not sure) right hand woman"
 	e.texture_path = "res://assets/battle/rendf.png"
 	e.stats.hp = 250
-	e.stats.atk = 30
+	e.stats.atk = 35
 	e.stats.def = 10
 	e.stats.eva = 20
 	e.stats.lck = 15
@@ -713,8 +713,6 @@ func initialize_enemies():
 	e.stats.def = 15
 	e.stats.eva = 15
 	e.stats.lck = 15
-	e.stats.resistances.append_array(["esoteric", "eldritch"])
-	e.stats.weaknesses.append_array(["piercing", "fire"])
 	e.attack_probs["tentacle whip"] = 0.5
 	e.attack_probs["shriek"] = 0.15
 	e.attack_probs["insane insight"] = 0.15
@@ -852,8 +850,9 @@ func verify_enemies():
 func initialize_party():	
 	#set up starting stats for party
 	#Globals.party.p[0].stats.hp = 10
+	Globals.party.p[0].stats.hp = 150
 	Globals.party.p[0].stats.atk = 25
-	Globals.party.p[0].stats.def = 10
+	Globals.party.p[0].stats.def = 5
 	Globals.party.p[0].stats.eva = 5
 	Globals.party.p[0].stats.lck = 10
 	Globals.party.p[0].stats.resistances.push_front("fire")
