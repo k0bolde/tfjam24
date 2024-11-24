@@ -746,6 +746,67 @@ func initialize_enemies():
 	e.base_turns = 2
 	e.item_drops["goldenankrowo"] = 1.0
 	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "blanca"
+	e.desc = "A curvy avian skullfaced woman composed of slime. She looks mischievous and cunning."
+	e.texture_path = "res://assets/battle/confidntpurple.png"
+	e.stats.hp = 150
+	e.stats.atk = 35
+	e.stats.def = 0
+	e.stats.eva = 35
+	e.stats.lck = 20
+	e.stats.resistances = ["bludgeoning"]
+	e.stats.weaknesses = ["piercing"]
+	e.attack_probs["greater aid"] = 0.25
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["confuse"] = 0.25
+	e.xp_reward = 12
+	e.item_drops["sealed soul"] = 1.0
+	e.cash_reward = 15
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "bianca"
+	e.desc = "A shapely reptilian skullfaced woman composed of slime. She looks confident and flirty."
+	e.texture_path = "res://assets/battle/confidntpurple.png"
+	e.stats.hp = 200
+	e.stats.atk = 25
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances = ["piercing"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["fortify"] = 0.25
+	e.attack_probs["entice"] = 0.5
+	e.attack_probs["bite"] = 0.25
+	e.xp_reward = 11
+	e.item_drops["goldenankrowo"] = 1.0
+	e.cash_reward = 15
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "berutia"
+	e.desc = "A busty canine skullfaced woman composed of slime. She looks eager and smug."
+	e.texture_path = "res://assets/battle/confidntpurple.png"
+	e.stats.hp = 175
+	e.stats.atk = 30
+	e.stats.def = 15
+	e.stats.eva = 15
+	e.stats.lck = 15
+	e.stats.resistances = ["frigid"]
+	e.stats.weaknesses = ["fire"]
+	e.attack_probs["cackle"] = 0.25
+	e.attack_probs["swipe"] = 0.5
+	e.attack_probs["inspire"] = 0.25
+	e.xp_reward = 12
+	e.item_drops["dancing doe"] = 1.0
+	e.item_drops["rend roid"] = 1.0
+	e.item_drops["distilled synth snilk"] = 1.0
+	e.cash_reward = 15
+	enemies[e.enemy_name] = e
+	
+	
 
 
 func verify_enemies():
