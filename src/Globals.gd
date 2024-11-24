@@ -703,6 +703,51 @@ func initialize_enemies():
 	e.item_drops["condensed synth snilk"] = 1.0
 	e.item_pulls = 3
 	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "revealed eldritch being"
+	e.desc = "What the hell is this? It looks even worse than last time!"
+	e.texture_path = "res://assets/battle/ceron2.png"
+	e.stats.hp = 250
+	e.stats.atk = 30
+	e.stats.def = 15
+	e.stats.eva = 15
+	e.stats.lck = 15
+	e.stats.resistances.append_array(["esoteric", "eldritch"])
+	e.stats.weaknesses.append_array(["piercing", "fire"])
+	e.attack_probs["tentacle whip"] = 0.5
+	e.attack_probs["shriek"] = 0.15
+	e.attack_probs["insane insight"] = 0.15
+	e.attack_probs["stare"] = 0.2
+	e.cash_reward = 35
+	e.xp_reward = 25
+	e.base_turns = 2
+	e.item_drops["ankrpwease"] = 1.0
+	e.item_drops["ddew pamphlet"] = 1.0
+	e.item_drops["weird writings"] = 1.0
+	e.visual_scale = 1.5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "rust and rist hydra"
+	e.desc = "Rust and Rist, conjoined. Or is it Rist and Rust?"
+	e.texture_path = "res://assets/battle/hydraboobs.png"
+	e.stats.hp = 250
+	e.stats.atk = 35
+	e.stats.def = 30
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.attack_probs["swipe"] = 0.2
+	e.attack_probs["claw"] = 0.3
+	e.attack_probs["drug deal"] = 0.2
+	e.attack_probs["yap"] = 0.1
+	e.attack_probs["coffee"] = 0.1
+	e.attack_probs["freezing breath"] = 0.1
+	e.cash_reward = 150
+	e.xp_reward = 40
+	e.base_turns = 2
+	e.item_drops["goldenankrowo"] = 1.0
+	enemies[e.enemy_name] = e
 
 
 func verify_enemies():

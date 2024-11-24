@@ -395,6 +395,47 @@ func (user, party, enemies, target, battle):
 		"callable": single_attack.bind("zap slap")
 	},
 	
+	"drug deal": {
+		"base_atk": 1.0,
+		"type": "mutagenic",
+		"effect": 0,
+		"mp": 5,
+		"desc": "Give ‘em drugs",
+		#-5 luck for 3 turns
+		"enemy_flavor": "They give CHAR the deal of their life - free drugs, injected now!",
+		"callable": single_attack.bind("drug deal")
+	},
+	
+	"yap": {
+		"base_atk": .5,
+		"type": "esoteric",
+		"effect": 0,
+		"mp": 10,
+		"desc": "Talk the kobold way",
+		#hits all, -5 Evasion and -5 Def for 3 turns
+		"enemy_flavor": "They talk the k0bold way, confusing and confounding the party!",
+		"callable": single_attack.bind("yap")
+	},
+	"coffee": {
+		"base_atk": 0,
+		"type": "fire",
+		"effect": 0,
+		"mp": 15,
+		"desc": "Drink some coffee and speed up!",
+		#heal 30, +5 Evasion and +5 Luck for 3 turns
+		"enemy_flavor": "They drink some coffee, restoring health and improving their speed!",
+		"callable": single_attack.bind("coffee")
+	},
+		"freezing breath": {
+		"base_atk": 1.5,
+		"type": "frigid",
+		"effect": 0,
+		"mp": 20,
+		"desc": "Breath cold to chill your enemies",
+		#-10 Evasion for 3 turns
+		"enemy_flavor": "They breath cold, slowing CHAR down!",
+		"callable": single_attack.bind("freezing breath")
+	},
 }
 
 func _ready() -> void:
