@@ -171,6 +171,7 @@ func get_portrait(npc_name:String) -> String:
 			elif Globals.main.story_flags["main"] > 13:
 				return "res://assets/portraits/jesse3.png"
 		"Finley":
+			#FIXME not working?
 			if Globals.main.story_flags["main"] > 10:
 				return "res://assets/portraits/finley3.png"
 		"Ulla Tor":
@@ -207,7 +208,7 @@ func _on_event_triggered(event_name):
 			Events.battle_start.emit(["haz"], false)
 			Globals.main.story_flags["main"] = 9
 		"security_tf":
-			#remove security from map
+			#TODO change to lizard lady
 			Globals.main.story_flags["main"] = 9
 		"rendm_fight":
 			Events.battle_start.emit(["rend"], false)
@@ -215,6 +216,8 @@ func _on_event_triggered(event_name):
 			#TODO fight won dialogue
 		"rendf_fight":
 			Events.battle_start.emit(["rend (female)"], false)
+			Globals.main.start_dialogue("res://assets/dialogue/qz_rend2.clyde", "fight_start")
+			#TODO fight won dialogue
 		"ceron2_fight":
 			Events.battle_start.emit(["eldritch being"], false)
 			#TODO fight won dialogue
@@ -230,7 +233,7 @@ func _on_event_triggered(event_name):
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rustrydra.clyde", "bad_end")
 		"savak_battle":
 			Events.battle_start.emit(["savak"], false)
-			Globals.main.start_dialogue("res://assets/dialogue/qz_savak.clyde", "fight_start")
+			Globals.main.start_dialogue("res://assets/dialogue/qz_savak1.clyde", "fight_start")
 			#TODO fight mid/won dialogue
 		"qz_shortcut_open":
 			Globals.main.story_flags["qz"] = 1

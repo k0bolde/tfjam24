@@ -51,12 +51,11 @@ func _dialogue_ended():
 				pass
 			10:
 				#finley tf
-				Globals.main.party.p[0]["image"] = "res://assets/battle/finley3.png"
+				Globals.party.p[0]["image"] = "res://assets/battle/finley3.png"
 				Globals.main.player.player_sprite.texture = load("res://assets/overworld/finley3-ow.png")
 			13:
 				#jesse tf
-				Globals.main.party.p[1]["image"] = "res://assets/tv_sprites/player_chars/jesse3.png"
-			#TODO update player battle sprites, they'll get saved
+				Globals.party.p[1]["image"] = "res://assets/tv_sprites/player_chars/jesse3.png"
 	
 	if has_node("Remove"):
 		get_node("Remove").queue_free()

@@ -324,7 +324,6 @@ shape = SubResource("RectangleShape2D_h7uys")
 
 [node name="Entrance" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 dialogue = "res://assets/dialogue/qz_entrance.clyde"
-always_trigger = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/Entrance"]
 position = Vector2(12, 22.5)
