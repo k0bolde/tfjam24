@@ -791,49 +791,41 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="XPGainedLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "XP gained: "
 
-[node name="Label2" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="TotalXPLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Total XP: "
 
-[node name="Label4" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "11"
-
-[node name="Label5" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="XPToLevelLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "XP required for next level: "
 
-[node name="Label6" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "12"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="LevelUpLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Level up! Level 2! Stats gained: 10 HP"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="CashGainedLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Got $10"
 
-[node name="Label2" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="CashTotalLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Total of $120"
 
 [node name="GotItemLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Got item Ankrpwease"
 

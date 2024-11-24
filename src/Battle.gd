@@ -47,6 +47,13 @@ class_name Battle
 @onready var inspect_resist_label : Label = %InspectResistLabel
 @onready var side_cam : Camera3D = %SideCam
 @onready var results_container : Container = %ResultsContainer
+@onready var xp_gained_label : Label = %XPGainedLabel
+@onready var total_xp_label : Label = %TotalXPLabel
+@onready var xp_to_level_label : Label = %XPToLevelLabel
+@onready var level_up_label : Label = %LevelUpLabel
+@onready var cash_gained_label : Label = %CashGainedLabel
+@onready var cash_total_level : Label = %CashTotalLabel
+@onready var got_item_label : Label = %GotItemLabel
 
 var can_run := false
 var enemy_names := []
@@ -556,7 +563,6 @@ func update_selected_enemy():
 func battle_won():
 	disable_buttons()
 	results_container.visible = true
-	#TODO fill out results screen
 	var earned_cash := 0
 	var earned_xp := 0
 	for e in defeated_enemies:
@@ -564,13 +570,21 @@ func battle_won():
 		earned_xp += e.xp_reward
 	Globals.cash += earned_cash
 	Globals.party.xp += earned_xp
+	xp_gained_label.text = "XP gained: %d" % earned_xp
+	total_xp_label.text = "Total XP: %d" % Globals.party.xp
+	cash_gained_label.text = "Found $%d" % earned_cash
+	cash_total_level.text = "Total of $%d" % Globals.cash 
 	var required_to_level := 0
 	for i in Globals.party.level + 1:
 		required_to_level += i * 10
+	xp_to_level_label.text = "XP required to level up: %d" % required_to_level
 	if Globals.party.xp >= required_to_level:
 		#level up
-		print("level up %d! %d/%d required" % [Globals.party.level + 1, Globals.party.xp, required_to_level])
+		#print("level up %d! %d/%d required" % [Globals.party.level + 1, Globals.party.xp, required_to_level])
 		Globals.party.level += 1
+		var stat_gain_str := Globals.party.level_up_stats(Globals.party.level)
+		level_up_label.visible = true
+		level_up_label.text = "Level up! Level %d! Stats gained: %s" % [Globals.party.level, stat_gain_str]
 	#heal after battle
 	for p in Globals.party.p:
 		p["hp"] = p["stats"].hp
@@ -578,6 +592,21 @@ func battle_won():
 	for en in enemy_names:
 		if not Globals.party.fought_enemies.has(en):
 			Globals.party.fought_enemies.append(en)
+	#check item drops
+	var found_items := []
+	for de in defeated_enemies:
+		for i in de.item_pulls:
+			var pick := randf()
+			var accum := 0.0
+			for ip in de.item_drops.keys():
+				accum += de.item_drops[ip]
+				if pick <= accum:
+					found_items.append(ip)
+					break
+	got_item_label.text = "Got item(s): "
+	for fi in found_items:
+		got_item_label.text += "%s, " % fi
+		got_item_label.text = got_item_label.text.trim_suffix(", ")
 	
 	
 func battle_lost():
