@@ -756,6 +756,92 @@ layout_mode = 2
 [node name="CheckButton" type="CheckButton" parent="CanvasLayer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 
+[node name="ResultsContainer" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -111.5
+offset_right = 230.0
+offset_bottom = 111.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ResultsContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_xgkbo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Battle Results"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "XP gained: "
+
+[node name="Label2" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="Label3" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Total XP: "
+
+[node name="Label4" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "11"
+
+[node name="Label5" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "XP required for next level: "
+
+[node name="Label6" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "12"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Level up! Level 2! Stats gained: 10 HP"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Got $10"
+
+[node name="Label2" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Total of $120"
+
+[node name="GotItemLabel" type="Label" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Got item Ankrpwease"
+
+[node name="EndBattleButton" type="Button" parent="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "End Battle"
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 5
 
@@ -784,3 +870,4 @@ unique_name_in_owner = true
 [connection signal="pressed" from="CanvasLayer/TargetContainer/PanelContainer/GridContainer/CancelTargetButton" to="." method="_on_cancel_target_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/AbilityContainer/PanelContainer/AbilityGridContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InspectContainer/PanelContainer/VBoxContainer/InspectCancelButton" to="." method="_on_inspect_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResultsContainer/PanelContainer/VBoxContainer/EndBattleButton" to="." method="_on_end_battle_button_pressed"]

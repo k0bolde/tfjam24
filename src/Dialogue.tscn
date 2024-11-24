@@ -132,17 +132,24 @@ autostart = true
 [node name="OptionContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -44.0
+offset_top = -70.0
 offset_right = 44.0
-offset_bottom = 140.0
+offset_bottom = 70.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 100
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("3_5qxu5")
 
 [node name="OptionButtonContainer" type="VBoxContainer" parent="CanvasLayer/OptionContainer/PanelContainer"]

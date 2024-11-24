@@ -6,6 +6,11 @@ extends Node2D
 #TODO save slots
 #TODO ulla triggers
 #TODO qz shortcut
+#TODO items
+#	drops
+#	view inventory - icon, name, desc, amount, use in field
+#	use in battle
+#	stores
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode

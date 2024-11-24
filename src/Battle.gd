@@ -3,14 +3,13 @@ class_name Battle
 #major implementations
 #TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO bad ends by losing
-#TODO Item use/drops
+#TODO Item use
 #TODO party targeting for buffs/heals
 
 #tweaks
 #TODO enemy scaling and not clipping into the floor. first scale to 128x128 size, then use math to figure out how much to raise them
 #TODO dmg label positioning
-#TODO anims for attacking
-#TODO some ui to pop up to tell you who's turn it is
+#TODO some ui to pop up tLo tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
 
@@ -47,6 +46,7 @@ class_name Battle
 @onready var inspect_weak_label : Label = %InspectWeakLabel
 @onready var inspect_resist_label : Label = %InspectResistLabel
 @onready var side_cam : Camera3D = %SideCam
+@onready var results_container : Container = %ResultsContainer
 
 var can_run := false
 var enemy_names := []
@@ -71,6 +71,7 @@ var total_turns := 0
 
 
 func _ready() -> void:
+	results_container.visible = false
 	Globals.verify_enemies()
 	if Globals.use_action_cam:
 		idle_cam.make_current()
@@ -553,7 +554,9 @@ func update_selected_enemy():
 
 
 func battle_won():
-	#TODO show results screen
+	disable_buttons()
+	results_container.visible = true
+	#TODO fill out results screen
 	var earned_cash := 0
 	var earned_xp := 0
 	for e in defeated_enemies:
@@ -575,17 +578,10 @@ func battle_won():
 	for en in enemy_names:
 		if not Globals.party.fought_enemies.has(en):
 			Globals.party.fought_enemies.append(en)
-	# fade out
-	%FadeRect.visible = true
-	var t := get_tree().create_tween()
-	t.set_trans(Tween.TRANS_SINE)
-	t.tween_property(%FadeRect, "modulate", Color.BLACK, 2)
-	t.tween_callback(Events.battle_end.emit)
 	
 	
 func battle_lost():
-	#TODO death screen - text that tells you you turned into what defeated you
-	get_tree().change_scene_to_file("res://src/TitleScreen.tscn")
+	get_tree().change_scene_to_file("res://src/gameover.tscn")
 
 
 func disable_buttons():
@@ -704,7 +700,6 @@ func _on_pass_turn_button_pressed() -> void:
 	
 
 func animate_sprite(target:int, is_hit:=true):
-	#TODO different animations for attacking and getting hit
 	var the_target : Sprite3D
 	var t := get_tree().create_tween()
 	t.set_trans(Tween.TRANS_SINE)
@@ -735,3 +730,12 @@ func _on_inspect_cancel_button_pressed() -> void:
 	enable_buttons()
 	hide_targeting()
 	inspect_container.visible = false
+
+
+func _on_end_battle_button_pressed() -> void:
+	# fade out
+	%FadeRect.visible = true
+	var t := get_tree().create_tween()
+	t.set_trans(Tween.TRANS_SINE)
+	t.tween_property(%FadeRect, "modulate", Color.BLACK, 2)
+	t.tween_callback(Events.battle_end.emit)

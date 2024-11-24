@@ -202,8 +202,7 @@ func _on_event_triggered(event_name):
 		"sparkle_bad_end":
 			Globals.main.start_dialogue("res://assets/dialogue/t_sparkle.clyde")
 		"game_over":
-			#TODO game over screen
-			get_tree().change_scene_to_file("res://src/Main.tscn")
+			get_tree().change_scene_to_file("res://src/gameover.tscn")
 		"security_fight":
 			Events.battle_start.emit(["haz"], false)
 			Globals.main.story_flags["main"] = 9

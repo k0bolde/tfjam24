@@ -537,9 +537,10 @@ func heal(_user:int, party, enemies:Array, target:int, battle:Battle, _attack_na
 	#TODO anim
 
 
-func single_mp_drain(_user, party, enemies, target, _battle, mp_drain_amt):
+func single_mp_drain(_user, party, enemies, target, battle, mp_drain_amt):
 	#TODO test
 	var the_target = get_user(target, party, enemies)
+	battle.animate_sprite(target)
 	if target < 0:
 		the_target["mp"] -= mp_drain_amt
 		the_target["mp"] = clampi(the_target["mp"], 0, 99999)

@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://dstlse0txs352"]
+
+[ext_resource type="Script" path="res://src/gameover.gd" id="1_5xmsi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5xmsi")
+
+[node name="BG" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.741176, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -9.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -40.0
+offset_right = 68.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="LoadButton" type="Button" parent="MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load"
+
+[node name="TitleButton" type="Button" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/TitleButton" to="." method="_on_title_button_pressed"]
