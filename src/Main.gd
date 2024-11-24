@@ -23,6 +23,7 @@ var map : Map
 var dialogue : Dialogue
 var menu
 var day := 1
+#FIXME on map load, flags get set to 1??
 var story_flags := {
 	"main" : 0,
 	"jesse": 0,

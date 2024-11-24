@@ -27,7 +27,8 @@ func _body_entered(_body):
 		
 func _dialogue_ended():
 	Events.dialogue_ended.disconnect(_dialogue_ended)
-	Globals.main.story_flags[flag_type] = story_flag + 1
+	if not always_trigger and not trigger_once_per_load:
+		Globals.main.story_flags[flag_type] = story_flag + 1
 	# what to do when the dialogue ends - based on the story flag
 	if flag_type == "main":
 		match story_flag:

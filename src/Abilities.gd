@@ -607,6 +607,7 @@ func heal(_user:int, party, enemies:Array, target:int, battle:Battle, _attack_na
 	var the_target = get_user(target, party, enemies)
 		
 	the_target["hp"] += amount
+	the_target["hp"] = clampi(the_target["hp"], 0, the_target["stats"].hp)
 	battle.animate_sprite(target)
 	battle.show_dmg_label(-amount, target)
 	#TODO anim
