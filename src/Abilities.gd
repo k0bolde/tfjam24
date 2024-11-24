@@ -419,7 +419,7 @@ func (user, party, enemies, target, battle):
 	"coffee": {
 		"base_atk": 0,
 		"type": "fire",
-		"effect": 0,
+		"effect": 5,
 		"mp": 15,
 		"desc": "Drink some coffee and speed up!",
 		#heal 30, +5 Evasion and +5 Luck for 3 turns
@@ -436,6 +436,38 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They breath cold, slowing CHAR down!",
 		"callable": single_attack.bind("freezing breath")
 	},
+		"egg lay": {
+		"base_atk": 2,
+		"type": "esoteric",
+		"effect": 0,
+		"mp": 35,
+		"desc": "Offer an egg to yourself or a friend in these trying times",
+		# heal yourself or ally 50
+		"enemy_flavor": "They lay an egg. Ew!",
+		"callable": single_attack.bind("egg lay")
+	},
+	"Howl UwU": {
+		"base_atk": .5,
+		"type": "esoteric",
+		"effect": 1,
+		"mp": 25,
+		"desc": "Offer an egg to yourself or a friend in these trying times",
+		# -5 Evasion and -5 Luck for 3 turns
+		"enemy_flavor": "They howl! Shocking.",
+		"callable": single_attack.bind("howl UwU")
+	},
+	
+	"distract :3c": {
+		"base_atk": .75,
+		"type": "mutagenic",
+		"effect": 0,
+		"mp": 0,
+		"desc": "Lean over and jiggle your chest, distracting your enemy before giving them a playful (and clawful) swipe!",
+		# -5 Def and -5 Evasion for 3 turns
+		"enemy_flavor": "They distract CHAR, allowing them to get a sneaky hit!",
+		"callable": single_attack.bind("distract :3c")
+	},
+	
 }
 
 func _ready() -> void:

@@ -8,5 +8,5 @@ Tutorial Pean: Uh oh! This is a boss fight! These fights are more difficult and 
 Submit?
 + Hell no! (enter fight)
 	{ trigger celon_fight }
-+ Hell yeah! (Sparkledog and sparkledog TFTG)
++ Hell yeah! (Sparklebold and sparkledog TFTG)
 	{ trigger sparkle_bad_end }
