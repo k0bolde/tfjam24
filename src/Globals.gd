@@ -739,9 +739,9 @@ func initialize_party():
 	#set up starting stats for party
 	#Globals.party.p[0].stats.hp = 10
 	Globals.party.p[0].stats.atk = 25
-	Globals.party.p[0].stats.def = 5
+	Globals.party.p[0].stats.def = 10
 	Globals.party.p[0].stats.eva = 5
-	Globals.party.p[0].stats.lck = 5
+	Globals.party.p[0].stats.lck = 10
 	Globals.party.p[0].stats.resistances.push_front("fire")
 	Globals.party.p[0].stats.abilities.append_array(["punch", "kick", "fire breath", "tip the scales"])
 	
@@ -752,7 +752,7 @@ func initialize_party():
 	Globals.party.p[1].stats.def = 5
 	Globals.party.p[1].stats.eva = 10
 	Globals.party.p[1].stats.lck = 0
-	Globals.party.p[1].stats.resistances.push_front("bludeoning")
+	Globals.party.p[1].stats.resistances.push_front("bludgeoning")
 	Globals.party.p[1].stats.abilities.append_array(["punch", "swipe", "recovery strike", "wild wolf"])
 
 

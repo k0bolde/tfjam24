@@ -61,12 +61,12 @@ var abilities := {
 		"callable": single_attack.bind("tentacle whip"),
 	},
 	"swipe": {
-		"base_atk": 1.0,
+		"base_atk": .75,
 		"type": "rending",
 		"effect": 1,
 		"mp": 25,
 		"desc": "Hit all targets with a mighty swipe!",
-		"enemy_flavor": "The man growls as he hits all of you with a swipe of his claws!",
+		"enemy_flavor": "They growl as they hit all of you with a swipe of their claws!",
 		"callable": multi_attack.bind("swipe"),
 	},
 	"bite": {
@@ -79,7 +79,7 @@ var abilities := {
 		"callable": single_attack.bind("bite"),
 	},
 	"spray": {
-		"base_atk": 2.0,
+		"base_atk": 1.5,
 		"type": "mutagenic",
 		"effect": 1,
 		"mp": 50,
@@ -173,7 +173,7 @@ func (user, party, enemies, target, battle):
 	single_attack(user, party, enemies, target, battle, "recovery strike")
 	},
 	"wild wolf": {
-		"base_atk": 1.5,
+		"base_atk": 1.3,
 		"type": "rending",
 		"effect": 4,
 		"mp": 20,
@@ -252,6 +252,7 @@ func (user, party, enemies, target, battle):
 		"callable": 
 func (user, party, enemies, target, battle): 
 	stat_modify(user, party, enemies, target, battle, "entice", false, 0, 0, -5, -5)
+	single_attack(user, party, enemies, target, battle, "entice")
 	},
 	"confuse": {
 		"base_atk": 0.5,
@@ -264,6 +265,7 @@ func (user, party, enemies, target, battle):
 		"callable": 
 func (user, party, enemies, target, battle): 
 	stat_modify(user, party, enemies, target, battle, "confuse", false, 0, -10, -10, 0)
+	single_attack(user, party, enemies, target, battle, "confuse")
 	},
 	"cackle": {
 		"base_atk": 0,
