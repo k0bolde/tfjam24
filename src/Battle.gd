@@ -1,13 +1,11 @@
 extends Node2D
 class_name Battle
 #major implementations
-#TODO result screen - xp, cash, item, level, stat/slot gains
 #TODO bad ends by losing
 #TODO Item use
 #TODO party targeting for buffs/heals
 
 #tweaks
-#TODO enemy scaling and not clipping into the floor. first scale to 128x128 size, then use math to figure out how much to raise them
 #TODO dmg label positioning
 #TODO some ui to pop up tLo tell you who's turn it is
 #TODO battle enter animation
@@ -109,8 +107,12 @@ func _ready() -> void:
 		sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 		sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		sprite.position = enemies[i].position
-		#TODO need to move it up a certain amount too
-		sprite.scale = Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
+		if sprite.texture.get_height() != 128:
+			var scaled := 128.0 / sprite.texture.get_height()
+			sprite.scale = Vector3(scaled, scaled, scaled)
+		if enemies[i].visual_scale != 1.0:
+			sprite.scale = Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
+		sprite.offset = Vector2(0, (enemies[i].visual_scale * 128) / 2.0)
 		enemies[i].ingame_sprite = sprite
 		enemies_node.add_child(sprite)
 		var hpmesh = enemy_hp_mesh.duplicate()
@@ -194,9 +196,14 @@ func _ready() -> void:
 		sp.shaded = true
 		sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 		sp.texture = load(Globals.party.p[i]["image"])
-		sp.scale = Vector3(0.75, 0.75, 0.75)
 		sp.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 		sp.position.z = party_node.position.z - i
+		if sp.texture.get_height() != 128:
+			var scaled := 128.0 / sp.texture.get_height()
+			sp.scale = Vector3(scaled, scaled, scaled)
+		if Globals.party.p[i].visual_scale != 1.0:
+			sp.scale = Vector3(Globals.party.p[i].visual_scale, Globals.party.p[i].visual_scale, Globals.party.p[i].visual_scale)
+		sp.offset = Vector2(0, (Globals.party.p[i].visual_scale * 128) / 2.0)
 		Globals.party.p[i]["ingame_sprite"] = sp
 		party_node.add_child(sp)
 	#setup hp/mp/turns
@@ -430,7 +437,7 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 		var bar := the_enemy.hp_bar
 		the_enemy.hp_mesh.visible = true
 		the_enemy.hp_mesh.position = the_target.position
-		the_enemy.hp_mesh.position.y += 1.0
+		the_enemy.hp_mesh.position.y += 1.65
 		bar.value = the_enemy.hp
 		bar.max_value = the_enemy.stats.hp
 		var t := get_tree().create_tween()
@@ -467,24 +474,25 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	dl.visible = true
 	dl.text = "-%d" % dmg
 	dl.position = the_target.position
+	dl.position.y += 1.0
 	if dmg < 0:
 		dl.modulate = Color.GREEN
 		dl.text = "+%d" % abs(dmg)
 	cl.position = the_target.position
-	cl.position.y += 0.1
+	cl.position.y += 1.1
 	wl.position = the_target.position
-	wl.position.y += 0.2
+	wl.position.y += 1.2
 	base_3d.add_child(dl)
 	base_3d.add_child(wl)
 	base_3d.add_child(cl)
 	var dmg_t := get_tree().create_tween()
-	dmg_t.tween_property(dl, "position:y", the_target.position.y + 1.0, 2.0)
+	dmg_t.tween_property(dl, "position:y", dl.position.y + 1.0, 2.0)
 	dmg_t.tween_callback(dl.queue_free)
 	var weak_t := get_tree().create_tween()
-	weak_t.tween_property(wl, "position:y", the_target.position.y + 1.2, 2.0)
+	weak_t.tween_property(wl, "position:y", wl.position.y + 1.2, 2.0)
 	weak_t.tween_callback(wl.queue_free)
 	var crit_t := get_tree().create_tween()
-	crit_t.tween_property(cl, "position:y", the_target.position.y + 1.1, 2.0)
+	crit_t.tween_property(cl, "position:y", cl.position.y + 1.1, 2.0)
 	crit_t.tween_callback(cl.queue_free)
 
 
@@ -541,7 +549,7 @@ func update_selected_enemy():
 	var hp_mesh := e.hp_mesh
 	hp_mesh.visible = true
 	hp_mesh.position = e.position
-	hp_mesh.position.y += 1.0
+	hp_mesh.position.y += 1.65
 	e.hp_bar.value = e.hp
 	e.hp_bar.max_value = e.stats.hp
 	inspect_name_label.text = e.enemy_name.capitalize()

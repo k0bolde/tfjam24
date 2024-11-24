@@ -146,6 +146,7 @@ func initialize_enemies():
 	e.item_drops["dozeneggs"] = 1.0
 	e.item_drops["lime time"] = 1.0
 	e.flip_h = true
+	e.visual_scale = 1.5
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()

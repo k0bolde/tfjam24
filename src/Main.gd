@@ -7,7 +7,6 @@ extends Node2D
 #TODO ulla triggers
 #TODO qz shortcut
 #TODO items
-#	drops
 #	view inventory - icon, name, desc, amount, use in field
 #	use in battle
 #	stores
