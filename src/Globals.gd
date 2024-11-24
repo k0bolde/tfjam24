@@ -744,6 +744,7 @@ func initialize_enemies():
 	e.cash_reward = 150
 	e.xp_reward = 40
 	e.base_turns = 2
+	e.visual_scale = 1.5
 	e.item_drops["goldenankrowo"] = 1.0
 	enemies[e.enemy_name] = e
 	

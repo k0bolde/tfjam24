@@ -177,10 +177,10 @@ func get_portrait(npc_name:String) -> String:
 				return "res://assets/portraits/finley3.png"
 		"Ulla Tor", "Ulla":
 			#TODO replace with actual flag number
-			if Globals.main.story_flags["ulla"] < 16:
+			if Globals.main.story_flags["ulla"] < 1:
 				return portraits["Ulla Tor"]
 			#TODO replace with actual flag number
-			elif Globals.main.story_flags["ulla"] < 24:
+			elif Globals.main.story_flags["ulla"] < 2:
 				return "res://assets/portraits/UllaPortraitsScaled.png"
 			#TODO replace with actual flag number
 			elif Globals.main.story_flags["ulla"] < 30:
@@ -221,7 +221,7 @@ func _on_event_triggered(event_name):
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
 			Globals.main.after_battle_block = "win_fight"
 		"ceron2_fight":
-			Events.battle_start.emit(["eldritch being"], false)
+			Events.battle_start.emit(["revealed eldritch being"], false)
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_ceron.clyde"
 			Globals.main.after_battle_block = "win_fight"
 		"tentacle_bad_end":
@@ -231,7 +231,7 @@ func _on_event_triggered(event_name):
 		"ulla_bond_up":
 			Globals.main.story_flags["ulla"] += 1
 		"hydra_fight":
-			Events.battle_start.emit(["rust & rist hydra"], false)
+			Events.battle_start.emit(["rust and rist hydra"], false)
 		"hydra_bad_end":
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rustrydra.clyde", "bad_end")
 		"savak_battle":

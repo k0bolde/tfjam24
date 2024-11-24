@@ -281,6 +281,7 @@ func player_attack(which_attack:String):
 			#self target
 			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, -(curr_party + 1), self)
 	
+	update_bars(curr_party)
 	curr_party = find_next_teammate()
 	if turns <= 0:
 		#remove a turn from temp_stats
@@ -464,6 +465,8 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 			audio_stream_player.play()
 		2:
 			wl.text = "RESIST!"
+			audio_stream_player.stream = load("res://assets/audio/normal attack hit.mp3")
+			audio_stream_player.play()
 		3:
 			wl.text = "MISS!"
 	if is_crit:
