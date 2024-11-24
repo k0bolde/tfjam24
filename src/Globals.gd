@@ -429,7 +429,6 @@ func initialize_enemies():
 	e.stats.eva = 10
 	e.stats.lck = 10
 	e.stats.resistances.append_array(["fire"])
-	e.stats.weaknesses.append_array(["mutagenic","rending"])
 	e.attack_probs["swipe"] = 0.5
 	e.attack_probs["claw"] = 0.25
 	e.attack_probs["wild wolf"] = 0.25
@@ -489,7 +488,6 @@ func initialize_enemies():
 	e.stats.eva = 20
 	e.stats.lck = 15
 	e.stats.resistances.append_array(["fire"])
-	e.stats.weaknesses.append_array(["mutagenic"])
 	e.attack_probs["entice"] = 0.5
 	e.attack_probs["claw"] = 0.25
 	e.attack_probs["swipe"] = 0.25
