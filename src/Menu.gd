@@ -53,6 +53,8 @@ func _ready() -> void:
 	%PartyNumBox.value = Globals.party.num
 	inventory_container.visible = false
 	for item in Globals.inventory.inv.keys():
+		if not Globals.inventory.items.has(item):
+			continue
 		var amt_label := Label.new()
 		amt_label.text = "%d" % Globals.inventory.inv[item]
 		var name_label := Label.new()

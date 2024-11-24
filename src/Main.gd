@@ -1,16 +1,15 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
-#TODO how to regen mp?
-#TODO unlock moves by leveling up
+#TODO how to regen mp? reset when moved back to hub? sleep on couch?
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
 #TODO save slots
 #TODO ulla triggers - only be in one spot at a time
 #TODO qz shortcut
 #TODO items
-#	view inventory - icon, name, desc, amount, use in field
 #	use in battle
 #	stores
+#TODO party follows in dungeon
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode

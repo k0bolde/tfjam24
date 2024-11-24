@@ -173,10 +173,9 @@ func get_portrait(npc_name:String) -> String:
 			elif Globals.main.story_flags["main"] > 13:
 				return "res://assets/portraits/jesse3.png"
 		"Finley":
-			#FIXME not working?
 			if Globals.main.story_flags["main"] > 10:
 				return "res://assets/portraits/finley3.png"
-		"Ulla Tor":
+		"Ulla Tor", "Ulla":
 			#TODO replace with actual flag number
 			if Globals.main.story_flags["ulla"] < 16:
 				return portraits["Ulla Tor"]

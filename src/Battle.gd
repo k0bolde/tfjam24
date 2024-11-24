@@ -586,6 +586,7 @@ func battle_won():
 	for i in Globals.party.level + 1:
 		required_to_level += i * 10
 	xp_to_level_label.text = "XP required to level up: %d" % required_to_level
+	level_up_label.visible = false
 	if Globals.party.xp >= required_to_level:
 		#level up
 		#print("level up %d! %d/%d required" % [Globals.party.level + 1, Globals.party.xp, required_to_level])
