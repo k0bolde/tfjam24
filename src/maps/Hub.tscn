@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://hk5dg6h0gury"]
+[gd_scene load_steps=26 format=4 uid="uid://hk5dg6h0gury"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_km1as"]
 [ext_resource type="Texture2D" uid="uid://4yak0eh5rks8" path="res://assets/TOWNMAP.png" id="2_mcdrc"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://sbkp4y43qm6a" path="res://assets/overworld/mark-ow.png" id="13_dhivg"]
 [ext_resource type="Texture2D" uid="uid://kuhofrthc1sw" path="res://assets/overworld/bubbles-ow.png" id="14_xs4qr"]
 [ext_resource type="Texture2D" uid="uid://bwjx77oupqvtv" path="res://assets/overworld/zal-ow.png" id="15_83ypt"]
+[ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="15_ruv63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um8dg"]
 size = Vector2(78, 971)
@@ -147,21 +148,11 @@ scale = Vector2(1.5, 1.5)
 image = ExtResource("6_2i6pi")
 dialogue_file = "res://assets/dialogue/hub_byrne.clyde"
 
-[node name="Jesse" parent="NPCs" instance=ExtResource("4_vdb05")]
-position = Vector2(273, -150)
-image = ExtResource("7_8xny6")
-dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
-
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-384, -20)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("8_77hjx")
 dialogue_file = "res://assets/dialogue/hub_pean.clyde"
-
-[node name="Sock" parent="NPCs" instance=ExtResource("4_vdb05")]
-position = Vector2(382, 20)
-image = ExtResource("9_nfygn")
-dialogue_file = "res://assets/dialogue/hub_ulla.clyde"
 
 [node name="Rene" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(361, -111)
@@ -192,3 +183,23 @@ dialogue_file = "res://assets/dialogue/hub_bubbles.clyde"
 position = Vector2(678, 51)
 image = ExtResource("15_83ypt")
 dialogue_file = "res://assets/dialogue/hub_zal.clyde"
+
+[node name="Ulla1" parent="." instance=ExtResource("15_ruv63")]
+flag_type = "ulla"
+
+[node name="Remove" type="Node2D" parent="Ulla1"]
+
+[node name="Sock" parent="Ulla1/Remove" instance=ExtResource("4_vdb05")]
+position = Vector2(382, 20)
+image = ExtResource("9_nfygn")
+dialogue_file = "res://assets/dialogue/hub_ulla.clyde"
+
+[node name="CutsceneTriggerArea" parent="." instance=ExtResource("15_ruv63")]
+flag_type = "jesse"
+
+[node name="Remove" type="Node2D" parent="CutsceneTriggerArea"]
+
+[node name="Jesse" parent="CutsceneTriggerArea/Remove" instance=ExtResource("4_vdb05")]
+position = Vector2(273, -150)
+image = ExtResource("7_8xny6")
+dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"

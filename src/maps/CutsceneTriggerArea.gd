@@ -16,7 +16,28 @@ func _ready() -> void:
 	
 	if Globals.main.story_flags[flag_type] > story_flag and has_node("Remove"):
 		get_node("Remove").queue_free()
-	
+	if has_node("Add"):
+		var enabled : bool = Globals.main.story_flags[flag_type] > story_flag
+		get_node("Add").visible = enabled
+		for c in get_node("Add").get_children():
+			if c is NPC:
+				c.enabled = enabled
+				if enabled:
+					c.process_mode = Node.PROCESS_MODE_INHERIT
+				else:
+					c.process_mode = Node.PROCESS_MODE_DISABLED
+	if has_node("Equal"):
+		var enabled : bool = Globals.main.story_flags[flag_type] == story_flag
+		get_node("Equal").visible = enabled
+		for c in get_node("Equal").get_children():
+			if c is NPC:
+				c.enabled = enabled
+				if enabled:
+					c.process_mode = Node.PROCESS_MODE_INHERIT
+				else:
+					c.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		
 	
 func _body_entered(_body):
 	if dialogue and (Globals.main.story_flags[flag_type] == story_flag or always_trigger or (trigger_once_per_load and not triggered)):
@@ -69,3 +90,24 @@ func _dialogue_ended():
 func _on_remove_timer_timeout() -> void:
 	if Globals.main.story_flags[flag_type] > story_flag and has_node("Remove"):
 		get_node("Remove").queue_free()
+	if has_node("Add"):
+		var enabled : bool = Globals.main.story_flags[flag_type] > story_flag
+		get_node("Add").visible = enabled
+		for c in get_node("Add").get_children():
+			if c is NPC:
+				c.enabled = enabled
+				if enabled:
+					c.process_mode = Node.PROCESS_MODE_INHERIT
+				else:
+					c.process_mode = Node.PROCESS_MODE_DISABLED
+	if has_node("Equal"):
+		var enabled : bool = Globals.main.story_flags[flag_type] == story_flag
+		get_node("Equal").visible = enabled
+		for c in get_node("Equal").get_children():
+			if c is NPC:
+				c.enabled = enabled
+				if enabled:
+					c.process_mode = Node.PROCESS_MODE_INHERIT
+				else:
+					c.process_mode = Node.PROCESS_MODE_DISABLED
+		

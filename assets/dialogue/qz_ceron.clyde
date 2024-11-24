@@ -29,7 +29,6 @@ Jesse: And blocking our way!
 + Nice try!
 	{ trigger ceron2_fight }
 + Can’t…r-resist (Tentacle Creature TF)
-	{ trigger tentacle_bad_end }
 	-> bad_end
 
 == win_fight

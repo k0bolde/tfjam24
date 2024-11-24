@@ -8,6 +8,7 @@ class_name NPC
 @export var flip_h := false
 
 @onready var talk_area : Area2D = $TalkArea
+var enabled := true
 
 var dialogue : Dialogue
 
@@ -24,7 +25,7 @@ func _ready() -> void:
 	
 	
 func _on_body_entered(body):
-	if dialogue_file:
+	if dialogue_file and enabled:
 		body.npc = self
 		body.interact_container.visible = true
 		body.interact_label.text = "Talk"

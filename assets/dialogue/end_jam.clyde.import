@@ -1,0 +1,14 @@
+[remap]
+
+importer="clyde.dialogue"
+type="ClydeDialogueFile"
+uid="uid://n8ks1m8l52j4"
+path="res://.godot/imported/end_jam.clyde-0c2473a888fb726d790608b971d55045.res"
+
+[deps]
+
+source_file="res://assets/dialogue/end_jam.clyde"
+dest_files=["res://.godot/imported/end_jam.clyde-0c2473a888fb726d790608b971d55045.res"]
+
+[params]
+
