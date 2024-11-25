@@ -437,9 +437,9 @@ func (user, party, enemies, target, battle):
 		"callable": single_attack.bind("freezing breath")
 	},
 		"egg lay": {
-		"base_atk": 2,
+		"base_atk": 0,
 		"type": "esoteric",
-		"effect": 0,
+		"effect": 2,
 		"mp": 35,
 		"desc": "Offer an egg to yourself or a friend in these trying times",
 		# heal yourself or ally 50
@@ -451,7 +451,7 @@ func (user, party, enemies, target, battle):
 		"type": "esoteric",
 		"effect": 1,
 		"mp": 25,
-		"desc": "Offer an egg to yourself or a friend in these trying times",
+		"desc": "Howl like a real wolf uwu  dealing damage and lower your enemies’ evasion!",
 		# -5 Evasion and -5 Luck for 3 turns
 		"enemy_flavor": "They howl! Shocking.",
 		"callable": single_attack.bind("howl UwU")
