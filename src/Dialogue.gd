@@ -243,9 +243,9 @@ func _on_event_triggered(event_name):
 			Globals.main.after_battle_block = "win"
 		"skullgang_fight":
 			Events.battle_start.emit(["blanca", "bianca", "berutia"], false)
-			Globals.bad_end_dialogue = "res://assets/dialogue/qz_skullgang.clyde"
+			Globals.bad_end_dialogue = "res://assets/dialogue/qz_skullfacegang.clyde"
 			Globals.bad_end_block = "bad_end"
-			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_skullgang.clyde"
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_skullfacegang.clyde"
 			Globals.main.after_battle_block = "win_fight"
 		"qz_shortcut_open":
 			Globals.main.story_flags["qz"] = 1
