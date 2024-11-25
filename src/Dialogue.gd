@@ -48,6 +48,8 @@ var portraits := {
 	"Rend": "res://assets/portraits/rendm.png",
 	"Rist": "res://assets/portraits/rist.png",
 	"Rust": "res://assets/portraits/rust.png",
+	"Rust and Rist": "res://assets/portraits/rust-rist.png",
+	"Finley and Jesse": "res://assets/portraits/jesse-finley3.png",
 }
 
 
