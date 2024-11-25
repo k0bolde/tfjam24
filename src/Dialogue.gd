@@ -215,11 +215,13 @@ func _on_event_triggered(event_name):
 			Globals.main.story_flags["qz_security_lizard"] = 1
 			Globals.main.story_flags["main"] = 9
 		"rendm_fight":
+			#Events.battle_start.emit(["imp", "rend"], false)
 			Events.battle_start.emit(["rend"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend1.clyde", "fight_start")
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
 			Globals.main.after_battle_block = "win_fight"
 		"rendf_fight":
+			#Events.battle_start.emit(["impess", "rend (female)"], false)
 			Events.battle_start.emit(["rend (female)"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend2.clyde", "fight_start")
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
@@ -266,6 +268,7 @@ func _on_event_triggered(event_name):
 		"qz_shortcut_warp_exit":
 			Globals.player.position = Vector2(-178, -186)
 		"glenys_fight":
+			Events.battle_start.emit(["glenys' goat", "glenys", "glenys' goat"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_glenys.clyde", "fight_start")
 			Globals.bad_end_dialogue = "res://assets/dialogue/qz_glenys.clyde"
 			Globals.bad_end_block = "bad_end"
