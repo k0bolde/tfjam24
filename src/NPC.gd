@@ -1,3 +1,4 @@
+@tool
 extends StaticBody2D
 class_name NPC
 
@@ -19,8 +20,10 @@ func _ready() -> void:
 			var scaled := 32.0 / image.get_height()
 			$Sprite2D.scale = Vector2(scaled, scaled)
 		$Sprite2D.flip_h = flip_h
-	talk_area.body_entered.connect(_on_body_entered)
-	talk_area.body_exited.connect(_on_body_exited)
+		
+	if not Engine.is_editor_hint():
+		talk_area.body_entered.connect(_on_body_entered)
+		talk_area.body_exited.connect(_on_body_exited)
 	
 	
 func _on_body_entered(body):

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://6rywphk86ecy" path="res://assets/overworld/ulla1-ow.png" id="5_1gfri"]
 [ext_resource type="Texture2D" uid="uid://bjkn2pcbwq8hm" path="res://assets/overworld/savakOverworld.png" id="5_ygayf"]
 [ext_resource type="Texture2D" uid="uid://bwfexmpiut3by" path="res://assets/overworld/Byrne.png" id="6_sgl1j"]
-[ext_resource type="Texture2D" uid="uid://d2pedg8j3qk2" path="res://assets/overworld/Clem.png" id="7_7mer5"]
+[ext_resource type="Texture2D" uid="uid://c2tayyplp87qr" path="res://assets/overworld/dark-clem.png" id="8_33wxe"]
 [ext_resource type="Texture2D" uid="uid://d23syvup64hrc" path="res://assets/overworld/Pean.png" id="8_vqqdb"]
 [ext_resource type="Texture2D" uid="uid://die8feyk5wv2n" path="res://assets/overworld/ulla2.png" id="9_4y0ge"]
 [ext_resource type="Texture2D" uid="uid://devo4t8hhiuh7" path="res://assets/overworld/witch.png" id="9_gxrl8"]
@@ -238,7 +238,7 @@ dialogue_file = "res://assets/dialogue/qz_byrne.clyde"
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2331, -176)
-image = ExtResource("7_7mer5")
+image = ExtResource("8_33wxe")
 dialogue_file = "res://assets/dialogue/qz_clem.clyde"
 
 [node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]

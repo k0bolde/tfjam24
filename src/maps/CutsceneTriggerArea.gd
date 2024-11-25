@@ -71,6 +71,7 @@ func _dialogue_ended():
 				#fill mp after tutorial
 				Globals.party.p[0]["mp"] = Globals.party.p[0].stats.mp
 				Globals.party.p[1]["mp"] = Globals.party.p[1].stats.mp
+				Globals.party.p[1]["image"] = "res://assets/battle/jesse2.png"
 			10:
 				#finley tf
 				Globals.party.p[0]["image"] = "res://assets/battle/finley3.png"
