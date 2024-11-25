@@ -39,11 +39,13 @@ func _physics_process(delta: float) -> void:
 	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return
 	var dir := Input.get_vector("left", "right", "up", "down")
+	if not is_zero_approx(dir.x):
+		player_sprite.flip_h = dir.x > 0
 	velocity = dir * speed
 	if is_sprinting:
 		velocity *= 2.0
 	move_and_slide()
-	if velocity.length_squared() > 0.0 and encounter_area:
+	if velocity.length_squared() > 0.0 and encounter_area and not Globals.debug_disable_random_encounters:
 		#ask if we hit a battle
 		if is_sprinting:
 			encounter_area.check_for_battle(delta * 4.0)

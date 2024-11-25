@@ -52,6 +52,8 @@ func _ready() -> void:
 		for eb in get_tree().get_nodes_in_group("enemy_selector"):
 			eb.add_item(en)
 	%PartyNumBox.value = Globals.party.num
+	%RandomEncountersButton.button_pressed = Globals.debug_disable_random_encounters
+	
 	inventory_container.visible = false
 	for item in Globals.inventory.inv.keys():
 		if not Globals.inventory.items.has(item):
@@ -194,3 +196,7 @@ func _on_items_button_pressed() -> void:
 func _on_close_inventory_button_pressed() -> void:
 	enable_buttons()
 	inventory_container.visible = false
+
+
+func _on_random_encounters_button_toggled(toggled_on: bool) -> void:
+	Globals.debug_disable_random_encounters = toggled_on

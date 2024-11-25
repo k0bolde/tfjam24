@@ -15,6 +15,7 @@ var types := ["rending", "piercing", "bludgeoning", "fire", "frigid", "mutagenic
 var _external_persistence := {}
 var bad_end_dialogue 
 var bad_end_block
+var debug_disable_random_encounters := false
 
 func _ready() -> void:
 	initialize_enemies()
