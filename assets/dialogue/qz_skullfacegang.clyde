@@ -1,3 +1,48 @@
-Skullface Gang: That’s a nice set of skulls you have there.
-Skullface Gang: You should all join us.
-Skullface Gang: You’ll be better this way.
+You approach a pile of three skulls, one avian, one reptilian, and the other canine. As you come close, their eyes alight. They speak, but it’s hard to tell who’s talking.
+
+Skullface Gang: Well, well, well, what do we have here?
+
+Finley: A dragon and a wolf?
+
+Skullface Gang: We can see that and we can smell Byrne on you.
+
+Jesse: How do you smell with no noses?
+
+Skullface gang: Did she send you here?
+
++ Yeah
+	Finley: She sure did.
++ No
+	Finley: Nope, just stumbled upon here.
+
+Skullface Gang: Has anyone ever told either of you that you have nice skulls?
+
+Finley: …no?
+
+Jesse: This one chick did but that was years ago. She was a little weird.
+
+Skullface Gang: A good pair, an illuminating set.
+
+Skullface Gang: You should join our gang.
+
+Skullface Gang: You’d be better that way.
+
+Greenish slime gathers under the skulls. They separate as the ooze grants them very curvy, very feminine, humanoid forms, one avian, one reptilian, and the other canine. They grin at you.
+
+Skullface Gang: Join the gang, it’ll be fun…
+
++ Say no to bones!
+	{ trigger skullgang_fight }
++ Say yes to skulls! (Skull face TF)
+	-> bad_end
+
+== fight_start
+Skullface Gang: Unfortunate…
+
+== win_fight
+The ooze seeps away from the skulls and all that’s left is the skull. Their eyes are no longer glowing. You won? 
+
+For some reason you have the feeling they’ll be back…
+
+== bad_end
+TODO

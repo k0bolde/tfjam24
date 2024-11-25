@@ -234,13 +234,24 @@ func _on_event_triggered(event_name):
 			Events.battle_start.emit(["rust and rist hydra"], false)
 			Globals.bad_end_dialogue = "res://assets/dialogue/qz_rustrydra.clyde"
 			Globals.bad_end_block = "bad_end"
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rustrydra.clyde"
+			Globals.main.after_battle_block = "win_fight"
 		"savak_battle":
 			Events.battle_start.emit(["savak"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_savak1.clyde", "fight_start")
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_savak1.clyde"
 			Globals.main.after_battle_block = "win"
+		"skullgang_fight":
+			Events.battle_start.emit(["blanca", "bianca", "berutia"], false)
+			Globals.bad_end_dialogue = "res://assets/dialogue/qz_skullgang.clyde"
+			Globals.bad_end_block = "bad_end"
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_skullgang.clyde"
+			Globals.main.after_battle_block = "win_fight"
 		"qz_shortcut_open":
 			Globals.main.story_flags["qz"] = 1
+		"jam_end":
+			Globals.main.start_dialogue("res://assets/dialogue/end_jam.clyde")
+			
 		_:
 			printerr("unhandled dialogue event %s" % event_name)
 			

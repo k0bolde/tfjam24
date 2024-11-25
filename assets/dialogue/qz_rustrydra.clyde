@@ -73,6 +73,88 @@ Rist: You could be more like us! You have no chance against us.
 + That might be neat. What do you think, Jesse?
 	-> bad_end
 
+== fight_win
+Rist: Ouch! That’s enough!
+
+Rust: What she said! That really hurt!
+
+Finley: There’s more where that came from!
+
+Rist: We know.
+
+Rust: You’re one bad bitch.
+
+Jesse: Two including me!
+
+Rist: What do you want?
+
+Rust: Our cash, our drugs?
+
+Jesse: We’ll take that!
+
+Finley: …but we’re here for information. Where’s the cure?
+
+Rist: Cure?
+
+Rust: Haha!
+
+
+Rist: You came here for a cure?
+
+Rust and Rist:  Hahahaha!
+
+Finley: Stop laughing! Out with it!
+
+
+Rust: There is no cure!
+
+
+Rist: That we know of…
+
+Rust: Don’t give them hope!
+
+
+Finley: I’ll take hope. If there’s no cure, can you at least tell us the source?
+
+Rust: The source?
+
+Rist: Of course! From the factory.
+
+Finley: Which one?
+
+Rust: Where else?
+
+Rist: Serpent Street!
+
+Jesse: Serpent Street? Uh oh. That’s no good.
+
+Finley: What about it?
+
+Jesse: It’s blocked off too.
+
+Finley: That wasn’t a problem this time.
+
+Jesse: …by some sort of robot.
+
+Finley: Like Clem?
+
+Jesse: I wish.
+
+Finley: Well…I guess that’s where we go next.
+
+Jesse: Right behind you, captain!
+
+Finley: And you two don’t cause anymore trouble! Don’t make me come back here and kick your scaly ass again?
+
+Rist: Us?
+
+Rust: We’re not going to cause any trouble.
+
+Rist: No, no.
+
+Finley: Let’s go, Jesse.
+{ trigger jam_end }
+
 == bad_end
 Jesse: Uh, I don’t know, dude, might be kind of-
 

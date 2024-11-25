@@ -40,9 +40,9 @@ Security Guard: Sorry can’t let you through.
 	
 == pay
 Security Guard: \$1000 and you’re through.
-+ Sure\! \(Spend \$1000. Security Guard disappears\)
-	Security Guard: Thanks, pal\!
-	-> END
-+ Nah\!
++ I don't have that much!
+	Security Guard: Me neither, pal!
+	-> start
++ Nah!
 	Security Guard: Your loss.
 	-> start
