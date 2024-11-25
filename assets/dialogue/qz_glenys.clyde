@@ -2,13 +2,18 @@ Glenys: Hello there, little one! My name is Glenys, and you don’t know it yet 
 
 Glenys: Aren’t you tired of those pesky thoughts, the burden of free will, the crushing weight of existence? Well, hun, every human is, or whatever it is you’re turning into. It breaks my heart seeing you all suffer this way disconnected from the divine. So, submit to me, many have already, and I’ll take very good care of you.
 
++ Are you sure you can handle me? (Fight)
+	{ trigger glenys_fight }
++ Yeah, actually I do think too much (Goat Bad End)
+	-> bad_end
+	
 == fight_start
 Glenys: Really now? That wasn’t a request, love. Trust me, this is for your own good.
 
 == half_hp
 Glenys: Now you’re hurting my feelings, dear. I’m only trying to help.
 
-== defeat
+== win_fight
 Glenys: Stop, stop it, I’ve had enough! Keep your burdens, then, but I’ll be back for you, dear. Count on it.
 
 == bad_end

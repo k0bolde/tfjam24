@@ -251,6 +251,8 @@ func _on_event_triggered(event_name):
 			Globals.main.story_flags["qz"] = 1
 		"jam_end":
 			Globals.main.start_dialogue("res://assets/dialogue/end_jam.clyde")
+		"synth_tail_fight":
+			Events.battle_start.emit(["synthia tail"], false)
 			
 		_:
 			printerr("unhandled dialogue event %s" % event_name)
