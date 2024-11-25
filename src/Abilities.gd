@@ -462,7 +462,7 @@ func (user, party, enemies, target, battle):
 		"type": "mutagenic",
 		"effect": 0,
 		"mp": 0,
-		"desc": "Lean over and jiggle your chest, distracting your enemy before giving them a playful (and clawful) swipe!",
+		"desc": "Lean over and jiggle your chest, \n distracting your enemy before giving them a playful (and clawful) swipe!",
 		# -5 Def and -5 Evasion for 3 turns
 		"enemy_flavor": "They distract CHAR, allowing them to get a sneaky hit!",
 		"callable": single_attack.bind("distract :3c")
