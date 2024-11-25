@@ -274,18 +274,6 @@ position = Vector2(434, -1430)
 image = ExtResource("17_adcnm")
 dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
 
-[node name="ShortcutEntrance" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(-144, -273)
-scale = Vector2(1.5, 1.5)
-image = ExtResource("16_60iah")
-dialogue_file = "res://assets/dialogue/qz_shortcut1.clyde"
-
-[node name="ShortcutExit" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(499, -1042)
-scale = Vector2(1.5, 1.5)
-image = ExtResource("16_60iah")
-dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
-
 [node name="Cutscenes" type="Node2D" parent="."]
 
 [node name="JesseTalk1" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
@@ -452,6 +440,58 @@ story_flag = 3
 position = Vector2(1747, -1045)
 image = ExtResource("9_4y0ge")
 dialogue_file = "res://assets/dialogue/qz_ulla3.clyde"
+
+[node name="ShortcutStart" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(-178, -228)
+flag_type = "qz"
+
+[node name="Equal" type="Node2D" parent="Cutscenes/ShortcutStart"]
+
+[node name="ShortcutEntrance" parent="Cutscenes/ShortcutStart/Equal" instance=ExtResource("4_gejnf")]
+position = Vector2(34, -45)
+scale = Vector2(1.5, 1.5)
+image = ExtResource("16_60iah")
+dialogue_file = "res://assets/dialogue/qz_shortcut1.clyde"
+
+[node name="ShortcutStart2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(-178, -186)
+flag_type = "qz"
+story_flag = 1
+
+[node name="Equal" type="Node2D" parent="Cutscenes/ShortcutStart2"]
+
+[node name="ShortcutEntrance" parent="Cutscenes/ShortcutStart2/Equal" instance=ExtResource("4_gejnf")]
+position = Vector2(31, -87)
+scale = Vector2(1.5, 1.5)
+image = ExtResource("16_60iah")
+dialogue_file = "res://assets/dialogue/qz_shortcut3.clyde"
+block = "entrance"
+
+[node name="ShortcutEnd" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(441, -1007)
+flag_type = "qz"
+
+[node name="Equal" type="Node2D" parent="Cutscenes/ShortcutEnd"]
+
+[node name="ShortcutExit" parent="Cutscenes/ShortcutEnd/Equal" instance=ExtResource("4_gejnf")]
+position = Vector2(58, -35)
+scale = Vector2(1.5, 1.5)
+image = ExtResource("16_60iah")
+dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
+
+[node name="ShortcutEnd2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(443, -968)
+flag_type = "qz"
+story_flag = 1
+
+[node name="Equal" type="Node2D" parent="Cutscenes/ShortcutEnd2"]
+
+[node name="ShortcutExit" parent="Cutscenes/ShortcutEnd2/Equal" instance=ExtResource("4_gejnf")]
+position = Vector2(57, -73)
+scale = Vector2(1.5, 1.5)
+image = ExtResource("16_60iah")
+dialogue_file = "res://assets/dialogue/qz_shortcut3.clyde"
+block = "exit"
 
 [node name="ExitArea" parent="." instance=ExtResource("24_3yv1n")]
 position = Vector2(16, 86)

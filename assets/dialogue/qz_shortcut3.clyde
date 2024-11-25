@@ -1,1 +1,7 @@
+== entrance
 You take the shortcut.
+{ trigger qz_shortcut_warp_entrance }
+
+== exit
+You take the shortcut.
+{ trigger qz_shortcut_warp_exit }
