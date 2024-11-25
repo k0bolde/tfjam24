@@ -53,8 +53,8 @@ func initialize_enemies():
 	e.stats.def = 0
 	e.stats.eva = 0
 	e.stats.lck = 0
-	e.attack_probs["some guy sob"] = 0.1
-	e.attack_probs["some guy kick"] = 0.3
+	e.attack_probs["some guy sob"] = 0.3
+	e.attack_probs["some guy kick"] = 0.1
 	e.attack_probs["some guy punch"] = 0.6
 	e.cash_reward = 5
 	e.xp_reward = 1
@@ -482,7 +482,7 @@ func initialize_enemies():
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
-	e.enemy_name = "rend (female)"
+	e.enemy_name = "rendess"
 	e.desc = "Rust or Rist’s (you’re not sure) right hand woman"
 	e.texture_path = "res://assets/battle/rendf.png"
 	e.stats.hp = 250
