@@ -462,11 +462,52 @@ func initialize_enemies():
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
+	e.enemy_name = "rend's imp"
+	e.desc = "A cackling axe wielding imp who likes Rend since they have the same colors!"
+	e.texture_path = "res://assets/battle/ImpM.png"
+	e.stats.hp = 80
+	e.stats.atk = 17
+	e.stats.def = 5
+	e.stats.eva = 15
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["esoteric"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["claw"] = 0.60
+	e.attack_probs["cackle"] = 0.20
+	e.attack_probs["swipe"] = 0.20
+	e.xp_reward = 3
+	e.item_drops["prop axe"] = 0.5
+	e.cash_reward = 7
+	
+	enemies[e.enemy_name] = e
+	e = Enemy.new()
 	e.enemy_name = "impess"
 	e.desc = "A smug pitchfork wielding female imp. Is it actually a demon or a mutant?"
 	e.texture_path = "res://assets/battle/ImpF.png"
 	e.stats.hp = 100
 	e.stats.atk = 20
+	e.stats.def = 0
+	e.stats.eva = 20
+	e.stats.lck = 10
+	e.stats.resistances = ["fire"]
+	e.stats.weaknesses = ["esoteric"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["confuse"] = 0.60
+	e.attack_probs["entice"] = 0.20
+	e.attack_probs["cackle"] = 0.20
+	e.xp_reward = 3
+	e.item_drops["nid's captured cold"] = 0.5
+	e.cash_reward = 7
+	enemies[e.enemy_name] = e
+	
+	enemies[e.enemy_name] = e
+	e = Enemy.new()
+	e.enemy_name = "rend's impess"
+	e.desc = "A smug pitchfork wielding female imp who loves Rend since they share the same colors!"
+	e.texture_path = "res://assets/battle/ImpF.png"
+	e.stats.hp = 80
+	e.stats.atk = 17
 	e.stats.def = 0
 	e.stats.eva = 20
 	e.stats.lck = 10
@@ -851,7 +892,7 @@ func verify_enemies():
 func initialize_party():	
 	#set up starting stats for party
 	#Globals.party.p[0].stats.hp = 10
-	Globals.party.p[0].stats.hp = 150
+	Globals.party.p[0].stats.hp = 135
 	Globals.party.p[0].stats.atk = 25
 	Globals.party.p[0].stats.def = 5
 	Globals.party.p[0].stats.eva = 5
