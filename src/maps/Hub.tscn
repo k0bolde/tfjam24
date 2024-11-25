@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://hk5dg6h0gury"]
+[gd_scene load_steps=27 format=4 uid="uid://hk5dg6h0gury"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_km1as"]
 [ext_resource type="Texture2D" uid="uid://4yak0eh5rks8" path="res://assets/TOWNMAP.png" id="2_mcdrc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://kuhofrthc1sw" path="res://assets/overworld/bubbles-ow.png" id="14_xs4qr"]
 [ext_resource type="Texture2D" uid="uid://bwjx77oupqvtv" path="res://assets/overworld/zal-ow.png" id="15_83ypt"]
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="15_ruv63"]
+[ext_resource type="Texture2D" uid="uid://b24jfvsdih40s" path="res://assets/qz-sign.png" id="17_ej1xy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um8dg"]
 size = Vector2(78, 971)
@@ -149,7 +150,7 @@ image = ExtResource("6_2i6pi")
 dialogue_file = "res://assets/dialogue/hub_byrne.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
-position = Vector2(-384, -20)
+position = Vector2(-363, -131)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("8_77hjx")
 dialogue_file = "res://assets/dialogue/hub_pean.clyde"
@@ -203,3 +204,7 @@ flag_type = "jesse"
 position = Vector2(273, -150)
 image = ExtResource("7_8xny6")
 dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-458, -15)
+texture = ExtResource("17_ej1xy")
