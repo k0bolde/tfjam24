@@ -48,7 +48,7 @@ Security Guard: \$1000 and you’re through.
 	-> start
 
 == lizard
-The former security guard doesn't seem as interested in doing her job as he used to.
+The former security guard doesn't seem as interested in doing her job as she used to.
 + Talk
 	( shuffle cycle
 		-
