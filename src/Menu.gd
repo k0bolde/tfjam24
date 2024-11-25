@@ -21,40 +21,42 @@ func _ready() -> void:
 	t.set_trans(Tween.TRANS_SINE)
 	t.tween_property(menu_container, "rotation_degrees", 0.0, 0.35)
 	%CashLabel.text = "$%s" % Globals.cash
-	if not OS.has_feature("editor"):
-		#diraccess doesn't work on exported games
-		for m in map_names:
-			var mb := Button.new()
-			mb.text = m
-			mb.pressed.connect(func (): Globals.main.load_map(m, 0))
-			debug_maps_container.add_child(mb)
-	else:
-		var map_dir := DirAccess.open("res://src/maps")
-		for m in map_dir.get_files():
-			if m.ends_with(".tscn"):
+	if OS.is_debug_build():
+		if not OS.has_feature("editor"):
+			#diraccess doesn't work on exported games
+			for m in map_names:
 				var mb := Button.new()
-				var map_name := m.trim_suffix(".tscn")
-				mb.text = map_name
-				mb.pressed.connect(func (): Globals.main.load_map(map_name, 0))
+				mb.text = m
+				mb.pressed.connect(func (): Globals.main.load_map(m, 0))
 				debug_maps_container.add_child(mb)
-	for f in Globals.main.story_flags.keys():
-		var l := Label.new()
-		l.text = f
-		flag_container.add_child(l)
-		var s := SpinBox.new()
-		s.update_on_text_changed = true
-		s.value = Globals.main.story_flags[f]
-		s.value_changed.connect(func (new_value): Globals.main.story_flags[f] = new_value)
-		flag_container.add_child(s)
-	for eb in get_tree().get_nodes_in_group("enemy_selector"):
-		eb.add_item("")
-	for en in Globals.enemies:
+		else:
+			var map_dir := DirAccess.open("res://src/maps")
+			for m in map_dir.get_files():
+				if m.ends_with(".tscn"):
+					var mb := Button.new()
+					var map_name := m.trim_suffix(".tscn")
+					mb.text = map_name
+					mb.pressed.connect(func (): Globals.main.load_map(map_name, 0))
+					debug_maps_container.add_child(mb)
+		for f in Globals.main.story_flags.keys():
+			var l := Label.new()
+			l.text = f
+			flag_container.add_child(l)
+			var s := SpinBox.new()
+			s.update_on_text_changed = true
+			s.value = Globals.main.story_flags[f]
+			s.value_changed.connect(func (new_value): Globals.main.story_flags[f] = new_value)
+			flag_container.add_child(s)
 		for eb in get_tree().get_nodes_in_group("enemy_selector"):
-			eb.add_item(en)
-	%PartyNumBox.value = Globals.party.num
-	%RandomEncountersButton.button_pressed = Globals.debug_disable_random_encounters
-	%CashSpinBox.value = Globals.cash
-	%LevelSpinbox.value = Globals.party.level
+			eb.add_item("")
+		for en in Globals.enemies:
+			for eb in get_tree().get_nodes_in_group("enemy_selector"):
+				eb.add_item(en)
+		%PartyNumBox.value = Globals.party.num
+		%RandomEncountersButton.button_pressed = Globals.debug_disable_random_encounters
+		%CashSpinBox.value = Globals.cash
+		%LevelSpinbox.value = Globals.party.level
+		%LevelSpinbox.value_changed.connect(_on_level_spinbox_value_changed)
 	
 	inventory_container.visible = false
 	for item in Globals.inventory.inv.keys():
@@ -207,3 +209,11 @@ func _on_random_encounters_button_toggled(toggled_on: bool) -> void:
 
 func _on_cash_spin_box_value_changed(value: float) -> void:
 	Globals.cash = value
+
+
+func _on_invincible_button_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
+
+
+func _on_inf_mp_button_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
