@@ -43,6 +43,7 @@ Skullface Gang: Unfortunate…
 The ooze seeps away from the skulls and all that’s left is the skull. Their eyes are no longer glowing. You won? 
 
 For some reason you have the feeling they’ll be back…
+{ trigger skullfacegang_win }
 
 == bad_end
 TODO

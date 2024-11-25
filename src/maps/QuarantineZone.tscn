@@ -225,11 +225,6 @@ shape = SubResource("RectangleShape2D_n01j6")
 
 [node name="NPCs" type="Node2D" parent="."]
 
-[node name="Savak" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1392, -583)
-image = ExtResource("5_ygayf")
-dialogue_file = "res://assets/dialogue/qz_savak1.clyde"
-
 [node name="Byrne" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2331, -381)
 scale = Vector2(1.5, 1.5)
@@ -240,12 +235,6 @@ dialogue_file = "res://assets/dialogue/qz_byrne.clyde"
 position = Vector2(2331, -176)
 image = ExtResource("8_33wxe")
 dialogue_file = "res://assets/dialogue/qz_clem.clyde"
-
-[node name="GoatWitch" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1426, -60)
-scale = Vector2(1.5, 1.5)
-image = ExtResource("9_gxrl8")
-dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -916)
@@ -258,21 +247,11 @@ position = Vector2(-85, -1124)
 image = ExtResource("9_kuejc")
 dialogue_file = "res://assets/dialogue/qz_mark.clyde"
 
-[node name="SusSynthTail" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(1602, -1375)
-image = ExtResource("12_ujgor")
-dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
-
 [node name="RustRist" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2549, -1231)
 scale = Vector2(4.11, 4.11)
 image = ExtResource("13_vrykg")
 dialogue_file = "res://assets/dialogue/qz_rustrydra.clyde"
-
-[node name="SkullfaceGang" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(434, -1430)
-image = ExtResource("17_adcnm")
-dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
 
 [node name="Cutscenes" type="Node2D" parent="."]
 
@@ -492,6 +471,52 @@ scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut3.clyde"
 block = "exit"
+
+[node name="Glenys" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(1363, -21)
+flag_type = "glenys"
+
+[node name="Remove" type="Node2D" parent="Cutscenes/Glenys"]
+
+[node name="GoatWitch" parent="Cutscenes/Glenys/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(63, -39)
+scale = Vector2(1.5, 1.5)
+image = ExtResource("9_gxrl8")
+dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
+
+[node name="Savak" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(1338, -541)
+flag_type = "savak"
+
+[node name="Remove" type="Node2D" parent="Cutscenes/Savak"]
+
+[node name="Savak" parent="Cutscenes/Savak/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(54, -42)
+image = ExtResource("5_ygayf")
+dialogue_file = "res://assets/dialogue/qz_savak1.clyde"
+
+[node name="SkullfaceGang" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(0, -36.64)
+flag_type = "skullfacegang"
+
+[node name="Remove" type="Node2D" parent="Cutscenes/SkullfaceGang"]
+position = Vector2(370, -1331.36)
+
+[node name="SkullfaceGang" parent="Cutscenes/SkullfaceGang/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(64, -62)
+image = ExtResource("17_adcnm")
+dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
+
+[node name="Synthia" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+position = Vector2(1678, -1380)
+flag_type = "synthia"
+
+[node name="Remove" type="Node2D" parent="Cutscenes/Synthia"]
+
+[node name="SusSynthTail" parent="Cutscenes/Synthia/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(-76, 5)
+image = ExtResource("12_ujgor")
+dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
 
 [node name="ExitArea" parent="." instance=ExtResource("24_3yv1n")]
 position = Vector2(16, 86)

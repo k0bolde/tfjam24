@@ -15,6 +15,7 @@ Glenys: Now you’re hurting my feelings, dear. I’m only trying to help.
 
 == win_fight
 Glenys: Stop, stop it, I’ve had enough! Keep your burdens, then, but I’ll be back for you, dear. Count on it.
+{ trigger glenys_win }
 
 == bad_end
 You’ve no more fight left in you, and the ibex claims yet another soul. 

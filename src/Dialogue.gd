@@ -78,6 +78,8 @@ func _ready() -> void:
 	
 	
 func _get_next_dialogue_line():
+	if not is_inside_tree():
+		return
 	var content = dialogue.get_content()
 	if content.type == "end":
 		var t := get_tree().create_tween()
@@ -243,12 +245,16 @@ func _on_event_triggered(event_name):
 			Globals.main.start_dialogue("res://assets/dialogue/qz_savak1.clyde", "fight_start")
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_savak1.clyde"
 			Globals.main.after_battle_block = "win"
+		"savak_win":
+			Globals.main.story_flags["savak"] = 1
 		"skullgang_fight":
 			Events.battle_start.emit(["blanca", "bianca", "berutia"], false)
 			Globals.bad_end_dialogue = "res://assets/dialogue/qz_skullfacegang.clyde"
 			Globals.bad_end_block = "bad_end"
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_skullfacegang.clyde"
 			Globals.main.after_battle_block = "win_fight"
+		"skullfacegang_win":
+			Globals.main.story_flags["skullfacegang"] = 1
 		"qz_shortcut_open":
 			Globals.main.story_flags["qz"] = 1
 		"jam_end":
@@ -259,6 +265,14 @@ func _on_event_triggered(event_name):
 			Globals.player.position = Vector2(443, -968)
 		"qz_shortcut_warp_exit":
 			Globals.player.position = Vector2(-178, -186)
+		"glenys_fight":
+			Globals.main.start_dialogue("res://assets/dialogue/qz_glenys.clyde", "fight_start")
+			Globals.bad_end_dialogue = "res://assets/dialogue/qz_glenys.clyde"
+			Globals.bad_end_block = "bad_end"
+			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_glenys.clyde"
+			Globals.main.after_battle_block = "win_fight"
+		"glenys_win":
+			Globals.main.story_flags["glenys"] = 1
 		_:
 			printerr("unhandled dialogue event %s" % event_name)
 			

@@ -1,6 +1,7 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #TODO set up qz encounter zones
+#TODO remove bosses when defeated
 #TODO how to regen mp? after fights? reset when moved back to hub? sleep on couch?
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
@@ -30,6 +31,10 @@ var story_flags := {
 	
 	"qz": 0,
 	"qz_security_lizard": 0,
+	"glenys": 0,
+	"skullfacegang": 0,
+	"savak": 0,
+	"synthia": 0,
 	#"factory": 0,
 	#"office": 0,
 	#"lab": 0
