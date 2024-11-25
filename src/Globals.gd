@@ -426,13 +426,13 @@ func initialize_enemies():
 	e.desc = "Rust or Rist’s (you’re not sure) right hand man"
 	e.texture_path = "res://assets/battle/rendm.png"
 	e.stats.hp = 250
-	e.stats.atk = 25
+	e.stats.atk = 22
 	e.stats.def = 20
 	e.stats.eva = 10
 	e.stats.lck = 10
 	e.stats.resistances.append_array(["fire"])
-	e.attack_probs["swipe"] = 0.5
-	e.attack_probs["claw"] = 0.25
+	e.attack_probs["swipe"] = 0.25
+	e.attack_probs["claw"] = 0.5
 	e.attack_probs["wild wolf"] = 0.25
 	e.cash_reward = 35
 	e.xp_reward = 15
