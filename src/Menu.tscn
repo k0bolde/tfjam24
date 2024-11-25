@@ -271,6 +271,7 @@ layout_mode = 2
 text = "Level"
 
 [node name="LevelSpinbox" type="SpinBox" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 max_value = 20.0
@@ -280,6 +281,18 @@ editable = false
 unique_name_in_owner = true
 layout_mode = 2
 text = "Disable Random Encounters"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+text = "Cash"
+
+[node name="CashSpinBox" type="SpinBox" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="InventoryContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -344,4 +357,5 @@ text = "Close"
 [connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer/PartyNumBox" to="." method="_on_party_num_box_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer2/LevelSpinbox" to="." method="_on_level_spinbox_value_changed"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/RandomEncountersButton" to="." method="_on_random_encounters_button_toggled"]
+[connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer3/CashSpinBox" to="." method="_on_cash_spin_box_value_changed"]
 [connection signal="pressed" from="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/CloseInventoryButton" to="." method="_on_close_inventory_button_pressed"]

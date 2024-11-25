@@ -1,6 +1,6 @@
 extends Control
 #TODO update player reminder text based on story_flag
-#TODO debug options: disable random encounters, load specific dialogue
+#TODO debug options: load specific dialogue, give items
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
 @onready var menu_container : Container = %MenuContainer
@@ -53,6 +53,8 @@ func _ready() -> void:
 			eb.add_item(en)
 	%PartyNumBox.value = Globals.party.num
 	%RandomEncountersButton.button_pressed = Globals.debug_disable_random_encounters
+	%CashSpinBox.value = Globals.cash
+	%LevelSpinbox.value = Globals.party.level
 	
 	inventory_container.visible = false
 	for item in Globals.inventory.inv.keys():
@@ -179,8 +181,9 @@ func _on_start_battle_button_pressed() -> void:
 
 
 func _on_level_spinbox_value_changed(value: float) -> void:
-	#TODO set player level
-	pass # Replace with function body.
+	Globals.party.level = value
+	Globals.party.level_up_stats(value)
+	%LevelSpinbox.min_value = value
 
 
 func _on_mp_button_pressed() -> void:
@@ -200,3 +203,7 @@ func _on_close_inventory_button_pressed() -> void:
 
 func _on_random_encounters_button_toggled(toggled_on: bool) -> void:
 	Globals.debug_disable_random_encounters = toggled_on
+
+
+func _on_cash_spin_box_value_changed(value: float) -> void:
+	Globals.cash = value
