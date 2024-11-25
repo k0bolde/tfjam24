@@ -73,7 +73,7 @@ Rist: You could be more like us! You have no chance against us.
 + That might be neat. What do you think, Jesse?
 	-> bad_end
 
-== fight_win
+== win_fight
 Rist: Ouch! That’s enough!
 
 Rust: What she said! That really hurt!
