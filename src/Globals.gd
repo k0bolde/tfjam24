@@ -439,6 +439,7 @@ func initialize_enemies():
 	e.xp_reward = 15
 	e.base_turns = 2
 	e.item_drops["rend roid"] = 1.0
+	e.visual_scale = 1.25
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -539,6 +540,7 @@ func initialize_enemies():
 	e.xp_reward = 15
 	e.base_turns = 2
 	e.item_drops["scale polish"] = 1.0
+	e.visual_scale = 1.25
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -725,6 +727,7 @@ func initialize_enemies():
 	e.item_drops["ddew pamphlet"] = 1.0
 	e.item_drops["ankrpwease"] = 1.0
 	e.item_drops["weird writings"] = 1.0
+	e.visual_scale = 1.5
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
