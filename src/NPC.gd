@@ -5,12 +5,11 @@ class_name NPC
 @export var image : Texture2D
 ## The clyde dialogue file 
 @export_file("*.clyde") var dialogue_file
+@export var block := ""
 @export var flip_h := false
 
 @onready var talk_area : Area2D = $TalkArea
 var enabled := true
-
-var dialogue : Dialogue
 
 
 func _ready() -> void:
@@ -38,7 +37,7 @@ func _on_body_exited(body):
 
 
 func start_talk():
-	Events.dialogue_start.emit(dialogue_file)
+	Globals.main.start_dialogue(dialogue_file, block)
 	
 	
 	

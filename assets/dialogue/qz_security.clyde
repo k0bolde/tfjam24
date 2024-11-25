@@ -46,3 +46,32 @@ Security Guard: \$1000 and you’re through.
 + Nah!
 	Security Guard: Your loss.
 	-> start
+
+== lizard
+The former security guard doesn't seem as interested in doing her job as he used to.
++ Talk
+	( shuffle cycle
+		-
+			Security Lizard: What sort of curse has such an obvious trigger?
+			<-
+		-
+			Security Lizard: Why does a lizard have such huge breasts?!
+			<-
+		-
+			Security Lizard: Mama always wanted a daughter…
+			<-
+		-
+			Security Lizard: Gosh, these are squishy!
+			<-
+		-
+			Security Lizard: Does this mean I lay eggs?
+			<-
+		-
+			Security Lizard: This isn’t even mutagenic! Magic is no fair!
+			<-
+		-
+			Security Lizard: Do you think I’d look good in a suit?
+			<-
+	)
++ Leave
+	-> END

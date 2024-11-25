@@ -275,13 +275,13 @@ image = ExtResource("17_adcnm")
 dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
 
 [node name="ShortcutEntrance" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(-150, -259)
+position = Vector2(-144, -273)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut1.clyde"
 
 [node name="ShortcutExit" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(502, -1026)
+position = Vector2(499, -1042)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
@@ -417,6 +417,8 @@ flag_type = "qz_security_lizard"
 position = Vector2(-104, -91)
 scale = Vector2(1.49, 1.49)
 image = ExtResource("18_41ks2")
+dialogue_file = "res://assets/dialogue/qz_security.clyde"
+block = "lizard"
 
 [node name="Ulla2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 flag_type = "ulla"
@@ -447,7 +449,7 @@ story_flag = 3
 [node name="Equal" type="Node2D" parent="Cutscenes/Ulla4"]
 
 [node name="Ulla3" parent="Cutscenes/Ulla4/Equal" instance=ExtResource("4_gejnf")]
-position = Vector2(1759, -1022)
+position = Vector2(1747, -1045)
 image = ExtResource("9_4y0ge")
 dialogue_file = "res://assets/dialogue/qz_ulla3.clyde"
 
