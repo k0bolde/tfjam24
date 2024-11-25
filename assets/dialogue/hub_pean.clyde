@@ -8,7 +8,7 @@ He seems distracted but open to whatever you might want to know.
 	Pean: Well, HP is your hit points. Run out of that and your character is knocked out. If all your characters are knocked out, it’s game over! HP recovers between each battle thanks to that drug you took. Of course, it’s why you’re in this situation in the first place, heh heh.
 	<-
 + MP
-	Pean: MP is mutagenic points. These are used to fuel your special and mutant abilities. This does not recover between each battle. You’ll have to return to town or use items for that, so use your MP wisely!
+	Pean: MP is mutagenic points. These are used to fuel your special and mutant abilities. This recovers by 50% between each battle or when you return to town. Items and some abilities can also restore MP, so use it wisely!
 	<-
 + Attack
 	Pean: Simply put, ATK is how much damage you do. Abilities modify your ATK by some amount but generally the higher the ATK, the better! Hit him hard and end fights fast! Wha-pow!
@@ -34,6 +34,13 @@ He seems distracted but open to whatever you might want to know.
 + Items
 	Pean: You can use items in combat to recover HP, restore MP, and even revive characters. This does take your character’s action!
 	<-
++ Finley
+	Pean: That’s you! You’re a versatile fighter with higher than average HP and MP. You do good single target damage but have no multitarget options. If you keep at it, you might develop some support abilities too!
+	<-
++ Finley
+	Pean: Your wolf friend. He’s a damage dealer able to inflict damage on single or multitargets. He doesn’t have as many defensive options, but can recover HP for himself in a pinch. Be careful with spending his MP - he runs out pretty quick. That being said, his abilities are powerful and essential to win the toughest combats!
+	<-
+	
 --+ Mutation
 --+ Drugs
 --+ Other NPCs
