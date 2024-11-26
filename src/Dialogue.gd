@@ -1,9 +1,8 @@
 extends Control
 class_name Dialogue
 #TODO don't repeat intros for some characters
-#TODO glenys
 #TODO half hp dialogue
-#TODO fight won dialogue
+#TODO mid dialogue swap for jesse tftg
 
 @onready var speaker_label : Label = %SpeakerLabel
 @onready var dialogue_label : RichTextLabel = %DialogueLabel
@@ -215,14 +214,12 @@ func _on_event_triggered(event_name):
 			Globals.main.story_flags["qz_security_lizard"] = 1
 			Globals.main.story_flags["main"] = 9
 		"rendm_fight":
-			#Events.battle_start.emit(["imp", "rend"], false)
-			Events.battle_start.emit(["rend"], false)
+			Events.battle_start.emit(["rend's imp", "rend", "rend's imp"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend1.clyde", "fight_start")
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
 			Globals.main.after_battle_block = "win_fight"
 		"rendf_fight":
-			#Events.battle_start.emit(["impess", "rend (female)"], false)
-			Events.battle_start.emit(["rend (female)"], false)
+			Events.battle_start.emit(["rend's impess", "rendess", "rend's impess"], false)
 			Globals.main.start_dialogue("res://assets/dialogue/qz_rend2.clyde", "fight_start")
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_rend1.clyde"
 			Globals.main.after_battle_block = "win_fight"

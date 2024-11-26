@@ -394,7 +394,7 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They zap and slap CHAR!",
 		"callable": single_attack.bind("zap slap")
 	},
-	
+	#TODO implement following
 	"drug deal": {
 		"base_atk": 1.0,
 		"type": "mutagenic",
@@ -405,7 +405,6 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They give CHAR the deal of their life - free drugs, injected now!",
 		"callable": single_attack.bind("drug deal")
 	},
-	
 	"yap": {
 		"base_atk": .5,
 		"type": "esoteric",
@@ -426,7 +425,7 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They drink some coffee, restoring health and improving their speed!",
 		"callable": single_attack.bind("coffee")
 	},
-		"freezing breath": {
+	"freezing breath": {
 		"base_atk": 1.5,
 		"type": "frigid",
 		"effect": 0,
@@ -436,7 +435,7 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They breath cold, slowing CHAR down!",
 		"callable": single_attack.bind("freezing breath")
 	},
-		"egg lay": {
+	"egg lay": {
 		"base_atk": 0,
 		"type": "esoteric",
 		"effect": 2,
@@ -456,7 +455,6 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They howl! Shocking.",
 		"callable": single_attack.bind("howl UwU")
 	},
-	
 	"distract :3c": {
 		"base_atk": .75,
 		"type": "mutagenic",
@@ -467,8 +465,8 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They distract CHAR, allowing them to get a sneaky hit!",
 		"callable": single_attack.bind("distract :3c")
 	},
-	
 }
+
 
 func _ready() -> void:
 	#setup enemy specific moves

@@ -21,7 +21,7 @@ func num_alive() -> int:
 			alive += 1
 	return alive
 
-
+#FIXME gives extra stats?
 func level_up_stats(l:int) -> String:
 	#TODO different stats for different party members
 	for i in num:
