@@ -580,6 +580,7 @@ func initialize_enemies():
 	e.attack_probs["stare"] = 0.4
 	e.cash_reward = 10
 	e.xp_reward = 5
+	e.flip_h = true
 	e.item_drops["sealed soul"] = .25
 	enemies[e.enemy_name] = e
 	

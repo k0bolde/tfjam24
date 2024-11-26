@@ -429,8 +429,8 @@ func (user, party, enemies, target, battle):
 		#heal 30, +5 Evasion and +5 Luck for 3 turns
 		"enemy_flavor": "They drink some coffee, restoring health and improving their speed!",
 		"callable": 
-func (user, party, enemies, target, battle): 
-	stat_modify(user, party, enemies, user, battle, "coffee", false, 0, 0, 5, 0)
+func (user, party, enemies, _target, battle): 
+	stat_modify(user, party, enemies, user, battle, "coffee", false, 0, 0, 5, 5)
 	#single_attack(user, party, enemies, target, battle, "coffee")
 	heal(user, party, enemies, user, battle, "coffee", 30)
 	},
@@ -455,7 +455,7 @@ func (user, party, enemies, target, battle):
 		"desc": "Offer an egg to yourself or a friend in these trying times",
 		# heal yourself or ally 50
 		"enemy_flavor": "They lay an egg. Ew!",
-		"callable": single_attack.bind("egg lay")
+		"callable": heal.bind("egg lay", 50)
 	},
 	"Howl UwU": {
 		"base_atk": 0.5,

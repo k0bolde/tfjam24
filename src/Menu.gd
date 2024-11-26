@@ -1,6 +1,6 @@
 extends Control
 #TODO update player reminder text based on story_flag
-#TODO debug options: load specific dialogue, give items
+#TODO debug options: fight enemy group in encounterArea (w/ dialogue), load specific dialogue, give items
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
 @onready var menu_container : Container = %MenuContainer

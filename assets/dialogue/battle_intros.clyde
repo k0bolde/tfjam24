@@ -1,12 +1,102 @@
 == qz_1_1
 Lvl 1 Kobold: I’m just a level one kobold! I don’t drop good loot!
+== qz_3_1
+-> qz_1_1
+
 == qz_1_2
 Mutant Man: Gimme yer flesh!
+== qz_2_1
+-> qz_1_2
+
 == qz_1_3
 Ant: Another to join the hive!
+== qz_2_2
+-> qz_1_3
+== qz_4_1
+-> qz_1_3
+
 == qz_1_4
 Minion: Would you like to meet our mistress?
+== qz_2_3
+-> qz_1_4
+
 == qz_1_5
 Haz: They’re infected! Get them!
+== qz_2_4
+-> qz_1_5
+
 == qz_1_6
 Syringe Mouse: Glorbs all over the shop. Soon you’ll be one too!
+== qz_3_4
+-> qz_1_6
+
+== qz_5_3
+Confident Lizard Lady: Oh look, someone else who’ll soon be me.
+== qz_6_4
+-> qz_5_3
+
+== qz_2_5
+Sciraptor: Beep, beep. Capture in progress.
+== qz_3_6
+-> qz_2_5
+
+== qz_5_4
+Elite Sciraptor: Beep, beep. Specimens acquired.
+== qz_7_3
+-> qz_5_4
+
+== qz_4_2
+Elite Ant: For the queen!
+== qz_6_1
+-> qz_4_2
+
+== qz_6_6
+Elite Ant: The queen requests an audience!
+== qz_7_5
+-> qz_6_6
+
+== qz_3_5
+Mutant Man: Forks are fun for fighting!
+== qz_4_4
+-> qz_3_5
+
+== qz_6_2
+Eerie Suit: Sustenance…
+== qz_7_1
+-> qz_6_2
+
+== qz_3_3
+Wolfs: Bark! Bite! Bite! Join! Join!
+== qz_5_1
+-> qz_3_3
+
+== qz_6_3
+Dragoness: Join us…
+== qz_7_2
+-> qz_6_3
+== qz_5_2
+-> qz_6_3
+
+== qz_3_2
+Cowbro: Hey, bro.
+== qz_4_3
+-> qz_3_2
+
+== qz_4_5
+The imps laugh incessantly!
+== qz_5_7
+-> qz_4_5
+== qz_6_5
+-> qz_4_5
+== qz_7_4
+-> qz_4_5
+
+== qz_4_6
+Officer: Get out of here, muties!
+== qz_4_7
+-> qz_4_6
+== qz_5_5
+-> qz_4_6
+== qz_5_6
+-> qz_4_6
+
