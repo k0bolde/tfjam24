@@ -875,7 +875,7 @@ func initialize_enemies():
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
-	e.enemy_name = "EMT"
+	e.enemy_name = "eMT"
 	e.desc = "She hisses alluringly, trying to get you to take her medicine."
 	e.texture_path = "res://assets/battle/emt.png"
 	e.stats.hp = 150
