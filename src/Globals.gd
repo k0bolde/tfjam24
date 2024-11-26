@@ -16,6 +16,8 @@ var _external_persistence := {}
 var bad_end_dialogue 
 var bad_end_block
 var debug_disable_random_encounters := false
+var debug_invincible := false
+var debug_infinite_mp := false
 
 func _ready() -> void:
 	initialize_enemies()

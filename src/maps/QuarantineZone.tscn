@@ -247,12 +247,6 @@ position = Vector2(-85, -1124)
 image = ExtResource("9_kuejc")
 dialogue_file = "res://assets/dialogue/qz_mark.clyde"
 
-[node name="RustRist" parent="NPCs" instance=ExtResource("4_gejnf")]
-position = Vector2(2549, -1231)
-scale = Vector2(4.11, 4.11)
-image = ExtResource("13_vrykg")
-dialogue_file = "res://assets/dialogue/qz_rustrydra.clyde"
-
 [node name="Cutscenes" type="Node2D" parent="."]
 
 [node name="JesseTalk1" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
@@ -518,11 +512,23 @@ position = Vector2(-76, 5)
 image = ExtResource("12_ujgor")
 dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
 
+[node name="Hydra" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
+flag_type = "qz"
+story_flag = 2
+
+[node name="Remove" type="Node2D" parent="Cutscenes/Hydra"]
+
+[node name="RustRist" parent="Cutscenes/Hydra/Remove" instance=ExtResource("4_gejnf")]
+position = Vector2(2549, -1231)
+scale = Vector2(4.11, 4.11)
+image = ExtResource("13_vrykg")
+dialogue_file = "res://assets/dialogue/qz_rustrydra.clyde"
+
 [node name="ExitArea" parent="." instance=ExtResource("24_3yv1n")]
 position = Vector2(16, 86)
 scale = Vector2(3.055, 3.055)
 map_name = "Hub"
-entrance_num = 7
+entrance_num = 9
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2

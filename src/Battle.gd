@@ -268,7 +268,8 @@ func player_attack(which_attack:String):
 	turns -= 1
 	update_turns()
 	var the_attack : Dictionary = Abilities.abilities[which_attack]
-	Globals.party.p[curr_party]["mp"] -= the_attack["mp"]
+	if not Globals.debug_infinite_mp:
+		Globals.party.p[curr_party]["mp"] -= the_attack["mp"]
 	match the_attack["effect"]:
 		0, 1, 4:
 			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
@@ -353,6 +354,8 @@ func enemy_attack():
 				target_party = randi_range(0, Globals.party.num - 1)
 			the_attack["callable"].call(curr_enemy, Globals.party, enemies, -(target_party + 1), self)
 			show_enemy_attack(the_attack["enemy_flavor"].replace("CHAR", Globals.party.p[target_party]["name"]))
+			if Globals.debug_invincible:
+				Globals.party.p[target_party]["hp"] = Globals.party.p[target_party].stats.hp
 			update_bars(curr_party)
 		2, 3:
 			#healing/buff ability, target an enemy not at max hp

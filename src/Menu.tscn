@@ -285,10 +285,12 @@ layout_mode = 2
 text = "Disable Random Encounters"
 
 [node name="InvincibleButton" type="CheckButton" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Invincible"
 
 [node name="InfMPButton" type="CheckButton" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Infinite MP"
 

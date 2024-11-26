@@ -58,6 +58,8 @@ func _ready() -> void:
 	%CashSpinBox.value = Globals.cash
 	%LevelSpinbox.value = Globals.party.level
 	%LevelSpinbox.value_changed.connect(_on_level_spinbox_value_changed)
+	%InvincibleButton.button_pressed = Globals.debug_invincible
+	%InfMPButton.button_pressed = Globals.debug_infinite_mp
 	
 	inventory_container.visible = false
 	for item in Globals.inventory.inv.keys():
@@ -213,8 +215,10 @@ func _on_cash_spin_box_value_changed(value: float) -> void:
 
 
 func _on_invincible_button_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	Globals.debug_invincible = toggled_on
 
 
 func _on_inf_mp_button_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	Globals.debug_infinite_mp = toggled_on
+	
+	

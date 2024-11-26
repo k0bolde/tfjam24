@@ -47,7 +47,7 @@ size = Vector2(286, 129)
 
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_km1as")
-entrances = Array[Vector2]([Vector2(-227, -11), Vector2(-158, 222), Vector2(-13, 216), Vector2(300, 218), Vector2(416, 303), Vector2(602, 417), Vector2(605, 252), Vector2(708, 38), Vector2(518, -103)])
+entrances = Array[Vector2]([Vector2(-227, -11), Vector2(-158, 222), Vector2(-13, 216), Vector2(300, 218), Vector2(416, 303), Vector2(602, 417), Vector2(605, 252), Vector2(708, 38), Vector2(518, -103), Vector2(-416, 110)])
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_index = -1
@@ -137,7 +137,7 @@ position = Vector2(708, 38)
 map_name = "Games"
 
 [node name="ExitQuarantine" parent="Exits" instance=ExtResource("4_pu8sb")]
-position = Vector2(-458, 116)
+position = Vector2(-450, 108)
 scale = Vector2(3.2, 3.2)
 map_name = "QuarantineZone"
 

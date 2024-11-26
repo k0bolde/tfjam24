@@ -257,6 +257,7 @@ func _on_event_triggered(event_name):
 		"qz_shortcut_open":
 			Globals.main.story_flags["qz"] = 1
 		"jam_end":
+			Globals.main.story_flags["qz"] = 2
 			Globals.main.start_dialogue("res://assets/dialogue/end_jam.clyde")
 		"synth_tail_fight":
 			Events.battle_start.emit(["synthia tail"], false)
