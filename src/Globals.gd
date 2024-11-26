@@ -890,7 +890,7 @@ func initialize_enemies():
 	e.attack_probs["spray"] = 0.2
 	e.attack_probs["shock"] = 0.3
 	e.xp_reward = 4
-	e.item_drops["distilled  synth snilk"] = .5
+	e.item_drops["distilled synth snilk"] = .5
 	e.cash_reward = 8
 	enemies[e.enemy_name] = e
 	
