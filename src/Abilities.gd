@@ -394,7 +394,6 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They zap and slap CHAR!",
 		"callable": single_attack.bind("zap slap")
 	},
-	#TODO implement following
 	"drug deal": {
 		"base_atk": 1.0,
 		"type": "mutagenic",
@@ -403,7 +402,10 @@ func (user, party, enemies, target, battle):
 		"desc": "Give ‘em drugs",
 		#-5 luck for 3 turns
 		"enemy_flavor": "They give CHAR the deal of their life - free drugs, injected now!",
-		"callable": single_attack.bind("drug deal")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "drug deal", false, 0, 0, 0, -5)
+	single_attack(user, party, enemies, target, battle, "drug deal")
 	},
 	"yap": {
 		"base_atk": .5,
@@ -413,7 +415,10 @@ func (user, party, enemies, target, battle):
 		"desc": "Talk the kobold way",
 		#hits all, -5 Evasion and -5 Def for 3 turns
 		"enemy_flavor": "They talk the k0bold way, confusing and confounding the party!",
-		"callable": single_attack.bind("yap")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "yap", false, 0, 0, -5, 0)
+	multi_attack(user, party, enemies, target, battle, "yap")
 	},
 	"coffee": {
 		"base_atk": 0,
@@ -423,7 +428,11 @@ func (user, party, enemies, target, battle):
 		"desc": "Drink some coffee and speed up!",
 		#heal 30, +5 Evasion and +5 Luck for 3 turns
 		"enemy_flavor": "They drink some coffee, restoring health and improving their speed!",
-		"callable": single_attack.bind("coffee")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, user, battle, "coffee", false, 0, 0, 5, 0)
+	#single_attack(user, party, enemies, target, battle, "coffee")
+	heal(user, party, enemies, user, battle, "coffee", 30)
 	},
 	"freezing breath": {
 		"base_atk": 1.5,
@@ -433,10 +442,13 @@ func (user, party, enemies, target, battle):
 		"desc": "Breath cold to chill your enemies",
 		#-10 Evasion for 3 turns
 		"enemy_flavor": "They breath cold, slowing CHAR down!",
-		"callable": single_attack.bind("freezing breath")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "freezing breath", false, 0, 0, -10, 0)
+	single_attack(user, party, enemies, target, battle, "freezing breath")
 	},
 	"egg lay": {
-		"base_atk": 0,
+		"base_atk": 0.0,
 		"type": "esoteric",
 		"effect": 2,
 		"mp": 35,
@@ -446,24 +458,30 @@ func (user, party, enemies, target, battle):
 		"callable": single_attack.bind("egg lay")
 	},
 	"Howl UwU": {
-		"base_atk": .5,
+		"base_atk": 0.5,
 		"type": "esoteric",
 		"effect": 1,
 		"mp": 25,
 		"desc": "Howl like a real wolf uwu  dealing damage and lower your enemies’ evasion!",
 		# -5 Evasion and -5 Luck for 3 turns
 		"enemy_flavor": "They howl! Shocking.",
-		"callable": single_attack.bind("howl UwU")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "Howl UwU", false, 0, 0, -5, -5)
+	single_attack(user, party, enemies, target, battle, "Howl UwU")
 	},
 	"distract :3c": {
-		"base_atk": .75,
+		"base_atk": 0.75,
 		"type": "mutagenic",
 		"effect": 0,
 		"mp": 0,
 		"desc": "Lean over and jiggle your chest, \n distracting your enemy before giving them a playful (and clawful) swipe!",
 		# -5 Def and -5 Evasion for 3 turns
 		"enemy_flavor": "They distract CHAR, allowing them to get a sneaky hit!",
-		"callable": single_attack.bind("distract :3c")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "distract :3c", false, 0, -5, -5, 0)
+	single_attack(user, party, enemies, target, battle, "distract :3c")
 	},
 	"shock": {
 		"base_atk": 1.25,
@@ -473,7 +491,10 @@ func (user, party, enemies, target, battle):
 		"desc": "Give them a shock!",
 		# -10 DEF and -10 Luck for 3 turns
 		"enemy_flavor": "Zzap! They shock CHAR, disorienting them",
-		"callable": single_attack.bind("shock")
+		"callable": 
+func (user, party, enemies, target, battle): 
+	stat_modify(user, party, enemies, target, battle, "shock", false, 0, -10, 0, -10)
+	single_attack(user, party, enemies, target, battle, "shock")
 	},
 }
 
