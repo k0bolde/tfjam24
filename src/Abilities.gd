@@ -465,6 +465,16 @@ func (user, party, enemies, target, battle):
 		"enemy_flavor": "They distract CHAR, allowing them to get a sneaky hit!",
 		"callable": single_attack.bind("distract :3c")
 	},
+	"shock": {
+		"base_atk": 1.25,
+		"type": "fire",
+		"effect": 0,
+		"mp": 10,
+		"desc": "Give them a shock!",
+		# -10 DEF and -10 Luck for 3 turns
+		"enemy_flavor": "Zzap! They shock CHAR, disorienting them",
+		"callable": single_attack.bind("shock")
+	},
 }
 
 

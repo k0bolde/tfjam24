@@ -854,6 +854,46 @@ func initialize_enemies():
 	e.cash_reward = 15
 	enemies[e.enemy_name] = e
 	
+	e = Enemy.new()
+	e.enemy_name = "officer"
+	e.desc = "A canine cop caught in the mutagen madness. She seems obsessed with keeping “mutants” out."
+	e.texture_path = "res://assets/battle/officer.png"
+	e.stats.hp = 150
+	e.stats.atk = 30
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 12
+	e.stats.resistances = ["rending"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["cackle"] = 0.3
+	e.attack_probs["swipe"] = 0.2
+	e.attack_probs["inspire"] = 0.3
+	e.attack_probs["fortify"] = 0.2
+	e.xp_reward = 4
+	e.item_drops["prop gun"] = .5
+	e.cash_reward = 8
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "EMT"
+	e.desc = "She hisses alluringly, trying to get you to take her medicine."
+	e.texture_path = "res://assets/battle/emt.png"
+	e.stats.hp = 150
+	e.stats.atk = 25
+	e.stats.def = 10
+	e.stats.eva = 20
+	e.stats.lck = 15
+	e.stats.resistances = ["bludgeoning"]
+	e.stats.weaknesses = ["frigid"]
+	e.attack_probs["better aid"] = 0.3
+	e.attack_probs["bite"] = 0.2
+	e.attack_probs["spray"] = 0.2
+	e.attack_probs["shock"] = 0.3
+	e.xp_reward = 4
+	e.item_drops["distilled  synth snilk"] = .5
+	e.cash_reward = 8
+	enemies[e.enemy_name] = e
+	
 	
 
 
