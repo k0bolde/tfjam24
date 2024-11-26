@@ -664,6 +664,8 @@ func _on_attack_button_pressed() -> void:
 func _on_abilities_button_pressed() -> void:
 	disable_buttons()
 	for a in Globals.party.p[curr_party]["stats"].abilities:
+		if a == "punch":
+			continue
 		var b := Button.new()
 		b.text = a.capitalize()
 		b.pressed.connect(func ():
