@@ -807,7 +807,7 @@ func initialize_enemies():
 	e.stats.lck = 20
 	e.stats.resistances = ["bludgeoning"]
 	e.stats.weaknesses = ["piercing"]
-	e.attack_probs["greater aid"] = 0.25
+	e.attack_probs["better aid"] = 0.25
 	e.attack_probs["claw"] = 0.5
 	e.attack_probs["confuse"] = 0.25
 	e.xp_reward = 12
