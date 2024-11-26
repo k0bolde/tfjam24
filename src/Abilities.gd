@@ -197,7 +197,7 @@ func (user, party, enemies, target, battle):
 		"effect": 2,
 		"mp": 30,
 		"desc": "Heal an ally a better amount",
-		"enemy_flavor": "They give their ally a huge. It heals them!",
+		"enemy_flavor": "They give their ally a hug. It heals them!",
 		#heal ally 40
 		"callable": heal.bind("better aid", 40)
 	},
