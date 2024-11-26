@@ -42,23 +42,51 @@ func num_alive() -> int:
 	return alive
 
 
+func get_xp_required_for_next_level() -> int:
+	match level:
+		1:
+			return 10
+		2:
+			return 100
+		3:
+			return 200
+		4:
+			return 300
+	return 99999
+
+
 func level_up_stats(l:int) -> String:
-	#TODO different stats for different party members
 	match l:
 		2:
 			p[0].stats.hp += 10
 			p[0].stats.mp += 10
 			p[0].stats.atk += 2
+			
+			p[1].stats.hp += 10
+			p[1].stats.mp += 10
+			p[1].stats.atk += 5
 		3:
 			p[0].stats.hp += 10
 			p[0].stats.mp += 10
 			p[0].stats.atk += 3
+			
+			p[1].stats.hp += 15
+			p[1].stats.mp += 10
+			p[1].stats.def += 5
 		4:
 			p[0].stats.hp += 15
 			p[0].stats.mp += 15
 			p[0].stats.atk += 5
+			
+			p[1].stats.hp += 15
+			p[1].stats.mp += 10
+			p[1].stats.lck += 5
 		5:
-			p[0].stats.def += 10
+			p[0].stats.eva += 10
 			p[0].stats.lck += 5
 			p[0].stats.move_slots += 1
+			
+			p[1].stats.eva += 5
+			p[1].stats.lck += 5
+			p[1].stats.move_slots += 1
 	return "TODO implement"

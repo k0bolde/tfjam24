@@ -587,9 +587,9 @@ func battle_won():
 	total_xp_label.text = "Total XP: %d" % Globals.party.xp
 	cash_gained_label.text = "Found $%d" % earned_cash
 	cash_total_level.text = "Total of $%d" % Globals.cash 
-	var required_to_level := 0
-	for i in Globals.party.level + 1:
-		required_to_level += i * 10
+	var required_to_level := Globals.party.get_xp_required_for_next_level()
+	#for i in Globals.party.level + 1:
+		#required_to_level += i * 10
 	xp_to_level_label.text = "XP required to level up: %d" % required_to_level
 	level_up_label.visible = false
 	if Globals.party.xp >= required_to_level:
