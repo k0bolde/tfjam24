@@ -40,6 +40,7 @@ var portraits := {
 	"Jesse": "res://assets/portraits/jesse2.png",
 	#2 evil zero-width spaces
 	"Jesse​​": "res://assets/portraits/jesse3.png",
+	"Jesse​​​": "res://assets/portraits/sparkledog.png",
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
 	"Zal": "res://assets/portraits/zal.png",
