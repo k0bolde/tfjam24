@@ -33,7 +33,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "TF RPG"
+text = "Mutagenesis"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]

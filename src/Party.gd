@@ -89,4 +89,4 @@ func level_up_stats(l:int) -> String:
 			p[1].stats.eva += 5
 			p[1].stats.lck += 5
 			p[1].stats.move_slots += 1
-	return "TODO implement"
+	return ""

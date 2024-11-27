@@ -1,7 +1,6 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
 #TODO party targeting for egg lay
-#TODO disable buy/sell/stat ups in hub
 #TODO how to regen mp? after fights? reset when moved back to hub? sleep on couch?
 #TODO don't repeat start of hub dialogues while on same map
 #TODO change party abilities in lab
