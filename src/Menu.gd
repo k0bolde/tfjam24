@@ -1,5 +1,6 @@
 extends Control
 #TODO update player reminder text based on story_flag
+#TODO cash resets when opening menu twice?
 #TODO debug options: fight enemy group in encounterArea (w/ dialogue), load specific dialogue, give items
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton
@@ -56,6 +57,7 @@ func _ready() -> void:
 	%PartyNumBox.value = Globals.party.num
 	%RandomEncountersButton.button_pressed = Globals.debug_disable_random_encounters
 	%CashSpinBox.value = Globals.cash
+	%CashSpinBox.value_changed.connect(_on_cash_spin_box_value_changed)
 	%LevelSpinbox.value = Globals.party.level
 	%LevelSpinbox.value_changed.connect(_on_level_spinbox_value_changed)
 	%InvincibleButton.button_pressed = Globals.debug_invincible

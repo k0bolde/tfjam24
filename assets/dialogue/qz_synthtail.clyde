@@ -4,3 +4,7 @@ A curious mechanical horror reveals itself, sputtering sparks as it lurches ever
 
 Sus Synth Tail: Bzzt, zzt!
 { trigger synth_tail_fight }
+
+== win_fight
+The tail wiggles off into a sewer grate...
+{ trigger synthia_win }

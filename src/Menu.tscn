@@ -367,7 +367,6 @@ text = "Close"
 [connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/StartBattleButton" to="." method="_on_start_battle_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/MPButton" to="." method="_on_mp_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer/PartyNumBox" to="." method="_on_party_num_box_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/HBoxContainer3/CashSpinBox" to="." method="_on_cash_spin_box_value_changed"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/RandomEncountersButton" to="." method="_on_random_encounters_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/InvincibleButton" to="." method="_on_invincible_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/InfMPButton" to="." method="_on_inf_mp_button_toggled"]

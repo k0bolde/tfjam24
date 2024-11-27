@@ -152,6 +152,7 @@ func initialize_enemies():
 	e.item_drops["lime time"] = 1.0
 	e.flip_h = true
 	e.visual_scale = 1.5
+	e.sprite_offset_y = 58
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -442,6 +443,7 @@ func initialize_enemies():
 	e.base_turns = 2
 	e.item_drops["rend roid"] = 1.0
 	e.visual_scale = 1.25
+	e.sprite_offset_y = 74
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -543,6 +545,7 @@ func initialize_enemies():
 	e.base_turns = 2
 	e.item_drops["scale polish"] = 1.0
 	e.visual_scale = 1.25
+	e.sprite_offset_y = 74
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -731,6 +734,7 @@ func initialize_enemies():
 	e.item_drops["ankrpwease"] = 1.0
 	e.item_drops["weird writings"] = 1.0
 	e.visual_scale = 1.5
+	e.sprite_offset_y = 84
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -792,7 +796,8 @@ func initialize_enemies():
 	e.cash_reward = 150
 	e.xp_reward = 40
 	e.base_turns = 2
-	e.visual_scale = 1.5
+	e.visual_scale = 2.0
+	e.sprite_offset_y = 58
 	e.item_drops["goldenankrowo"] = 1.0
 	enemies[e.enemy_name] = e
 	

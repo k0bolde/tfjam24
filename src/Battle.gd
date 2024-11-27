@@ -3,9 +3,9 @@ class_name Battle
 #major implementations
 #TODO Item use
 #TODO party targeting for buffs/heals
+#TODO a way to see stat modifiers
 
 #tweaks
-#TODO dmg label positioning - move down for party, move forward for all so there's no z-fighting
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
@@ -110,15 +110,18 @@ func _ready() -> void:
 			var scaled := 128.0 / sprite.texture.get_height()
 			sprite.scale = Vector3(scaled, scaled, scaled)
 		if enemies[i].visual_scale != 1.0:
-			sprite.scale = Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
-		sprite.offset = Vector2(0, (enemies[i].visual_scale * 128) / 2.0)
+			sprite.scale *= Vector3(enemies[i].visual_scale, enemies[i].visual_scale, enemies[i].visual_scale)
+		if enemies[i].sprite_offset_y and enemies[i].sprite_offset_y != 0:
+			sprite.offset = Vector2(0, enemies[i].sprite_offset_y)
+		else:
+			sprite.offset = Vector2(0, (enemies[i].visual_scale * 128.0) / 2.0)
 		enemies[i].ingame_sprite = sprite
 		enemies_node.add_child(sprite)
 		var hpmesh = enemy_hp_mesh.duplicate()
 		hpmesh.mesh.resource_local_to_scene = true
 		enemies[i].name_label = hpmesh.get_node("EnemyNameLabel")
 		hpmesh.get_node("EnemyNameLabel").unique_name_in_owner = false
-		hpmesh.get_node("EnemyNameLabel").text = enemies[i].enemy_name
+		hpmesh.get_node("EnemyNameLabel").text = enemies[i].enemy_name.capitalize()
 		enemies[i].hp_mesh = hpmesh
 		hpmesh.position = sprite.position
 		hpmesh.unique_name_in_owner = false
@@ -559,7 +562,7 @@ func _on_target_right_button_pressed(is_targeting:=true) -> void:
 func update_selected_enemy():
 	var e := enemies[targeted_enemy]
 	indicator_light.position = e.position
-	indicator_light.position.y += 1.0
+	indicator_light.position.y += 2.0
 	indicator_light.position.x -= 0.2
 	var hp_mesh := e.hp_mesh
 	hp_mesh.visible = true
@@ -577,10 +580,10 @@ func update_selected_enemy():
 		if e.stats.resistances.is_empty():
 			inspect_resist_label.text = "Resists nothing"
 		else:
-			inspect_resist_label.text = "Reists %s" % e.stats.resistances
+			inspect_resist_label.text = "Resists %s" % e.stats.resistances
 	else:
-		inspect_weak_label.text = "???"
-		inspect_resist_label.text = "???"
+		inspect_weak_label.text = "Weak to ???"
+		inspect_resist_label.text = "Resists ???"
 
 
 func battle_won():

@@ -616,8 +616,7 @@ image = ExtResource("12_ujgor")
 dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
 
 [node name="Hydra" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
-flag_type = "qz"
-story_flag = 2
+flag_type = "hydra"
 
 [node name="Remove" type="Node2D" parent="Cutscenes/Hydra"]
 
