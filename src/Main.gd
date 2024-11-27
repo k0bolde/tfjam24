@@ -130,7 +130,7 @@ func start_battle(monsters:Array, can_run:bool):
 	music_player.play()
 	
 	
-func end_battle():
+func end_battle(won:=true):
 	if is_battle_up():
 		battle_node.remove_child(battle)
 		battle.queue_free()
@@ -138,7 +138,7 @@ func end_battle():
 		Globals.player.cam.enabled = true
 		Globals.player.is_battling = false
 		play_music()
-		if after_battle_dialogue:
+		if won and after_battle_dialogue:
 			start_dialogue(after_battle_dialogue, after_battle_block)
 			after_battle_dialogue = null
 			after_battle_block = ""

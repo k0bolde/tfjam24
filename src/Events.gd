@@ -5,7 +5,7 @@ extends Node
 @warning_ignore("unused_signal")
 signal battle_start(monsters:Array, can_run:bool)
 @warning_ignore("unused_signal")
-signal battle_end
+signal battle_end(won)
 
 @warning_ignore("unused_signal")
 signal dialogue_start(clyde_file)

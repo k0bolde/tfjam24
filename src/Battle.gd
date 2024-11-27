@@ -315,10 +315,10 @@ func find_next_teammate() -> int:
 		total_checked += 1
 		#this shouldn't happen? but does?
 		if total_checked > Globals.party.num or Globals.party.num_alive() == 0:
-			if is_inside_tree():
-				battle_lost()
-			else:
-				break
+			#if is_inside_tree():
+				#battle_lost()
+			#else:
+			break
 	return next_teammate
 	
 	
@@ -441,6 +441,7 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 		the_enemy.hp_mesh.visible = true
 		the_enemy.hp_mesh.position = the_target.position
 		the_enemy.hp_mesh.position.y += 1.65
+		the_enemy.hp_mesh.position.z += 0.05
 		bar.value = the_enemy.hp
 		bar.max_value = the_enemy.stats.hp
 		var t := get_tree().create_tween()
@@ -480,13 +481,20 @@ func show_dmg_label(dmg:int, target:int, type:=0, is_crit:=false):
 	dl.text = "-%d" % dmg
 	dl.position = the_target.position
 	dl.position.y += 1.0
+	dl.position.z += 0.06
 	if dmg < 0:
 		dl.modulate = Color.GREEN
 		dl.text = "+%d" % abs(dmg)
 	cl.position = the_target.position
 	cl.position.y += 1.1
+	cl.position.z += 0.06
 	wl.position = the_target.position
 	wl.position.y += 1.2
+	wl.position.z += 0.06
+	if target < 0:
+		dl.position.y -= 0.5
+		cl.position.y -= 0.5
+		wl.position.y -= 0.5
 	base_3d.add_child(dl)
 	base_3d.add_child(wl)
 	base_3d.add_child(cl)
@@ -636,6 +644,7 @@ func battle_lost():
 		Globals.main.start_dialogue(Globals.bad_end_dialogue, Globals.bad_end_block)
 		Globals.bad_end_dialogue = null
 		Globals.bad_end_block = null
+		Events.battle_end.emit(false)
 	else:
 		get_tree().change_scene_to_file("res://src/gameover.tscn")
 

@@ -396,13 +396,14 @@ columns = 3
 [node name="BasicAttackButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Attack"
+text = "Punch"
 
 [node name="AbilitiesButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
 layout_mode = 2
 text = "Abilities"
 
 [node name="ItemsButton" type="Button" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/ButtonsGridContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 text = "Items"
 
