@@ -19,7 +19,7 @@ var abilities := {
 		"base_atk": 1.5,
 		"type": "bludgeoning",
 		"effect": 0,
-		"mp": 15,
+		"mp": 10,
 		"desc": "What you learned in karate",
 		"enemy_flavor": "They kick CHAR!! Oof!",
 		"callable": single_attack.bind("kick"),
@@ -148,7 +148,7 @@ func (user, party, enemies, target, battle):
 	},
 	"tip the scales": {
 		"base_atk": 1.5,
-		"type": "rending",
+		"type": "piercing",
 		"effect": 0,
 		"mp": 20,
 		"desc": "Attack while temporarily increasing your defense!",
@@ -173,7 +173,7 @@ func (user, party, enemies, target, battle):
 	single_attack(user, party, enemies, target, battle, "recovery strike")
 	},
 	"wild wolf": {
-		"base_atk": 1.3,
+		"base_atk": 1.5,
 		"type": "rending",
 		"effect": 4,
 		"mp": 20,

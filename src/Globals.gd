@@ -440,7 +440,6 @@ func initialize_enemies():
 	e.attack_probs["wild wolf"] = 0.25
 	e.cash_reward = 35
 	e.xp_reward = 15
-	e.base_turns = 2
 	e.item_drops["rend roid"] = 1.0
 	e.visual_scale = 1.25
 	e.sprite_offset_y = 74
@@ -705,7 +704,6 @@ func initialize_enemies():
 	e.stats.def = 10
 	e.stats.eva = 15
 	e.stats.lck = 10
-	e.stats.resistances.append_array(["fire"])
 	e.attack_probs["kick"] = 0.5
 	e.attack_probs["entice"] = 0.25
 	e.attack_probs["confuse"] = 0.25
@@ -719,8 +717,8 @@ func initialize_enemies():
 	e.desc = "A goat witch with a silky smooth voice and heaving honkers"
 	e.texture_path = "res://assets/battle/goatwitch.png"
 	e.stats.hp = 200
-	e.stats.atk = 30
-	e.stats.def = 20
+	e.stats.atk = 25
+	e.stats.def = 15
 	e.stats.eva = 5
 	e.stats.lck = 10
 	e.attack_probs["fireball"] = 0.25
@@ -871,8 +869,8 @@ func initialize_enemies():
 	e.stats.lck = 12
 	e.stats.resistances = ["rending"]
 	e.stats.weaknesses = ["frigid"]
-	e.attack_probs["cackle"] = 0.3
-	e.attack_probs["swipe"] = 0.2
+	e.attack_probs["cackle"] = 0.1
+	e.attack_probs["claw"] = 0.4
 	e.attack_probs["inspire"] = 0.3
 	e.attack_probs["fortify"] = 0.2
 	e.xp_reward = 4
@@ -886,7 +884,7 @@ func initialize_enemies():
 	e.texture_path = "res://assets/battle/emt.png"
 	e.stats.hp = 150
 	e.stats.atk = 25
-	e.stats.def = 10
+	e.stats.def = 0
 	e.stats.eva = 20
 	e.stats.lck = 15
 	e.stats.resistances = ["bludgeoning"]
