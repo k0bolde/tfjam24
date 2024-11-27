@@ -23,6 +23,11 @@ var button_dir := Vector2()
 func _ready() -> void:
 	%PhoneButtons.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
 	%PhoneDirections.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
+	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		var ie := InputMap.action_get_events("interact")
+		for i in ie:
+			if i is InputEventMouseButton:
+				InputMap.action_erase_event("interact", i)
 
 
 func _unhandled_input(event: InputEvent) -> void:
