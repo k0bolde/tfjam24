@@ -109,7 +109,6 @@ text = "NSFW Warning - boobs and sexual bad ends"
 
 [node name="CreditsPanel" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,21 +134,22 @@ text = "Programming & art by k0bold https://k0bold.itch.io/ https://www.furaffin
 Writing & art & mapping by skiesofsilver https://www.furaffinity.net/user/skiesofsilver https://skiesofsilver.itch.io/
 Art by Tavaer https://tv42.itch.io/ https://www.furaffinity.net/gallery/tavaer/
 Music by Fulcrum https://www.instagram.com/fulcrummusic_/
+Art by Drake https://www.furaffinity.net/user/nevekard - twinning lizard, ants, moth, ai dragon, rat, synth tail, & more!
 Art by NecroBLAU https://www.furaffinity.net/user/24hoursgyear/ https://itch.io/profile/necroblau
 Art and music by Malic https://malicthegreat.itch.io/
 
 Additional art by
 https://www.furaffinity.net/user/returnaddress/ - Rene portrait
-https://www.furaffinity.net/user/snappsuwu/ - Bubble portrait, kobold ass enemy
-https://www.furaffinity.net/user/yafath - purple enemy
+https://www.furaffinity.net/user/snappsuwu/ - Bubbles portrait, kobold ass
+https://www.furaffinity.net/user/yafath - dragoness
 https://bsky.app/profile/triti.bsky.social - Byrne portrait
 https://www.furaffinity.net/user/sloe/ - bull bro, security guard
 https://www.furaffinity.net/user/greatoverlordchickenmaster - sciraptor enemy
 Toastline - snot monster
-https://www.furaffinity.net/user/nevekard - twinning lizard, ants, moth, ai dragon, rat, synth tail, & more!
 https://www.furaffinity.net/user/60PercentScalie - imps
 Rose - naga archer
 https://www.furaffinity.net/user/xenophobophilophage - Rust/Rist hydra
+https://www.furaffinity.net/user/pavlentine - emt/officer
 
 Uses Clyde Dialogue plugin
 

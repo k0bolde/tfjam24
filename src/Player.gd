@@ -18,6 +18,12 @@ var in_cutscene := false
 var interact_callback
 
 
+func _ready() -> void:
+	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		%PhoneButtons.visible = true
+		%PhoneDirections.visible = true
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Globals.main.is_menu_up() or is_battling or is_talking or in_cutscene:
 		return

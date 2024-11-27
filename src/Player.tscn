@@ -66,3 +66,90 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Saturday, July 5th
 Afternoon"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="PhoneDirections" type="MarginContainer" parent="CanvasLayer2"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.423529)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -209.0
+offset_right = 170.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 120
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer2/PhoneDirections"]
+layout_mode = 2
+columns = 3
+
+[node name="Control" type="Control" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "^"
+
+[node name="Control2" type="Control" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "<-"
+
+[node name="Control3" type="Control" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "->"
+
+[node name="Control4" type="Control" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "v"
+
+[node name="PhoneButtons" type="MarginContainer" parent="CanvasLayer2"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.462745)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -127.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+theme_override_constants/margin_right = 155
+theme_override_constants/margin_bottom = 100
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer2/PhoneButtons"]
+layout_mode = 2
+columns = 3
+
+[node name="Button2" type="Button" parent="CanvasLayer2/PhoneButtons/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Interact"
+
+[node name="Control" type="Control" parent="CanvasLayer2/PhoneButtons/GridContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer2/PhoneButtons/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Menu"

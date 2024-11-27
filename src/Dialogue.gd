@@ -56,6 +56,7 @@ var portraits := {
 	"Rust": "res://assets/portraits/rust.png",
 	"Rust and Rist": "res://assets/portraits/rust-rist.png",
 	"Finley and Jesse": "res://assets/portraits/jesse-finley3.png",
+	"Skullface Gang": "res://assets/portraits/skullgang.png",
 }
 
 
@@ -254,7 +255,7 @@ func _on_event_triggered(event_name):
 		"savak_win":
 			Globals.main.story_flags["savak"] = 1
 		"skullgang_fight":
-			Events.battle_start.emit(["blanca", "bianca", "berutia"], false)
+			Events.battle_start.emit(["blanca", "berutia", "bianca"], false)
 			Globals.bad_end_dialogue = "res://assets/dialogue/qz_skullfacegang.clyde"
 			Globals.bad_end_block = "bad_end"
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_skullfacegang.clyde"
