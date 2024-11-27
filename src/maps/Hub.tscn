@@ -148,42 +148,50 @@ position = Vector2(875, -157)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("6_2i6pi")
 dialogue_file = "res://assets/dialogue/hub_byrne.clyde"
+dont_repeat = true
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-363, -131)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("8_77hjx")
 dialogue_file = "res://assets/dialogue/hub_pean.clyde"
+dont_repeat = true
 
 [node name="Rene" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(361, -111)
 image = ExtResource("10_h7mch")
 dialogue_file = "res://assets/dialogue/hub_rene.clyde"
+dont_repeat = true
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(37, 197)
 image = ExtResource("11_m5n03")
 dialogue_file = "res://assets/dialogue/hub_clem.clyde"
+dont_repeat = true
 
 [node name="Morgan" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(-113, 206)
 image = ExtResource("12_a162i")
 dialogue_file = "res://assets/dialogue/hub_morgan.clyde"
+dont_repeat = true
 
 [node name="Mark" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(249, 202)
 image = ExtResource("13_dhivg")
 dialogue_file = "res://assets/dialogue/hub_mark.clyde"
+dont_repeat = true
 
 [node name="Bubbles" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(578, 378)
 image = ExtResource("14_xs4qr")
 dialogue_file = "res://assets/dialogue/hub_bubbles.clyde"
+dont_repeat = true
 
 [node name="Zal" parent="NPCs" instance=ExtResource("4_vdb05")]
 position = Vector2(678, 51)
 image = ExtResource("15_83ypt")
 dialogue_file = "res://assets/dialogue/hub_zal.clyde"
+dont_repeat = true
 
 [node name="Ulla1" parent="." instance=ExtResource("15_ruv63")]
 flag_type = "ulla"
@@ -194,6 +202,7 @@ flag_type = "ulla"
 position = Vector2(382, 20)
 image = ExtResource("9_nfygn")
 dialogue_file = "res://assets/dialogue/hub_ulla.clyde"
+dont_repeat = false
 
 [node name="CutsceneTriggerArea" parent="." instance=ExtResource("15_ruv63")]
 flag_type = "jesse"
@@ -204,6 +213,7 @@ flag_type = "jesse"
 position = Vector2(273, -150)
 image = ExtResource("7_8xny6")
 dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
+dont_repeat = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(-541, 111)

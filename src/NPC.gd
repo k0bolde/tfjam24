@@ -8,6 +8,8 @@ class_name NPC
 @export_file("*.clyde") var dialogue_file
 @export var block := ""
 @export var flip_h := false
+@export var dont_repeat := false
+var been_talked_to := false
 
 @onready var talk_area : Area2D = $TalkArea
 var enabled := true
@@ -40,7 +42,10 @@ func _on_body_exited(body):
 
 
 func start_talk():
+	if dont_repeat and been_talked_to:
+		block = "repeat"
 	Globals.main.start_dialogue(dialogue_file, block)
+	been_talked_to = true
 	
 	
 	

@@ -332,22 +332,26 @@ position = Vector2(2331, -381)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("6_sgl1j")
 dialogue_file = "res://assets/dialogue/qz_byrne.clyde"
+dont_repeat = true
 
 [node name="Clem" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(2331, -176)
 image = ExtResource("8_33wxe")
 dialogue_file = "res://assets/dialogue/qz_clem.clyde"
+dont_repeat = true
 
 [node name="Pean" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -916)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("8_vqqdb")
 dialogue_file = "res://assets/dialogue/qz_pean.clyde"
+dont_repeat = false
 
 [node name="Mark" parent="NPCs" instance=ExtResource("4_gejnf")]
 position = Vector2(-85, -1124)
 image = ExtResource("9_kuejc")
 dialogue_file = "res://assets/dialogue/qz_mark.clyde"
+dont_repeat = false
 
 [node name="Cutscenes" type="Node2D" parent="."]
 
@@ -384,6 +388,7 @@ shape = SubResource("RectangleShape2D_lod4u")
 position = Vector2(-67, -1)
 scale = Vector2(2, 2)
 image = ExtResource("16_11gcm")
+dont_repeat = false
 
 [node name="JesseTF" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(286, -800)
@@ -437,6 +442,7 @@ position = Vector2(0, -100)
 scale = Vector2(1.42, 1.42)
 image = ExtResource("10_0i7xv")
 dialogue_file = "res://assets/dialogue/qz_security.clyde"
+dont_repeat = false
 
 [node name="RendMFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(2054, -773)
@@ -456,6 +462,7 @@ shape = SubResource("RectangleShape2D_5dglm")
 [node name="RendM" parent="Cutscenes/RendMFight/Remove" instance=ExtResource("4_gejnf")]
 position = Vector2(-174, -49)
 image = ExtResource("14_4gae4")
+dont_repeat = false
 
 [node name="RendFFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(-13, -1259)
@@ -471,6 +478,7 @@ shape = SubResource("RectangleShape2D_ssco0")
 [node name="RendF" parent="Cutscenes/RendFFight/Remove" instance=ExtResource("4_gejnf")]
 position = Vector2(119, 29)
 image = ExtResource("15_4pbbw")
+dont_repeat = false
 
 [node name="SecurityLizard" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 flag_type = "qz_security_lizard"
@@ -483,6 +491,7 @@ scale = Vector2(1.49, 1.49)
 image = ExtResource("18_41ks2")
 dialogue_file = "res://assets/dialogue/qz_security.clyde"
 block = "lizard"
+dont_repeat = false
 
 [node name="Ulla2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 flag_type = "ulla"
@@ -494,6 +503,7 @@ story_flag = 1
 position = Vector2(478, -560)
 image = ExtResource("5_1gfri")
 dialogue_file = "res://assets/dialogue/qz_ulla1.clyde"
+dont_repeat = false
 
 [node name="Ulla3" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 flag_type = "ulla"
@@ -505,6 +515,7 @@ story_flag = 2
 position = Vector2(2431, -271)
 image = ExtResource("9_4y0ge")
 dialogue_file = "res://assets/dialogue/qz_ulla2.clyde"
+dont_repeat = false
 
 [node name="Ulla4" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 flag_type = "ulla"
@@ -516,6 +527,7 @@ story_flag = 3
 position = Vector2(1747, -1045)
 image = ExtResource("9_4y0ge")
 dialogue_file = "res://assets/dialogue/qz_ulla3.clyde"
+dont_repeat = false
 
 [node name="ShortcutStart" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(-178, -228)
@@ -528,6 +540,7 @@ position = Vector2(34, -45)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut1.clyde"
+dont_repeat = false
 
 [node name="ShortcutStart2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(-178, -186)
@@ -542,6 +555,7 @@ scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut3.clyde"
 block = "entrance"
+dont_repeat = false
 
 [node name="ShortcutEnd" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(441, -1007)
@@ -554,6 +568,7 @@ position = Vector2(58, -35)
 scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut2.clyde"
+dont_repeat = false
 
 [node name="ShortcutEnd2" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(443, -968)
@@ -568,6 +583,7 @@ scale = Vector2(1.5, 1.5)
 image = ExtResource("16_60iah")
 dialogue_file = "res://assets/dialogue/qz_shortcut3.clyde"
 block = "exit"
+dont_repeat = false
 
 [node name="Glenys" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(1363, -21)
@@ -580,6 +596,7 @@ position = Vector2(63, -39)
 scale = Vector2(2.705, 2.705)
 image = ExtResource("9_gxrl8")
 dialogue_file = "res://assets/dialogue/qz_glenys.clyde"
+dont_repeat = false
 
 [node name="Savak" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(1338, -541)
@@ -591,6 +608,7 @@ flag_type = "savak"
 position = Vector2(54, -42)
 image = ExtResource("5_ygayf")
 dialogue_file = "res://assets/dialogue/qz_savak1.clyde"
+dont_repeat = false
 
 [node name="SkullfaceGang" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(0, -36.64)
@@ -603,6 +621,7 @@ position = Vector2(370, -1331.36)
 position = Vector2(64, -62)
 image = ExtResource("17_adcnm")
 dialogue_file = "res://assets/dialogue/qz_skullfacegang.clyde"
+dont_repeat = false
 
 [node name="Synthia" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(1678, -1380)
@@ -614,6 +633,7 @@ flag_type = "synthia"
 position = Vector2(-76, 5)
 image = ExtResource("12_ujgor")
 dialogue_file = "res://assets/dialogue/qz_synthtail.clyde"
+dont_repeat = false
 
 [node name="Hydra" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 flag_type = "hydra"
@@ -625,6 +645,7 @@ position = Vector2(2473, -1228)
 scale = Vector2(4.11, 4.11)
 image = ExtResource("13_vrykg")
 dialogue_file = "res://assets/dialogue/qz_rustrydra.clyde"
+dont_repeat = false
 
 [node name="ExitArea" parent="." instance=ExtResource("24_3yv1n")]
 position = Vector2(16, 86)
