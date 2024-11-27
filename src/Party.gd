@@ -47,9 +47,9 @@ func get_xp_required_for_next_level() -> int:
 		1:
 			return 10
 		2:
-			return 100
+			return 50
 		3:
-			return 200
+			return 150
 		4:
 			return 300
 	return 99999
