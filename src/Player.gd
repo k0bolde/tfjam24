@@ -23,6 +23,7 @@ var button_dir := Vector2()
 func _ready() -> void:
 	%PhoneButtons.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
 	%PhoneDirections.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
+	#remove the left mouse click binding to interact, otherwise you get stuck in a door opening loop
 	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
 		var ie := InputMap.action_get_events("interact")
 		for i in ie:
@@ -109,3 +110,11 @@ func _on_interact_button_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	Globals.main.menu_pressed()
+
+
+func _on_run_button_button_down() -> void:
+	is_sprinting = true
+
+
+func _on_run_button_button_up() -> void:
+	is_sprinting = false
