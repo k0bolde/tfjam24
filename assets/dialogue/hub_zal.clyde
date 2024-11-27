@@ -3,14 +3,14 @@ Ah, your friendly local game store. Could there be anything of use here? The wor
 == repeat
 Zal: Hi! Looking for anything specific? You can also just chill here!
 
-+ Buy
-	Zal: Buy local!
-	{ trigger zal_buy }
-	<-
-+ Sell
-	Zal: I have the best rates!
-	{ trigger zal_sell}
-	<-
+--+ Buy
+--	Zal: Buy local!
+--	{ trigger zal_buy }
+--	<-
+--+ Sell
+--	Zal: I have the best rates!
+--	{ trigger zal_sell}
+--	<-
 + Talk
 	( shuffle cycle
 		-

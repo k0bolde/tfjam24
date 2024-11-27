@@ -12,7 +12,6 @@ radius = 22.8035
 [node name="NPC" type="StaticBody2D"]
 collision_layer = 2
 script = ExtResource("1_yfqx8")
-dont_repeat = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_12rx6")

@@ -3,12 +3,12 @@ You approach the antique shop. Apparently it’s run by a crow? Was he always a 
 == repeat
 Mark: Caw! I’m Mark! I have an assortment of trinkets and baubles and I also know quite a lot!
 
-+ Improve Stat (Luck)
-	Mark: I can rub some of my object’s luck onto you! What do you say?
-	Which character’s Luck would you like to improve?
-	{ trigger stat_up_lck }
-	Mark gives CHAR a coin and then takes it back. Somehow CHAR feels luckier, like they could call on how a coin lands and get it right more often than not. CHAR’s Luck improved!
-	<-
+--+ Improve Stat (Luck)
+--	Mark: I can rub some of my object’s luck onto you! What do you say?
+--	Which character’s Luck would you like to improve?
+--	{ trigger stat_up_lck }
+--	Mark gives CHAR a coin and then takes it back. Somehow CHAR feels luckier, like they could call on how a coin lands and get it right more often than not. CHAR’s Luck improved!
+--	<-
 + Talk
 	( shuffle cycle
 		-
