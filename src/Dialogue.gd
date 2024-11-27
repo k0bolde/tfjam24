@@ -57,6 +57,8 @@ var portraits := {
 	"Rust and Rist": "res://assets/portraits/rust-rist.png",
 	"Finley and Jesse": "res://assets/portraits/jesse-finley3.png",
 	"Skullface Gang": "res://assets/portraits/skullgang.png",
+	"Glenys": "res://assets/portraits/glenys.png",
+	"Security Lizard": "res://assets/portraits/worried_liz.png",
 }
 
 

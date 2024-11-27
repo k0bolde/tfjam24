@@ -811,6 +811,7 @@ func initialize_enemies():
 	e.item_drops["ddew pamphlet"] = 1.0
 	e.item_drops["weird writings"] = 1.0
 	e.visual_scale = 1.5
+	e.sprite_offset_y = 62
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
