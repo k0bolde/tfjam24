@@ -541,7 +541,6 @@ func initialize_enemies():
 	e.attack_probs["swipe"] = 0.25
 	e.cash_reward = 35
 	e.xp_reward = 15
-	e.base_turns = 2
 	e.item_drops["scale polish"] = 1.0
 	e.visual_scale = 1.25
 	e.sprite_offset_y = 74
@@ -553,6 +552,44 @@ func initialize_enemies():
 	e.texture_path = "res://assets/battle/purple_critter.png"
 	e.stats.hp = 200
 	e.stats.atk = 30
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances.append_array(["fire", "bludgeoning"])
+	e.stats.weaknesses.append_array(["frigid","esoteric"])
+	e.attack_probs["swipe"] = 0.25
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["entice"] = 0.25
+	e.cash_reward = 10
+	e.xp_reward = 5
+	e.item_drops["scale polish"] = .5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "rist's side chick"
+	e.desc = " A man mutated into a busty dragoness. She’s flirty. Watch out!"
+	e.texture_path = "res://assets/battle/purple_critter.png"
+	e.stats.hp = 100
+	e.stats.atk = 18
+	e.stats.def = 20
+	e.stats.eva = 10
+	e.stats.lck = 10
+	e.stats.resistances.append_array(["fire", "bludgeoning"])
+	e.stats.weaknesses.append_array(["frigid","esoteric"])
+	e.attack_probs["swipe"] = 0.25
+	e.attack_probs["claw"] = 0.5
+	e.attack_probs["entice"] = 0.25
+	e.cash_reward = 10
+	e.xp_reward = 5
+	e.item_drops["scale polish"] = .5
+	enemies[e.enemy_name] = e
+	
+	e = Enemy.new()
+	e.enemy_name = "rust's side chick"
+	e.desc = " A man mutated into a busty dragoness. She’s flirty. Watch out!"
+	e.texture_path = "res://assets/battle/purple_critter.png"
+	e.stats.hp = 100
+	e.stats.atk = 18
 	e.stats.def = 20
 	e.stats.eva = 10
 	e.stats.lck = 10
@@ -717,7 +754,7 @@ func initialize_enemies():
 	e.desc = "A goat witch with a silky smooth voice and heaving honkers"
 	e.texture_path = "res://assets/battle/goatwitch.png"
 	e.stats.hp = 200
-	e.stats.atk = 25
+	e.stats.atk = 20
 	e.stats.def = 15
 	e.stats.eva = 5
 	e.stats.lck = 10
