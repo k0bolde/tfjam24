@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 #TODO add hp/mp ui in overworld
 #TODO party follow while in dungeon. drop breadcrumbs while moving and followers move towards certain distances
+# or just lerp towards player?
 
 @onready var cam : Camera2D = $Camera2D
 @onready var interact_container : Container = %InteractContainer
@@ -19,9 +20,8 @@ var interact_callback
 
 
 func _ready() -> void:
-	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
-		%PhoneButtons.visible = true
-		%PhoneDirections.visible = true
+	%PhoneButtons.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
+	%PhoneDirections.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
 
 
 func _unhandled_input(event: InputEvent) -> void:
