@@ -165,8 +165,12 @@ func _on_option_selected(index):
 
 
 func _input(event: InputEvent) -> void:
+	if not event is InputEventMouseButton and event.is_action_pressed("interact"):
+		advanced()
+	
+	
+func advanced():
 	if not is_waiting_for_choice \
-		and event.is_action_pressed("interact") \
 		and (not fade_tween.is_running() if fade_tween else true):
 		if text_anim_tween.is_running():
 			text_anim_tween.kill()
@@ -309,3 +313,7 @@ func _on_external_variable_update(variable_name: String, value: Variant):
 
 func _on_blink_timer_timeout() -> void:
 	%NextIndicator.visible = not %NextIndicator.visible
+
+
+func _on_advance_button_pressed() -> void:
+	advanced()

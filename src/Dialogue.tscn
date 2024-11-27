@@ -105,6 +105,12 @@ scroll_active = false
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 
+[node name="AdvanceButton" type="Button" parent="CanvasLayer/DialogueContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+flat = true
+
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
@@ -159,4 +165,5 @@ layout_mode = 2
 [node name="StingPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
+[connection signal="pressed" from="CanvasLayer/DialogueContainer/AdvanceButton" to="." method="_on_advance_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/MarginContainer2/BlinkTimer" to="." method="_on_blink_timer_timeout"]
