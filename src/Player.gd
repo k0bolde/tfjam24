@@ -17,6 +17,7 @@ var is_battling := false
 var is_talking := false
 var in_cutscene := false
 var interact_callback
+var button_dir := Vector2()
 
 
 func _ready() -> void:
@@ -29,22 +30,28 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("interact"):
-		if interact_callback:
-			interact_callback.call()
-			interact_container.visible = false
-			interact_callback = null
-		if npc:
-			npc.start_talk()
-			is_talking = true
-			interact_container.visible = false
-			# remove the npc ref so we don't get stuck in a talk loop
-			npc = null
+		interact_pressed()
 	
+	
+func interact_pressed():
+	if interact_callback:
+		interact_callback.call()
+		interact_container.visible = false
+		interact_callback = null
+	if npc:
+		npc.start_talk()
+		is_talking = true
+		interact_container.visible = false
+		# remove the npc ref so we don't get stuck in a talk loop
+		npc = null
+
 
 func _physics_process(delta: float) -> void:
 	if Globals.main.is_menu_up() or is_battling or is_talking:
 		return
 	var dir := Input.get_vector("left", "right", "up", "down")
+	if button_dir != Vector2.ZERO:
+		dir = button_dir
 	if not is_zero_approx(dir.x):
 		player_sprite.flip_h = dir.x > 0
 	velocity = dir * speed
@@ -57,3 +64,43 @@ func _physics_process(delta: float) -> void:
 			encounter_area.check_for_battle(delta * 4.0)
 		else:
 			encounter_area.check_for_battle(delta)
+
+
+func _on_up_button_button_down() -> void:
+	button_dir = Vector2.UP
+
+
+func _on_up_button_button_up() -> void:
+	button_dir = Vector2.ZERO
+
+
+func _on_left_button_button_down() -> void:
+	button_dir = Vector2.LEFT
+
+
+func _on_left_button_button_up() -> void:
+	button_dir = Vector2.ZERO
+
+
+func _on_right_button_button_down() -> void:
+	button_dir = Vector2.RIGHT
+
+
+func _on_right_button_button_up() -> void:
+	button_dir = Vector2.ZERO
+
+
+func _on_down_button_button_down() -> void:
+	button_dir = Vector2.DOWN
+
+
+func _on_down_button_button_up() -> void:
+	button_dir = Vector2.ZERO
+
+
+func _on_interact_button_pressed() -> void:
+	interact_pressed()
+
+
+func _on_menu_button_pressed() -> void:
+	Globals.main.menu_pressed()

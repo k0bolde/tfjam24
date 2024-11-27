@@ -93,6 +93,7 @@ layout_mode = 2
 [node name="UpButton" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "^"
 
@@ -102,6 +103,7 @@ layout_mode = 2
 [node name="LeftButton" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "<-"
 
@@ -111,6 +113,7 @@ layout_mode = 2
 [node name="RightButton" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "->"
 
@@ -120,6 +123,7 @@ layout_mode = 2
 [node name="DownButton" type="Button" parent="CanvasLayer2/PhoneDirections/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "v"
 
@@ -146,6 +150,7 @@ columns = 3
 [node name="InteractButton" type="Button" parent="CanvasLayer2/PhoneButtons/GridContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "Interact"
 
@@ -155,5 +160,17 @@ layout_mode = 2
 [node name="MenuButton" type="Button" parent="CanvasLayer2/PhoneButtons/GridContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "Menu"
+
+[connection signal="button_down" from="CanvasLayer2/PhoneDirections/GridContainer/UpButton" to="." method="_on_up_button_button_down"]
+[connection signal="button_up" from="CanvasLayer2/PhoneDirections/GridContainer/UpButton" to="." method="_on_up_button_button_up"]
+[connection signal="button_down" from="CanvasLayer2/PhoneDirections/GridContainer/LeftButton" to="." method="_on_left_button_button_down"]
+[connection signal="button_up" from="CanvasLayer2/PhoneDirections/GridContainer/LeftButton" to="." method="_on_left_button_button_up"]
+[connection signal="button_down" from="CanvasLayer2/PhoneDirections/GridContainer/RightButton" to="." method="_on_right_button_button_down"]
+[connection signal="button_up" from="CanvasLayer2/PhoneDirections/GridContainer/RightButton" to="." method="_on_right_button_button_up"]
+[connection signal="button_down" from="CanvasLayer2/PhoneDirections/GridContainer/DownButton" to="." method="_on_down_button_button_down"]
+[connection signal="button_up" from="CanvasLayer2/PhoneDirections/GridContainer/DownButton" to="." method="_on_down_button_button_up"]
+[connection signal="pressed" from="CanvasLayer2/PhoneButtons/GridContainer/InteractButton" to="." method="_on_interact_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/PhoneButtons/GridContainer/MenuButton" to="." method="_on_menu_button_pressed"]

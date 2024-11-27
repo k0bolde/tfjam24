@@ -77,11 +77,15 @@ func is_dialogue_up() -> bool:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
-		if is_menu_up():
-			menu._on_close_button_pressed()
-		elif not is_battle_up() and not is_dialogue_up():
-			menu = preload("res://src/Menu.tscn").instantiate()
-			menu_node.add_child(menu)
+		menu_pressed()
+
+
+func menu_pressed():
+	if is_menu_up():
+		menu._on_close_button_pressed()
+	elif not is_battle_up() and not is_dialogue_up():
+		menu = preload("res://src/Menu.tscn").instantiate()
+		menu_node.add_child(menu)
 
 
 func load_map(map_name:String, entrance_num := -1):
