@@ -79,9 +79,9 @@ func _ready() -> void:
 	
 	
 func _get_next_dialogue_line():
+	var content = dialogue.get_content()
 	if not is_inside_tree():
 		return
-	var content = dialogue.get_content()
 	if content.type == "end":
 		var t := get_tree().create_tween()
 		t.set_trans(Tween.TRANS_SINE)

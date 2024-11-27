@@ -287,7 +287,7 @@ func initialize_enemies():
 	e.texture_path = "res://assets/battle/monster.png"
 	e.stats.hp = 200
 	e.stats.atk = 20
-	e.stats.def = 20
+	e.stats.def = 13
 	e.stats.eva = 0
 	e.stats.lck = 5
 	e.stats.resistances = ["bludgeoning", "rending"]
@@ -697,7 +697,7 @@ func initialize_enemies():
 	e.enemy_name = "glenys' goat"
 	e.desc = "One of Glenys' favored goats. She's cute!"
 	e.texture_path = "res://assets/battle/panflutesexual.png"
-	e.stats.hp = 100
+	e.stats.hp = 80
 	e.stats.atk = 20
 	e.stats.def = 10
 	e.stats.eva = 15
