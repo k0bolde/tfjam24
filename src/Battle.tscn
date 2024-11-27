@@ -112,7 +112,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.516979, 0)
 
 [node name="Finley" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Party"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.47, 0)
 visible = false
 billboard = 2
 shaded = true
@@ -160,7 +160,7 @@ region_rect = Rect2(192, 128, 64, 64)
 unique_name_in_owner = true
 
 [node name="Enemy1" type="Sprite3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D/Enemies"]
-transform = Transform3D(1.91069e-15, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, 2.30367, -0.509887, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.304, -0.16, 0.498388)
 visible = false
 flip_h = true
 shaded = true
@@ -359,7 +359,7 @@ text = "Crit!"
 
 [node name="SideCam" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport/Base3D"]
 unique_name_in_owner = true
-transform = Transform3D(0.948324, 0.0980526, -0.301775, 0, 0.951057, 0.309017, 0.317305, -0.293048, 0.90191, 0.485, 0.74, 1.448)
+transform = Transform3D(0.948324, 0.0980526, -0.301775, 0, 0.951057, 0.309017, 0.317305, -0.293048, 0.90191, 0.485, 0.98, 1.448)
 current = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]

@@ -141,6 +141,8 @@ func _ready() -> void:
 		hpmesh.mesh.material = mat
 		mat.emission_texture = hpmesh.get_node("SubViewport").get_texture()
 		enemies_node.add_child(hpmesh)
+		if enemies[i].base_turns > 1:
+			side_cam.fov = 90
 		
 	# fade in
 	%FadeRect.visible = true
