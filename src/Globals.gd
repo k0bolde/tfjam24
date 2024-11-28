@@ -982,7 +982,7 @@ func verify_enemies():
 func initialize_party():	
 	#set up starting stats for party
 	#Globals.party.p[0].stats.hp = 10
-	Globals.party.p[0].stats.hp = 135
+	Globals.party.p[0].stats.hp = 150
 	Globals.party.p[0].stats.atk = 25
 	Globals.party.p[0].stats.def = 5
 	Globals.party.p[0].stats.eva = 5
