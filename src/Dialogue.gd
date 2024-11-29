@@ -1,6 +1,6 @@
 extends Control
 class_name Dialogue
-#TODO don't repeat intros for some characters
+#TODO dialogue log
 #TODO half hp dialogue
 #TODO mid dialogue swap for jesse tftg
 

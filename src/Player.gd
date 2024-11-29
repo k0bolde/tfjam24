@@ -21,10 +21,11 @@ var button_dir := Vector2()
 
 
 func _ready() -> void:
-	%PhoneButtons.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
-	%PhoneDirections.visible = OS.has_feature("web_android") or OS.has_feature("web_ios")
+	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios") or OS.has_feature("mobile")
+	%PhoneButtons.visible = is_mobile
+	%PhoneDirections.visible = is_mobile
 	#remove the left mouse click binding to interact, otherwise you get stuck in a door opening loop
-	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+	if is_mobile:
 		var ie := InputMap.action_get_events("interact")
 		for i in ie:
 			if i is InputEventMouseButton:

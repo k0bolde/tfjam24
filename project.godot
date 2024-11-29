@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="tfjam24"
+config/name="mutagenesis"
 run/main_scene="res://src/TitleScreen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60

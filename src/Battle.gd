@@ -59,6 +59,7 @@ var defeated_enemies : Array[Enemy] = []
 var cam_tween : Tween
 var turns := 1
 var targeted_enemy := 0
+var targeted_ally := 0
 # the party member with the current turn
 var curr_party := 0
 # the enemy with the current turn
@@ -72,6 +73,8 @@ var side_cam_shaky_tween_v : Tween
 var side_cam_shaky_tween_h : Tween
 var attack_name_tween : Tween
 var total_turns := 0
+# targeting - 0 = enemies, 1 = party, 2 = all
+var target_mode := 0
 
 
 func _ready() -> void:
@@ -279,9 +282,8 @@ func player_attack(which_attack:String):
 		0, 1, 4:
 			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, targeted_enemy, self)
 		2, 3:
-			#ally target
-			#TODO implement
-			pass
+			#ally target - target_enemy is actually target_ally in this case
+			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, -(targeted_ally + 1), self)
 		5:
 			#self target
 			the_attack["callable"].call(-(curr_party + 1), Globals.party, enemies, -(curr_party + 1), self)
@@ -427,6 +429,7 @@ func kill_enemy(target):
 	defeated_enemies.push_back(enemies[target])
 	enemies.remove_at(target)
 	if enemies.size() > 0:
+		target_mode = 0
 		_on_target_right_button_pressed(false)
 	else:
 		battle_won()
@@ -527,8 +530,12 @@ func show_targeting(is_attacking:=true):
 	%TargetContainer.get_node("PanelContainer/GridContainer/CancelTargetButton").visible = is_attacking
 	%TargetContainer.visible = true
 	indicator_light.visible = true
-	update_selected_enemy()
 	action_cam.make_current()
+	match target_mode:
+		0:
+			update_selected_enemy()
+		1:
+			update_selected_ally()
 
 	
 func hide_targeting():
@@ -542,22 +549,51 @@ func hide_targeting():
 
 
 func _on_target_left_button_pressed() -> void:
-	enemies[targeted_enemy].hp_mesh.visible = false
-	targeted_enemy = (targeted_enemy + 1) % enemies.size()
-	update_selected_enemy()
-
+	match target_mode:
+		0:
+			enemies[targeted_enemy].hp_mesh.visible = false
+			targeted_enemy = (targeted_enemy + 1) % enemies.size()
+			update_selected_enemy()
+		1:
+			targeted_ally = (targeted_ally + 1) % Globals.party.num
+			update_selected_ally()
+			
 
 func _on_target_right_button_pressed(is_targeting:=true) -> void:
-	if enemies.is_empty():
-		return
-	if targeted_enemy < enemies.size():
-		enemies[targeted_enemy].hp_mesh.visible = false
-	targeted_enemy = (targeted_enemy - 1) % enemies.size()
-	if targeted_enemy < 0:
-		targeted_enemy = enemies.size() - 1
-	if is_targeting:
-		update_selected_enemy()
+	match target_mode:
+		0:
+			if enemies.is_empty():
+				return
+			if targeted_enemy < enemies.size():
+				enemies[targeted_enemy].hp_mesh.visible = false
+			targeted_enemy = (targeted_enemy - 1) % enemies.size()
+			if targeted_enemy < 0:
+				targeted_enemy = enemies.size() - 1
+			if is_targeting:
+				update_selected_enemy()
+		1:
+			targeted_ally = (targeted_ally - 1) % Globals.party.num
+			if targeted_ally < 0:
+				targeted_ally = Globals.party.num - 1
+			update_selected_ally()
   
+
+func update_selected_ally():
+	var a = Globals.party.p[targeted_ally]
+	inspect_name_label.text = a.enemy_name.capitalize()
+	#inspect_desc_label.text = a.desc
+	if a.stats.weaknesses.is_empty():
+		inspect_weak_label.text = "Weak to nothing"
+	else:
+		inspect_weak_label.text = "Weak to %s" % a.stats.weaknesses
+	if a.stats.resistances.is_empty():
+		inspect_resist_label.text = "Resists nothing"
+	else:
+		inspect_resist_label.text = "Resists %s" % a.stats.resistances
+	indicator_light.position = a["ingame_sprite"].position
+	indicator_light.position.y += 2.0
+	indicator_light.position.x -= 0.2
+
 
 func update_selected_enemy():
 	var e := enemies[targeted_enemy]
@@ -634,12 +670,12 @@ func battle_won():
 					break
 	got_item_label.text = "Got item(s): "
 	for fi in found_items:
-		got_item_label.text += "%s, " % fi
-		got_item_label.text = got_item_label.text.trim_suffix(", ")
+		got_item_label.text += "%s\n" % fi
 		if Globals.inventory.inv.has(fi):
 			Globals.inventory.inv[fi] += 1
 		else:
 			Globals.inventory.inv[fi] = 1
+	got_item_label.text = got_item_label.text.trim_suffix("\n")
 	Globals.bad_end_dialogue = null
 	Globals.bad_end_block = null
 	
@@ -684,6 +720,11 @@ func _on_abilities_button_pressed() -> void:
 		b.text = a.capitalize()
 		b.pressed.connect(func ():
 			curr_ability = a
+			match Abilities.abilities[a]["effect"]:
+				0, 1, 4:
+					target_mode = 0
+				2, 3, 5:
+					target_mode = 1
 			_on_cancel_button_pressed()
 			disable_buttons()
 			#TODO for party targets, target party instead. New cam position, new target code

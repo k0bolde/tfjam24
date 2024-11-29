@@ -150,7 +150,11 @@ columns = 2
 [node name="Control2" type="Control" parent="CanvasLayer2/PhoneButtons/GridContainer"]
 layout_mode = 2
 
+[node name="Control" type="Control" parent="CanvasLayer2/PhoneButtons/GridContainer"]
+layout_mode = 2
+
 [node name="RunButton" type="Button" parent="CanvasLayer2/PhoneButtons/GridContainer"]
+visible = false
 layout_mode = 2
 focus_mode = 0
 mouse_filter = 1
