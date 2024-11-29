@@ -21,6 +21,7 @@ var block := ""
 var fade_tween : Tween
 var is_waiting_for_choice := false
 var text_anim_tween : Tween
+var is_skipping := false
 # the dupes aren't dupes, they have a zero-width space after their name. Used for changing portraits in cutscenes
 var portraits := {
 	"Sock": "res://assets/portraits/SockFullDefault1.png",
@@ -138,9 +139,12 @@ func _set_up_line(content):
 	if content.tags.has("sad"):
 		sting_player.stream = load("res://assets/audio/sad sting.mp3")
 		sting_player.play()
+	if is_skipping:
+		_get_next_dialogue_line()
 
 
 func _set_up_options(options):
+	is_skipping = false
 	is_waiting_for_choice = true
 
 	#_options_container.get_node("name").text = options.get('name') if options.get('name') != null else ''
@@ -195,7 +199,6 @@ func get_portrait(npc_name:String) -> String:
 		"Ulla Tor", "Ulla":
 			if Globals.main.story_flags["ulla"] < 2:
 				return portraits["Ulla Tor"]
-			#TODO replace with actual flag number
 			elif Globals.main.story_flags["ulla"] < 10:
 				return "res://assets/portraits/UllaPortraitsScaled.png"
 			#TODO replace with actual flag number
@@ -318,4 +321,9 @@ func _on_blink_timer_timeout() -> void:
 
 
 func _on_advance_button_pressed() -> void:
+	advanced()
+
+
+func _on_skip_button_pressed() -> void:
+	is_skipping = true
 	advanced()
