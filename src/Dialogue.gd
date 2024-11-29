@@ -1,8 +1,8 @@
 extends Control
 class_name Dialogue
 #TODO dialogue log
+#TODO dialogue skip button - click it to skip to end or choice
 #TODO half hp dialogue
-#TODO mid dialogue swap for jesse tftg
 
 @onready var speaker_label : Label = %SpeakerLabel
 @onready var dialogue_label : RichTextLabel = %DialogueLabel

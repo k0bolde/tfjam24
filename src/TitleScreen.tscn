@@ -133,24 +133,24 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Programming & art by k0bold https://k0bold.itch.io/ https://www.furaffinity.net/user/2718281828/
 Writing & art & mapping by skiesofsilver https://www.furaffinity.net/user/skiesofsilver https://skiesofsilver.itch.io/
-Art by Tavaer https://tv42.itch.io/ https://www.furaffinity.net/gallery/tavaer/
-Music by Fulcrum https://www.instagram.com/fulcrummusic_/
 Art by Drake https://www.furaffinity.net/user/nevekard - twinning lizard, ants, moth, ai dragon, rat, synth tail, & more!
-Art by NecroBLAU https://www.furaffinity.net/user/24hoursgyear/ https://itch.io/profile/necroblau
-Art and music by Malic https://malicthegreat.itch.io/
+Art by Tavaer https://tv42.itch.io/ https://www.furaffinity.net/gallery/tavaer/ - Jesse battle sprites, Finley dragoness battle sprite
+Music by Fulcrum https://www.instagram.com/fulcrummusic_/
 
 Additional art by
-https://www.furaffinity.net/user/returnaddress/ - Rene portrait
-https://www.furaffinity.net/user/snappsuwu/ - Bubbles portrait, kobold ass
-https://www.furaffinity.net/user/yafath - dragoness
-https://bsky.app/profile/triti.bsky.social - Byrne portrait
-https://www.furaffinity.net/user/sloe/ - bull bro, security guard
-https://www.furaffinity.net/user/greatoverlordchickenmaster - sciraptor enemy
+NecroBLAU https://www.furaffinity.net/user/24hoursgyear/ https://itch.io/profile/necroblau - Ulla portraits
+Malic https://malicthegreat.itch.io/ - tentacle teeth, quarantine music
+Return Address https://www.furaffinity.net/user/returnaddress/ - Rene portrait
+Snapps https://www.furaffinity.net/user/snappsuwu/ - Bubbles portrait, kobold ass
+Yap https://www.furaffinity.net/user/yafath - dragoness
+Triti https://bsky.app/profile/triti.bsky.social - Byrne portrait
+Sloe https://www.furaffinity.net/user/sloe/ - bull bro, security guard
+Shickon https://www.furaffinity.net/user/greatoverlordchickenmaster - sciraptor enemy
 Toastline - snot monster
-https://www.furaffinity.net/user/60PercentScalie - imps
+60 Percent Scalie https://www.furaffinity.net/user/60PercentScalie - imps
 Rose - naga archer
-https://www.furaffinity.net/user/xenophobophilophage - Rust/Rist hydra
-https://www.furaffinity.net/user/pavlentine - emt/officer
+Xeno https://www.furaffinity.net/user/xenophobophilophage - Rust/Rist hydra
+Pavlentine https://www.furaffinity.net/user/pavlentine - emt/officer
 
 Uses Clyde Dialogue plugin
 
@@ -183,7 +183,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer3"]
 layout_mode = 2
-text = "Version 0.1"
+text = "Version 0.01"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]

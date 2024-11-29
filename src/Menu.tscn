@@ -175,6 +175,7 @@ text = "Reminder of what to do next goes here"
 
 [node name="DebugContainer" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

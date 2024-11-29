@@ -2,10 +2,10 @@ extends Node2D
 class_name Battle
 #major implementations
 #TODO Item use
-#TODO party targeting for buffs/heals
 #TODO a way to see stat modifiers
 
 #tweaks
+#TODO don't target dead allies
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation

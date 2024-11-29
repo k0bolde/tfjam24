@@ -581,7 +581,7 @@ text = "->"
 
 [node name="AttackButton" type="Button" parent="CanvasLayer/TargetContainer/PanelContainer/GridContainer"]
 layout_mode = 2
-text = "Attack"
+text = "Target"
 
 [node name="CancelTargetButton" type="Button" parent="CanvasLayer/TargetContainer/PanelContainer/GridContainer"]
 layout_mode = 2
