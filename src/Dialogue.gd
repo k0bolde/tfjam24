@@ -1,7 +1,6 @@
 extends Control
 class_name Dialogue
 #TODO dialogue log
-#TODO dialogue skip button - click it to skip to end or choice
 #TODO half hp dialogue
 
 @onready var speaker_label : Label = %SpeakerLabel
