@@ -39,12 +39,19 @@ var portraits := {
 	"Finley​​": "res://assets/portraits/sparklebold.png",
 	#3 evil zero-width spaces
 	"Finley​​​": "res://assets/portraits/finley-preg.png",
+	#4 evil zero-width spaces
+	"Finley​​​​": "res://assets/portraits/finley-skull.png",
+	#5 evil zero-width spaces
+	"Finley​​​​​": "res://assets/portraits/finley-suit.png",
 	#evil zero-width space
 	"Jesse​": "res://assets/portraits/jesse1.png",
 	"Jesse": "res://assets/portraits/jesse2.png",
 	#2 evil zero-width spaces
 	"Jesse​​": "res://assets/portraits/jesse3.png",
+	#3 evil zero-width spaces
 	"Jesse​​​": "res://assets/portraits/sparkledog.png",
+	#4 evil zero-width spaces
+	"Jesse​​​​": "res://assets/portraits/jesse-skull.png",
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
 	"Zal": "res://assets/portraits/zal.png",
