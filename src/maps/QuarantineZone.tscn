@@ -350,6 +350,7 @@ dialogue_file = "res://assets/dialogue/qz_pean.clyde"
 position = Vector2(-85, -1124)
 image = ExtResource("9_kuejc")
 dialogue_file = "res://assets/dialogue/qz_mark.clyde"
+flip_h = true
 
 [node name="Cutscenes" type="Node2D" parent="."]
 
@@ -458,6 +459,7 @@ shape = SubResource("RectangleShape2D_5dglm")
 [node name="RendM" parent="Cutscenes/RendMFight/Remove" instance=ExtResource("4_gejnf")]
 position = Vector2(-174, -49)
 image = ExtResource("14_4gae4")
+flip_h = true
 
 [node name="RendFFight" parent="Cutscenes" instance=ExtResource("11_cv6q6")]
 position = Vector2(-13, -1259)
