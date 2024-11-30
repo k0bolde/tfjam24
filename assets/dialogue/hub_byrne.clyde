@@ -3,20 +3,20 @@ In the alley way, you come across an odd figure. It looks like a coyote gal wear
 == repeat
 Byrne: A new customer! Buying or selling, heh heh heh…
 
---+ Buy
---	Byrne: Whatcha buyin’’?
---	{ trigger byrne_buy }
---	<-
---+ Sell
---	Byrne: Whatcha sellin’?
---	{ trigger byrne_sell }
---	<-
---+ Improve stat (Evasion)
---	Byrne: Feeling frisky, eh? This is how you avoid undue attention…
---	Which character’s Evasion would you like to improve?
---	CHAR learns a little something from Byrne. They seem a little dodgy about just what they learned, though… CHAR’s evasion improved!
---	{ trigger stat_up_eva }
---	<-
++ Buy
+	Byrne: Whatcha buyin’’?
+	{ trigger byrne_buy }
+	<-
++ Sell
+	Byrne: Whatcha sellin’?
+	{ trigger byrne_sell }
+	<-
++ Improve stat (Evasion)
+	Byrne: Feeling frisky, eh? This is how you avoid undue attention…
+	Which character’s Evasion would you like to improve?
+	CHAR learns a little something from Byrne. They seem a little dodgy about just what they learned, though… CHAR’s evasion improved!
+	{ trigger stat_up_eva }
+	<-
 + Talk
 	( shuffle cycle
 		-

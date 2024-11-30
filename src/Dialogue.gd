@@ -287,7 +287,7 @@ func _on_event_triggered(event_name):
 			Globals.main.story_flags["qz"] = 1
 		"jam_end":
 			Globals.main.story_flags["hydra"] = 1
-			Globals.main.start_dialogue("res://assets/dialogue/end_jam.clyde")
+			#Globals.main.start_dialogue("res://assets/dialogue/end_jam.clyde")
 		"synth_tail_fight":
 			Events.battle_start.emit(["synthia tail"], false)
 			Globals.main.after_battle_dialogue = "res://assets/dialogue/qz_synthtail.clyde"

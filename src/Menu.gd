@@ -1,6 +1,6 @@
 extends Control
 #TODO update player reminder text based on story_flag
-#TODO cash resets when opening menu twice?
+#TODO confirmation on successful save
 #TODO debug options: fight enemy group in encounterArea (w/ dialogue), load specific dialogue, give items
 @onready var settings_panel : PanelContainer = %SettingsPanel
 @onready var fullscreen_checkbutton : CheckButton = %FullscreenCheckButton

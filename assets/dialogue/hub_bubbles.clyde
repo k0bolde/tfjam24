@@ -4,18 +4,18 @@ The gym! You should really go here more. Well, no time like the present.  Bubble
 == repeat
 Bubbles: Hiiiii! Ready to train?
 
---+ Improve stat (Attack)
---	Bubbles: Want to hit harder? Well, you’ve got to hit the bench then! Let’s give it a go!
---	Which character’s ATK would you like to improve?
---	{ trigger stat_up_atk }
---	Whew! What a workout. CHAR emerges exhausted, exhilarated, and stronger. CHAR’s ATK improved!
---	<-
---+ Improve stat (Defense)
---	Bubbles: Want to take blows better? Let me beat you up a bit. It works!
---	Which character’s DEF would you like to improve?
---	{ trigger stat_up_def }
---	Wow! Bubbles beat CHAR up good. It was more like a massage, but CHAR feels tougher.  CHAR’s DEF improved!
---	<-
++ Improve stat (Attack)
+	Bubbles: Want to hit harder? Well, you’ve got to hit the bench then! Let’s give it a go!
+	Which character’s ATK would you like to improve?
+	{ trigger stat_up_atk }
+	Whew! What a workout. CHAR emerges exhausted, exhilarated, and stronger. CHAR’s ATK improved!
+	<-
++ Improve stat (Defense)
+	Bubbles: Want to take blows better? Let me beat you up a bit. It works!
+	Which character’s DEF would you like to improve?
+	{ trigger stat_up_def }
+	Wow! Bubbles beat CHAR up good. It was more like a massage, but CHAR feels tougher.  CHAR’s DEF improved!
+	<-
 + Talk
 	( shuffle cycle
 		-

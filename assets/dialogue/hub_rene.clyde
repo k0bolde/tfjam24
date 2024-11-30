@@ -3,20 +3,20 @@ You approach the coffee shop. Coffee sounds good right about now. It always soun
 == repeat
 Rene: Good day! Anything I can whip up for you?
 
---+ Buy
---	Rene: You want the snilk, don’t you?
---	{ trigger rene_buy }
---	<-
---+ Sell
---	Rene: I guess I can buy something you have? Kinda odd for a coffee shop.
---	{ trigger rene_sell}
---	<-
---+ Improve Stat (MP)
---	Rene: Give me some time and I can whip you up something special!
---	Which character’s MP would you like to improve?
---	{ trigger stat_up_mp }
---	CHAR drinks Rene’s special concoction. CHAR’s mutagenic prowess expands thanks to their elixir.  CHAR’s MP improved!
---	<-
++ Buy
+	Rene: You want the snilk, don’t you?
+	{ trigger rene_buy }
+	<-
++ Sell
+	Rene: I guess I can buy something you have? Kinda odd for a coffee shop.
+	{ trigger rene_sell}
+	<-
++ Improve Stat (MP)
+	Rene: Give me some time and I can whip you up something special!
+	Which character’s MP would you like to improve?
+	{ trigger stat_up_mp }
+	CHAR drinks Rene’s special concoction. CHAR’s mutagenic prowess expands thanks to their elixir.  CHAR’s MP improved!
+	<-
 + Talk
 	( shuffle cycle
 		-

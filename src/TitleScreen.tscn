@@ -183,7 +183,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer3"]
 layout_mode = 2
-text = "Version 0.01"
+text = "Version 0.02"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]

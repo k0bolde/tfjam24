@@ -2,14 +2,14 @@ You enter the hobby shop but it looks more like a …blacksmith? Odd. A mantis s
 -> repeat
 == repeat
 Morgan: Greetings! I am Morgan. Looking to tune up or purchase some gear? It will greatly aid in your adventures!
---+ Buy
---	Morgan: Certainly! Only the finest steel!
---	{ trigger morgan_buy }
---	<-
---+ Sell
---	Morgan: Surely you have something of value!
---	{ trigger morgan_sell }
---	<-
++ Buy
+	Morgan: Certainly! Only the finest steel!
+	{ trigger morgan_buy }
+	<-
++ Sell
+	Morgan: Surely you have something of value!
+	{ trigger morgan_sell }
+	<-
 + Talk
 	( shuffle cycle
 	-
