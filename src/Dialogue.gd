@@ -43,6 +43,8 @@ var portraits := {
 	"Finley​​​​": "res://assets/portraits/finley-skull.png",
 	#5 evil zero-width spaces
 	"Finley​​​​​": "res://assets/portraits/finley-suit.png",
+	#6 evil zero-width spaces
+	"Finley​​​​​​": "res://assets/portraits/finley-hydra.png",
 	#evil zero-width space
 	"Jesse​": "res://assets/portraits/jesse1.png",
 	"Jesse": "res://assets/portraits/jesse2.png",
@@ -52,6 +54,10 @@ var portraits := {
 	"Jesse​​​": "res://assets/portraits/sparkledog.png",
 	#4 evil zero-width spaces
 	"Jesse​​​​": "res://assets/portraits/jesse-skull.png",
+	#5 evil zero-width spaces
+	"Jesse​​​​​": "res://assets/portraits/jesse-suit.png",
+	#6 evil zero-width spaces
+	"Jesse​​​​​​": "res://assets/portraits/jesse-hydra.png",
 	"Some Guy": "res://assets/portraits/jesse1.png",
 	"Mark": "res://assets/portraits/mark-portrait.png",
 	"Zal": "res://assets/portraits/zal.png",
