@@ -1,14 +1,16 @@
 extends Node2D
 # Handles loading new maps, the player, loading/closing battles
-#TODO party targeting for egg lay
 #TODO party in menu to show stats
 #TODO how to regen mp? after fights? reset when moved back to hub? sleep on couch?
 #TODO change party abilities in lab
 #TODO save slots
+#TODO autosave before bad end fights and after bosses
 #TODO items
 #	use in battle
 #	stores
 #TODO party follows in dungeon
+#TODO npc stat ups
+#TODO day system
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode

@@ -6,6 +6,8 @@ class_name Battle
 
 #tweaks
 #TODO don't target dead allies
+#TODO better targeting ui
+#TODO make turn label more visible - where to move it to? highlihgt on left?
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation
 #TODO battle exit animation
@@ -242,8 +244,8 @@ func update_bars(party_num):
 	for i in party_bars_vbox_container.get_node("GridContainer").get_children():
 		i.queue_free()
 	for i in Globals.party.num:
-		if i == party_num:
-			continue
+		#if i == party_num:
+			#continue
 		var bars := a_bars_container.duplicate()
 		bars.get_node("NameLabel").text = Globals.party.p[i]["name"]
 		bars.get_node("HPLabel").text = "%d/%d" % [Globals.party.p[i]["hp"], Globals.party.p[i]["stats"].hp]

@@ -56,45 +56,45 @@ func get_xp_required_for_next_level() -> int:
 
 
 func level_up_stats(l:int) -> String:
-	var str := ""
+	var s := "\n"
 	match l:
 		2:
 			p[0].stats.hp += 10
 			p[0].stats.mp += 10
 			p[0].stats.atk += 2
-			str += "Finley: HP +10, MP +10, ATK +2\n"
+			s += "Finley: HP +10, MP +10, ATK +2\n"
 			p[1].stats.hp += 10
 			p[1].stats.mp += 10
 			p[1].stats.atk += 5
-			str += "Jesse: HP +10, MP +10, ATK +5\n"
+			s += "Jesse: HP +10, MP +10, ATK +5\n"
 		3:
 			p[0].stats.hp += 10
 			p[0].stats.mp += 10
 			p[0].stats.atk += 3
-			str += "Finley: HP +10, MP +10, ATK +3\n"
+			s += "Finley: HP +10, MP +10, ATK +3\n"
 			
 			p[1].stats.hp += 15
 			p[1].stats.mp += 10
 			p[1].stats.def += 5
-			str += "Jesse: HP +15, MP +10, DEF +5\n"
+			s += "Jesse: HP +15, MP +10, DEF +5\n"
 		4:
 			p[0].stats.hp += 15
 			p[0].stats.mp += 15
 			p[0].stats.atk += 5
-			str += "Finley: HP +15, MP +15, ATK +5\n"
+			s += "Finley: HP +15, MP +15, ATK +5\n"
 			
 			p[1].stats.hp += 15
 			p[1].stats.mp += 10
 			p[1].stats.lck += 5
-			str += "Jesse: HP +15, MP +10, LCK +5\n"
+			s += "Jesse: HP +15, MP +10, LCK +5\n"
 		5:
 			p[0].stats.eva += 10
 			p[0].stats.lck += 5
 			p[0].stats.move_slots += 1
-			str += "Finley: EVA +10, LCK +5, Move Slots +1\n"
+			s += "Finley: EVA +10, LCK +5, Move Slots +1\n"
 			
 			p[1].stats.eva += 5
 			p[1].stats.lck += 5
 			p[1].stats.move_slots += 1
-			str += "Jesse: EVA +5, LCK +5, Move Slots +1\n"
-	return str.trim_suffix("\n")
+			s += "Jesse: EVA +5, LCK +5, Move Slots +1\n"
+	return s.trim_suffix("\n")
