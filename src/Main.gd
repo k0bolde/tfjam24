@@ -126,6 +126,7 @@ func load_map(map_name:String, entrance_num := -1):
 		
 
 func start_battle(monsters:Array, can_run:bool):
+	end_battle()
 	Globals.player.cam.enabled = false
 	Globals.player.is_battling = true
 	battle = preload("res://src/Battle.tscn").instantiate()

@@ -44,6 +44,7 @@ func _on_body_exited(body):
 func start_talk():
 	if dont_repeat and been_talked_to:
 		block = "repeat"
+	Globals.main.end_battle()
 	Globals.main.start_dialogue(dialogue_file, block)
 	been_talked_to = true
 	

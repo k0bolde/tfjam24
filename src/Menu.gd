@@ -1,4 +1,6 @@
 extends Control
+#FIXME inventory list doesn't actually work
+#TODO use inventory items in field - mp restore, escape item
 #TODO update player reminder text based on story_flag
 #TODO confirmation on successful save
 #TODO debug options: fight enemy group in encounterArea (w/ dialogue), load specific dialogue, give items

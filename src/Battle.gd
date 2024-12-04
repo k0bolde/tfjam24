@@ -6,7 +6,8 @@ class_name Battle
 
 #tweaks
 #TODO don't target dead allies
-#TODO better targeting ui
+#TODO aim cameras at center of enemies instead of arbitrary point
+#TODO better targeting ui - don't switch cam and move target ui to left
 #TODO make turn label more visible - where to move it to? highlihgt on left?
 #TODO some ui to pop up to tell you who's turn it is
 #TODO battle enter animation

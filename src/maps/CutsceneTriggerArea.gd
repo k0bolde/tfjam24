@@ -42,6 +42,7 @@ func _ready() -> void:
 func _body_entered(_body):
 	if dialogue and (Globals.main.story_flags[flag_type] == story_flag or always_trigger or (trigger_once_per_load and not triggered)):
 		Events.dialogue_ended.connect(_dialogue_ended)
+		Globals.main.end_battle()
 		Globals.main.start_dialogue(dialogue)
 		triggered = true
 		
