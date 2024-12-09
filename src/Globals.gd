@@ -91,7 +91,7 @@ func initialize_enemies():
 	e.attack_probs["woman bite"] = 0.6
 	e.cash_reward = 5
 	e.xp_reward = 1
-	e.item_drops["dozeneggs"] = 1.0
+	e.item_drops["a dozen eggs"] = 1.0
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -110,7 +110,7 @@ func initialize_enemies():
 	e.attack_probs["cat pistol whip"] = 0.50
 	e.cash_reward = 5
 	e.xp_reward = 1
-	e.item_drops["dozeneggs"] = 1.0
+	e.item_drops["a dozen eggs"] = 1.0
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -148,7 +148,7 @@ func initialize_enemies():
 	e.cash_reward = 25
 	e.xp_reward = 5
 	e.base_turns = 2
-	e.item_drops["dozeneggs"] = 1.0
+	e.item_drops["a dozen eggs"] = 1.0
 	e.item_drops["lime time"] = 1.0
 	e.flip_h = true
 	e.visual_scale = 2.0
@@ -384,7 +384,7 @@ func initialize_enemies():
 	e.attack_probs["entice"] = 0.25
 	e.attack_probs["confuse"] = 0.25
 	e.xp_reward = 3
-	e.item_drops["dancing does"] = 0.5
+	e.item_drops["dancing doe"] = 0.5
 	e.cash_reward = 5
 	enemies[e.enemy_name] = e
 	
@@ -745,7 +745,7 @@ func initialize_enemies():
 	e.attack_probs["entice"] = 0.25
 	e.attack_probs["confuse"] = 0.25
 	e.xp_reward = 3
-	e.item_drops["dancing does"] = 0.5
+	e.item_drops["dancing doe"] = 0.5
 	e.cash_reward = 5
 	enemies[e.enemy_name] = e
 	
@@ -787,7 +787,7 @@ func initialize_enemies():
 	e.cash_reward = 30
 	e.xp_reward = 20
 	e.base_turns = 2
-	e.item_drops["condensed synth snilk"] = 1.0
+	e.item_drops["distilled synth snilk"] = 1.0
 	e.item_pulls = 3
 	enemies[e.enemy_name] = e
 	
@@ -834,7 +834,7 @@ func initialize_enemies():
 	e.base_turns = 2
 	e.visual_scale = 2.0
 	e.sprite_offset_y = 58
-	e.item_drops["goldenankrowo"] = 1.0
+	e.item_drops["golden ankrowo"] = 1.0
 	enemies[e.enemy_name] = e
 	
 	e = Enemy.new()
@@ -872,7 +872,7 @@ func initialize_enemies():
 	e.attack_probs["entice"] = 0.5
 	e.attack_probs["bite"] = 0.25
 	e.xp_reward = 11
-	e.item_drops["goldenankrowo"] = 1.0
+	e.item_drops["golden ankrowo"] = 1.0
 	e.cash_reward = 15
 	e.sprite_offset_y = 70
 	enemies[e.enemy_name] = e
@@ -915,7 +915,7 @@ func initialize_enemies():
 	e.attack_probs["inspire"] = 0.3
 	e.attack_probs["fortify"] = 0.2
 	e.xp_reward = 4
-	e.item_drops["prop gun"] = .5
+	e.item_drops["empty rifle"] = .5
 	e.cash_reward = 8
 	enemies[e.enemy_name] = e
 	
@@ -1035,7 +1035,7 @@ func save_game():
 	save_data.map = main.map_node.get_child(0).name
 	save_data.day = main.day
 	save_data.party = party
-	save_data.inventory = inventory
+	save_data.inventory = inventory.inv
 	save_data.story_flags = main.story_flags
 	save_data.use_action_cam = use_action_cam
 	ResourceSaver.save(save_data, "user://save.tres")
@@ -1051,7 +1051,7 @@ func load2():
 	if save_data:
 		cash = save_data.cash
 		party = save_data.party
-		inventory = save_data.inventory
+		inventory.inv = save_data.inventory
 		use_action_cam = save_data.use_action_cam
 		main.story_flags = save_data.story_flags
 		main.load_map(save_data.map)
