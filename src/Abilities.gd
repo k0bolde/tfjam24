@@ -6,15 +6,15 @@ extends Node
 # Holds the info on all abilities, player and enemy
 # requires: mp, base_atk, type, effect, desc, enemy_flavor (if usable by enemies), callable
 var abilities := {
-	"punch": {
-		"base_atk": 1.0,
-		"type": "bludgeoning",
-		"effect": 0,
-		"mp": 0,
-		"desc": "A basic punch",
-		"enemy_flavor": "They punch CHAR! Ouch!",
-		"callable": single_attack.bind("punch"),
-	},
+	#"punch": {
+		#"base_atk": 1.0,
+		#"type": "bludgeoning",
+		#"effect": 0,
+		#"mp": 0,
+		#"desc": "A basic punch",
+		#"enemy_flavor": "They punch CHAR! Ouch!",
+		#"callable": single_attack.bind("punch"),
+	#},
 	"kick": {
 		"base_atk": 1.5,
 		"type": "bludgeoning",
@@ -500,6 +500,17 @@ func (user, party, enemies, target, battle):
 
 
 func _ready() -> void:
+	var ab := Ability.new()
+	ab.ability_name = "punch"
+	ab.type = "bludgeoning"
+	ab.desc = "A basic punch"
+	ab.enemy_flavor = "They punch CHAR! Ouch!"
+	ab.callable = single_attack.bind("punch")
+	abilities[ab.ability_name] = ab
+	
+	#ab = Ability.new()
+	#abilities[ab.ability_name] = ab
+	
 	#setup enemy specific moves
 	abilities["some guy punch"] = abilities["punch"].duplicate()
 	abilities["some guy punch"]["enemy_flavor"] = "Some guy punches you! Ouch!"
@@ -527,7 +538,7 @@ func _ready() -> void:
 	
 	# check that all abilities have the required keys
 	for a in abilities:
-		if not abilities[a].has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
+		if a is Dictionary and not abilities[a].has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
 			printerr("ability %s is missing a required key" % a)
 
 

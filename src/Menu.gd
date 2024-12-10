@@ -1,6 +1,6 @@
 extends Control
-#FIXME inventory list doesn't actually work
 #TODO use inventory items in field - mp restore, escape item
+#TODO inventory paging or just scroll?
 #TODO update player reminder text based on story_flag
 #TODO confirmation on successful save
 #TODO debug options: fight enemy group in encounterArea (w/ dialogue), load specific dialogue, give items
@@ -225,4 +225,10 @@ func _on_invincible_button_toggled(toggled_on: bool) -> void:
 func _on_inf_mp_button_toggled(toggled_on: bool) -> void:
 	Globals.debug_infinite_mp = toggled_on
 	
-	
+
+func _on_give_items_button_pressed() -> void:
+	for i in Globals.inventory.items:
+		if Globals.inventory.inv.has(i):
+			Globals.inventory.inv[i] += 1
+		else:
+			Globals.inventory.inv[i] = 1

@@ -2,6 +2,7 @@ extends Node2D
 class_name Battle
 #major implementations
 #TODO Item use
+#	paging
 #TODO a way to see stat modifiers
 
 #tweaks
@@ -278,7 +279,7 @@ func player_attack(which_attack:String):
 	disable_buttons()
 	turns -= 1
 	update_turns()
-	var the_attack : Dictionary = Abilities.abilities[which_attack]
+	var the_attack = Abilities.abilities[which_attack]
 	if not Globals.debug_infinite_mp:
 		Globals.party.p[curr_party]["mp"] -= the_attack["mp"]
 	match the_attack["effect"]:
@@ -355,7 +356,7 @@ func enemy_attack():
 	if selected_attack == "":
 		printerr("oops %s couldn't pick an attack, picking random attack" % enemies[curr_enemy].enemy_name)
 		selected_attack = enemies[curr_enemy].stats.abilities.pick_random()
-	var the_attack : Dictionary = Abilities.abilities[selected_attack]
+	var the_attack = Abilities.abilities[selected_attack]
 	match the_attack["effect"]:
 		0, 1, 4:
 			var target_party := randi_range(0, Globals.party.num - 1)
@@ -855,3 +856,7 @@ func _on_end_battle_button_pressed() -> void:
 	t.set_trans(Tween.TRANS_SINE)
 	t.tween_property(%FadeRect, "modulate", Color.BLACK, 2)
 	t.tween_callback(Events.battle_end.emit)
+
+
+func _on_items_button_pressed() -> void:
+	pass # Replace with function body.

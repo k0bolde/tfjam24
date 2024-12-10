@@ -23,6 +23,7 @@ class_name Stats
 # punch/claw/metal/esoteric/mutagenic/fire/bite
 @export var weaknesses := []
 @export var resistances := []
+#TODO to allow each member to learn their unique attacks
 @export var move_slots := 2
 
 # ability name & user -> the stats & turns left

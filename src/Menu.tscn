@@ -295,6 +295,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Infinite MP"
 
+[node name="GiveItemsButton" type="Button" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Give All Items"
+
 [node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/DebugContainer/PanelContainer/GridContainer"]
 layout_mode = 2
 
@@ -371,4 +375,5 @@ text = "Close"
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/RandomEncountersButton" to="." method="_on_random_encounters_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/InvincibleButton" to="." method="_on_invincible_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/InfMPButton" to="." method="_on_inf_mp_button_toggled"]
+[connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/GiveItemsButton" to="." method="_on_give_items_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/CloseInventoryButton" to="." method="_on_close_inventory_button_pressed"]
