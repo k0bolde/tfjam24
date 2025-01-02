@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://hk5dg6h0gury"]
+[gd_scene load_steps=27 format=4 uid="uid://hk5dg6h0gury"]
 
 [ext_resource type="Script" path="res://src/maps/Map.gd" id="1_km1as"]
 [ext_resource type="Texture2D" uid="uid://4yak0eh5rks8" path="res://assets/TOWNMAP.png" id="2_mcdrc"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://bwjx77oupqvtv" path="res://assets/overworld/zal-ow.png" id="15_83ypt"]
 [ext_resource type="PackedScene" uid="uid://nx4o2o4jt058" path="res://src/CutsceneTriggerArea.tscn" id="15_ruv63"]
 [ext_resource type="Texture2D" uid="uid://b24jfvsdih40s" path="res://assets/qz-sign.png" id="17_ej1xy"]
-[ext_resource type="Texture2D" uid="uid://dsqmy5lten8qc" path="res://assets/under-construction.png" id="18_snxax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um8dg"]
 size = Vector2(78, 971)
@@ -143,7 +142,8 @@ scale = Vector2(3.2, 3.2)
 map_name = "QuarantineZone"
 
 [node name="ExitFactory" parent="Exits" instance=ExtResource("4_pu8sb")]
-position = Vector2(492, 448)
+position = Vector2(495, 540)
+scale = Vector2(5.26, 5.26)
 map_name = "FactoryOutside"
 
 [node name="NPCs" type="Node2D" parent="."]
@@ -221,7 +221,3 @@ dialogue_file = "res://assets/dialogue/hub_jesse1.clyde"
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(-541, 111)
 texture = ExtResource("17_ej1xy")
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(491, 529)
-texture = ExtResource("18_snxax")

@@ -12,7 +12,7 @@ extends Control
 @onready var flag_container : Container = %FlagContainer
 @onready var inventory_container : Container = %InventoryContainer
 @onready var item_grid_container : Container = %ItemGridContainer
-var map_names := ["Apartment", "ApartmentCorridor", "Hub", "Map1", "QuarantineZone", "FactoryOutside"]
+var map_names := ["Apartment", "ApartmentCorridor", "Hub", "Map1", "QuarantineZone", "FactoryOutside", "Sewer"]
 
 
 func _ready() -> void:
@@ -66,16 +66,23 @@ func _ready() -> void:
 	%InfMPButton.button_pressed = Globals.debug_infinite_mp
 	
 	inventory_container.visible = false
-	for item in Globals.inventory.inv.keys():
+	var items := Globals.inventory.inv.keys()
+	items.sort()
+	for item in items:
 		if not Globals.inventory.items.has(item):
+			printerr("non-existant item %s in inventory" % item)
 			continue
 		var amt_label := Label.new()
 		amt_label.text = "%d" % Globals.inventory.inv[item]
 		var name_label := Label.new()
-		name_label.text = item
+		name_label.text = item.capitalize()
 		var desc_label := Label.new()
 		desc_label.text = Globals.inventory.items[item]["desc"]
+		var icon_rect := TextureRect.new()
+		icon_rect.texture = load(Globals.inventory.items[item]["icon"])
+		icon_rect.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 		item_grid_container.add_child(amt_label)
+		item_grid_container.add_child(icon_rect)
 		item_grid_container.add_child(name_label)
 		item_grid_container.add_child(desc_label)
 

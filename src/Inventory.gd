@@ -231,6 +231,8 @@ func verify():
 			printerr("no price for item %s" % item)
 		if i.callable == null or i.callable.is_null() or not i.callable.is_valid():
 			printerr("bad callable for item %s" % item)
+		if i.icon == "res://icon.svg":
+			printerr("default icon for item %s" % item)
 	
 	
 func DONTUSE():

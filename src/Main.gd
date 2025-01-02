@@ -9,8 +9,6 @@ extends Node2D
 #	use in battle
 #	stores
 #TODO party follows in dungeon
-#TODO npc stat ups
-#TODO day system
 
 @onready var player = $Player
 @onready var menu_node = $MenuNode

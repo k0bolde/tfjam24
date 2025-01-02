@@ -7,3 +7,4 @@ class_name Item
 @export var is_battle_usable := true
 @export var callable : Callable
 @export var price := 0
+@export var icon := "res://icon.svg"
