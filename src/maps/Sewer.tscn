@@ -3180,21 +3180,21 @@ physics_layer_0/collision_layer = 2
 sources/1 = SubResource("TileSetAtlasSource_16v0q")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w65ke"]
-size = Vector2(152, 20)
+size = Vector2(184, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etyew"]
-size = Vector2(173, 22)
+size = Vector2(207, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qo0k8"]
-size = Vector2(22, 121)
+size = Vector2(22, 129)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o2lt"]
-size = Vector2(191, 20)
+size = Vector2(201, 23)
 
 [node name="Sewer" type="Node2D"]
 script = ExtResource("1_gxjv0")
 map_name = "Sewer"
-entrances = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
+entrances = Array[Vector2]([Vector2(0, 0), Vector2(562, 1027)])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.101961)
@@ -3262,7 +3262,7 @@ position = Vector2(40, 60)
 image = ExtResource("12_nw1a1")
 
 [node name="NPC12" parent="NPCs" instance=ExtResource("5_l0s4g")]
-position = Vector2(210, 304)
+position = Vector2(200, 301)
 image = ExtResource("13_rv4y7")
 
 [node name="Cutscenes" type="Node2D" parent="."]
@@ -3271,26 +3271,26 @@ image = ExtResource("13_rv4y7")
 position = Vector2(3, 272)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/FinleyJesse1"]
-position = Vector2(6, 0)
+position = Vector2(-10, 0)
 shape = SubResource("RectangleShape2D_w65ke")
 
 [node name="FinleyJesse2" parent="Cutscenes" instance=ExtResource("14_4s6ux")]
 position = Vector2(7, 710)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/FinleyJesse2"]
-position = Vector2(-0.5, 1)
+position = Vector2(-12.5, 1)
 shape = SubResource("RectangleShape2D_etyew")
 
 [node name="FinleyJesse3" parent="Cutscenes" instance=ExtResource("14_4s6ux")]
 position = Vector2(244, 920)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/FinleyJesse3"]
-position = Vector2(2, 8.5)
+position = Vector2(2, 4.5)
 shape = SubResource("RectangleShape2D_qo0k8")
 
 [node name="MutantRend" parent="Cutscenes" instance=ExtResource("14_4s6ux")]
 position = Vector2(-75, 466)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/MutantRend"]
-position = Vector2(85.5, 0)
+position = Vector2(80.5, 1.5)
 shape = SubResource("RectangleShape2D_7o2lt")

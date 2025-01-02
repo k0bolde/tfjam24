@@ -12,7 +12,7 @@ extends Control
 @onready var flag_container : Container = %FlagContainer
 @onready var inventory_container : Container = %InventoryContainer
 @onready var item_grid_container : Container = %ItemGridContainer
-var map_names := ["Apartment", "ApartmentCorridor", "Hub", "Map1", "QuarantineZone", "FactoryOutside", "Sewer"]
+var map_names := ["Apartment", "ApartmentCorridor", "Hub", "Map1", "QuarantineZone", "FactoryOutside", "Sewer", "Factory"]
 
 
 func _ready() -> void:
