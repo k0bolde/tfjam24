@@ -8,6 +8,7 @@ class_name Ability
 @export var type : String
 @export var effect := 0
 @export var mp := 0
-var callable : Callable
+@export var callable : Callable
+
 @export var can_player_use := true
 @export var specific_party_members := []

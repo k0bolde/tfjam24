@@ -538,9 +538,17 @@ func _ready() -> void:
 	
 	# check that all abilities have the required keys
 	for a in abilities:
-		if a is Dictionary and not abilities[a].has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
+		if abilities[a] is Dictionary and not abilities[a].has_all(["base_atk", "type", "effect", "mp", "desc", "enemy_flavor", "callable"]):
 			printerr("ability %s is missing a required key" % a)
-
+		if abilities[a]["desc"] == "DefaultDesc":
+			printerr("ability %s missing desc" % a)
+		if abilities[a]["enemy_flavor"] == "DefaultEnemyFlavor":
+			printerr("ability %s missing enemy flavor" % a)
+		if abilities[a] is Ability and abilities[a]["desc"] == "DefaultDesc":
+			printerr("ability %s missing desc" % a)
+		var c : Callable = abilities[a]["callable"]
+		if c == null or c.is_null() or not c.is_valid():
+			printerr("ability %s has bad callable" % a)
 
 #func ability_callable(user, party, enemies:Array, target:int, battle:Battle):
 	## applies an ability/item to the battle, each invididual ability should have its own func like this that the battle calls when its used
