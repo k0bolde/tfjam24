@@ -340,11 +340,15 @@ horizontal_alignment = 1
 [node name="ItemGridContainer" type="GridContainer" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-columns = 4
+columns = 5
 
 [node name="Label" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
 layout_mode = 2
-text = "Amount"
+text = "Amt"
+
+[node name="Label5" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Use"
 
 [node name="Label4" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
 layout_mode = 2
