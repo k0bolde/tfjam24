@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpupcnd2wi5sc"]
+
+[ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="1_2rmj0"]
+[ext_resource type="Script" path="res://src/InventoryPanel.gd" id="1_gb1ao"]
+
+[node name="InventoryContainer" type="MarginContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gb1ao")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_2rmj0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ItemGridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 5
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Amt"
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Use"
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Icon"
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/ItemGridContainer"]
+layout_mode = 2
+text = "Description"
+
+[node name="CloseInventoryButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Close"

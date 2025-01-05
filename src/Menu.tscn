@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://f2tca3d1cn16"]
+[gd_scene load_steps=4 format=3 uid="uid://f2tca3d1cn16"]
 
 [ext_resource type="Script" path="res://src/Menu.gd" id="1_0c8cn"]
 [ext_resource type="StyleBox" uid="uid://biw2ou6apbubg" path="res://assets/basic.stylebox" id="2_fcs3w"]
+[ext_resource type="PackedScene" uid="uid://cpupcnd2wi5sc" path="res://src/InventoryPanel.tscn" id="3_jmqk4"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -311,60 +312,8 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
-[node name="InventoryContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="InventoryContainer" parent="CanvasLayer" instance=ExtResource("3_jmqk4")]
 unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/InventoryContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("2_fcs3w")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InventoryContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Inventory"
-horizontal_alignment = 1
-
-[node name="ItemGridContainer" type="GridContainer" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 5
-
-[node name="Label" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
-layout_mode = 2
-text = "Amt"
-
-[node name="Label5" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
-layout_mode = 2
-text = "Use"
-
-[node name="Label4" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
-layout_mode = 2
-text = "Icon"
-
-[node name="Label2" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
-layout_mode = 2
-text = "Name"
-
-[node name="Label3" type="Label" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/ItemGridContainer"]
-layout_mode = 2
-text = "Description"
-
-[node name="CloseInventoryButton" type="Button" parent="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Close"
 
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuContainer/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
@@ -383,4 +332,3 @@ text = "Close"
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/InvincibleButton" to="." method="_on_invincible_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/InfMPButton" to="." method="_on_inf_mp_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/DebugContainer/PanelContainer/GridContainer/VBoxContainer2/GiveItemsButton" to="." method="_on_give_items_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InventoryContainer/PanelContainer/VBoxContainer/CloseInventoryButton" to="." method="_on_close_inventory_button_pressed"]
