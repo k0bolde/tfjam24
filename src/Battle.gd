@@ -4,6 +4,7 @@ class_name Battle
 #TODO Item use
 #	paging
 #TODO a way to see stat modifiers
+#	show the ability that caused it too
 
 #tweaks
 #TODO don't target dead allies
@@ -859,4 +860,8 @@ func _on_end_battle_button_pressed() -> void:
 
 
 func _on_items_button_pressed() -> void:
-	pass # Replace with function body.
+	disable_buttons()
+	var items_panel = preload("res://src/InventoryPanel.tscn").instantiate()
+	items_panel.is_battle = true
+	items_panel.tree_exited.connect(enable_buttons)
+	$CanvasLayer.add_child(items_panel)

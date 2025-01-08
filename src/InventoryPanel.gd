@@ -33,3 +33,7 @@ func _ready() -> void:
 		item_grid_container.add_child(icon_rect)
 		item_grid_container.add_child(name_label)
 		item_grid_container.add_child(desc_label)
+
+
+func _on_close_inventory_button_pressed() -> void:
+	queue_free()
